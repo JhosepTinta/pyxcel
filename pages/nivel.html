@@ -55,16 +55,14 @@
 
     <!-- ======= Courses Section ======= -->
     <section id="courses" class="courses">
-      <div  class="container" data-aos="fade-up">
+      <div id="a" class="container" data-aos="fade-up">
 
-        <div id="a" class="row" data-aos="zoom-in" data-aos-delay="1000">
+        <div class="row" data-aos="zoom-in" data-aos-delay="100">
 
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
             <div class="course-item">
-		<div class="row" style="height:50%">
-              <img src="../assets/img/course-1.jpg" class="img-fluid" alt="..." style="height:100%">
-              </div>
-		<div class="row course-content" style="height:50%">
+              <img src="../assets/img/course-1.jpg" class="img-fluid" alt="...">
+              <div class="course-content">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                   <h3>Web Development</h3>
                   <div class="testimonial-wrap d-flex justify-content-between align-items-center">
@@ -73,6 +71,7 @@
                     </div>                    
                   </div> 
                 </div>
+                <ion-icon name="lock-open-outline"></ion-icon>
                 <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
                   <div class="text-center">
                     <button class="btn btn-success disabled">Seleccionar curso</button>
@@ -104,12 +103,11 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     import { getDatabase, ref, get, set, child, update, remove, onChildAdded, onChildChanged, onChildRemoved } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
-	
+
     const db = getDatabase();        
     const commentsRef = ref(db, 'Niveles');
-var contenido="";
     onChildAdded(commentsRef, (data) => {
-        
+        var contenido;
         if (data.exists()) {
                 //objeto recuperado (se ejecuta n veces hasta que termine de leer todos los niveles)
                 const objeto = data.val();
@@ -121,14 +119,15 @@ var contenido="";
                   btn_text="btn btn-success";
                 }else{
                 img_text="../assets/img/lock.png";
-                	btn_text="btn btn-success disabled ";
+                btn_text="btn btn-secondary disabled ";
                 }
-                contenido+='<div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-4 mt-md-4"><div class="course-item" style="border-style: solid;border-width:5px;"><div class="row" style="height:40%"><img src="'+objeto.imagen + '" class="img-fluid" alt="..." style="height:100%" ></div><div class="row course-content" style="height:60%"><div class="d-flex justify-content-between align-items-center mb-3">';
-                contenido+='<h3>' + objeto.titulo + '</h3><div class="testimonial-wrap d-flex justify-content-between align-items-center"><div class="testimonial-item d-flex align-items-center"><img src="';	
-                contenido+= img_text + '" class="img-fluid" alt=""></div></div></div><p>' + objeto.descripcion + '</p><div class="text-center">' + '<button class="' + btn_text + '">Seleccionar curso</button>';
-                contenido+='</div></div></div></div>';
+                contenido=contenido +
+                '<div class="course-item"><img src='+objeto.imagen + ' class="img-fluid" alt="..."><div class="course-content"><div class="d-flex justify-content-between align-items-center mb-3">'
+                + '<h3>' + objeto.titulo + '</h3><div class="testimonial-wrap d-flex justify-content-between align-items-center"><div class="testimonial-item d-flex align-items-center"><img src='	
+                + img_text + 'class="img-fluid" alt=""></div></div></div><p>' + objeto.descripcion + '</p><div class="text-center">' + '<button class=' + btn_text + '>Seleccionar curso</button>' 
+                +'</div></div></div>';
 
-                //alert(contenido);    
+                    
 
 
                 
@@ -140,11 +139,11 @@ var contenido="";
             } else {
                 alert("No se encontro el elemento");
             }
-		var a = document.getElementById("a");                
-                a.innerHTML=contenido;
-                
+                const a = document.getElementById("a");
+                var abc='<b>'+ objeto.nivel + '</b>';
+                a.innerHTML=abc;
     });
-		
+
 
 </script>
   <!-- Vendor JS Files -->
