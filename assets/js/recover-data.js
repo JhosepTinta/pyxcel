@@ -1,5 +1,5 @@
-import {db,ref,get,child,onChildAdded} from "./connection-firebase.js";
-import {PonerContenido,agregarIntroduccionContenido,ponerTitulo,ponerTituloNivel} from "./scrip.js";
+import {db,ref,get,child,onChildAdded} from "../js/connection-firebase.js";
+import {PonerContenido,agregarIntroduccionContenido,ponerTitulo,ponerTituloNivel} from "../js/scrip.js";
 export {recuperarDatos,recuperarIntroduccion,contarTemas,recuperarTituloNivel}
 function recuperarDatos(ruta,elemento,numeroTema){
     const dbref = ref(db);
