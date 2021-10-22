@@ -1,4 +1,4 @@
-import {recuperarDatos,contarTemas,recuperarIntroduccion,recuperarTituloNivel} from "./recover-data.js";
+import {recuperarDatos,contarTemas,recuperarIntroduccion,recuperarTituloNivel} from "../js/recover-data.js";
 export {PonerContenido,agregarIntroduccionContenido,ponerTitulo,ponerTituloNivel}
 contarTemas();
 const nivelActual = 1;
@@ -32,7 +32,7 @@ function pintarTituloTema(numeroTema){  /*cada que se haga click sobre un boton 
 }
 
 function limpiarContenido(){
-    var elemento = document.getElementById("a");
+    var elemento = document.querySelector(".informacion-contenido");
     const contenedor = document.createElement("div");
     contenedor.setAttribute("class","informacion-contenido");
     contenedor.setAttribute("id","a");
