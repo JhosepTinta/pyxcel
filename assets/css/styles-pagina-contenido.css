@@ -1,11 +1,9 @@
-/*scripts para pagina-contenido.html*/
 *, *:before, *:after {
     box-sizing: inherit;
 }
 body {
     font-family: 'Lato', sans-serif;
     font-size: 1.6rem;
-    line-height: 2;
     margin: 0;
 }
 
@@ -14,18 +12,16 @@ body {
     display: flex;
     flex-direction: row;
     max-width: 85%;
-    /*background: rgb(10, 10,10);*/ 
     margin: 0 auto;
-
+    margin-top: 100px;
 }
 
 
 /* BARRA DE MENU LATERAL IZQUIERDO*/  
 .barra-menu{
-   /* background: rgb(15, 80, 60);*/
-    max-width: 500px;
     height: 100%;
-    min-width: 300px;
+    min-width: 250px;
+    width: 400px;
     margin: 10px 30px 10px 10px; 
     box-shadow: 2px 2px 15px #E2E2E2;
     position: sticky;
@@ -37,7 +33,7 @@ body {
     line-height: 1.8em;
     margin-left: 15px;
     margin-bottom: 15px;
-    max-width: 50%;
+    max-width: 140px;
     border-bottom: 3px solid #68CF79;
     cursor: default;
 
@@ -52,16 +48,18 @@ body {
 }
 .lista-temas{
     font-size: 17px;
-    line-height: 1.8em;
+    line-height: 1.0em;
     margin: 10px 10px 10px 45px;
     list-style: none;
     font-weight: normal;
     padding: 0;
     cursor: pointer;
 }
+.lista-temas li {
+   margin-bottom: 15px;
+}
 .lista-temas li:hover {
-   
-    font-size: 20px;
+    color: #68CF79;
 }
 .tema-del-nivel{
     width: fit-content;
@@ -69,6 +67,11 @@ body {
 
 .tema-seleccionado{
     color: #68CF79;
+    background-image: url("../img/flecha.svg");/*modificar al subir a githuh*/
+    padding-left: 23px;
+    background-position: 0 0;
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
 }
 /* BARRA DE MENU LATERAL IZQUIERDO*/  
 
@@ -79,7 +82,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-width: 420px;
+    min-width: 300px; /*---------------------------------------------------*/
     max-width: 100%;
     margin: 10px 20px;
     box-shadow: 2px 2px 15px #E2E2E2;
@@ -104,6 +107,8 @@ body {
     color: white;
     font-size: 30px;
     font-weight: 300;
+    padding: 0 10px;         /*-----------------------------------------------------------------*/
+    line-height: 1.2em;  /*------------------------------------------------------------------------------------------------------*/
 }
 .informacion-contenido {
     padding: 10px 30px 30px 30px;
@@ -113,18 +118,21 @@ body {
 }
 .informacion-contenido h2{
     font-size: 20px;
-    margin: 0;
+    margin: 0 20px 15px 0;
+    border-bottom: 2px solid #3EC153;
+    line-height: 1.7em;
 }
-.informacion-contenido img {
+.informacion-contenido img { 
     max-width: 75%;
     min-width: 50%;
-    margin: 10px 50px;
+    margin: 10px auto; /*----------------------------------------------------------------------------*/
+    display: block;
 }
-.contenidoTema-botones{
+.contenidoTema-botones{ 
     display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 75%;
+    width: 100%;
 }
 /* CONTENIDO DEL TEMA*/ 
 
@@ -136,8 +144,8 @@ body {
     flex-direction: row;
     margin: 10px 20px;
     max-width: 100%;
+    min-width: 300px;
     justify-content: space-around;
-  /*  background: rgb(179 0 0);*/
 }
 .seccion-botones button:hover{
     background: rgb(101, 193, 114);
@@ -168,6 +176,7 @@ body {
     display: flex;
     flex-direction: row;
     align-content: center;
+
 }
 
 
@@ -193,8 +202,112 @@ body {
 
 /* BOTONES PARA CAMBIAR DE TEMA*/ 
 
-
 .oculto{ /*todo el que tenga esta clase desaparesera*/
     display: none;
 }
 
+
+
+@media screen and (max-width: 1500px){
+    .main-pagina-contenido{
+        max-width: 90%;
+    }
+    .barra-menu{
+        min-width: 280px;
+    }
+}
+
+@media screen and (max-width: 1400px){
+    .main-pagina-contenido{
+        max-width: 95%;
+    }
+    .barra-menu{
+        min-width: 270px;
+    }
+
+}
+
+@media screen and (max-width: 1300px){
+    .main-pagina-contenido{
+        max-width: 98%;
+    }
+    .barra-menu{
+        min-width: 250px;
+    }
+
+}
+
+@media screen and (max-width: 1100px){
+
+    .informacion-contenido h2{
+        font-size: 17px;
+        line-height: 1.7em;
+    }
+    .titulo-del-contenido h1{
+        font-size: 25px;
+        line-height: 1.2em;  
+    }
+
+    .informacion-contenido p{
+        font-size: 15px;
+    }
+
+    .main-pagina-contenido{
+        max-width: 95%;
+    }
+
+    .main-pagina-contenido{
+        display: flex;
+        flex-direction: column;    
+    }
+
+    .barra-menu{
+        position: inherit;
+        max-width: 95%;
+        width: 100%;
+        margin: 15px auto;
+        box-shadow: 2px 2px 15px #E2E2E2;
+        border-radius: 10px;
+    }
+
+    .boton-niveles{
+        font-size: 18px;
+    }
+    .barra-menu h1{
+        font-size: 20px;
+
+    }
+    .barra-menu h2{
+        font-size: 16px;
+    }
+    .lista-temas{
+        font-size: 15px;
+    }
+    .boton-ver-niveles a{
+        padding: 5px 35px;
+        font-size: 16px;
+    }
+
+}
+
+@media screen and (max-width: 500px){
+    .informacion-contenido p{
+        font-size: 14px;
+    }
+    .informacion-contenido h2{
+        font-size: 17px;
+        line-height: 1.7em;
+    }
+    .titulo-del-contenido h1{
+        font-size: 20px;
+        line-height: 1.2em;  
+    }
+    .barra-menu{
+        min-width: 300px;
+    }
+    .boton-niveles{
+        font-size: 15px;
+        padding: 5px 10px;
+    }
+
+}
