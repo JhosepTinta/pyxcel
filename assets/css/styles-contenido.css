@@ -1,13 +1,3 @@
-*, *:before, *:after {
-    box-sizing: inherit;
-}
-body {
-    font-family: 'Lato', sans-serif;
-    font-size: 1.6rem;
-    margin: 0;
-}
-
-
 .main-pagina-contenido{
     display: flex;
     flex-direction: row;
@@ -39,7 +29,7 @@ body {
 
 }
 .barra-menu h2{
-    margin: 10px 5px 0 30px;
+    margin: 15px 5px 15px 30px;
     font-size: 18px;
     line-height: 1.1em;
     font-weight: normal;
@@ -49,7 +39,7 @@ body {
 .lista-temas{
     font-size: 17px;
     line-height: 1.0em;
-    margin: 10px 10px 10px 45px;
+    margin: 10px 10px 10px 30px;
     list-style: none;
     font-weight: normal;
     padding: 0;
@@ -63,12 +53,12 @@ body {
 }
 .tema-del-nivel{
     width: fit-content;
+    padding-left:23px;
 }
 
 .tema-seleccionado{
     color: #68CF79;
     background-image: url("../img/flecha.svg");/*modificar al subir a githuh*/
-    padding-left: 23px;
     background-position: 0 0;
     background-size: 15px 15px;
     background-repeat: no-repeat;
@@ -123,10 +113,9 @@ body {
     line-height: 1.7em;
 }
 .informacion-contenido img { 
-    max-width: 75%;
-    min-width: 50%;
-    margin: 10px auto; /*----------------------------------------------------------------------------*/
-    display: block;
+    display:block ;
+    width: 50%;
+    margin: 10px auto;
 }
 .contenidoTema-botones{ 
     display: flex;
@@ -263,11 +252,13 @@ body {
 
     .barra-menu{
         position: inherit;
+        top: 72px;
         max-width: 95%;
         width: 100%;
-        margin: 15px auto;
+        margin: 0  auto 15px auto;
         box-shadow: 2px 2px 15px #E2E2E2;
         border-radius: 10px;
+        background: white;
     }
 
     .boton-niveles{
@@ -275,8 +266,9 @@ body {
     }
     .barra-menu h1{
         font-size: 20px;
-
+        margin: 10px auto 10px 30px ;
     }
+
     .barra-menu h2{
         font-size: 16px;
     }
@@ -291,6 +283,12 @@ body {
 }
 
 @media screen and (max-width: 500px){
+
+    .informacion-contenido {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
     .informacion-contenido p{
         font-size: 14px;
     }
@@ -311,3 +309,4 @@ body {
     }
 
 }
+
