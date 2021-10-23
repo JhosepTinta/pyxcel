@@ -199,6 +199,10 @@
                         sessionStorage.setItem("idnivel", data.val().nivel);
                         window.location.href = "pagina-contenido.html";
                     });
+                    if(data.val().activo===false){
+                        verContenido.disabled = true;  
+                    }
+
 
             } else {
                 alert("No se encontro el elemento");
