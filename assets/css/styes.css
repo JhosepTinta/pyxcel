@@ -1,0 +1,46 @@
+#contenedor{
+    background-color: rgb(250, 227, 134);
+    display: inline-block;
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 4px;
+    position: relative;
+    text-align: center;
+}
+
+#imagen{
+    width: 180px;
+}
+
+#candado{
+    width: 30px;
+    height: 30px;
+    /*background-color: #dc143c;
+    border-radius: 50%;*/
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+}
+
+#verCont{
+    width: max-content;
+    margin-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#titulo{
+    font-family: sans-serif;
+    margin: 0px;
+    padding: 0px;
+}
+
+#descripcion{
+    margin: 0px;
+    padding: 0px;
+    font-family: monospace;
+    text-align: justify;
+}
+
