@@ -1,7 +1,5 @@
-#a{
-    display: flex;
-  justify-content: center;
-  padding: 50px;
+#a{ 
+    padding: 50px;
 }
 #contenedor{
     background-color: rgb(223, 223, 223);
