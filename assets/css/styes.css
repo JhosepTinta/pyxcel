@@ -1,0 +1,58 @@
+#a{ 
+    padding: 50px;
+}
+#contenedor{
+    background-color: rgb(223, 223, 223);
+    display: inline-block;
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 4px;
+    position: relative;
+    text-align: center;
+}
+
+#imagen{
+    width: 280px;
+}
+
+#candado{
+    width: 45px;
+    height: 45px;
+    background-color: #0000005d;
+    border-radius: 25%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    padding: 5px;
+}
+
+#verCont{
+    width: max-content;
+    margin-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: #5fcf80;
+    color: white;   
+    border-radius: 10px; 
+}
+
+#titulo{
+    font-family: sans-serif;
+    margin: 0px;
+    padding: 0px;
+    font-size: 25px;
+    padding: 10px;
+}
+
+#descripcion{
+    margin: 0px;
+    padding: 0px;
+    font-family: arial;
+    text-align: justify;
+    font-size: 15px;
+}
+
+
+
