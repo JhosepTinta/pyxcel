@@ -25,24 +25,17 @@
   <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  <!-- Template Main CSS File -->
+  
   <link href="../assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Mentor - v4.6.0
-  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
   
-  <!-- ======= Header ======= -->
+ 
   
 
   <main id="main" data-aos="fade-in">
-
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
       <div class="container">
@@ -120,12 +113,12 @@ var contenido="";
                   img_text="../assets/img/ulock.png";
                   btn_text="btn btn-success";
                 }else{
-                img_text="../assets/img/lock.png";
+                  img_text="../assets/img/lock.png";
                 	btn_text="btn btn-success disabled ";
                 }
                 contenido+='<div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-4 mt-md-4"><div class="course-item" style="border-style: solid;border-width:5px;"><div class="row" style="height:40%"><img src="'+objeto.imagen + '" class="img-fluid" alt="..." style="height:100%" ></div><div class="row course-content" style="height:60%"><div class="d-flex justify-content-between align-items-center mb-3">';
                 contenido+='<h3>' + objeto.titulo + '</h3><div class="testimonial-wrap d-flex justify-content-between align-items-center"><div class="testimonial-item d-flex align-items-center"><img src="';	
-                contenido+= img_text + '" class="img-fluid" alt=""></div></div></div><p>' + objeto.descripcion + '</p><div class="text-center">' + '<button class="' + btn_text + '">Seleccionar curso</button>';
+                contenido+= img_text + '" class="img-fluid" alt=""></div></div></div><p>' + objeto.descripcion + '</p><div class="text-center">' + '<a href="pagina-contenido.html?id='+ objeto.id + '"" class="' + btn_text + '">Seleccionar curso</a>';
                 contenido+='</div></div></div></div>';
 
                 //alert(contenido);    
