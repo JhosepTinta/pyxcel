@@ -1,28 +1,32 @@
 import {recuperarDatos,contarTemas,recuperarIntroduccion,recuperarTituloNivel} from "../js/recover-data.js";
 export {PonerContenido,agregarIntroduccionContenido,ponerTitulo,ponerTituloNivel}
-contarTemas(recuperarIdNivel());
-//const nivelActual = 1;
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+contarTemas();
+const nivelActual = getParameterByName('seleccion');
 
 
 let temaActual =1;
 let cantTemas = 0;
 
-recuperarTituloNivel("Niveles/"+recuperarIdNivel(),recuperarNivelActual());
+recuperarTituloNivel("Niveles/nivel",nivelActual);
 pintarTituloTema(temaActual);
 ponerFuncionesBotones();
 cotrolarVisibilidadBotones();
 
-function recuperarIdNivel(){
+function recuperarNivel(){
     return sessionStorage.getItem("idcontenido");
 }
-
-function recuperarNivelActual(){
-    return sessionStorage.getItem("idnivel");
-}
-
 function pintarTituloTema(numeroTema){  /*cada que se haga click sobre un boton (anterior,siguiente) o sobre el muno lateral,este metodo se ejecutara*/
     var botonesTemas  = document.querySelectorAll('.tema-del-nivel');
+    console.log(botonesTemas);
     botonesTemas.forEach(b =>{
+        console.log(b.value);
+        console.log(numeroTema);
         if(numeroTema == b.value){
             b.classList.add('tema-seleccionado');
         }else{
@@ -33,8 +37,8 @@ function pintarTituloTema(numeroTema){  /*cada que se haga click sobre un boton 
     /*PONER AQUI EL METODO PARA CAMBIAR EL CONTENDIO DEL TEMA*/
     let aux = "Contenidos/Cont-1";
     limpiarContenido();
-    recuperarIntroduccion("Temas/"+recuperarIdNivel()+"/tema",temaActual);
-    recuperarDatos("Temas",recuperarIdNivel()+"/tema",numeroTema);
+    recuperarIntroduccion("Temas/nivel1/tema",temaActual);
+    recuperarDatos("Temas","nivel1/tema",numeroTema);
 
 }
 
@@ -73,6 +77,7 @@ function ponerTitulo(item,aux){ /* lista de  nombres de temas  ordenados {tema1,
     var fragmentTemas = document.createDocumentFragment();
         templateTituloTema.querySelector('.tema-del-nivel').textContent = item;
         templateTituloTema.querySelector('.tema-del-nivel').value = aux++;
+        
         fragmentTemas.appendChild (templateTituloTema.cloneNode(true)); 
 
     listaTemas.appendChild(fragmentTemas);
