@@ -1,1 +1,0 @@
-/* estilos para pagina-contenido.html*/
