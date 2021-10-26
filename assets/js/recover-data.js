@@ -37,10 +37,10 @@ function recuperarIntroduccion(ruta,numeroTema){
 }
 
 
-function contarTemas(){
+function contarTemas(nivelActual){
         let objeto =new Object();
         let n = 1;
-        const commentsRef = ref(db, 'Temas/nivel1');
+        const commentsRef = ref(db, 'Temas/nivel'+nivelActual);
         onChildAdded(commentsRef, (data) => { 
             if (data.exists()) { //objeto recuperado (se ejecuta n veces hasta que termine de leer todos los niveles) 
                 objeto = data.val().datos; 
@@ -64,3 +64,4 @@ function recuperarTituloNivel(ruta,numeroNivel){
             console.log("unsucessfull, error" + error);
     });
 }
+
