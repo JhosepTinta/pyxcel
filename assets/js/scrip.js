@@ -1,10 +1,17 @@
 import {recuperarDatos,contarTemas,recuperarIntroduccion,recuperarTituloNivel} from "../js/recover-data.js";
 export {PonerContenido,agregarIntroduccionContenido,ponerTitulo,ponerTituloNivel}
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 contarTemas();
-const nivelActual = 1;
+//const nivelActual = getParameterByName('id');
+const nivelActual = 2;
 
-
-let temaActual =1;
+let temaActual = 1;
 let cantTemas = 0;
 
 recuperarTituloNivel("Niveles/nivel",nivelActual);
