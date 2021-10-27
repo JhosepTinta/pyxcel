@@ -1,4 +1,4 @@
-import {recuperarDatos,contarTemas,recuperarIntroduccion,recuperarTituloNivel} from "../js/recover-data.js";
+import {comprobarNivel,recuperarDatos,contarTemas,recuperarIntroduccion,recuperarTituloNivel} from "../js/recover-data.js";
 export {PonerContenido,agregarIntroduccionContenido,ponerTitulo,ponerTituloNivel}
 
 function getParameterByName(name) {
@@ -15,11 +15,23 @@ let cantTemas = 0;
 incializar();
 
 async function  incializar(){
-    var a = await contarTemas(nivelActual);
-    recuperarTituloNivel("Niveles/nivel",nivelActual);
-    pintarTituloTema(temaActual);
-    ponerFuncionesBotones();
-    cotrolarVisibilidadBotones();
+    var  aux = await comprobarNivel(nivelActual);
+    console.log('comprobar nivle--------------------------------------');
+    console.log(typeof aux.val().activo);
+    if(aux.val().activo){
+        var a = await contarTemas(nivelActual);
+        recuperarTituloNivel("Niveles/nivel",nivelActual);
+        pintarTituloTema(temaActual);
+        ponerFuncionesBotones();
+        cotrolarVisibilidadBotones();
+    }else{
+        console.log('poniendo nivle bloqueado')
+        agregarIntroduccionContenido('NIVEL_BLOQUEADO!!!');
+        var ba = document.querySelector('.boton-anterior');
+        ba.classList.add('oculto');
+        var bs = document.querySelector('.boton-siguiente');
+        bs.classList.add('oculto');
+    }
 }
 
 
@@ -84,9 +96,11 @@ function ponerTitulo(item,aux){ /* lista de  nombres de temas  ordenados {tema1,
     botonesTemas.forEach(boton =>{
         boton.addEventListener('click',(e) =>{
             if(!(e.target.value == temaActual)){
+
                 temaActual=e.target.value;
                 pintarTituloTema(e.target.value);
                 $('.titulo-del-contenido').animate({scrollTop:0}, 'slow');
+
             }
         
         });
@@ -145,5 +159,6 @@ function cotrolarVisibilidadBotones(){
         botonSiguiente.classList.remove('oculto');
     }
 }
+
 
 
