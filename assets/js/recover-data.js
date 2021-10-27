@@ -1,8 +1,10 @@
 import {db,ref,get,child,onChildAdded} from "../js/connection-firebase.js";
 import {PonerContenido,agregarIntroduccionContenido,ponerTitulo,ponerTituloNivel} from "../js/scrip.js";
-export {recuperarDatos,recuperarIntroduccion,contarTemas,recuperarTituloNivel}
+export {comprobarNivel,recuperarDatos,recuperarIntroduccion,contarTemas,recuperarTituloNivel}
 
- function getDireccion(direccion){
+
+
+function getDireccion(direccion){
     var dbref = ref(db);
     let exito = 0;
     while (exito == 0) {
@@ -16,6 +18,11 @@ export {recuperarDatos,recuperarIntroduccion,contarTemas,recuperarTituloNivel}
     return res;
 }
 
+
+async function comprobarNivel(codNivel){
+    var  aux = await getDireccion("Niveles/nivel"+codNivel);
+    return aux;
+}
 
 function recuperarDatos(ruta,elemento,numeroTema){
     const dbref = ref(db);
@@ -57,6 +64,8 @@ async function contarTemas(nivelActual){
         let n = 1;
 
         var  data = await getDireccion("Temas/nivel"+nivelActual);
+        console.log('------------------')
+        console.log(data.val())
         let res = [];
         data.forEach(element => {
 
@@ -81,4 +90,5 @@ function recuperarTituloNivel(ruta,numeroNivel){
             console.log("unsucessfull, error" + error);
     });
 }
+
 
