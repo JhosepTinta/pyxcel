@@ -12,15 +12,19 @@ const nivelActual = getParameterByName('id');
 
 let temaActual = 1;
 let cantTemas = 0;
-contarTemas(nivelActual);
-recuperarTituloNivel("Niveles/nivel",nivelActual);
-pintarTituloTema(temaActual);
-ponerFuncionesBotones();
-cotrolarVisibilidadBotones();
+incializar();
+
+async function  incializar(){
+    var a = await contarTemas(nivelActual);
+    recuperarTituloNivel("Niveles/nivel",nivelActual);
+    pintarTituloTema(temaActual);
+    ponerFuncionesBotones();
+    cotrolarVisibilidadBotones();
+}
 
 
 function pintarTituloTema(numeroTema){  /*cada que se haga click sobre un boton (anterior,siguiente) o sobre el muno lateral,este metodo se ejecutara*/
-    var botonesTemas  = document.querySelectorAll('.tema-del-nivel');
+    var botonesTemas  =  document.querySelectorAll('.tema-del-nivel');
     botonesTemas.forEach(b =>{
         if(numeroTema == b.value){
             b.classList.add('tema-seleccionado');
@@ -79,9 +83,12 @@ function ponerTitulo(item,aux){ /* lista de  nombres de temas  ordenados {tema1,
     const botonesTemas = document.querySelectorAll('.tema-del-nivel');
     botonesTemas.forEach(boton =>{
         boton.addEventListener('click',(e) =>{
-            temaActual=e.target.value;
-            pintarTituloTema(e.target.value);
-            $('.titulo-del-contenido').animate({scrollTop:0}, 'slow');
+            if(!(e.target.value == temaActual)){
+                temaActual=e.target.value;
+                pintarTituloTema(e.target.value);
+                $('.titulo-del-contenido').animate({scrollTop:0}, 'slow');
+            }
+        
         });
     });
     cantTemas++;
@@ -138,4 +145,5 @@ function cotrolarVisibilidadBotones(){
         botonSiguiente.classList.remove('oculto');
     }
 }
+
 
