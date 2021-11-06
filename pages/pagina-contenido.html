@@ -66,7 +66,7 @@
   			</ul>
 			  
 			<div class="text-center">				
-				<button type="button" class="btn btn-danger btn-lg " data-toggle="modal" data-target="#modal_aprobado" data-whatever="@mdo" data-backdrop="static" data-keyboard="false" >Rendir Examen</button><br><br>
+				<button type="button" class="btn btn-danger btn-lg " data-toggle="modal" data-target="#modal_reprobado" data-whatever="@mdo" data-backdrop="static" data-keyboard="false" >Rendir Examen</button><br><br>
 				<a href="nivel.html" type="button" class="btn btn-outline-success ">Volver al Curso</a><br><br>
 			</div>
 
@@ -137,6 +137,36 @@
 				</div>
 				<div class="modal-footer">
 				  <button type="button" class="btn btn-success btn-lg btn-block" data-bs-dismiss="modal">Siguiente Nivel</button>				  
+				</div>
+			  </div>
+			</div>
+		  </div>
+
+		   <!--modal Reprobado-->
+		   <div class="modal fade" id="modal_reprobado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+			  <div class="modal-content">
+				<div class="modal-header bg-danger text-white" >
+				  <h5 class="modal-title" id="exampleModalLabel">Resultado de la prueba</h5>				  
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-4">
+							<img src="../assets/img/reprobado.png" alt="">
+						</div>
+						<div class="col-8">
+							<div class="row">
+								<h1 class="text-danger">Reprobado</h1>
+							</div>
+							<div class="row">
+								<h3 class="text-dark">10/100</h3>
+							</div>
+						</div>
+					</div>
+				  
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-danger btn-lg btn-block" data-bs-dismiss="modal">Cerrar</button>				  
 				</div>
 			  </div>
 			</div>
