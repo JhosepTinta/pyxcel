@@ -152,7 +152,19 @@
     margin: 10px auto;
     box-shadow: 2px 3px 10px #565B56;
 }
-
+.boton-evaluacion{
+    background: rgb(194, 20, 14);
+    border: 1px solid transparent;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    padding: 5px 35px;
+    font-size: 22px;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto;
+    box-shadow: 2px 3px 10px #ee0f07;
+}
 .seccion-boton-anterior{ 
     width: 50%;
     display: flex;
@@ -185,6 +197,26 @@
 }
 .boton-ver-niveles a:hover{
     background: rgb(101, 193, 114);
+    color: white;
+
+}
+
+
+.boton-ver-evaluacion{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+.boton-ver-evaluacion a{
+    text-align: center;
+    padding: 7px 40px;
+    font-size: 20px;
+    line-height: 1.3em;
+}
+.boton-ver-evaluacion a:hover{
+    background: rgb(243, 31, 3);
     color: white;
 
 }
