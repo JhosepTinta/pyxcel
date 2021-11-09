@@ -17,7 +17,7 @@ incializar();
 async function  incializar(){
     var  aux = await comprobarNivel(nivelActual);
     console.log('comprobar nivle--------------------------------------');
-    console.log(typeof aux.val().activo);
+    //console.log(typeof aux.val().activo);
     if(aux.val().activo){
         var a = await contarTemas(nivelActual);
         recuperarTituloNivel("Niveles/nivel",nivelActual);
