@@ -204,11 +204,11 @@
 							</div>
 							<div class="row" style="height: 80px; ">
 								<div class="col-2 border border-success" style="display: flex; align-items: center;">
-									<label class="text-success font-weight-bold" style="font-size: x-large">1/10</label>
+									<label class="text-success font-weight-bold" id="numeroPregunta" style="font-size: medium">1/10</label>
 
 								</div>
 								<div class="col-7" style="display: flex; align-items: left;">
-									<label for="recipient-name" class="col-form-label">descripcion /planteamineto de la
+									<label id="TituloPregunta" for="recipient-name" class="col-form-label">descripcion /planteamineto de la
 										pregunta</label>
 								</div>
 								<div class="col-3 ml-auto text-center">
@@ -302,11 +302,14 @@
 			let op2pr = document.getElementById("o2pregunta");
 			let op3pr = document.getElementById("o3pregunta");
 			let op4pr = document.getElementById("o4pregunta");
+			let tiPr=document.getElementById("TituloPregunta");
+			let nuPr=document.getElementById("numeroPregunta");
 
 			op1pr.textContent = "opcion 1";
 			op2pr.textContent = "opcion 2";
 			op3pr.textContent = "opcion 3";
 			op4pr.textContent = "opcion 4";
+			
 
 			op1pr.addEventListener("click", function () {
 				//op1pr.setAttribute("class", "btn btn-danger");
@@ -350,7 +353,9 @@
 					if (snapshot.exists()) {
 						console.log(snapshot.val());
 						var pregunta = snapshot.val();
+						nuPr.textContent = preguntaActual+"/15";
 						preguntaActual = preguntaActual + 1;
+						tiPr.textContent = pregunta.pregunta;
 						op1pr.textContent = pregunta.o1;
 						op2pr.textContent = pregunta.o2;
 						op3pr.textContent = pregunta.o3;
@@ -371,7 +376,9 @@
 					if (snapshot.exists()) {
 						console.log(snapshot.val());
 						var pregunta = snapshot.val();
+						nuPr.textContent = preguntaActual+"/15";
 						preguntaActual = preguntaActual + 1;
+						tiPr.textContent = pregunta.pregunta;
 						op1pr.textContent = pregunta.o1;
 						op2pr.textContent = pregunta.o2;
 						op3pr.textContent = pregunta.o3;
