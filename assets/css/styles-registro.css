@@ -1,0 +1,134 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+
+.main-registro {
+	display: flex;
+	flex-direction: column;
+}
+
+.registro-titulo {
+	color: #68CF79;
+	font-size: 75px;
+	margin: 70px auto 50px auto;
+	text-decoration: none;
+	text-shadow: 1px 2px 3px #C4C4C4;
+}
+
+#formulario{
+	display: flex;
+	flex-direction: column;
+	margin: 10px auto 10px auto;
+}
+
+.seccion-input {
+	display: flex;
+	flex-direction: column;
+	width: 400px;
+	margin-bottom: 40px;
+}
+
+.seccion-input input{
+	border: none;
+	border-bottom: 1.5px solid #AEAEAE;
+	padding: 4px;
+	padding-left: 30px;
+	font-size: 16px;
+	height: 20px;
+    background-position: 5px 50%;
+    background-size: 15px 15px;
+    background-repeat: no-repeat;
+}
+.seccion-input.ultimo-input  input {
+	padding-right: 30px;
+}
+
+.ultimo-input{
+	margin-bottom: 15px;
+}
+
+
+.seccion-input input:focus{
+	outline: none;
+	border-bottom: 1.5px solid #68CF79;
+}
+
+.seccion-input input:focus::placeholder{
+	color: transparent;
+
+}
+.input-nombre{
+	background-image: url("../img/img-user.svg");
+}
+.input-nombre:focus{
+	background-image: url("../img/img-user-focus.svg");
+}
+
+.input-correo{
+	background-image: url("../img/img-correo.svg");
+}
+.input-correo:focus{
+	background-image: url("../img/img-correo-focus.svg");
+}
+
+.input-contrasena{
+	background-image: url("../img/img-contrasena.svg");
+}
+.input-contrasena:focus{
+	background-image: url("../img/img-contrasena-focus.svg");
+}
+
+.mensaje-error{
+	font-size: 12px;
+	/*color: #EA1313;*/
+	color: lightslategrey;
+	margin: 5px auto 5px 5px;
+	height: 11px;
+}
+
+.boton-registrarse{
+	color: white;
+	border: none;
+	font-size: 18px;
+	background: #68CF79;
+	border-radius: 5px;
+	padding: 5px 15px;
+	margin: 5px auto;
+	box-shadow: 2px 3px 3px #AEAEAE;
+	align-items: center;
+     justify-content: center;
+     cursor: pointer;
+}
+.boton-registrarse:hover{
+	background: rgb(101, 193, 114);
+}
+
+.pregunta{
+	margin: 25px auto;
+	color: #202020;
+}
+.pregunta a{
+	text-decoration: none;
+	color: #23BA71;
+}
+
+.boton-ojo{
+	position: relative;
+	top: -45px;
+	left: 374px;
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	border: none;
+	cursor: pointer;
+	background-color: transparent;
+}
+
+.mostrar-contrasena{
+	background-image: url("../img/img-mostar-contrasena.svg");
+}
+.ocultar-contrasena{
+	background-image: url("../img/img-ocultar-contrasena.svg");
+}
