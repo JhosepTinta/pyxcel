@@ -125,7 +125,7 @@ input:focus ~ label, input.used ~ label {
 	top: -20px;
   transform: scale(.75); left: -2px;
 	/* font-size: 14px; */
-	color: #5FCF80;
+	color: #3ac162;
 }
 
 
@@ -216,7 +216,7 @@ input:focus ~ .highlight {
   text-shadow: 1px 1px 0 #5FCF80;
 }
 
-.buttonBlue:hover { background: #6ee491; }
+.buttonBlue:hover { background: #3ac162; }
 
 
 /* Ripples container */
