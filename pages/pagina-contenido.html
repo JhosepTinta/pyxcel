@@ -226,9 +226,9 @@
 				</div>
 				<div >
 					<div class="row p-3">
-						<div class="col-4"><button type="button" class="btn btn-danger" data-dismiss="modal" onclick="alert('Gracias por pinchar');" >cancelar prueba</button></div>
+						<div class="col-4"><button type="button" class="btn btn-danger" data-dismiss="modal" >cancelar prueba</button></div>
 						<div class="col-4"></div>
-						<div class="col-4"><button type="button" class="btn btn-warning" onclick=mensaje_alerta_salir()>omitir pregunta</button></div>
+						<div class="col-4"><button type="button" class="btn btn-warning" >omitir pregunta</button></div>
 					</div>	
 				  
 				</div>
@@ -281,6 +281,21 @@
   	</main>
 
 	<script>
+		function mensaje_alerta_omitir() {
+			Swal.fire({
+				title: 'Realmente desea omitir la pregunta?',
+				showCancelButton: true,
+				confirmButtonText: 'si omitir',
+				cancelButtonText: 'cancelar',
+				}).then((result) => {
+				/* Read more about isConfirmed, isDenied below */
+				if (result.isConfirmed) {
+					//cerramos la vista y volvemos a niveles
+					//no guardamos nada
+
+				}
+				})
+		}
 		function mensaje_alerta_salir() {
 			Swal.fire({
 				title: 'Realmente desea cancelar la evaluacion?',
