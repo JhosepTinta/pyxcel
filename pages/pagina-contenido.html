@@ -72,7 +72,8 @@
 
 			<div class="text-center">
 				<button type="button" class="btn btn-danger btn-lg " data-toggle="modal" data-target="#modal_evaluacion"
-					data-whatever="@mdo" data-backdrop="static" data-keyboard="false">Rendir Examen</button><br><br>
+					data-whatever="@mdo" data-backdrop="static" data-keyboard="false" id="rendirExamen">Rendir
+					Examen</button><br><br>
 				<a href="nivel.html" type="button" class="btn btn-outline-success ">Volver al Curso</a><br><br>
 			</div>
 
@@ -216,8 +217,8 @@
 								<div class="col-3 ml-auto text-center">
 									<div class="row"><label class="font-weight-light" style="font-size:x-small ">tiempo
 											restante</label></div>
-									<div class="row"><label class="font-weight-bold text text-danger" id="time"
-											style="font-size: xx-large;">59</label></div>
+									<div class="row"><label class="font-weight-bold text text-danger" id="temporizador"
+											style="font-size: xx-large;">60</label></div>
 								</div>
 							</div><br>
 
@@ -253,7 +254,7 @@
 							<!--<div class="col-4"><button type="button" class="btn btn-danger"
 									data-dismiss="modal">cancelar prueba</button></div>
 							<div class="col-4"></div>-->
-							<div class="col-4"><button type="button" class="btn btn-danger"
+							<div class="col-4"><button type="button" id="botonCancelarPrueba" class="btn btn-danger"
 									onclick=mensaje_alerta_salir()>cancelar prueba</button></div>
 
 							<div class="col-4"><button id="botonOmitirDialog" type="button"
@@ -349,7 +350,11 @@
 				//op4pr.disabled = true;
 				recuperarPregunta();
 			});
-
+			let botonRendirExamen = document.getElementById("rendirExamen");
+			botonRendirExamen.addEventListener("click", function () {
+				reiniciarTemporizador();
+				iniciarTemporizador();
+			});
 			let botonOmitir = document.getElementById("botonOmitirDialog");
 			botonOmitir.addEventListener("click", function () {
 				/*const dbRef = ref(getDatabase());
@@ -371,6 +376,7 @@
 				}).catch((error) => {
 					console.error(error);
 				});*/
+				pausarTemporizador();
 				Swal.fire({
 					title: 'Realmente desea omitir la pregunta?',
 					showCancelButton: true,
@@ -382,11 +388,31 @@
 						//cerramos la vista y volvemos a niveles
 						//no guardamos nada
 						recuperarPregunta();
+					} else {
+						iniciarTemporizador();
 					}
 				})
-
 			});
+			let botonCancelar = document.getElementById("botonCancelarPrueba");
+			botonCancelar.addEventListener("click", function () {
+				pausarTemporizador();
+				Swal.fire({
+					title: 'Realmente desea salir de la evaluacion?',
+					showCancelButton: true,
+					confirmButtonText: 'si salir',
+					cancelButtonText: 'cancelar',
+				}).then((result) => {
+					/* Read more about isConfirmed, isDenied below */
 
+					if (result.isConfirmed) {
+						//cerramos la vista y volvemos a niveles
+						//no guardamos nada
+						location.reload();
+					}else{
+						iniciarTemporizador();
+					}
+				})
+			});
 			recuperarPregunta();
 			function recuperarPregunta() {
 				const dbRef = ref(getDatabase());
@@ -401,6 +427,8 @@
 						op2pr.textContent = pregunta.o2;
 						op3pr.textContent = pregunta.o3;
 						op4pr.textContent = pregunta.o4;
+						reiniciarTemporizador();
+						iniciarTemporizador();
 						//reiniciar e iniciar
 					} else {
 						console.log("No data available");
@@ -409,7 +437,6 @@
 					console.error(error);
 				});
 			}
-
 			/*function siguientePregunta(){
 				//let pregunta = listaPreuntas[preguntaActual];
 				//preguntaActual = preguntaActual+1;
@@ -420,7 +447,50 @@
 				console.log("hola");
 				//console.log(pregunta.o1);
 			}*/
-
+			var valorInicial = 60.5 * 1000;
+			var cuenta = valorInicial;
+			var contador; //10 lo ejecutará cada centésima de segundo
+			var milisegundosIniciales;
+			function timer() {
+				if (cuenta <= 0) {
+					clearInterval(contador);
+					return;
+				}
+				var actual = Date.now();
+				cuenta = cuenta - (actual - milisegundosIniciales);
+				milisegundosIniciales = actual;
+				displayCount(cuenta);
+			}
+			function displayCount(cuenta) {
+				let res = Math.floor(cuenta / 1000);
+				let milisegundos = cuenta.toString().substr(-3);
+				let segundos = res;
+				if (segundos <= 0 && milisegundos <= 0) {
+					document.getElementById("temporizador").classList.add("rojo");
+					document.getElementById("temporizador").innerHTML = 0;
+					recuperarPregunta();
+				} else {
+					document.getElementById("temporizador").innerHTML = segundos;
+				}
+			}
+			function iniciarTemporizador() {
+				document.getElementById("temporizador").classList.remove("rojo");
+				clearInterval(contador);
+				milisegundosIniciales = Date.now();
+				contador = setInterval(timer, 1);
+			}
+			function reiniciarTemporizador() {
+				document.getElementById("temporizador").classList.remove("rojo");
+				//document.getElementById("reloj_cs").classList.remove("rojo");
+				clearInterval(contador);
+				cuenta = valorInicial;
+				displayCount(cuenta);
+				//iniciarTemporizador();
+			}
+			function pausarTemporizador() {
+				clearInterval(contador);
+			}
+			displayCount(valorInicial);
 		</script>
 	</main>
 
@@ -448,11 +518,11 @@
 				cancelButtonText: 'cancelar',
 			}).then((result) => {
 				/* Read more about isConfirmed, isDenied below */
-				
+
 				if (result.isConfirmed) {
 					//cerramos la vista y volvemos a niveles
 					//no guardamos nada
-					location.reload();	
+					location.reload();
 				}
 			})
 		}
