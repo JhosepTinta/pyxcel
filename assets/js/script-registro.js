@@ -1,3 +1,7 @@
+import {db,ref,set,get,child,onChildAdded} from "../js/connection-firebase.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js";
+   
+const auth = getAuth();
 var inputs = document.querySelectorAll('.seccion-input input');
 
 const expresiones = {
@@ -21,13 +25,33 @@ function agregarEventoBotonRegistrar(){
             hayError += comprobarCampos(element);
           });
 
+          if(hayError == 0){
+            var nombreR = document.querySelector(".input-nombre");
+            var correoR = document.querySelector(".input-correo");
+            var contrasenaR = document.querySelector(".input-contrasena");
+            var usuario= {
+                nombre: nombreR.value,
+                correo: correoR.value,
+                contrasena: contrasenaR.value
+            };
+            insertarDatos(usuario);
+          }
           console.log('registro enviado')
           console.log(hayError);
 
-
-
       });
 }
+
+function insertarDatos(usuario) {
+    set(ref(db, "Usuarios/" + usuario.nombre), usuario);
+        //.then(() => {
+        //    alert("Datos registrados correctamente");
+        //})
+        //.catch((error) => {
+        //    alert("unsucessfull, error" + error);
+        //});
+}
+
 
 
 function inciarBotonOjo(){
@@ -108,9 +132,6 @@ function comprobarCampos(e){
         break;
     } 
 }
-
-
-
 
 
 
