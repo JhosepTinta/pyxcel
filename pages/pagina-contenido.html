@@ -25,6 +25,7 @@
 	<link href="../assets/css/styles.css" rel="stylesheet">
 	<link href="../assets/css/style.css" rel="stylesheet">
 	<link href="../assets/css/styles-contenido.css" rel="stylesheet">
+	<link rel="stylesheet" href="../assets/css/estilosDialogEvaluacion.css">
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -182,7 +183,8 @@
 				</div>
 			</div>
 		</div>
-
+		<!--Modal Prueba-->
+		<!---->
 		<div class="modal fade" id="modal_evaluacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -192,17 +194,18 @@
         
       </div>
       <div class="modal-body">
+		<!--
+		
+		-->
         <div class="container-fluid">
 			<div class="row">
 				<label for="recipient-name" class="col-form-label" style="font-size: small;">Nivel :
 					<strong> Titulo de nivel </strong></label>
 			</div>
-			<div class="row" style="height: 80px; ">
-				<div class="col-2 border border-success" style="display: flex; align-items: center;">
-					<label class="text-success font-weight-bold" id="numeroPregunta"
-						style="font-size: medium">1/10</label>
 
-				</div>
+			<div class="row">
+				<label class="text-success font-weight-bold" id="numeroPregunta"
+						style="font-size: medium; border: 1px solid #68CF79; height: min-content; width: min-content;padding: 5px;">1/10</label>
 				<div class="col-7" style="display: flex; align-items: left;">
 					<label id="TituloPregunta" for="recipient-name" class="col-form-label">descripcion
 						/planteamineto de la
@@ -215,7 +218,8 @@
 							style="font-size: xx-large;">60</label></div>
 				</div>
 			</div><br>
-
+		
+		
 			<div class="row p-1 border border-dark" style="display: flex; align-items: center;">
 				<a id="o1pregunta" type="button" class="btn btn-outline-secondary">Cargando...</a>
 				<a id="o2pregunta" type="button" class="btn btn-outline-secondary">Cargando...</a>
@@ -486,7 +490,9 @@
 						//no guardamos nada
 						//location.reload();
 						$('#modal_evaluacion').modal('hide');
-						
+						//$("#modal_evaluacion.close").click()
+						//$('#modal_aprobado').modal('show'); // abrir
+						$('#modal_evaluacion').removeClass('show');
 					} else {
 						iniciarTemporizador();
 					}
