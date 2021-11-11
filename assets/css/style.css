@@ -1406,3 +1406,6 @@ section {
 /* .desplegable:hover .desplebutton {
   background-color: #3e8e41;
 } */
+.desplebutton i {
+  padding-left: 10px;
+}

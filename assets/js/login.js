@@ -17,16 +17,18 @@ const auth = getAuth(app)
 const form = document.getElementById('form')
 
     
-  async   function creandoCuenta (correo,contra){
+    async   function creandoCuenta (correo,contra){
 
             await createUserWithEmailAndPassword(auth,correo,contra) 
         }
+
+
         function iniciar(correo,contra){
             
             signInWithEmailAndPassword(auth, correo, contra)
             .then((userCredential) => {
               // Signed in
-              console.log("Ya me loguee Karen ")
+              
               window.location.href = "http://127.0.0.1:5500/pages/nivel.html"
               // ...
             })
@@ -58,6 +60,16 @@ const form = document.getElementById('form')
 
     })
 }
+
+
+  // const logout = document.querySelector('#logout')
+  
+  // logout.addEventListener('click', e => {
+  //   e.preventDefault();
+  //   auth.signOut.then(() => {
+  //     console.log("me pude salir karen :D")
+  //   })
+  // })
 
 evento ();
 
