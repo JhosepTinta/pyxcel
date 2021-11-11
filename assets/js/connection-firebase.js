@@ -1,4 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
+
+
         const firebaseConfig = {
             apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
             authDomain: "pyxcel-d6df9.firebaseapp.com",
@@ -14,5 +16,5 @@ const app = initializeApp(firebaseConfig);
 import { getDatabase, ref, get, set, child,onChildAdded, update, remove } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
         
 const db = getDatabase();
-export {db,getDatabase,ref,get,set,child,onChildAdded,update,remove};
+export {db,app,getDatabase,ref,get,set,child,onChildAdded,update,remove};
 
