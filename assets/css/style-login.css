@@ -36,6 +36,15 @@ body {
    /* text-align:center ; */
    /* background-color: blue; */
  }
+
+ .error{
+   color: #D35A5A;
+ }
+ .e {
+   color: #FFFFFF;
+ }
+
+ 
 #contenedor-form{
     /* background-color: #757575; */
     margin: 0 auto;

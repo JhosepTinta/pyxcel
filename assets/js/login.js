@@ -27,11 +27,13 @@ const form = document.getElementById('form')
             .then((userCredential) => {
               // Signed in
               console.log("Ya me loguee Karen ")
-              
+              window.location.href = "http://127.0.0.1:5500/pages/nivel.html"
               // ...
             })
             .catch((error) => {
-              console.log("No pude Loguearme karen >:,v/")
+              console.log("No pude Loguearme karen >:,v/");
+              document.getElementById("error").classList.remove("e");
+              document.getElementById("error").classList.add("error");
               // ..
             });
         }
