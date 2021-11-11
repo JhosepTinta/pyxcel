@@ -1,7 +1,9 @@
-import {db,ref,set,get,child,onChildAdded} from "../js/connection-firebase.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js";
+import {app,db,ref,set,get,child,onChildAdded} from "../js/connection-firebase.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https:www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"
+
+
+const auth = getAuth(app);
    
-const auth = getAuth();
 var inputs = document.querySelectorAll('.seccion-input input');
 
 const expresiones = {
@@ -15,7 +17,29 @@ agregarEventoBotonRegistrar();
 agregarEventsInputs();
 inciarBotonOjo();
 
-function agregarEventoBotonRegistrar(){
+function insertarDatos(usuario) {
+    
+    set(ref(db, "Usuarios/" + usuario.nombre), usuario)
+        .then(() => {
+            alert("Datos registrados correctamente");
+        })
+        .catch((error) => {
+            alert("unsucessfull, error" + error);
+        });
+}
+
+async function crearCuentaFirebase(usuario, contrasena) {
+    await createUserWithEmailAndPassword(auth, usuario.correo, contrasena).then((userCredential) => {
+        insertarDatos(usuario);
+        console.log("cuenta creada correctamente");
+      })
+      .catch((error) => {
+        console.log("no se pudo crear la cuenta");
+        
+      });
+}
+
+async function agregarEventoBotonRegistrar(){
       var boton = document.querySelector('#formulario');
    
       boton.addEventListener('submit',(e) =>{
@@ -32,24 +56,13 @@ function agregarEventoBotonRegistrar(){
             var usuario= {
                 nombre: nombreR.value,
                 correo: correoR.value,
-                contrasena: contrasenaR.value
             };
-            insertarDatos(usuario);
+            crearCuentaFirebase(usuario,contrasenaR.value);
           }
           console.log('registro enviado')
           console.log(hayError);
 
       });
-}
-
-function insertarDatos(usuario) {
-    set(ref(db, "Usuarios/" + usuario.nombre), usuario);
-        //.then(() => {
-        //    alert("Datos registrados correctamente");
-        //})
-        //.catch((error) => {
-        //    alert("unsucessfull, error" + error);
-        //});
 }
 
 
@@ -132,7 +145,3 @@ function comprobarCampos(e){
         break;
     } 
 }
-
-
-
-
