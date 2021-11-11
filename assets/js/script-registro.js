@@ -18,7 +18,6 @@ agregarEventsInputs();
 inciarBotonOjo();
 
 function insertarDatos(usuario) {
-    
     set(ref(db, "Usuarios/" + usuario.nombre), usuario)
         .then(() => {
             alert("Datos registrados correctamente");
@@ -35,6 +34,7 @@ async function crearCuentaFirebase(usuario, contrasena) {
       })
       .catch((error) => {
         console.log("no se pudo crear la cuenta");
+        motrarMensajeErrorInput('m-correo','Este correo ya esta registrado');
         
       });
 }
