@@ -14,5 +14,5 @@ const app = initializeApp(firebaseConfig);
 import { getDatabase, ref, get, set, child,onChildAdded, update, remove } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
         
 const db = getDatabase();
-export {db,getDatabase,ref,get,set,child,onChildAdded,update,remove};
+export {app,db,getDatabase,ref,get,set,child,onChildAdded,update,remove};
 
