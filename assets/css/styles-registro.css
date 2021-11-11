@@ -137,43 +137,126 @@ body {
 }
 
 /*Responsive*/
-@media screen and (max-width: 1200px){
-	
+
+@media screen and (max-height: 650px) and (max-width: 400px){
+	.main-registro{
+		margin-top: 20%;
+	}
 	.registro-titulo {
 		font-size: 55px;
-	}
-	.seccion-input {
-		width: 400px;
-		margin-bottom: 25px;
-	}
-	.main-registro{
-		margin-top: 60px;
-	}
-}
-@media screen and (max-width: 580px) {
-	.main-registro{
-		margin-top: 60px;
-	}
-}
-
-@media screen and (max-width: 500px){
-
-	.registro-titulo {
-		font-size: 45px;
-		margin: 20px auto;
+		margin: 20px auto 40px auto;
 	}
 	.seccion-input {
 		width: 300px;
+		margin-bottom: 18px;
 	}
 	.boton-ojo{
-		left: 275px;
+		left: 250px;
 		width: 22px;
 		height: 22px;
 	}
+}
+
+@media screen and (min-height: 720px) and (max-width: 450px){
 	.main-registro{
-		margin-top: 90px;
+		margin-top: 25%;
 	}
-	.ultimo-input{
-		margin-bottom: 0px ;
+	.registro-titulo {
+		font-size: 55px;
+		margin: 20px auto 70px auto;
+	}
+	.seccion-input {
+		width: 350px;
+		margin-bottom: 25px;
+	}
+	.boton-ojo{
+		left: 320px;
+		width: 22px;
+		height: 22px;
+	}
+}
+
+@media screen and (min-height: 800px) and (max-width: 450px){
+	.main-registro{
+		margin-top: 30%;
+	}
+	.registro-titulo {
+		font-size: 55px;
+		margin: 20px auto 70px auto;
+	}
+	.seccion-input {
+		width: 350px;
+		margin-bottom: 25px;
+	}
+	.boton-ojo{
+		left: 320px;
+		width: 22px;
+		height: 22px;
+	}
+}
+
+
+
+@media screen and (min-height: 650px) and (max-width: 400px){
+	.main-registro{
+		margin-top: 20%;
+	}
+	.registro-titulo {
+		font-size: 55px;
+		margin: 20px auto 70px auto;
+	}
+	.seccion-input {
+		width: 340px;
+		margin-bottom: 25px;
+	}
+	.boton-ojo{
+		left: 310px;
+		width: 22px;
+		height: 22px;
+	}
+}
+
+
+@media screen and (max-height: 700px) and (max-width: 300px){
+	.main-registro{
+		margin-top: 20%;
+	}
+	.registro-titulo {
+		font-size: 40px;
+		margin: 20px auto 70px auto;
+	}
+	.seccion-input {
+		width: 270px;
+		margin-bottom: 25px;
+	}
+	.boton-ojo{
+		left: 240px;
+		width: 22px;
+		height: 22px;
+	}
+	.pregunta a{
+		display: block;
+		text-align: center;
+	}
+}
+
+@media screen and (max-height: 500px) and (max-width: 1300px){
+	.main-registro{
+		margin-top: 0%;
+	}
+	.registro-titulo {
+		font-size: 60px;
+		margin: 20px auto 10px auto;
+	}
+	.seccion-input {
+		margin-bottom: 15px;
+	}
+	.boton-ojo{
+		left: 370px;
+		width: 22px;
+		height: 22px;
+	}
+	.seccion-input.ultimo-input{
+		margin-bottom: 0px;
 	}
 }
