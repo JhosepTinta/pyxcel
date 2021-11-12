@@ -70,10 +70,10 @@
 					<li class="tema-del-nivel"> </li>
 				</template>
 			</ul>
-
+			<!-- data-backdrop="static" data-keyboard="false"  atributos del boton-->
 			<div class="text-center">
 				<button type="button" class="btn btn-danger btn-lg " data-toggle="modal" data-target="#modal_evaluacion"
-					data-whatever="@mdo" data-backdrop="static" data-keyboard="false" id="rendirExamen">Rendir
+					data-whatever="@mdo" id="rendirExamen">Rendir
 					Examen</button><br><br>
 				<a href="nivel.html" type="button" class="btn btn-outline-success ">Volver al Curso</a><br><br>
 			</div>
@@ -185,15 +185,15 @@
 		</div>
 		<!--Modal Prueba-->
 		<!---->
-		<div class="modal fade" id="modal_evaluacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header" style="background-color: #68CF79;">
-        <h5 class="modal-title" id="exampleModalLabel" style="color:white;">EVALUACIÓN DE CONOCIMIENTO</h5>
-        
-      </div>
-      <div class="modal-body">
+		<div class="modal fade" id="modal_evaluacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				
+			<div class="modal-header" style="background-color: #68CF79;">
+				<h5 class="modal-title" id="exampleModalLabel" style="color:white;">EVALUACIÓN DE CONOCIMIENTO</h5>
+				
+		</div>
+      	<div class="modal-body">
 		<!--
 		
 		-->
@@ -234,8 +234,8 @@
       <div class="modal-footer">
 		<button type="button" id="botonCancelarPrueba" class="btn btn-danger"
 		>cancelar prueba</button>
-		<button id="botonOmitirDialog" type="button"
-									class="btn btn-warning">omitir pregunta</button>
+		<button id="botonOmitirDialog" type="button" class="btn btn-warning">omitir pregunta</button>
+		<button type="button" id="close-modal" data-dismiss="modal" style="display: none"></button>
 		<!--
 		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>-->
@@ -422,8 +422,13 @@
 						console.log(preguntaActual);
 						if (preguntaActual === 15) {
 							if (notaActual > 75) {
+								document.getElementById('close-modal').click();
 								$('#modal_aprobado').modal('show'); // abrir
+
+								//data-book-id=""
+								//<input type="text" name="bookId" value=""/>
 							} else {
+								document.getElementById('close-modal').click();
 								$('#modal_reprobado').modal('show'); // abrir
 							}
 							//$('#myModalExito').modal('hide'); // cerrar
@@ -487,7 +492,7 @@
 						//cerramos la vista y volvemos a niveles
 						//no guardamos nada
 
-						//recuperarPregunta();
+						recuperarPregunta();
 					} else {
 						iniciarTemporizador();
 					}
@@ -508,15 +513,33 @@
 						//cerramos la vista y volvemos a niveles
 						//no guardamos nada
 						//location.reload();
-						$('#modal_evaluacion').modal('hide');
+						
 						//$("#modal_evaluacion.close").click()
-						//$('#modal_aprobado').modal('show'); // abrir
-						$('#modal_evaluacion').removeClass('show');
+						//$('#modal_evaluacion').modal('hide'); // abrir
+						//$('#modal_evaluacion').removeClass('show');
+						//$("#modal_evaluacion .close").click();
+						//$('#modal_evaluacion').hide();
+						/*
+						$('#cerrar').click(); 
+						$('.modal-backdrop').remove();
+						*/
+						/*
+						$('#modal_evaluacion').modal().hide();
+						$('body').removeClass('modal-open');
+						$('.modal-backdrop').remove()  ;
+						*/
+						document.getElementById('close-modal').click();
+						/*
+						$('.modal').removeClass('shw');
+						$('modal-backdrop').remove();
+						*/
+						//$('.modal-backdrop').removeClass('in');
 					} else {
 						iniciarTemporizador();
 					}
 				})
 			});
+			
 			recuperarPreguntaSinTemporizador();
 			function recuperarPregunta() {
 				quitar_animacion_botones();
