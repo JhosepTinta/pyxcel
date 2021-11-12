@@ -137,6 +137,7 @@ label {
 input:focus ~ label, input.used ~ label {
 	top: -20px;
   transform: scale(.75); left: -2px;
+  color: #fff;
 	/* font-size: 14px; */
 	color: #3ac162;
 }

@@ -25,6 +25,11 @@
   
   <link href="../assets/css/style.css" rel="stylesheet">
 
+  <script src="https://kit.fontawesome.com/e1004dd04e.js" crossorigin="anonymous"></script>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet">
+
 </head>
 
 <body>
@@ -46,11 +51,21 @@
           <li><a class="active" href="nivel.html">Ver Curso</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
+       
       </nav><!-- .navbar -->
-      <a href="/pages/index-login.html" class="get-started-btn"> <b>Iniciar Sesion</b> </a>
-
-      <!-- <a href="courses.html" class="get-started-btn">Get Started</a> -->
-
+      <div class="desplegable">
+        <button class="desplebutton"> <a href="#l" class="get-started-btn">Juan Perez 
+          <i class="fas fa-chevron-down"></i>
+        </a> </button>
+        <!-- <i class="material-icons">expand_more </i>  -->
+        <div class="options">
+          
+          <a href="#" id="logout" >Cerrar Sesion</a>
+        </div>
+      </div>
+      
+     
+      
     </div>
   </header><!-- End Header -->
 
@@ -139,6 +154,7 @@ var contenido="";
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
+
 
 </body>
 
