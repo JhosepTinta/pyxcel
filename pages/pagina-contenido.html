@@ -138,7 +138,7 @@
 									<h1 class="text-success">Aprobado</h1>
 								</div>
 								<div class="row">
-									<h3 class="text-dark">100/100</h3>
+									<h3 id="nota_evaluacion1" class="text-dark"></h3>
 								</div>
 							</div>
 						</div>
@@ -170,7 +170,7 @@
 									<h1 class="text-danger">Reprobado</h1>
 								</div>
 								<div class="row">
-									<h3 class="text-dark">10/100</h3>
+									<h3 id="nota_evaluacion2" class="text-dark"></h3>
 								</div>
 							</div>
 						</div>
@@ -423,13 +423,19 @@
 						if (preguntaActual === 15) {
 							if (notaActual > 75) {
 								document.getElementById('close-modal').click();
+								document.getElementById('nota_evaluacion1').innerHTML=notaActual & "/100";
+								
 								$('#modal_aprobado').modal('show'); // abrir
 
 								//data-book-id=""
 								//<input type="text" name="bookId" value=""/>
 							} else {
-								document.getElementById('close-modal').click();
+								document.getElementById('close-modal').click();								
+								
+								document.getElementById('nota_evaluacion2').innerHTML=notaActual + "/100";
+								
 								$('#modal_reprobado').modal('show'); // abrir
+								document.getElementById('nota_evaluacion2').innerHTML=notaActual + "/100";
 							}
 							//$('#myModalExito').modal('hide'); // cerrar
 						}
