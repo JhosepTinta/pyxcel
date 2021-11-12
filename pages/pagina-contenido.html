@@ -221,10 +221,10 @@
 		
 		
 			<div class="row p-1 border border-dark" style="display: flex; align-items: center;">
-				<a id="o1pregunta" type="button" class="btn btn-outline-secondary">Cargando...</a>
-				<a id="o2pregunta" type="button" class="btn btn-outline-secondary">Cargando...</a>
-				<a id="o3pregunta" type="button" class="btn btn-outline-secondary">Cargando...</a>
-				<a id="o4pregunta" type="button" class="btn btn-outline-secondary">Cargando...</a>
+				<a id="o1pregunta" type="button" class="btn btn-light">Cargando...</a>
+				<a id="o2pregunta" type="button" class="btn btn-light">Cargando...</a>
+				<a id="o3pregunta" type="button" class="btn btn-light">Cargando...</a>
+				<a id="o4pregunta" type="button" class="btn btn-light">Cargando...</a>
 
 
 			</div>
@@ -367,8 +367,8 @@
 				//op2pr.disabled = true;
 				//op3pr.disabled = true;
 				//op4pr.disabled = true;
-				verificarRespuestaPregunta(op1pr.textContent);
-				recuperarPregunta();
+				verificarRespuestaPregunta(op1pr.textContent,"o1pregunta");
+				setTimeout(recuperarPregunta,200);
 			});
 
 			op2pr.addEventListener("click", function () {
@@ -377,8 +377,8 @@
 				//op2pr.disabled = true;
 				//op3pr.disabled = true;
 				//op4pr.disabled = true;
-				verificarRespuestaPregunta(op2pr.textContent);
-				recuperarPregunta();
+				verificarRespuestaPregunta(op2pr.textContent,"o2pregunta");
+				setTimeout(recuperarPregunta,200);
 			});
 			op3pr.addEventListener("click", function () {
 				//op3pr.setAttribute("class", "btn btn-success");
@@ -386,8 +386,8 @@
 				//op2pr.disabled = true;
 				//op3pr.disabled = true;
 				//op4pr.disabled = true;
-				verificarRespuestaPregunta(op3pr.textContent);
-				recuperarPregunta();
+				verificarRespuestaPregunta(op3pr.textContent,"o3pregunta");
+				setTimeout(recuperarPregunta,200);
 			});
 			op4pr.addEventListener("click", function () {
 				//op4pr.setAttribute("class", "btn btn-danger");
@@ -395,22 +395,28 @@
 				//op2pr.disabled = true;
 				//op3pr.disabled = true;
 				//op4pr.disabled = true;
-				verificarRespuestaPregunta(op4pr.textContent);
-				recuperarPregunta();
+				verificarRespuestaPregunta(op4pr.textContent,"o4pregunta");
+				setTimeout(recuperarPregunta,200);
+				
 			});
 
-			function verificarRespuestaPregunta(respuestaActual) {
+			function verificarRespuestaPregunta(respuestaActual,id_button) {
+				var elem = document.getElementById(id_button);
 				if (!(pregunta === null)) {
 					if (preguntaActual < 15) {
 						if (respuestaActual === pregunta.respuesta) {
 							notaActual = notaActual + 10;
+							
+							elem.className="btn btn-success";
 							console.log("Respuesta correcta, tu nora es: " + notaActual);
-							$('#modal_evaluacion').modal('hide'); // abrir
-							$('#modal_aprobado').modal('show'); // abrir
+							//$('#modal_evaluacion').modal('hide'); // abrir
+							//$('#modal_aprobado').modal('show'); // abrir
 							
 
 						} else {
 							console.log("Respuesta errónea, tu nota es: " + notaActual);
+							elem.className="btn btn-danger";
+							
 						}
 					} else {
 						console.log(preguntaActual);
@@ -418,7 +424,7 @@
 							if (notaActual > 75) {
 								$('#modal_aprobado').modal('show'); // abrir
 							} else {
-								$('#modal_reprovado').modal('show'); // abrir
+								$('#modal_reprobado').modal('show'); // abrir
 							}
 							//$('#myModalExito').modal('hide'); // cerrar
 						}
@@ -429,6 +435,19 @@
 
 				}
 			}
+			function quitar_animacion_botones(){
+			
+
+				document.getElementById("o1pregunta").className="btn btn-light";
+				document.getElementById("o2pregunta").className="btn btn-light";
+				document.getElementById("o3pregunta").className="btn btn-light";
+				document.getElementById("o4pregunta").className="btn btn-light";
+			
+			
+				
+			}
+			
+
 
 			let botonRendirExamen = document.getElementById("rendirExamen");
 			botonRendirExamen.addEventListener("click", function () {
@@ -468,7 +487,7 @@
 						//cerramos la vista y volvemos a niveles
 						//no guardamos nada
 
-						recuperarPregunta();
+						//recuperarPregunta();
 					} else {
 						iniciarTemporizador();
 					}
@@ -500,6 +519,7 @@
 			});
 			recuperarPregunta();
 			function recuperarPregunta() {
+				quitar_animacion_botones();
 				const dbRef = ref(getDatabase());
 				get(child(dbRef, "Evaluaciones/nivel1/p" + preguntaActual)).then((snapshot) => {
 					if (snapshot.exists()) {
