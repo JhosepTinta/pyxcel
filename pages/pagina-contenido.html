@@ -517,7 +517,7 @@
 					}
 				})
 			});
-			recuperarPregunta();
+			recuperarPreguntaSinTemporizador();
 			function recuperarPregunta() {
 				quitar_animacion_botones();
 				const dbRef = ref(getDatabase());
@@ -542,6 +542,25 @@
 					console.error(error);
 				});
 			}
+			function recuperarPreguntaSinTemporizador() {
+				const dbRef = ref(getDatabase());
+				get(child(dbRef, "Evaluaciones/nivel1/p" + preguntaActual)).then((snapshot) => {
+					if (snapshot.exists()) {
+						pregunta = snapshot.val();
+						nuPr.textContent = preguntaActual + "/15";
+						tiPr.textContent = pregunta.pregunta;
+						op1pr.textContent = pregunta.o1;
+						op2pr.textContent = pregunta.o2;
+						op3pr.textContent = pregunta.o3;
+						op4pr.textContent = pregunta.o4;
+						preguntaActual = preguntaActual+1;						
+					} else {
+						console.log("No data available");
+					}
+				}).catch((error) => {
+					console.error(error);
+				});
+			}
 			/*function siguientePregunta(){
 				//let pregunta = listaPreuntas[preguntaActual];
 				//preguntaActual = preguntaActual+1;
@@ -552,50 +571,31 @@
 				console.log("hola");
 				//console.log(pregunta.o1);
 			}*/
-			var valorInicial = 60.5 * 1000;
-			var cuenta = valorInicial;
-			var contador; //10 lo ejecutará cada centésima de segundo
-			var milisegundosIniciales;
-			function timer() {
-				if (cuenta <= 0) {
-					clearInterval(contador);
-					return;
-				}
-				var actual = Date.now();
-				cuenta = cuenta - (actual - milisegundosIniciales);
-				milisegundosIniciales = actual;
-				displayCount(cuenta);
-			}
-			function displayCount(cuenta) {
-				let res = Math.floor(cuenta / 1000);
-				let milisegundos = cuenta.toString().substr(-3);
-				let segundos = res;
-				if (segundos <= 0 && milisegundos <= 0) {
-					document.getElementById("temporizador").classList.add("rojo");
-					document.getElementById("temporizador").innerHTML = 0;
-					recuperarPregunta();
-				} else {
-					document.getElementById("temporizador").innerHTML = segundos;
-				}
-			}
-			function iniciarTemporizador() {
-				document.getElementById("temporizador").classList.remove("rojo");
-				clearInterval(contador);
-				milisegundosIniciales = Date.now();
-				contador = setInterval(timer, 1);
-			}
-			function reiniciarTemporizador() {
-				document.getElementById("temporizador").classList.remove("rojo");
-				//document.getElementById("reloj_cs").classList.remove("rojo");
-				clearInterval(contador);
-				cuenta = valorInicial;
-				displayCount(cuenta);
-				//iniciarTemporizador();
-			}
-			function pausarTemporizador() {
-				clearInterval(contador);
-			}
-			displayCount(valorInicial);
+			var segundos = 60;
+        	var textoCuenta = document.getElementById("temporizador");
+        	var cronometro;
+        	function iniciarTemporizador(){
+				clearInterval(cronometro);
+            	cronometro = setInterval(function () {
+            	segundos = segundos -1;
+            	textoCuenta.textContent = String(segundos);
+            	if(segundos === 0){
+					clearInterval(cronometro);
+					setTimeout(function() {
+						recuperarPregunta();
+					}, 700);
+                	/*clearInterval(cronometro);
+					recuperarPregunta();*/
+            	}
+            	}, 1000);
+        	}
+       		function pausarTemporizador(){
+            	clearInterval(cronometro);
+        	}
+        	function reiniciarTemporizador(){
+            	segundos = 60;
+            	textoCuenta.textContent = String(segundos);
+        	}
 		</script>
 	</main>
 
