@@ -17,8 +17,9 @@ agregarEventoBotonRegistrar();
 agregarEventsInputs();
 inciarBotonOjo();
 
-function insertarDatos(usuario) {
-    set(ref(db, "Usuarios/" + usuario.nombre), usuario)
+function insertarDatos(usuario, id) {
+    
+    set(ref(db, "Usuarios/" + id), usuario)
         .then(() => {
             alert("Datos registrados correctamente");
         })
@@ -29,7 +30,7 @@ function insertarDatos(usuario) {
 
 async function crearCuentaFirebase(usuario, contrasena) {
     await createUserWithEmailAndPassword(auth, usuario.correo, contrasena).then((userCredential) => {
-        insertarDatos(usuario);
+        insertarDatos(usuario, userCredential._tokenResponse.localId);
         console.log("cuenta creada correctamente");
       })
       .catch((error) => {
