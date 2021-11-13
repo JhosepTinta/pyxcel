@@ -18,24 +18,26 @@
         </div>
         <div id="contenedor-lateral">
             <div id="contenedor-form">
-            <br><br><br><br>
+    
             <h1 id="titulo"><b>Iniciar Sesión<b></h1>
-            
-            <form id="form" >
               <p>Bienvenido a tu aventura de aprendizaje!!</p><br>
+            <form id="form" >
+             
               <div class="group">
-                <input type="text" id="correo" ><span class="highlight"></span><span class="bar"></span>
-                <label>Correo Electronico</label>
+                <!-- <label>Correo Electronico</label><br> -->
+                <input type="text" id="correo" spellcheck="false" placeholder="Correo Electronico" >
+                
               </div>
               <div class="group">
-                <input type="password" id="contrasenia" ><span class="highlight"></span><span class="bar"></span>
-                <label>Contraseña</label>
+                <!-- <label>Contraseña</label><br> -->
+                <input type="password" id="contrasenia" spellcheck="false" placeholder="Contraseña">
+                
               </div>
-              <p>No tienes cuenta? <a href="registro.html">Create una</a></p><br>
+              
+              <p>¿No tienes cuenta? <a href="registro.html"> Create una</a></p>
               <p id="error" class="e" >Los datos ingresados son incorrectos, Inténtalo de nuevo</p>
               <button type="submit" class="button buttonBlue">
                 Ingresar
-                <div class="ripples buttonRipples"  ><span class="ripplesCircle"></span></div>
               </button>
             </form>
             </div>

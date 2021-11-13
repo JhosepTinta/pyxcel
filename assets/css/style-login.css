@@ -17,187 +17,96 @@ body {
     /* margin: 10px; */
     
 }
-.formu{
-    margin: 20px;
-    padding: 10px;
-}
 
-#titulo{
-    text-align: center;
-}
-#contenedor-lateral{
-    /* padding: 20px; */
-   /* width: 360px; */
-   /* padding: 8% 0 0; */
-   /* margin: 0px auto; */
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   /* text-align:center ; */
-   /* background-color: blue; */
- }
-
- .error{
-   color: #D35A5A;
- }
- .e {
-   color: #FFFFFF;
- }
-
- 
-#contenedor-form{
-    /* background-color: #757575; */
-    margin: 0 auto;
-    width: 400px;
-}
-/* css para campos del formulario  */
-#correo, #password{
-    border: 0;
-    width: 90%;
-    border-bottom:1px solid  #757575;
-    outline: none;
-
-}
-
-#form-login button {
-    /* font-family: "Roboto", sans-serif; */
-    text-transform: uppercase;
-    outline: 0;
-    background: #5FCF80;
-    width: 70%;
-    border: 0;
-    padding: 10px;
-    color: #FFFFFF;
-    font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
-    cursor: pointer;
-  }
-#form-login button:hover,#form-login button:active,#form-login button:focus {
-    background: #6ed873;
-  }
-  
-/*responsive */
+/* --------------------------------------- */
+/* Responsive part */
+/* ------------------------------------------ */
 @media (max-width: 900px){
-    #contenedor-flex > div{
-        width:100%;
-    }
+  #contenedor-flex > div{
+      width:100%;
+  }
 } 
 @media (max-width: 900px){
-    #contenedor-login{
-        display: none;
-    }
-}
-/* Estilos del formulario */
-form {
-	width: 380px;
-	margin: 4em auto;
-	padding: 3em 2em 2em 2em;
-
-	/* box-shadow: rgba(0,0,0,0.14902) 0px 1px 1px 0px,rgba(0,0,0,0.09804) 0px 1px 2px 0px; */
-}
-
-.group { 
-	position: relative; 
-	margin-bottom: 20px; 
-}
-
-input {
-	font-size: 18px;
-	padding: 10px 10px 10px 5px;
-	-webkit-appearance: none;
-	display: block;
-	background: #ffffff;
-	color: #636363;
-	width: 96%;
-	border: none;
-	border-radius: 0;
-	border-bottom: 1px solid #757575;
-}
-
-input:focus { outline: none; }
-
-
-/* Label */
-
-label {
-	color: #999; 
-	font-size: 18px;
-	font-weight: normal;
-	position: absolute;
-	pointer-events: none;
-	left: 5px;
-	top: 10px;
-	transition: all 0.2s ease;
+  #contenedor-login{
+      display: none;
+  }
 }
 
 
-/* active */
+#contenedor-form{
+  /* background-color: blueviolet; */
+  margin: 15%;
+}
+#titulo{
+  text-align: center;
+  color:  #5FCF80;
+  font-size: 50px;
+}
+p{
+  text-align: center;
+  font-style: initial;
+  font-size: 15px;
+}
+#form{
+  text-align: center;
+}
+input:focus{
+	outline: none;
+	
+}
+input:focus::placeholder{
+	color: transparent;
 
-input:focus ~ label, input.used ~ label {
-	top: -20px;
-  transform: scale(.75); left: -2px;
-  color: #fff;
-	/* font-size: 14px; */
-	color: #3ac162;
+}
+/* --------------------------------- */
+/* Mensaje de errores */
+/* --------------------------------- */
+.error{
+  color: #D35A5A;
+}
+.e {
+  color: #FFFFFF;
+}
+
+/* ------------------------------------ */
+.group{
+  /* background-color: chartreuse; */
+  padding: 15px;
+ 
+}
+ .group input{
+  border: 0;
+  padding: 10px;
+  width: 90%;
+  font-size: 17px;
+  border-bottom:  1.5px solid #5FCF80;
+  padding-left: 30px;
+  background-position: 5px 50%;
+  background-size: 15px 15px;
+  background-repeat: no-repeat;
+  
+  
 }
 
 
-/* Underline */
-
-.bar {
-	position: relative;
-	display: block;
-	width: 100%;
+a{
+  color:#5FCF80 ;
+  text-decoration: none;
+  font-size: 15px;
+}
+#correo{
+	background-image: url("../img/img-correo.svg");
+}
+#correo:focus{
+	background-image: url("../img/img-correo-focus.svg");
 }
 
-.bar:before, .bar:after {
-	content: '';
-	height: 2px; 
-	width: 0;
-	bottom: 1px; 
-	position: absolute;
-	background: #5FCF80; 
-	transition: all 0.2s ease;
+#contrasenia{
+	background-image: url("../img/img-contrasena.svg");
 }
-
-.bar:before { left: 50%; }
-
-.bar:after { right: 50%; }
-
-
-/* active */
-
-input:focus ~ .bar:before, input:focus ~ .bar:after { width: 50%; }
-
-
-/* Highlight */
-
-.highlight {
-	position: absolute;
-	height: 20%; 
-	width: 90px; 
-	top: 20%; 
-	left: 0;
-	pointer-events: none;
-	opacity: 0.5;
+#contrasenia:focus{
+	background-image: url("../img/img-contrasena-focus.svg");
 }
-
-
-/* active */
-
-input:focus ~ .highlight {
-	animation: inputHighlighter 0.3s ease;
-}
-
-
-/* Animations */
-
-@keyframes inputHighlighter {
-	from { background: #5FCF80; }
-	to 	{ width: 0; background: transparent; }
-}
-
 
 /* Button */
 
@@ -231,52 +140,3 @@ input:focus ~ .highlight {
 }
 
 .buttonBlue:hover { background: #3ac162; }
-
-
-/* Ripples container */
-
-.ripples {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 90%;
-  height: 100%;
-  overflow: hidden;
-  background: transparent;
-}
-
-
-/* Ripples circle */
-
-.ripplesCircle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  /* background: rgba(255, 255, 255, 0.25); */
-}
-
-.ripples.is-active .ripplesCircle {
-  animation: ripples .4s ease-in;
-}
-
-
-/* Ripples animation */
-
-@keyframes ripples {
-  0% { opacity: 0; }
-
-  25% { opacity: 1; }
-
-  100% {
-    width: 200%;
-    padding-bottom: 200%;
-    opacity: 0;
-  }
-}
-
-
