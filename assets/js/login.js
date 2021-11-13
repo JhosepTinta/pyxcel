@@ -1,5 +1,5 @@
 import { initializeApp, onLog } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import {getAuth,createUserWithEmailAndPassword , signInWithEmailAndPassword} from  "https:www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"
+import {getAuth,onAuthStateChanged,createUserWithEmailAndPassword , signInWithEmailAndPassword} from  "https:www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"
         const firebaseConfig = {
             apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
            authDomain: "pyxcel-d6df9.firebaseapp.com",
@@ -13,6 +13,8 @@ import {getAuth,createUserWithEmailAndPassword , signInWithEmailAndPassword} fro
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app)
+
+
 
 const form = document.getElementById('form')
 
@@ -28,15 +30,30 @@ const form = document.getElementById('form')
             signInWithEmailAndPassword(auth, correo, contra)
             .then((userCredential) => {
               // Signed in
+              onAuthStateChanged(auth, (user) => {
+                if (user) {
+                  const uid = user.uid;
+                  console.log(uid)
+                  console.log(user)
+                } else {
+                  // User is signed out
+                  // ...
+                }
+              });
+              // console.log(userCredential.user.email)
+            
               
-              window.location.href = "http://127.0.0.1:5500/pages/nivel.html"
+              
+              window.location.href = "/pages/nivel.html"
               // ...
             })
             .catch((error) => {
               console.log("No pude Loguearme karen >:,v/");
               document.getElementById("error").classList.remove("e");
               document.getElementById("error").classList.add("error");
+              
               // ..
+
             });
         }
 

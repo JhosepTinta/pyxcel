@@ -44,6 +44,8 @@
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
+      
+
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a  href="../index.html">Inicio</a></li>
@@ -54,7 +56,10 @@
        
       </nav><!-- .navbar -->
       <div class="desplegable">
-        <button class="desplebutton"> <a href="#l" class="get-started-btn">Juan Perez 
+        <button class="desplebutton"> 
+          <a 
+          href="#l" id="prueba" class="get-started-btn">
+          Juan Perez 
           <i class="fas fa-chevron-down"></i>
         </a> </button>
         <!-- <i class="material-icons">expand_more </i>  -->
@@ -154,8 +159,49 @@ var contenido="";
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
+  <!-- <script type="module" >
 
+import { initializeApp, onLog } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+import {getAuth,signOut,onAuthStateChanged,createUserWithEmailAndPassword , signInWithEmailAndPassword} from  "https:www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"
+        const firebaseConfig = {
+            apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
+           authDomain: "pyxcel-d6df9.firebaseapp.com",
+           databaseURL: "https://pyxcel-d6df9-default-rtdb.firebaseio.com",
+           projectId: "pyxcel-d6df9",
+          storageBucket: "pyxcel-d6df9.appspot.com",
+          messagingSenderId: "953396754317",
+           appId: "1:953396754317:web:321620a07c7577f5eb6fc4",
+          measurementId: "G-46CQF62KX4"
+        };
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app)
 
+    onAuthStateChanged(auth, (user) => {
+                if (user) {
+                  const uid = user.email;
+                  console.log(uid)
+                  console.log(user)
+                  let text = document.getElementById("prueba");
+                  text.innerHTML= uid;
+                } else {
+                  // User is signed out
+                  console.log("me sali karen :D")
+                  window.location.href = "/index.html";
+                  // ...
+                }
+              });
+
+      const cont = document.getElementById("logout")
+      
+      cont.addEventListener('click', (e) =>{
+        signOut(auth);
+      })
+
+              
+              
+  </script> -->
+  <script type="module" src="../assets/js/prueba.js"></script>
 </body>
 
 </html>
