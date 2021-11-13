@@ -1,251 +1,349 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-<head>
-	<meta charset="utf-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Pyxcel</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
 
-	<title>Pyxcel</title>
-	<meta content="" name="description">
-	<meta content="" name="keywords">
-	<link
-		href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-		rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link
+      href="../assets/vendor/animate.css/animate.min.css"
+      rel="stylesheet"
+    />
+    <link href="../assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link
+      href="../assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link
+      href="../assets/vendor/boxicons/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link
+      href="../assets/vendor/swiper/swiper-bundle.min.css"
+      rel="stylesheet"
+    />
 
-	<!-- Vendor CSS Files -->
-	<link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-	<link href="../assets/vendor/aos/aos.css" rel="stylesheet">
-	<link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-	<link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-	<link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-	<link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-	<link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="../assets/css/styles.css" rel="stylesheet" />
+    <link href="../assets/css/style.css" rel="stylesheet" />
+    <link href="../assets/css/styles-contenido.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/estilosDialogEvaluacion.css" />
 
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+  </head>
 
-	<link href="../assets/css/styles.css" rel="stylesheet">
-	<link href="../assets/css/style.css" rel="stylesheet">
-	<link href="../assets/css/styles-contenido.css" rel="stylesheet">
-	<link rel="stylesheet" href="../assets/css/estilosDialogEvaluacion.css">
+  <body>
+    <header id="header" class="fixed-top">
+      <div class="container d-flex align-items-center">
+        <h1 class="logo me-auto"><a href="../index.html">Pyxcel</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <nav id="navbar" class="navbar order-last order-lg-0">
+          <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../index.html#about">Nosotros</a></li>
+            <li><a class="active" href="nivel.html">Ver Curso</a></li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <!-- .navbar -->
 
+        <!-- <a href="courses.html" class="get-started-btn">Get Started</a> -->
+      </div>
+    </header>
+    <!-- End Header -->
 
-</head>
+    <main class="main-pagina-contenido">
+      <aside class="barra-menu">
+        <h1>Temario</h1>
+        <div class="poner-titulo-nivel">
+          <template class="template-titulo-nivel">
+            <h2>Nombre del Nivel</h2>
+          </template>
+        </div>
+        <ul class="lista-temas">
+          <template class="template-tema-nivel">
+            <li class="tema-del-nivel"></li>
+          </template>
+        </ul>
+        <!-- data-backdrop="static" data-keyboard="false"  atributos del boton-->
+        <div class="text-center">
+          <button
+            type="button"
+            class="btn btn-danger btn-lg"
+            data-toggle="modal"
+            data-target="#modal_evaluacion"
+            data-whatever="@mdo"
+            id="rendirExamen"
+			data-backdrop="static" data-keyboard="false"
+          >
+            Rendir Examen</button
+          ><br /><br />
+          <a href="nivel.html" type="button" class="btn btn-outline-success"
+            >Volver al Curso</a
+          ><br /><br />
+        </div>
+      </aside>
+      <!--   barra-menu   -->
+      <div class="contenidoTema-botones">
+        <div class="seccion-contenido">
+          <div class="titulo-del-contenido">
+            <h1></h1>
+          </div>
 
-<body>
+          <div class="informacion-contenido"></div>
+        </div>
+        <!--   seccion-contenido  -->
 
-	<header id="header" class="fixed-top">
-		<div class="container d-flex align-items-center">
+        <div class="seccion-botones">
+          <div class="seccion-boton-anterior">
+            <button class="boton-niveles boton-anterior">Anterior Tema</button>
+          </div>
+          <div class="seccion-boton-siguiente">
+            <button class="boton-niveles boton-siguiente">
+              Siguiente Tema
+            </button>
+          </div>
+        </div>
+        <!-- seccion-botones -->
+      </div>
+      <!--  contenidoTema-botones   -->
 
-			<h1 class="logo me-auto"><a href="../index.html">Pyxcel</a></h1>
-			<!-- Uncomment below if you prefer to use an image logo -->
-			<!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-			<nav id="navbar" class="navbar order-last order-lg-0">
-				<ul>
-					<li><a href="../index.html">Inicio</a></li>
-					<li><a href="../index.html#about">Nosotros</a></li>
-					<li><a class="active" href="nivel.html">Ver Curso</a></li>
-				</ul>
-				<i class="bi bi-list mobile-nav-toggle"></i>
-			</nav><!-- .navbar -->
-
-			<!-- <a href="courses.html" class="get-started-btn">Get Started</a> -->
-
-		</div>
-	</header><!-- End Header -->
-
-	<main class="main-pagina-contenido">
-
-		<aside class="barra-menu">
-			<h1>Temario</h1>
-			<div class="poner-titulo-nivel">
-				<template class="template-titulo-nivel">
-					<h2>Nombre del Nivel </h2>
-				</template>
-			</div>
-			<ul class="lista-temas">
-				<template class="template-tema-nivel">
-					<li class="tema-del-nivel"> </li>
-				</template>
-			</ul>
-			<!-- data-backdrop="static" data-keyboard="false"  atributos del boton-->
-			<div class="text-center">
-				<button type="button" class="btn btn-danger btn-lg " data-toggle="modal" data-target="#modal_evaluacion"
-					data-whatever="@mdo" id="rendirExamen">Rendir
-					Examen</button><br><br>
-				<a href="nivel.html" type="button" class="btn btn-outline-success ">Volver al Curso</a><br><br>
-			</div>
-
-
-
-
-
-
-
-
-
-
-		</aside> <!--   barra-menu   -->
-		<div class="contenidoTema-botones">
-
-			<div class="seccion-contenido">
-				<div class="titulo-del-contenido">
-					<h1></h1>
-				</div>
-
-				<div class="informacion-contenido">
-				</div>
-
-
-			</div> <!--   seccion-contenido  -->
-
-
-			<div class="seccion-botones">
-				<div class="seccion-boton-anterior">
-					<button class="boton-niveles boton-anterior">
-						Anterior Tema
-					</button>
-				</div>
-				<div class="seccion-boton-siguiente">
-					<button class="boton-niveles boton-siguiente">
-						Siguiente Tema
-					</button>
-				</div>
-
-			</div> <!-- seccion-botones -->
-
-		</div> <!--  contenidoTema-botones   -->
-
-
-
-		<!--modal aprobado-->
-		<div class="modal fade" id="modal_aprobado" tabindex="-1" aria-labelledby="exampleModalLabel"
-			aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header bg-success text-white">
-						<h5 class="modal-title" id="exampleModalLabel">Resultado de la prueba</h5>
-					</div>
-					<div class="modal-body">
-						<div class="row">
-							<div class="col-4">
-								<img src="../assets/img/aprobado.png" alt="">
-							</div>
-							<div class="col-8">
-								<div class="row">
-									<h1 class="text-success">Aprobado</h1>
-								</div>
-								<div class="row">
-									<h3 id="nota_evaluacion1" class="text-dark"></h3>
-								</div>
-							</div>
-						</div>
-
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-success btn-lg btn-block" data-bs-dismiss="modal">Siguiente
-							Nivel</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!--modal Reprobado-->
-		<div class="modal fade" id="modal_reprobado" tabindex="-1" aria-labelledby="exampleModalLabel"
-			aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header bg-danger text-white">
-						<h5 class="modal-title" id="exampleModalLabel">Resultado de la prueba</h5>
-					</div>
-					<div class="modal-body">
-						<div class="row">
-							<div class="col-4">
-								<img src="../assets/img/reprobado.png" alt="">
-							</div>
-							<div class="col-8">
-								<div class="row">
-									<h1 class="text-danger">Reprobado</h1>
-								</div>
-								<div class="row">
-									<h3 id="nota_evaluacion2" class="text-dark"></h3>
-								</div>
-							</div>
-						</div>
-
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-danger btn-lg btn-block"
-							data-bs-dismiss="modal">Cerrar</button>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--Modal Prueba-->
-		<!---->
-		<div class="modal fade" id="modal_evaluacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
+      <!--modal aprobado-->
+      <div
+        class="modal fade"
+        id="modal_aprobado"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+		
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Resultado de la prueba
+              </h5>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-4">
+                  <img src="../assets/img/aprobado.png" alt="" />
+                </div>
+                <div class="col-8">
+                  <div class="row">
+                    <h1 class="text-success">Aprobado</h1>
+                  </div>
+                  <div class="row">
+                    <h3 id="nota_evaluacion1" class="text-dark"></h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-success btn-lg btn-block"
+                data-bs-dismiss="modal"
 				
-			<div class="modal-header" style="background-color: #68CF79;">
-				<h5 class="modal-title" id="exampleModalLabel" style="color:white;">EVALUACIÓN DE CONOCIMIENTO</h5>
-				
-		</div>
-      	<div class="modal-body">
-		<!--
+              >
+                Siguiente Nivel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--modal Reprobado-->
+      <div
+        class="modal fade"
+        id="modal_reprobado"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+              <h5 class="modal-title" id="exampleModalLabel">
+                Resultado de la prueba
+              </h5>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-4">
+                  <img src="../assets/img/reprobado.png" alt="" />
+                </div>
+                <div class="col-8">
+                  <div class="row">
+                    <h1 class="text-danger">Reprobado</h1>
+                  </div>
+                  <div class="row">
+                    <h3 id="nota_evaluacion2" class="text-dark"></h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-danger btn-lg btn-block"
+                data-bs-dismiss="modal"
+				id="botonCerrarReprobado"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--Modal Prueba-->
+      <!---->
+      <div
+        class="modal fade"
+        id="modal_evaluacion"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header" style="background-color: #68cf79">
+              <h5
+                class="modal-title"
+                id="exampleModalLabel"
+                style="color: white"
+              >
+                EVALUACIÓN DE CONOCIMIENTO
+              </h5>
+            </div>
+            <div class="modal-body">
+              <!--
 		
 		-->
-        <div class="container-fluid">
-			<div class="row">
-				<label for="recipient-name" class="col-form-label" style="font-size: small;">Nivel :
-					<strong> Titulo de nivel </strong></label>
-			</div>
+              <div class="container-fluid">
+                <div class="row">
+                  <label
+                    for="recipient-name"
+                    class="col-form-label"
+                    style="font-size: small"
+                    >Nivel :
+                    <strong id="tituloNivelLabel">
+                      Titulo de nivel
+                    </strong></label
+                  >
+                </div>
 
-			<div class="row">
-				<label class="text-success font-weight-bold" id="numeroPregunta"
-						style="font-size: medium; border: 1px solid #68CF79; height: min-content; width: min-content;padding: 5px;">1/10</label>
-				<div class="col-7" style="display: flex; align-items: left;">
-					<label id="TituloPregunta" for="recipient-name" class="col-form-label">descripcion
-						/planteamineto de la
-						pregunta</label>
-				</div>
-				<div class="col-3 ml-auto text-center">
-					<div class="row"><label class="font-weight-light" style="font-size:x-small ">tiempo
-							restante</label></div>
-					<div class="row"><label class="font-weight-bold text text-danger" id="temporizador"
-							style="font-size: xx-large;">60</label></div>
-				</div>
-			</div><br>
-		
-		
-			<div class="row p-1 border border-dark" style="display: flex; align-items: center;">
-				<a id="o1pregunta" type="button" class="btn btn-light">Cargando...</a>
-				<a id="o2pregunta" type="button" class="btn btn-light">Cargando...</a>
-				<a id="o3pregunta" type="button" class="btn btn-light">Cargando...</a>
-				<a id="o4pregunta" type="button" class="btn btn-light">Cargando...</a>
+                <div class="row">
+                  <label
+                    class="text-success font-weight-bold"
+                    id="numeroPregunta"
+                    style="
+                      font-size: medium;
+                      border: 1px solid #68cf79;
+                      height: min-content;
+                      width: min-content;
+                      padding: 5px;
+                    "
+                    >1/10</label
+                  >
+                  <div class="col-7" style="display: flex; align-items: left">
+                    <label
+                      id="TituloPregunta"
+                      for="recipient-name"
+                      class="col-form-label"
+                      >descripcion /planteamineto de la pregunta</label
+                    >
+                  </div>
+                  <div class="col-3 ml-auto text-center">
+                    <div class="row">
+                      <label
+                        class="font-weight-light"
+                        style="font-size: x-small"
+                        >tiempo restante</label
+                      >
+                    </div>
+                    <div class="row">
+                      <label
+                        class="font-weight-bold text text-danger"
+                        id="temporizador"
+                        style="font-size: xx-large"
+                        >60</label
+                      >
+                    </div>
+                  </div>
+                </div>
+                <br />
 
-
-			</div>
-
-		</div>
-      </div>
-      <div class="modal-footer">
-		<button type="button" id="botonCancelarPrueba" class="btn btn-danger"
-		>cancelar prueba</button>
-		<button id="botonOmitirDialog" type="button" class="btn btn-warning">omitir pregunta</button>
-		<button type="button" id="close-modal" data-dismiss="modal" style="display: none"></button>
-		<!--
+                <div
+                  class="row p-1 border border-dark"
+                  style="display: flex; align-items: center"
+                >
+                  <a id="o1pregunta" type="button" class="btn btn-light"
+                    >Cargando...</a
+                  >
+                  <a id="o2pregunta" type="button" class="btn btn-light"
+                    >Cargando...</a
+                  >
+                  <a id="o3pregunta" type="button" class="btn btn-light"
+                    >Cargando...</a
+                  >
+                  <a id="o4pregunta" type="button" class="btn btn-light"
+                    >Cargando...</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                id="botonCancelarPrueba"
+                class="btn btn-danger"
+              >
+                cancelar prueba
+              </button>
+              <button
+                id="botonOmitirDialog"
+                type="button"
+                class="btn btn-warning"
+              >
+                omitir pregunta
+              </button>
+              <button
+                type="button"
+                id="close-modal"
+                data-dismiss="modal"
+                style="display: none"
+              ></button>
+              <!--
 		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>-->
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
 
-		<!-- contenido del modal evaluacion -->
-		<!--
+      <!-- contenido del modal evaluacion -->
+      <!--
 
 		<div class="modal fade" id="modal_evaluacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 			aria-hidden="true">
@@ -308,32 +406,50 @@
 			</div>
 		</div>
 		-->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-		<script type="module">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+      <script type="module">
+        let preguntaActual = 1;
+        let notaActual = 0;
+        let pregunta = null;
+        const nivelActual = getParameterByName("id");
+        function getParameterByName(name) {
+          name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+          return results === null
+            ? ""
+            : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
+        const firebaseConfig = {
+          apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
+          authDomain: "pyxcel-d6df9.firebaseapp.com",
+          projectId: "pyxcel-d6df9",
+          storageBucket: "pyxcel-d6df9.appspot.com",
+          messagingSenderId: "953396754317",
+          appId: "1:953396754317:web:321620a07c7577f5eb6fc4",
+          measurementId: "G-46CQF62KX4",
+        };
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        import {
+          getDatabase,
+          ref,
+          get,
+          set,
+          child,
+          update,
+          remove,
+          onChildAdded,
+          onChildChanged,
+          onChildRemoved,
+        } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
 
-			let preguntaActual = 1;
-			let notaActual = 0;
-			let pregunta = null;
+        const db = getDatabase();
+        const commentsRef = ref(db, "Evaluaciones/nivel" + nivelActual);
+        var contenido = "";
 
-			import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
-			const firebaseConfig = {
-				apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
-				authDomain: "pyxcel-d6df9.firebaseapp.com",
-				projectId: "pyxcel-d6df9",
-				storageBucket: "pyxcel-d6df9.appspot.com",
-				messagingSenderId: "953396754317",
-				appId: "1:953396754317:web:321620a07c7577f5eb6fc4",
-				measurementId: "G-46CQF62KX4"
-			};
-			// Initialize Firebase
-			const app = initializeApp(firebaseConfig);
-			import { getDatabase, ref, get, set, child, update, remove, onChildAdded, onChildChanged, onChildRemoved } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
-
-			const db = getDatabase();
-			const commentsRef = ref(db, 'Evaluaciones/nivel1');
-			var contenido = "";
-
-			/*var listaPreuntas = new Array();
+        /*var listaPreuntas = new Array();
 			onChildAdded(commentsRef, (data) => {
 				if (data.exists()) {
 					//objeto recuperado (se ejecuta n veces hasta que termine de leer todos los niveles)
@@ -346,128 +462,153 @@
 
 			});*/
 
-
-
-			let op1pr = document.getElementById("o1pregunta");
-			let op2pr = document.getElementById("o2pregunta");
-			let op3pr = document.getElementById("o3pregunta");
-			let op4pr = document.getElementById("o4pregunta");
-			let tiPr = document.getElementById("TituloPregunta");
-			let nuPr = document.getElementById("numeroPregunta");
-
-			op1pr.textContent = "opcion 1";
-			op2pr.textContent = "opcion 2";
-			op3pr.textContent = "opcion 3";
-			op4pr.textContent = "opcion 4";
-
-
-			op1pr.addEventListener("click", function () {
-				//op1pr.setAttribute("class", "btn btn-danger");
-				//op1pr.disabled = true;
-				//op2pr.disabled = true;
-				//op3pr.disabled = true;
-				//op4pr.disabled = true;
-				verificarRespuestaPregunta(op1pr.textContent,"o1pregunta");
-				setTimeout(recuperarPregunta,200);
-			});
-
-			op2pr.addEventListener("click", function () {
-				//op2pr.setAttribute("class", "btn btn-danger");
-				//op1pr.disabled = true;
-				//op2pr.disabled = true;
-				//op3pr.disabled = true;
-				//op4pr.disabled = true;
-				verificarRespuestaPregunta(op2pr.textContent,"o2pregunta");
-				setTimeout(recuperarPregunta,200);
-			});
-			op3pr.addEventListener("click", function () {
-				//op3pr.setAttribute("class", "btn btn-success");
-				//op1pr.disabled = true;
-				//op2pr.disabled = true;
-				//op3pr.disabled = true;
-				//op4pr.disabled = true;
-				verificarRespuestaPregunta(op3pr.textContent,"o3pregunta");
-				setTimeout(recuperarPregunta,200);
-			});
-			op4pr.addEventListener("click", function () {
-				//op4pr.setAttribute("class", "btn btn-danger");
-				//op1pr.disabled = true;
-				//op2pr.disabled = true;
-				//op3pr.disabled = true;
-				//op4pr.disabled = true;
-				verificarRespuestaPregunta(op4pr.textContent,"o4pregunta");
-				setTimeout(recuperarPregunta,200);
+        let op1pr = document.getElementById("o1pregunta");
+        let op2pr = document.getElementById("o2pregunta");
+        let op3pr = document.getElementById("o3pregunta");
+        let op4pr = document.getElementById("o4pregunta");
+        let tiPr = document.getElementById("TituloPregunta");
+        let nuPr = document.getElementById("numeroPregunta");
+		let tiNi = document.getElementById("tituloNivelLabel");
+		let btnCeRe = document.getElementById("botonCerrarReprobado");
+        op1pr.textContent = "opcion 1";
+        op2pr.textContent = "opcion 2";
+        op3pr.textContent = "opcion 3";
+        op4pr.textContent = "opcion 4";
+		recuperarTituloNivel();
+		btnCeRe.addEventListener('click',function(){ 
+			notaActual=0;
+			preguntaActual=1;
+			recuperarPreguntaSinTemporizador();
+		});
+		function recuperarTituloNivel() {
+          const dbRef = ref(getDatabase());
+          get(
+            child(
+              dbRef,
+              "Niveles/nivel" + nivelActual + "/titulo"
+            )
+          )
+            .then((snapshot) => {
+              if (snapshot.exists()) {
+                //console.log(snapshot.val());
 				
-			});
+                let titulo = snapshot.val();
+                tiNi.textContent=titulo;
+              } else {
+                console.log("No data available");
+              }
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        }
 
-			function verificarRespuestaPregunta(respuestaActual,id_button) {
-				var elem = document.getElementById(id_button);
-				if (!(pregunta === null)) {
-					if (preguntaActual < 15) {
-						if (respuestaActual === pregunta.respuesta) {
-							notaActual = notaActual + 10;
-							
-							elem.className="btn btn-success";
-							console.log("Respuesta correcta, tu nora es: " + notaActual);
-							//$('#modal_evaluacion').modal('hide'); // abrir
-							//$('#modal_aprobado').modal('show'); // abrir
-							
+        op1pr.addEventListener("click", function () {
+          //op1pr.setAttribute("class", "btn btn-danger");
+          //op1pr.disabled = true;
+          //op2pr.disabled = true;
+          //op3pr.disabled = true;
+          //op4pr.disabled = true;
+          verificarRespuestaPregunta(op1pr.textContent, "o1pregunta");
+          setTimeout(recuperarPregunta, 200);
+        });
 
-						} else {
-							console.log("Respuesta errónea, tu nota es: " + notaActual);
-							elem.className="btn btn-danger";
-							
-						}
-					} else {
-						console.log(preguntaActual);
-						if (preguntaActual === 15) {
-							if (notaActual > 75) {
-								document.getElementById('close-modal').click();
-								document.getElementById('nota_evaluacion1').innerHTML=notaActual & "/100";
-								
-								$('#modal_aprobado').modal('show'); // abrir
+        op2pr.addEventListener("click", function () {
+          //op2pr.setAttribute("class", "btn btn-danger");
+          //op1pr.disabled = true;
+          //op2pr.disabled = true;
+          //op3pr.disabled = true;
+          //op4pr.disabled = true;
+          verificarRespuestaPregunta(op2pr.textContent, "o2pregunta");
+          setTimeout(recuperarPregunta, 200);
+        });
+        op3pr.addEventListener("click", function () {
+          //op3pr.setAttribute("class", "btn btn-success");
+          //op1pr.disabled = true;
+          //op2pr.disabled = true;
+          //op3pr.disabled = true;
+          //op4pr.disabled = true;
+          verificarRespuestaPregunta(op3pr.textContent, "o3pregunta");
+          setTimeout(recuperarPregunta, 200);
+        });
+        op4pr.addEventListener("click", function () {
+          //op4pr.setAttribute("class", "btn btn-danger");
+          //op1pr.disabled = true;
+          //op2pr.disabled = true;
+          //op3pr.disabled = true;
+          //op4pr.disabled = true;
+          verificarRespuestaPregunta(op4pr.textContent, "o4pregunta");
+          setTimeout(recuperarPregunta, 200);
+        });
 
-								//data-book-id=""
-								//<input type="text" name="bookId" value=""/>
-							} else {
-								document.getElementById('close-modal').click();								
-								
-								document.getElementById('nota_evaluacion2').innerHTML=notaActual + "/100";
-								
-								$('#modal_reprobado').modal('show'); // abrir
-								document.getElementById('nota_evaluacion2').innerHTML=notaActual + "/100";
-							}
-							//$('#myModalExito').modal('hide'); // cerrar
-						}
-					}
+        function verificarRespuestaPregunta(respuestaActual, id_button) {
+          var elem = document.getElementById(id_button);
+          if (!(pregunta === null)) {
+            if (preguntaActual < 11) {
+              if (respuestaActual === pregunta.respuesta) {
+                notaActual = notaActual + 10;
 
+                elem.className = "btn btn-success";
+                console.log("Respuesta correcta, tu nora es: " + notaActual);
+                //$('#modal_evaluacion').modal('hide'); // abrir
+                //$('#modal_aprobado').modal('show'); // abrir
+              } else {
+                console.log("Respuesta errónea, tu nota es: " + notaActual);
+                elem.className = "btn btn-danger";
+              }
+            } else {
+              console.log(preguntaActual);
+              if (preguntaActual === 11) {
+                if (notaActual >= 60) {
+                  document.getElementById("close-modal").click();
+                  //document.getElementById('nota_evaluacion1').innerHTML=notaActual & "/100";
+				  $('#modal_aprobado').modal({
+                        backdrop: 'static',
+                        keyboard: true, 
+                        show: true
+                }); 
+                  $("#modal_aprobado").modal("show"); // abrir
+                  document.getElementById("nota_evaluacion1").innerHTML =
+                    notaActual + "/100";
+                  //data-book-id=""
+                  //<input type="text" name="bookId" value=""/>
+				  	
+                } else {
+                  document.getElementById("close-modal").click();
 
+                  document.getElementById("nota_evaluacion2").innerHTML =
+                    notaActual + "/100";
+					$('#modal_reprobado').modal({
+                        backdrop: 'static',
+                        keyboard: true, 
+                        show: true
+                });
+                  $("#modal_reprobado").modal("show"); // abrir
+				  
+                  document.getElementById("nota_evaluacion2").innerHTML =
+                    notaActual + "/100";
+                }
+                preguntaActual = 1;
+                //$('#myModalExito').modal('hide'); // cerrar
+              }
+            }
+          }
+        }
+        function quitar_animacion_botones() {
+          document.getElementById("o1pregunta").className = "btn btn-light";
+          document.getElementById("o2pregunta").className = "btn btn-light";
+          document.getElementById("o3pregunta").className = "btn btn-light";
+          document.getElementById("o4pregunta").className = "btn btn-light";
+        }
 
-
-				}
-			}
-			function quitar_animacion_botones(){
-			
-
-				document.getElementById("o1pregunta").className="btn btn-light";
-				document.getElementById("o2pregunta").className="btn btn-light";
-				document.getElementById("o3pregunta").className="btn btn-light";
-				document.getElementById("o4pregunta").className="btn btn-light";
-			
-			
-				
-			}
-			
-
-
-			let botonRendirExamen = document.getElementById("rendirExamen");
-			botonRendirExamen.addEventListener("click", function () {
-				reiniciarTemporizador();
-				iniciarTemporizador();
-			});
-			let botonOmitir = document.getElementById("botonOmitirDialog");
-			botonOmitir.addEventListener("click", function () {
-				/*const dbRef = ref(getDatabase());
+        let botonRendirExamen = document.getElementById("rendirExamen");
+        botonRendirExamen.addEventListener("click", function () {
+          reiniciarTemporizador();
+          iniciarTemporizador();
+        });
+        let botonOmitir = document.getElementById("botonOmitirDialog");
+        botonOmitir.addEventListener("click", function () {
+          /*const dbRef = ref(getDatabase());
 				get(child(dbRef, "Evaluaciones/nivel1/p" + preguntaActual)).then((snapshot) => {
 					if (snapshot.exists()) {
 						console.log(snapshot.val());
@@ -486,111 +627,135 @@
 				}).catch((error) => {
 					console.error(error);
 				});*/
-				pausarTemporizador();
-				Swal.fire({
-					title: 'Realmente desea omitir la pregunta?',
-					showCancelButton: true,
-					confirmButtonText: 'si omitir',
-					cancelButtonText: 'cancelar',
-				}).then((result) => {
-					/* Read more about isConfirmed, isDenied below */
-					if (result.isConfirmed) {
-						//cerramos la vista y volvemos a niveles
-						//no guardamos nada
+          pausarTemporizador();
+          Swal.fire({
+            title: "Realmente desea omitir la pregunta?",
+            showCancelButton: true,
+            confirmButtonText: "si omitir",
+            cancelButtonText: "cancelar",
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              //cerramos la vista y volvemos a niveles
+              //no guardamos nada
 
-						recuperarPregunta();
-					} else {
-						iniciarTemporizador();
-					}
-				})
-			});
-			let botonCancelar = document.getElementById("botonCancelarPrueba");
-			botonCancelar.addEventListener("click", function () {
-				pausarTemporizador();
-				Swal.fire({
-					title: 'Realmente desea salir de la evaluacion?',
-					showCancelButton: true,
-					confirmButtonText: 'si salir',
-					cancelButtonText: 'cancelar',
-				}).then((result) => {
-					/* Read more about isConfirmed, isDenied below */
+              recuperarPregunta();
+            } else {
+              iniciarTemporizador();
+            }
+          });
+        });
+        let botonCancelar = document.getElementById("botonCancelarPrueba");
+        botonCancelar.addEventListener("click", function () {
+          pausarTemporizador();
+          Swal.fire({
+            title: "Realmente desea salir de la evaluacion?",
+            showCancelButton: true,
+            confirmButtonText: "si salir",
+            cancelButtonText: "cancelar",
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
 
-					if (result.isConfirmed) {
-						//cerramos la vista y volvemos a niveles
-						//no guardamos nada
-						//location.reload();
-						
-						//$("#modal_evaluacion.close").click()
-						//$('#modal_evaluacion').modal('hide'); // abrir
-						//$('#modal_evaluacion').removeClass('show');
-						//$("#modal_evaluacion .close").click();
-						//$('#modal_evaluacion').hide();
-						/*
+            if (result.isConfirmed) {
+              //cerramos la vista y volvemos a niveles
+              //no guardamos nada
+              //location.reload();
+
+              //$("#modal_evaluacion.close").click()
+              //$('#modal_evaluacion').modal('hide'); // abrir
+              //$('#modal_evaluacion').removeClass('show');
+              //$("#modal_evaluacion .close").click();
+              //$('#modal_evaluacion').hide();
+              /*
 						$('#cerrar').click(); 
 						$('.modal-backdrop').remove();
 						*/
-						/*
+              /*
 						$('#modal_evaluacion').modal().hide();
 						$('body').removeClass('modal-open');
 						$('.modal-backdrop').remove()  ;
 						*/
-						document.getElementById('close-modal').click();
-						/*
+              document.getElementById("close-modal").click();
+              preguntaActual = 1;
+              recuperarPreguntaSinTemporizador();
+              notaActual = 0;
+              /*
 						$('.modal').removeClass('shw');
 						$('modal-backdrop').remove();
 						*/
-						//$('.modal-backdrop').removeClass('in');
-					} else {
-						iniciarTemporizador();
-					}
-				})
-			});
-			
-			recuperarPreguntaSinTemporizador();
-			function recuperarPregunta() {
-				quitar_animacion_botones();
-				const dbRef = ref(getDatabase());
-				get(child(dbRef, "Evaluaciones/nivel1/p" + preguntaActual)).then((snapshot) => {
-					if (snapshot.exists()) {
-						//console.log(snapshot.val());
-						pregunta = snapshot.val();
-						nuPr.textContent = preguntaActual + "/15";
-						tiPr.textContent = pregunta.pregunta;
-						op1pr.textContent = pregunta.o1;
-						op2pr.textContent = pregunta.o2;
-						op3pr.textContent = pregunta.o3;
-						op4pr.textContent = pregunta.o4;
-						reiniciarTemporizador();
-						iniciarTemporizador();
-						preguntaActual = preguntaActual+1;
-						//reiniciar e iniciar
-					} else {
-						console.log("No data available");
-					}
-				}).catch((error) => {
-					console.error(error);
-				});
-			}
-			function recuperarPreguntaSinTemporizador() {
-				const dbRef = ref(getDatabase());
-				get(child(dbRef, "Evaluaciones/nivel1/p" + preguntaActual)).then((snapshot) => {
-					if (snapshot.exists()) {
-						pregunta = snapshot.val();
-						nuPr.textContent = preguntaActual + "/15";
-						tiPr.textContent = pregunta.pregunta;
-						op1pr.textContent = pregunta.o1;
-						op2pr.textContent = pregunta.o2;
-						op3pr.textContent = pregunta.o3;
-						op4pr.textContent = pregunta.o4;
-						preguntaActual = preguntaActual+1;						
-					} else {
-						console.log("No data available");
-					}
-				}).catch((error) => {
-					console.error(error);
-				});
-			}
-			/*function siguientePregunta(){
+              //$('.modal-backdrop').removeClass('in');
+            } else {
+              iniciarTemporizador();
+            }
+          });
+        });
+
+        recuperarPreguntaSinTemporizador();
+        function recuperarPregunta() {
+          quitar_animacion_botones();
+          const dbRef = ref(getDatabase());
+          get(
+            child(
+              dbRef,
+              "Evaluaciones/nivel" + nivelActual + "/p" + preguntaActual
+            )
+          )
+            .then((snapshot) => {
+              if (snapshot.exists()) {
+                //console.log(snapshot.val());
+				if(preguntaActual===11){
+					verificarRespuestaPregunta();
+				}else{
+                pregunta = snapshot.val();
+                nuPr.textContent = preguntaActual + "/10";
+                tiPr.textContent = pregunta.pregunta;
+                op1pr.textContent = pregunta.o1;
+                op2pr.textContent = pregunta.o2;
+                op3pr.textContent = pregunta.o3;
+                op4pr.textContent = pregunta.o4;
+                reiniciarTemporizador();
+                iniciarTemporizador();
+                preguntaActual = preguntaActual + 1;
+				}
+                //reiniciar e iniciar
+              } else {
+                console.log("No data available");
+                preguntaActual = 15;
+                verificarRespuestaPregunta();
+              }
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        }
+        function recuperarPreguntaSinTemporizador() {
+          const dbRef = ref(getDatabase());
+          get(
+            child(
+              dbRef,
+              "Evaluaciones/nivel" + nivelActual + "/p" + preguntaActual
+            )
+          )
+            .then((snapshot) => {
+              if (snapshot.exists()) {
+                pregunta = snapshot.val();
+                nuPr.textContent = preguntaActual + "/10";
+                tiPr.textContent = pregunta.pregunta;
+                op1pr.textContent = pregunta.o1;
+                op2pr.textContent = pregunta.o2;
+                op3pr.textContent = pregunta.o3;
+                op4pr.textContent = pregunta.o4;
+                preguntaActual = preguntaActual + 1;
+              } else {
+                console.log("No data available");
+              }
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        }
+
+        /*function siguientePregunta(){
 				//let pregunta = listaPreuntas[preguntaActual];
 				//preguntaActual = preguntaActual+1;
 				//op1pr.textContent = pregunta.o1;
@@ -600,36 +765,36 @@
 				console.log("hola");
 				//console.log(pregunta.o1);
 			}*/
-			var segundos = 60;
-        	var textoCuenta = document.getElementById("temporizador");
-        	var cronometro;
-        	function iniciarTemporizador(){
-				clearInterval(cronometro);
-            	cronometro = setInterval(function () {
-            	segundos = segundos -1;
-            	textoCuenta.textContent = String(segundos);
-            	if(segundos === 0){
-					clearInterval(cronometro);
-					setTimeout(function() {
-						recuperarPregunta();
-					}, 700);
-                	/*clearInterval(cronometro);
+        var segundos = 60;
+        var textoCuenta = document.getElementById("temporizador");
+        var cronometro;
+        function iniciarTemporizador() {
+          clearInterval(cronometro);
+          cronometro = setInterval(function () {
+            segundos = segundos - 1;
+            textoCuenta.textContent = String(segundos);
+            if (segundos === 0) {
+              clearInterval(cronometro);
+              setTimeout(function () {
+                recuperarPregunta();
+              }, 700);
+              /*clearInterval(cronometro);
 					recuperarPregunta();*/
-            	}
-            	}, 1000);
-        	}
-       		function pausarTemporizador(){
-            	clearInterval(cronometro);
-        	}
-        	function reiniciarTemporizador(){
-            	segundos = 60;
-            	textoCuenta.textContent = String(segundos);
-        	}
-		</script>
-	</main>
+            }
+          }, 1000);
+        }
+        function pausarTemporizador() {
+          clearInterval(cronometro);
+        }
+        function reiniciarTemporizador() {
+          segundos = 60;
+          textoCuenta.textContent = String(segundos);
+        }
+      </script>
+    </main>
 
-	<script>
-		/*function mensaje_alerta_omitir() {
+    <script>
+      /*function mensaje_alerta_omitir() {
 			Swal.fire({
 				title: 'Realmente desea omitir la pregunta?',
 				showCancelButton: true,
@@ -644,7 +809,7 @@
 				}
 			})
 		}*/
-		/*
+      /*
 		function mensaje_alerta_salir() {
 			Swal.fire({
 				title: 'Realmente desea salir de la efdasfdsavaluacion?',
@@ -661,7 +826,7 @@
 				}
 			})
 		}*/
-		/*function alerta() {
+      /*function alerta() {
 			var respuesta = confirm("Esta seguro que quiere salir de la prueba");
 			if (respuesta == true) {
 				return true;
@@ -669,37 +834,43 @@
 				return false;
 			}
 		}*/
-	</script>
+    </script>
 
+    <script
+      src="../assets/js/libs/jquery.min.js"
+      type="text/javascript"
+    ></script>
+    <script type="module" src="../assets/js/recover-data.js"></script>
+    <script type="module" src="../assets/js/scrip.js"></script>
+    <script type="module" src="../assets/js/connection-firebase.js"></script>
 
-	<script src="../assets/js/libs/jquery.min.js" type="text/javascript"></script>
-	<script type="module" src="../assets/js/recover-data.js"></script>
-	<script type="module" src="../assets/js/scrip.js"></script>
-	<script type="module" src="../assets/js/connection-firebase.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="../assets/vendor/aos/aos.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/vendor/php-email-form/validate.js"></script>
+    <script src="../assets/vendor/purecounter/purecounter.js"></script>
+    <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
 
-	<!-- Vendor JS Files -->
-	<script src="../assets/vendor/aos/aos.js"></script>
-	<script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script src="../assets/vendor/php-email-form/validate.js"></script>
-	<script src="../assets/vendor/purecounter/purecounter.js"></script>
-	<script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <!--cdn botstrap-->
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <!-- cdn sweet alert-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-	<!--cdn botstrap-->
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-		crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-		crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-		crossorigin="anonymous"></script>
-	<!-- cdn sweet alert-->
-	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-	<!-- Template Main JS File -->
-	<script src="../assets/js/main.js"></script>
-
-</body>
-
+    <!-- Template Main JS File -->
+    <script src="../assets/js/main.js"></script>
+  </body>
 </html>
