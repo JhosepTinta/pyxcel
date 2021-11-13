@@ -57,6 +57,7 @@ async function agregarEventoBotonRegistrar(){
             var usuario= {
                 nombre: nombreR.value,
                 correo: correoR.value,
+                nivelActual: 1
             };
             crearCuentaFirebase(usuario,contrasenaR.value);
           }
