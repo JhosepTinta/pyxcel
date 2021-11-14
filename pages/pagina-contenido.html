@@ -50,25 +50,43 @@
   </head>
 
   <body>
-    <header id="header" class="fixed-top">
-      <div class="container d-flex align-items-center">
-        <h1 class="logo me-auto"><a href="../index.html">Pyxcel</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-        <nav id="navbar" class="navbar order-last order-lg-0">
-          <ul>
-            <li><a href="../index.html">Inicio</a></li>
-            <li><a href="../index.html#about">Nosotros</a></li>
-            <li><a class="active" href="nivel.html">Ver Curso</a></li>
-          </ul>
-          <i class="bi bi-list mobile-nav-toggle"></i>
-        </nav>
-        <!-- .navbar -->
-
-        <!-- <a href="courses.html" class="get-started-btn">Get Started</a> -->
-      </div>
-    </header>
+	<header id="header" class="fixed-top">
+		<div class="container d-flex align-items-center">
+	
+		  <h1 class="logo me-auto"><a href="../index.html">Pyxcel</a></h1>
+		  <!-- Uncomment below if you prefer to use an image logo -->
+		  <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+	
+		  
+	
+		  <nav id="navbar" class="navbar order-last order-lg-0">
+			<ul>
+				<li><a href="../index.html">Inicio</a></li>
+				<li><a href="../index.html#about">Nosotros</a></li>
+				<li><a class="active" href="nivel.html">Ver Curso</a></li>
+			</ul>
+			<i class="bi bi-list mobile-nav-toggle"></i>
+		   
+		  </nav><!-- .navbar -->
+		  <div class="desplegable">
+			<button class="desplebutton"> 
+			  <a 
+			  href="#l" id="prueba" class="get-started-btn">
+			  cargando...
+			  <i class="fas fa-chevron-down"></i>
+			</a> </button>
+			<!-- <i class="material-icons">expand_more </i>  -->
+			<div class="options">
+			  
+			  <a href="#" id="logout" >Cerrar Sesion</a>
+			</div>
+		  </div>
+		  
+		 
+		  
+		</div>
+	  </header><!-- End Header -->
     <!-- End Header -->
 
     <main class="main-pagina-contenido">
@@ -85,7 +103,8 @@
           </template>
         </ul>
         <div class="text-center">
-          <button
+          <button 
+		 	disabled = "true"
             type="button"
             class="btn btn-danger btn-lg"
             data-toggle="modal"
@@ -158,10 +177,10 @@
             </div>
             <div class="modal-footer">
               <button
+			  	id="botonsiguientenivel"
                 type="button"
                 class="btn btn-success btn-lg btn-block"
                 data-bs-dismiss="modal"
-				
               >
                 Siguiente Nivel
               </button>
@@ -336,8 +355,59 @@
 
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
       <script type="module">
-        let preguntaActual = 1;
-        let preguntasAleatoriasNum = generarOrdenPreguntas();
+        //CODIGO DE RECUPERACION DEL USUARIO
+		import { initializeApp, onLog } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+import { getAuth, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https:www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"
+//import { getDatabase} from "./connection-firebase";
+import { getDatabase, ref, get, set, child, update, remove, onChildAdded, onChildChanged, onChildRemoved } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
+  authDomain: "pyxcel-d6df9.firebaseapp.com",
+  databaseURL: "https://pyxcel-d6df9-default-rtdb.firebaseio.com",
+  projectId: "pyxcel-d6df9",
+  storageBucket: "pyxcel-d6df9.appspot.com",
+  messagingSenderId: "953396754317",
+  appId: "1:953396754317:web:321620a07c7577f5eb6fc4",
+  measurementId: "G-46CQF62KX4"
+};
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app)
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    const dbref = ref(getDatabase());
+    get(child(dbref, "Usuarios/" + user.uid)).then((snapshot) => {
+      console.log(user);
+      if (snapshot.exists()) {
+        //const uid = user.email;
+        //console.log(uid)
+        
+        let text = document.getElementById("prueba");
+        text.innerHTML = snapshot.val().nombre;
+		inicializarEvaluaciones(snapshot.val(), user.uid);
+        //console.log(snapshot.val().nivelActual);
+        //console.log(snapshot.val().nombre);
+        //recuperarNivelesUsuario(snapshot.val().nivelActual);
+      } else {
+        console.log("No se encontro el elemento");
+      }
+    })
+      .catch((error) => {
+        console.log("unsucessfull, error" + error);
+      });
+  } else {
+    // User is signed out
+    console.log("me sali karen :D")
+    window.location.href = "/index.html";
+    // ...
+  }
+});
+		
+		function inicializarEvaluaciones(datosUsuario, userid){
+			let preguntaActual = 1;
+        	let preguntasAleatoriasNum = generarOrdenPreguntas();
         function generarOrdenPreguntas(){
           const results = [];
           const limit = 10;
@@ -361,7 +431,7 @@
             ? ""
             : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
+        /*import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
         const firebaseConfig = {
           apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
           authDomain: "pyxcel-d6df9.firebaseapp.com",
@@ -385,7 +455,7 @@
           onChildChanged,
           onChildRemoved,
         } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
-
+		*/
         const db = getDatabase();
         const commentsRef = ref(db, "Evaluaciones/nivel" + nivelActual);
         var contenido = "";
@@ -411,6 +481,11 @@
         let nuPr = document.getElementById("numeroPregunta");
 		let tiNi = document.getElementById("tituloNivelLabel");
 		let btnCeRe = document.getElementById("botonCerrarReprobado");
+
+		let botonSigLevel = document.getElementById("botonsiguientenivel");
+		botonSigLevel.addEventListener("click", function () {
+			window.location.href = "nivel.html";
+        });
         op1pr.textContent = "opcion 1";
         op2pr.textContent = "opcion 2";
         op3pr.textContent = "opcion 3";
@@ -537,10 +612,12 @@
                   $("#modal_aprobado").modal("show"); // abrir
                   document.getElementById("nota_evaluacion1").innerHTML =
                     notaActual + "/100";
+					subirNotaBD(notaActual);
                   //data-book-id=""
                   //<input type="text" name="bookId" value=""/>
 				  	
                 } else {
+					//subirNotaBD(notaActual);
                   document.getElementById("close-modal").click();
 
                   document.getElementById("nota_evaluacion2").innerHTML =
@@ -573,6 +650,17 @@
           reiniciarTemporizador();
           iniciarTemporizador();
         });
+
+		console.log("datouserexiste")
+		console.log(datosUsuario.notanivel1);
+		console.log(datosUsuario['notanivel'+nivelActual]);
+		if(datosUsuario['notanivel'+nivelActual]===undefined||datosUsuario['notanivel'+nivelActual]===null){
+			botonRendirExamen.disabled = false;
+		}else{
+			botonRendirExamen.textContent = "Nota: "+datosUsuario['notanivel'+nivelActual]+"/100";	
+			botonRendirExamen.disabled = true;
+		}
+
         let botonOmitir = document.getElementById("botonOmitirDialog");
         botonOmitir.addEventListener("click", function () {
           /*const dbRef = ref(getDatabase());
@@ -758,6 +846,32 @@
           segundos = 60;
           textoCuenta.textContent = String(segundos);
         }
+
+		function subirNotaBD(nota) {
+			//console.log(datosUsuario);
+			console.log("Usuarios/" + userid+"/notanivel"+nivelActual);
+			console.log("Usuarios/" + userid+"/nivelActual")
+            set(ref(getDatabase(), "Usuarios/" + userid+"/notanivel"+nivelActual), nota)
+                .then(() => {
+                    //alert("Datos registrados correctamente");
+                })
+                .catch((error) => {
+                    //alert("unsucessfull, error" + error);
+                });
+				let nivelNuevo = parseInt(nivelActual)+1;
+				set(ref(getDatabase(), "Usuarios/" + userid+"/nivelActual"), nivelNuevo)
+                .then(() => {
+                    //alert("Datos registrados correctamente");
+                })
+                .catch((error) => {
+                    //alert("unsucessfull, error" + error);
+                });
+        }
+
+		}
+
+		
+
       </script>
     </main>
 
