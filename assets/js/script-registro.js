@@ -17,10 +17,12 @@ agregarEventoBotonRegistrar();
 agregarEventsInputs();
 inciarBotonOjo();
 
-function insertarDatos(usuario) {
-    set(ref(db, "Usuarios/" + usuario.nombre), usuario)
+function insertarDatos(usuario, id) {
+    
+    set(ref(db, "Usuarios/" + id), usuario)
         .then(() => {
-            alert("Datos registrados correctamente");
+            //alert("Datos registrados correctamente");
+            window.location.href = "../../pages/nivel.html";
         })
         .catch((error) => {
             alert("unsucessfull, error" + error);
@@ -29,7 +31,7 @@ function insertarDatos(usuario) {
 
 async function crearCuentaFirebase(usuario, contrasena) {
     await createUserWithEmailAndPassword(auth, usuario.correo, contrasena).then((userCredential) => {
-        insertarDatos(usuario);
+        insertarDatos(usuario, userCredential._tokenResponse.localId);
         console.log("cuenta creada correctamente");
       })
       .catch((error) => {
@@ -56,6 +58,7 @@ async function agregarEventoBotonRegistrar(){
             var usuario= {
                 nombre: nombreR.value,
                 correo: correoR.value,
+                nivelActual: 1
             };
             crearCuentaFirebase(usuario,contrasenaR.value);
           }
