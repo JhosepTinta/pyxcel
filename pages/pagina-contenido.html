@@ -84,7 +84,6 @@
             <li class="tema-del-nivel"></li>
           </template>
         </ul>
-        <!-- data-backdrop="static" data-keyboard="false"  atributos del boton-->
         <div class="text-center">
           <button
             type="button"
@@ -125,7 +124,6 @@
         </div>
         <!-- seccion-botones -->
       </div>
-      <!--  contenidoTema-botones   -->
 
       <!--modal aprobado-->
       <div
@@ -171,7 +169,6 @@
           </div>
         </div>
       </div>
-
       <!--modal Reprobado-->
       <div
         class="modal fade"
@@ -215,8 +212,7 @@
           </div>
         </div>
       </div>
-      <!--Modal Prueba-->
-      <!---->
+      <!--Modal Evaluacion-->
       <div
         class="modal fade"
         id="modal_evaluacion"
@@ -237,9 +233,7 @@
               </h5>
             </div>
             <div class="modal-body">
-              <!--
-		
-		-->
+
               <div class="container-fluid">
                 <div class="row">
                   <label
@@ -334,81 +328,28 @@
                 data-dismiss="modal"
                 style="display: none"
               ></button>
-              <!--
-		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>-->
+
             </div>
           </div>
         </div>
       </div>
 
-      <!-- contenido del modal evaluacion -->
-      <!--
-
-		<div class="modal fade" id="modal_evaluacion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-			aria-hidden="true">
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header" style="background-color: #68CF79;">
-						<h5 class="modal-title" id="exampleModalLabel" style="color:white;">EVALUACIÓN DE CONOCIMIENTO
-						</h5>
-
-					</div>
-					<div class="modal-body">
-						<div class="container-fluid">
-							<div class="row">
-								<label for="recipient-name" class="col-form-label" style="font-size: small;">Nivel :
-									<strong> Titulo de nivel </strong></label>
-							</div>
-							<div class="row" style="height: 80px; ">
-								<div class="col-2 border border-success" style="display: flex; align-items: center;">
-									<label class="text-success font-weight-bold" id="numeroPregunta"
-										style="font-size: medium">1/10</label>
-
-								</div>
-								<div class="col-7" style="display: flex; align-items: left;">
-									<label id="TituloPregunta" for="recipient-name" class="col-form-label">descripcion
-										/planteamineto de la
-										pregunta</label>
-								</div>
-								<div class="col-3 ml-auto text-center">
-									<div class="row"><label class="font-weight-light" style="font-size:x-small ">tiempo
-											restante</label></div>
-									<div class="row"><label class="font-weight-bold text text-danger" id="temporizador"
-											style="font-size: xx-large;">60</label></div>
-								</div>
-							</div><br>
-
-							<div class="row p-1 border border-dark" style="display: flex; align-items: center;">
-								<a id="o1pregunta" type="button" class="btn btn-outline-secondary">Cargando...</a>
-								<a id="o2pregunta" type="button" class="btn btn-outline-secondary">Cargando...</a>
-								<a id="o3pregunta" type="button" class="btn btn-outline-secondary">Cargando...</a>
-								<a id="o4pregunta" type="button" class="btn btn-outline-secondary">Cargando...</a>
-
-
-							</div>
-
-						</div>
-					</div>
-					<div>
-						<div class="row p-3">
-
-							<div class="col-4"><button type="button" id="botonCancelarPrueba" class="btn btn-danger"
-									>cancelar prueba</button></div>
-
-							<div class="col-4"><button id="botonOmitirDialog" type="button"
-									class="btn btn-warning">omitir pregunta</button>
-							</div>
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-		-->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
       <script type="module">
         let preguntaActual = 1;
+        let preguntasAleatoriasNum = generarOrdenPreguntas();
+        function generarOrdenPreguntas(){
+          const results = [];
+          const limit = 10;
+          while (results.length < limit) {
+              const number = Math.floor(Math.random() * 15)+1;
+            if (!results.includes(number)) {
+                results.push(number);
+            }
+          }
+          console.log(results);
+          return results;
+        }
         let notaActual = 0;
         let pregunta = null;
         const nivelActual = getParameterByName("id");
@@ -478,6 +419,7 @@
 		btnCeRe.addEventListener('click',function(){ 
 			notaActual=0;
 			preguntaActual=1;
+      preguntasAleatoriasNum = generarOrdenPreguntas();
 			recuperarPreguntaSinTemporizador();
 		});
 		function recuperarTituloNivel() {
@@ -677,6 +619,7 @@
 						*/
               document.getElementById("close-modal").click();
               preguntaActual = 1;
+              preguntasAleatoriasNum = generarOrdenPreguntas();
               recuperarPreguntaSinTemporizador();
               notaActual = 0;
               /*
@@ -697,7 +640,7 @@
           get(
             child(
               dbRef,
-              "Evaluaciones/nivel" + nivelActual + "/p" + preguntaActual
+              "Evaluaciones/nivel" + nivelActual + "/p" + preguntasAleatoriasNum[preguntaActual-1]/*preguntaActual*/
             )
           )
             .then((snapshot) => {
@@ -733,7 +676,7 @@
           get(
             child(
               dbRef,
-              "Evaluaciones/nivel" + nivelActual + "/p" + preguntaActual
+              "Evaluaciones/nivel" + nivelActual + "/p" + preguntasAleatoriasNum[preguntaActual-1] /*preguntaActual*/
             )
           )
             .then((snapshot) => {
