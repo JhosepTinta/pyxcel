@@ -494,21 +494,46 @@
                 console.log("Respuesta correcta, tu nora es: " + notaActual);
                 //$('#modal_evaluacion').modal('hide'); // abrir
                 //$('#modal_aprobado').modal('show'); // abrir
+                const music = new Audio('../assets/audio/respcorrecto.mp3');
+                music.play();/*
+                music.loop =true;
+                music.playbackRate = 2;
+                music.pause();*/
               } else {
                 console.log("Respuesta errónea, tu nota es: " + notaActual);
                 elem.className = "btn btn-danger";
+                const music = new Audio('../assets/audio/respincorrecto.mp3');
+                music.play();
               }
             } else {
+              if (respuestaActual === pregunta.respuesta) {
+                notaActual = notaActual + 10;
+
+                elem.className = "btn btn-success";
+                console.log("Respuesta correcta, tu nora es: " + notaActual);
+                //$('#modal_evaluacion').modal('hide'); // abrir
+                //$('#modal_aprobado').modal('show'); // abrir
+                const music = new Audio('../assets/audio/respcorrecto.mp3');
+                music.play();/*
+                music.loop =true;
+                music.playbackRate = 2;
+                music.pause();*/
+              } else {
+                console.log("Respuesta errónea, tu nota es: " + notaActual);
+                elem.className = "btn btn-danger";
+                const music = new Audio('../assets/audio/respincorrecto.mp3');
+                music.play();
+              }
               console.log(preguntaActual);
               if (preguntaActual === 11) {
                 if (notaActual >= 60) {
                   document.getElementById("close-modal").click();
                   //document.getElementById('nota_evaluacion1').innerHTML=notaActual & "/100";
-				  $('#modal_aprobado').modal({
+				          $('#modal_aprobado').modal({
                         backdrop: 'static',
                         keyboard: true, 
                         show: true
-                }); 
+                  }); 
                   $("#modal_aprobado").modal("show"); // abrir
                   document.getElementById("nota_evaluacion1").innerHTML =
                     notaActual + "/100";
