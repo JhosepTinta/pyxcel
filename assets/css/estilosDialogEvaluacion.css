@@ -1,0 +1,65 @@
+.flexContainer{
+    display: flex;
+    background-color: aqua;
+    margin-bottom: 30px;
+}
+
+.container1{
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    border: 1px solid orange;
+}
+.container1 .flexItem{
+    flex: 1 1 auto;
+    border: 1px solid red;
+}
+.container2{
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid blue;
+}
+.container2 .flexItem{
+    flex-grow: 1;
+    border: 1px solid red;
+}
+.container3{
+    justify-content: right;
+    flex-wrap: wrap;
+    align-content: center;
+    border: 1px solid red;
+}
+
+.container4{
+    justify-content: right;
+    flex-wrap: wrap;
+    align-content: center;
+    border: 1px solid red;
+
+}
+.container4 .item1{
+    flex-grow: 1;
+    border: 1px solid red;
+    text-align: center;
+    align-content: center;
+    background-color: aqua;
+
+}
+.container4 .item3{
+    flex-grow: 1;
+    text-align: center;
+    align-content: center;
+    border: 1px solid red;
+}
+.container4 .item2{
+    flex-grow: 4;
+    text-align: center;
+    align-content: center;
+    border: 1px solid red;
+}
+
+
+.flexItem{
+    padding: 10px;
+    background-color: blanchedalmond;
+}
