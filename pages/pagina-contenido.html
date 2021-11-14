@@ -360,7 +360,7 @@
 import { getAuth, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https:www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"
 //import { getDatabase} from "./connection-firebase";
 import { getDatabase, ref, get, set, child, update, remove, onChildAdded, onChildChanged, onChildRemoved } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
-
+import{incializar} from "../assets/js/scrip.js"
 const firebaseConfig = {
   apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
   authDomain: "pyxcel-d6df9.firebaseapp.com",
@@ -387,6 +387,7 @@ onAuthStateChanged(auth, (user) => {
         let text = document.getElementById("prueba");
         text.innerHTML = snapshot.val().nombre;
 		inicializarEvaluaciones(snapshot.val(), user.uid);
+    incializar(snapshot.val().nivelActual);
         //console.log(snapshot.val().nivelActual);
         //console.log(snapshot.val().nombre);
         //recuperarNivelesUsuario(snapshot.val().nivelActual);

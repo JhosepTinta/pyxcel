@@ -1,5 +1,6 @@
 import {comprobarNivel,recuperarDatos,contarTemas,recuperarIntroduccion,recuperarTituloNivel} from "../js/recover-data.js";
 export {PonerContenido,agregarIntroduccionContenido,ponerTitulo,ponerTituloNivel}
+export{incializar}
 
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -12,13 +13,13 @@ const nivelActual = getParameterByName('id');
 
 let temaActual = 1;
 let cantTemas = 0;
-incializar();
+//incializar();
 
-async function  incializar(){
+async function  incializar(actualNivelUser){
     var  aux = await comprobarNivel(nivelActual);
     console.log('comprobar nivle--------------------------------------');
     console.log(typeof aux.val().activo);
-    if(aux.val().activo){
+    if(/*aux.val().activo*/nivelActual<=actualNivelUser){
         var a = await contarTemas(nivelActual);
         recuperarTituloNivel("Niveles/nivel",nivelActual);
         pintarTituloTema(temaActual);
@@ -31,6 +32,9 @@ async function  incializar(){
         ba.classList.add('oculto');
         var bs = document.querySelector('.boton-siguiente');
         bs.classList.add('oculto');
+
+        let botonRendirExamen = document.getElementById("rendirExamen");
+        botonRendirExamen.disabled = true;
     }
 }
 
