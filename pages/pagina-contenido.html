@@ -566,7 +566,11 @@ onAuthStateChanged(auth, (user) => {
         });
 
         function verificarRespuestaPregunta(respuestaActual, id_button) {
-          var elem = document.getElementById(id_button);
+          if(recuperarPregunta===null&&id_button===null){
+            mostrarNotaUsurioDialog();
+            preguntaActual = 1;
+          }else{
+            var elem = document.getElementById(id_button);
           if (!(pregunta === null)) {
             if (preguntaActual < 11) {
               if (respuestaActual === pregunta.respuesta) {
@@ -608,7 +612,17 @@ onAuthStateChanged(auth, (user) => {
               }
               console.log(preguntaActual);
               if (preguntaActual === 11) {
-                if (notaActual >= 60) {
+                mostrarNotaUsurioDialog();
+                preguntaActual = 1;
+                //$('#myModalExito').modal('hide'); // cerrar
+              }
+            }
+          }
+          }
+        }
+
+        function mostrarNotaUsurioDialog(){
+          if (notaActual >= 60) {
                   document.getElementById("close-modal").click();
                   //document.getElementById('nota_evaluacion1').innerHTML=notaActual & "/100";
 				          $('#modal_aprobado').modal({
@@ -639,12 +653,10 @@ onAuthStateChanged(auth, (user) => {
                   document.getElementById("nota_evaluacion2").innerHTML =
                     notaActual + "/100";
                 }
-                preguntaActual = 1;
-                //$('#myModalExito').modal('hide'); // cerrar
-              }
-            }
-          }
         }
+
+
+
         function quitar_animacion_botones() {
           document.getElementById("o1pregunta").className = "btn btn-outline-secondary";
           document.getElementById("o2pregunta").className = "btn btn-outline-secondary";
@@ -767,7 +779,7 @@ onAuthStateChanged(auth, (user) => {
               if (snapshot.exists()) {
                 //console.log(snapshot.val());
 				if(preguntaActual===11){
-					verificarRespuestaPregunta();
+					verificarRespuestaPregunta(null, null);
 				}else{
                 pregunta = snapshot.val();
                 nuPr.textContent = preguntaActual + "/10";
@@ -783,8 +795,8 @@ onAuthStateChanged(auth, (user) => {
                 //reiniciar e iniciar
               } else {
                 console.log("No data available");
-                preguntaActual = 15;
-                verificarRespuestaPregunta();
+                //preguntaActual = 15;
+                //verificarRespuestaPregunta();
               }
             })
             .catch((error) => {
@@ -839,8 +851,15 @@ onAuthStateChanged(auth, (user) => {
             if (segundos === 0) {
               clearInterval(cronometro);
               setTimeout(function () {
-                recuperarPregunta();
+                if(preguntaActual===11){
+                  mostrarNotaUsurioDialog();
+                }else{
+                  recuperarPregunta();  
+                }
+                console.log("Tiempo terminadojh"+preguntaActual);
               }, 700);
+
+
               /*clearInterval(cronometro);
 					recuperarPregunta();*/
             }
