@@ -680,10 +680,10 @@ onAuthStateChanged(auth, (user) => {
 			botonRendirExamen.textContent = "Nota: "+datosUsuario['notanivel'+nivelActual]+"/100";	
 			botonRendirExamen.disabled = true;
 		}
-
+        /*
         let botonOmitir = document.getElementById("botonOmitirDialog");
         botonOmitir.addEventListener("click", function () {
-          /*const dbRef = ref(getDatabase());
+          const dbRef = ref(getDatabase());
 				get(child(dbRef, "Evaluaciones/nivel1/p" + preguntaActual)).then((snapshot) => {
 					if (snapshot.exists()) {
 						console.log(snapshot.val());
@@ -701,7 +701,7 @@ onAuthStateChanged(auth, (user) => {
 					}
 				}).catch((error) => {
 					console.error(error);
-				});*/
+				});
           //pausarTemporizador();
           Swal.fire({
             title: "Realmente desea omitir la pregunta?",
@@ -709,7 +709,7 @@ onAuthStateChanged(auth, (user) => {
             confirmButtonText: "si omitir",
             cancelButtonText: "cancelar",
           }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
+            // Read more about isConfirmed, isDenied below 
             if (result.isConfirmed) {
               //cerramos la vista y volvemos a niveles
               //no guardamos nada
@@ -720,6 +720,7 @@ onAuthStateChanged(auth, (user) => {
             }
           });
         });
+        */
         let botonCancelar = document.getElementById("botonCancelarPrueba");
         botonCancelar.addEventListener("click", function () {
           //pausarTemporizador();
@@ -729,7 +730,7 @@ onAuthStateChanged(auth, (user) => {
             confirmButtonText: "si salir",
             cancelButtonText: "cancelar",
           }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
+            // Read more about isConfirmed, isDenied below 
 
             if (result.isConfirmed) {
               //cerramos la vista y volvemos a niveles
@@ -741,31 +742,32 @@ onAuthStateChanged(auth, (user) => {
               //$('#modal_evaluacion').removeClass('show');
               //$("#modal_evaluacion .close").click();
               //$('#modal_evaluacion').hide();
-              /*
-						$('#cerrar').click(); 
-						$('.modal-backdrop').remove();
-						*/
-              /*
+              
+              
+						//$('#cerrar').click(); 
+						//$('.modal-backdrop').remove();
+						
+             
 						$('#modal_evaluacion').modal().hide();
 						$('body').removeClass('modal-open');
 						$('.modal-backdrop').remove()  ;
-						*/
+						
               document.getElementById("close-modal").click();
               preguntaActual = 1;
               preguntasAleatoriasNum = generarOrdenPreguntas();
               recuperarPreguntaSinTemporizador();
               notaActual = 0;
-              /*
-						$('.modal').removeClass('shw');
-						$('modal-backdrop').remove();
-						*/
+             
+						//$('.modal').removeClass('shw');
+						//$('modal-backdrop').remove();
+						
               //$('.modal-backdrop').removeClass('in');
             } else {
               iniciarTemporizador();
             }
           });
         });
-
+      
         recuperarPreguntaSinTemporizador();
         function recuperarPregunta() {
           quitar_animacion_botones();
