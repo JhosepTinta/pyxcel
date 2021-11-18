@@ -40,8 +40,9 @@ onAuthStateChanged(auth, (user) => {
       });
   } else {
     // User is signed out
-    console.log("me sali karen :D")
+    
     window.location.href = "/index.html";
+    window.alert('No iniciaste sesion aun, asi que se le redireccionara a la pagina princial :D')
     // ...
   }
 });
