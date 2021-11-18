@@ -701,7 +701,7 @@ onAuthStateChanged(auth, (user) => {
 				}).catch((error) => {
 					console.error(error);
 				});*/
-          pausarTemporizador();
+          //pausarTemporizador();
           Swal.fire({
             title: "Realmente desea omitir la pregunta?",
             showCancelButton: true,
@@ -721,7 +721,7 @@ onAuthStateChanged(auth, (user) => {
         });
         let botonCancelar = document.getElementById("botonCancelarPrueba");
         botonCancelar.addEventListener("click", function () {
-          pausarTemporizador();
+          //pausarTemporizador();
           Swal.fire({
             title: "Realmente desea salir de la evaluacion?",
             showCancelButton: true,
@@ -865,9 +865,11 @@ onAuthStateChanged(auth, (user) => {
             }
           }, 1000);
         }
+        /*
         function pausarTemporizador() {
           clearInterval(cronometro);
         }
+        */
         function reiniciarTemporizador() {
           segundos = 60;
           textoCuenta.textContent = String(segundos);
