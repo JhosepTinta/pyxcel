@@ -10,7 +10,7 @@ const expresiones = {
     nombre: /^\s*[a-zA-Z\s]{3,40}\s*$/,
     correo: /^\s*[^\(\)\<\>\@\,\;\:\"\[\]\ç\%\&\s]+@[a-zA-Z0-9\-\_]+\.[a-zA-Z0-9\-\_\.]+\s*$/,
     correo1:/^.*[^\.]\s*$/, /* verifica que no exita un punto al final*/
-    correo2:/.*@+[^.]*\.\./,/*verifica que no exista dos puntos juntos despues del @ */
+    correo2:/.*@+.*\.\./,/*verifica que no exista dos puntos juntos despues del @ */
     contrasena: /^.{8,25}$/
 }
 
