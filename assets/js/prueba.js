@@ -42,7 +42,7 @@ onAuthStateChanged(auth, (user) => {
     // User is signed out
     
     window.location.href = "/index.html";
-    window.alert('No iniciaste sesion aun, asi que se le redireccionara a la pagina princial :D')
+    window.alert('No iniciaste sesión aun, así que se le redireccionará a la página princial')
     // ...
   }
 });
