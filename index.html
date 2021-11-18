@@ -125,7 +125,7 @@
             <h3>Pyxcel</h3>
             <p>
               SmartSoft<br><br>
-              <strong>Email:</strong> info@example.com<br>
+              <strong>Email:</strong> smartsoft@gmail.com<br>
             </p>
           </div>
 
@@ -148,11 +148,7 @@
             <h4>Empieza el Curso</h4>
             
             <p>Puedes empezar tu aventura desde aquí</p>
-            <button class="desplebutton">
-              <a href="#" id="prueba" class="get-started-btn sec">
-                Iniciar Sesion
-              </a> 
-            </button>
+            <a href="/pages/nivel.html" class="btn-get-started">Empieza el curso</a>
           </div>
 
         </div>
@@ -220,7 +216,7 @@
           console.log(user);
           if (snapshot.exists()) {
             let text = document.getElementById("prueba");
-            text.innerHTML = snapshot.val().nombre;
+            text.innerHTML = snapshot.val().nombre+'<i class="fas fa-chevron-down"></i>';
           } else {
             console.log("No se encontro el elemento");
           }

@@ -7,6 +7,7 @@
     <title>Pyxcel</title>
     <meta content="" name="description" />
     <meta content="" name="keywords" />
+    <script src="https://kit.fontawesome.com/e1004dd04e.js" crossorigin="anonymous"></script>
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
       rel="stylesheet"
@@ -384,7 +385,7 @@ onAuthStateChanged(auth, (user) => {
         //console.log(uid)
         
         let text = document.getElementById("prueba");
-        text.innerHTML = snapshot.val().nombre;
+        text.innerHTML = snapshot.val().nombre+'<i class="fas fa-chevron-down"></i>';
 		inicializarEvaluaciones(snapshot.val(), user.uid);
     incializar(snapshot.val().nivelActual);
         //console.log(snapshot.val().nivelActual);

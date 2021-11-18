@@ -27,7 +27,7 @@ onAuthStateChanged(auth, (user) => {
         //console.log(uid)
         
         let text = document.getElementById("prueba");
-        text.innerHTML = snapshot.val().nombre;
+        text.innerHTML = snapshot.val().nombre+'<i class="fas fa-chevron-down"></i>';
         //console.log(snapshot.val().nivelActual);
         //console.log(snapshot.val().nombre);
         recuperarNivelesUsuario(snapshot.val().nivelActual);
