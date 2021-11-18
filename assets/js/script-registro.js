@@ -8,7 +8,9 @@ var inputs = document.querySelectorAll('.seccion-input input');
 
 const expresiones = {
     nombre: /^\s*[a-zA-Z\s]{3,40}\s*$/,
-    correo: /^\s*[a-zA-Z0-9\-\_]+@[a-zA-Z0-9\-\_]+\.com+\s*$/,
+    correo: /^\s*[^\(\)\<\>\@\,\;\:\"\[\]\ç\%\&\s]+@[a-zA-Z0-9\-\_]+\.[a-zA-Z0-9\-\_\.]+\s*$/,
+    correo1:/^.*[^\.]\s*$/, /* verifica que no exita un punto al final*/
+    correo2:/.*@+[^.]*\.\./,/*verifica que no exista dos puntos juntos despues del @ */
     contrasena: /^.{8,25}$/
 }
 
@@ -129,11 +131,21 @@ function comprobarCampos(e){
           }
         break;
         case "input-correo":
-            if(expresiones.correo.test(e.value)){
+            var errores = 0;
+            if(!expresiones.correo.test(e.value.trim())){
+                errores += 1;
+            }
+            if(!expresiones.correo1.test(e.value.trim())){
+                errores += 1;
+            }
+            if(expresiones.correo2.test(e.value.trim())){
+                errores += 1;
+            }
+            if(errores == 0){
                 borrarMensajeErrorInput('m-correo');
                 return 0;
             }else{
-                motrarMensajeErrorInput('m-correo','El correo debe seguir el formato user@example.com');
+                motrarMensajeErrorInput('m-correo','El correo debe seguir el formato user@dominio');
                 return 1;
             }
         break;
