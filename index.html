@@ -31,7 +31,7 @@
 
   <link href="../assets/css/styles.css" rel="stylesheet">
   <link href="../assets/css/style.css" rel="stylesheet">
-
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
 </head>
@@ -56,7 +56,7 @@
       </nav><!-- .navbar -->
 
       <a style="display: none;" id="botonIniciarSesion" href="/pages/index-login.html" class="get-started-btn">
-        <b>Iniciar Sesion</b> 
+        <b>Iniciar Sesión</b> 
       </a>
         
       <div style="display: none;" id="contenedorBotonUser" class="desplegable">
@@ -79,7 +79,7 @@
       <h1>No tiene nada de malo ser pequeño,<br>Puedes hacer grandes cosas con un equipo así.</h1>
       <h2>Te enseñamos excel enfocados en pymes <br> para seguir haciendo crecer tu negocio <br>¿Listo para empezar?
       </h2>
-      <a href="/pages/nivel.html" class="btn-get-started">Ver Curso</a>
+      <a href="/pages/nivel.html" id="k" class="btn-get-started">Ver Curso</a>
     </div>
   </section><!-- End Hero -->
   <main id="main">
@@ -134,7 +134,7 @@
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Inicio</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#about">Nosotros</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="pages/nivel.html">Curso</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="pages/nivel.html" id="f">Curso</a></li>
 
             </ul>
           </div>
@@ -148,7 +148,7 @@
             <h4>Empieza el Curso</h4>
             
             <p>Puedes empezar tu aventura desde aquí</p>
-            <a href="/pages/nivel.html" class="btn-get-started">Empieza el curso</a>
+            <a href="/pages/nivel.html" id="g" class="btn-get-started">Empieza el curso</a>
           </div>
 
         </div>
@@ -201,6 +201,10 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const btnVer = document.getElementById('z');
+    const btnVer2 = document.getElementById('k');
+    const btnVer3 = document.getElementById('f');
+    const btnVer4 = document.getElementById('g');
     onAuthStateChanged(auth, (user) => {
       let botonIniciarSesion = document.getElementById("botonIniciarSesion");
       let botonUser = document.getElementById("contenedorBotonUser");
@@ -227,6 +231,22 @@
       } else {
         botonUser.style.display = 'none';
         botonIniciarSesion.style.display = 'block';
+        btnVer.addEventListener('click', (e) => {
+          window.alert('No iniciaste sesión aún, así que se le redireccionará a la página principal');
+          // signOut(auth);
+        });
+        btnVer2.addEventListener('click', (e) => {
+          window.alert('No iniciaste sesión aún, así que se le redireccionará a la página principal');
+          // signOut(auth);
+        });
+        btnVer3.addEventListener('click', (e) => {
+          window.alert('No iniciaste sesión aún, así que se le redireccionará a la página principal');
+          // signOut(auth);
+        });
+        btnVer4.addEventListener('click', (e) => {
+          window.alert('No iniciaste sesión aún, así que se le redireccionará a la página principal');
+          // signOut(auth);
+        });
       }
     });
 

@@ -15,7 +15,8 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app)
+const auth = getAuth(app);
+console.log(window.location.pathname)
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
@@ -40,9 +41,7 @@ onAuthStateChanged(auth, (user) => {
       });
   } else {
     // User is signed out
-    
     window.location.href = "/index.html";
-    window.alert('No iniciaste sesión aun, así que se le redireccionará a la página princial')
     // ...
   }
 });
@@ -50,6 +49,7 @@ onAuthStateChanged(auth, (user) => {
 const cont = document.getElementById("logout")
 
 cont.addEventListener('click', (e) => {
+  window.location.href = "/index.html";
   signOut(auth);
 })
 
