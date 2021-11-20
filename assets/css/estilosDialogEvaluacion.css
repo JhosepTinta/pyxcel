@@ -1,17 +1,13 @@
 .container5{
     justify-content: right;
-    flex-wrap: wrap;
     align-content: center;
-    border: 1px solid green;
 }
 .container5 .item1{
-    flex-grow: 2;
     font-size: 20px;
     font-weight: bold;
     font-family: Arial;
 }
 .container5 .item2{
-    flex-grow: 0;
     border: 1px solid green;
     background-color: rgba(0, 0, 0, 0.24);
     border-radius: 7px;
@@ -26,14 +22,38 @@
     display: flex;
     background-color: #68cf79;
     padding: 5px;
-    
+    align-items: center;
 }
 
 #labelTemporizador{
     margin-bottom: -10px;
 }
-
+/*
 #temporizador{
     margin: 2px;
+}*/
+.container5pr{
+    justify-content: right;  
+    align-content: center;
 }
+.container5pr .item1pr{  
+    font-size: 18px;
+    font-family: Arial;
+    
+}
+.container5pr .item2pr{
+    background-color: rgba(255, 0, 0, 0.24);
+    border-radius: 7px;
+}
+
+.flexItempr{
+    padding: 10px;
+    color: black;
+}
+.flexContainerpr{
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
 
