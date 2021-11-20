@@ -1,65 +1,39 @@
-.flexContainer{
-    display: flex;
-    background-color: aqua;
-    margin-bottom: 30px;
-}
-
-.container1{
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: center;
-    border: 1px solid orange;
-}
-.container1 .flexItem{
-    flex: 1 1 auto;
-    border: 1px solid red;
-}
-.container2{
-    flex-direction: column;
-    justify-content: center;
-    border: 1px solid blue;
-}
-.container2 .flexItem{
-    flex-grow: 1;
-    border: 1px solid red;
-}
-.container3{
+.container5{
     justify-content: right;
     flex-wrap: wrap;
     align-content: center;
-    border: 1px solid red;
+    border: 1px solid green;
 }
-
-.container4{
-    justify-content: right;
-    flex-wrap: wrap;
-    align-content: center;
-    border: 1px solid red;
-
+.container5 .item1{
+    flex-grow: 2;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: Arial;
 }
-.container4 .item1{
-    flex-grow: 1;
-    border: 1px solid red;
-    text-align: center;
-    align-content: center;
-    background-color: aqua;
-
+.container5 .item2{
+    flex-grow: 0;
+    border: 1px solid green;
+    background-color: rgba(0, 0, 0, 0.24);
+    border-radius: 7px;
 }
-.container4 .item3{
-    flex-grow: 1;
-    text-align: center;
-    align-content: center;
-    border: 1px solid red;
-}
-.container4 .item2{
-    flex-grow: 4;
-    text-align: center;
-    align-content: center;
-    border: 1px solid red;
-}
-
 
 .flexItem{
     padding: 10px;
-    background-color: blanchedalmond;
+    background-color: #68cf79;
+    color: white;
 }
+.flexContainer{
+    display: flex;
+    background-color: #68cf79;
+    padding: 5px;
+    
+}
+
+#labelTemporizador{
+    margin-bottom: -10px;
+}
+
+#temporizador{
+    margin: 2px;
+}
+

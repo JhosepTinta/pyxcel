@@ -7,7 +7,10 @@
     <title>Pyxcel</title>
     <meta content="" name="description" />
     <meta content="" name="keywords" />
-    <script src="https://kit.fontawesome.com/e1004dd04e.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/e1004dd04e.js"
+      crossorigin="anonymous"
+    ></script>
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
       rel="stylesheet"
@@ -51,43 +54,36 @@
   </head>
 
   <body>
+    <header id="header" class="fixed-top">
+      <div class="container d-flex align-items-center">
+        <h1 class="logo me-auto"><a href="../index.html">Pyxcel</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-	<header id="header" class="fixed-top">
-		<div class="container d-flex align-items-center">
-	
-		  <h1 class="logo me-auto"><a href="../index.html">Pyxcel</a></h1>
-		  <!-- Uncomment below if you prefer to use an image logo -->
-		  <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-	
-		  
-	
-		  <nav id="navbar" class="navbar order-last order-lg-0">
-			<ul>
-				<li><a href="../index.html">Inicio</a></li>
-				<li><a href="../index.html#about">Nosotros</a></li>
-				<li><a class="active" href="nivel.html">Ver Curso</a></li>
-			</ul>
-			<i class="bi bi-list mobile-nav-toggle"></i>
-		   
-		  </nav><!-- .navbar -->
-		  <div class="desplegable">
-			<button class="desplebutton"> 
-			  <a 
-			  href="#l" id="prueba" class="get-started-btn">
-			  cargando...
-			  <i class="fas fa-chevron-down"></i>
-			</a> </button>
-			<!-- <i class="material-icons">expand_more </i>  -->
-			<div class="options">
-			  
-			  <a href="#" id="logout" >Cerrar Sesion</a>
-			</div>
-		  </div>
-		  
-		 
-		  
-		</div>
-	  </header><!-- End Header -->
+        <nav id="navbar" class="navbar order-last order-lg-0">
+          <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="../index.html#about">Nosotros</a></li>
+            <li><a class="active" href="nivel.html">Ver Curso</a></li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav>
+        <!-- .navbar -->
+        <div class="desplegable">
+          <button class="desplebutton">
+            <a href="#l" id="prueba" class="get-started-btn">
+              cargando...
+              <i class="fas fa-chevron-down"></i>
+            </a>
+          </button>
+          <!-- <i class="material-icons">expand_more </i>  -->
+          <div class="options">
+            <a href="#" id="logout">Cerrar Sesion</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- End Header -->
     <!-- End Header -->
 
     <main class="main-pagina-contenido">
@@ -104,15 +100,16 @@
           </template>
         </ul>
         <div class="text-center">
-          <button 
-		 	disabled = "true"
+          <button
+            disabled="true"
             type="button"
             class="btn btn-danger btn-lg"
             data-toggle="modal"
             data-target="#modal_evaluacion"
             data-whatever="@mdo"
             id="rendirExamen"
-			data-backdrop="static" data-keyboard="false"
+            data-backdrop="static"
+            data-keyboard="false"
           >
             Rendir Examen</button
           ><br /><br />
@@ -152,7 +149,6 @@
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
-		
       >
         <div class="modal-dialog">
           <div class="modal-content">
@@ -178,7 +174,7 @@
             </div>
             <div class="modal-footer">
               <button
-			  	id="botonsiguientenivel"
+                id="botonsiguientenivel"
                 type="button"
                 class="btn btn-success btn-lg btn-block"
                 data-bs-dismiss="modal"
@@ -224,7 +220,7 @@
                 type="button"
                 class="btn btn-danger btn-lg btn-block"
                 data-bs-dismiss="modal"
-				id="botonCerrarReprobado"
+                id="botonCerrarReprobado"
               >
                 Cerrar
               </button>
@@ -243,44 +239,14 @@
       >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
-            <div class="modal-header" style="background-color: #68cf79">
-              <h5
-                class="modal-title"
-                id="exampleModalLabel"
-                style="color: white"
-              >
-                EVALUACIÓN DE CONOCIMIENTO
-              </h5>
+            <div class="flexContainer container5">
+              <div class="flexItem item1" id="tituloNivelLabel">item1</div>
+              <div class="flexItem item2" id="numeroPregunta">item2</div>
             </div>
             <div class="modal-body">
-
               <div class="container-fluid">
                 <div class="row">
-                  <label
-                    for="recipient-name"
-                    class="col-form-label"
-                    style="font-size: small"
-                    >Nivel :
-                    <strong id="tituloNivelLabel">
-                      Titulo de nivel
-                    </strong></label
-                  >
-                </div>
-
-                <div class="row">
-                  <label
-                    class="text-success font-weight-bold"
-                    id="numeroPregunta"
-                    style="
-                      font-size: medium;
-                      border: 1px solid #68cf79;
-                      height: min-content;
-                      width: min-content;
-                      padding: 5px;
-                    "
-                    >1/10</label
-                  >
-                  <div class="col-7" style="display: flex; align-items: left">
+                  <div class="col-10" style="display: flex; align-items: left">
                     <label
                       id="TituloPregunta"
                       for="recipient-name"
@@ -288,11 +254,12 @@
                       >descripcion /planteamineto de la pregunta</label
                     >
                   </div>
-                  <div class="col-3 ml-auto text-center">
+                  <div class="col-2 ml-auto text-center">
                     <div class="row">
                       <label
                         class="font-weight-light"
-                        style="font-size: x-small"
+                        id="labelTemporizador"
+                        style="font-size: small"
                         >tiempo restante</label
                       >
                     </div>
@@ -308,21 +275,35 @@
                 </div>
                 <br />
 
-                <div
-                  class="row p-1"
-                  style="display: flex; align-items: center;" 
-                >
-                  <a id="o1pregunta" type="button" class="btn btn-outline-secondary" style="white-space: normal;margin-bottom: 5px;"
+                <div class="row p-1" style="display: flex; align-items: center; margin-top: -20px;">
+                  <a
+                    id="o1pregunta"
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    style="white-space: normal; margin-bottom: 5px"
                     >Cargando...</a
                   >
-                  <a id="o2pregunta" type="button" class="btn btn-outline-secondary" style="white-space: normal;margin-bottom: 5px;"
+                  <a
+                    id="o2pregunta"
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    style="white-space: normal; margin-bottom: 5px"
                     >Cargando...</a
                   >
-                  <a id="o3pregunta" type="button" class="btn btn-outline-secondary" style="white-space: normal;margin-bottom: 5px;"
+                  <a
+                    id="o3pregunta"
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    style="white-space: normal; margin-bottom: 5px"
                     >Cargando...</a
                   >
-                  <a id="o4pregunta" type="button" class="btn btn-outline-secondary" style="white-space: normal;margin-bottom: 1px;"
-                    >Cargando...</a>
+                  <a
+                    id="o4pregunta"
+                    type="button"
+                    class="btn btn-outline-secondary"
+                    style="white-space: normal; margin-bottom: 1px"
+                    >Cargando...</a
+                  >
                 </div>
               </div>
             </div>
@@ -347,7 +328,6 @@
                 data-dismiss="modal"
                 style="display: none"
               ></button>
-
             </div>
           </div>
         </div>
@@ -356,90 +336,112 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
       <script type="module">
         //CODIGO DE RECUPERACION DEL USUARIO
-		import { initializeApp, onLog } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import { getAuth, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https:www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"
-//import { getDatabase} from "./connection-firebase";
-import { getDatabase, ref, get, set, child, update, remove, onChildAdded, onChildChanged, onChildRemoved } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
-import{incializar} from "../assets/js/scrip.js"
-const firebaseConfig = {
-  apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
-  authDomain: "pyxcel-d6df9.firebaseapp.com",
-  databaseURL: "https://pyxcel-d6df9-default-rtdb.firebaseio.com",
-  projectId: "pyxcel-d6df9",
-  storageBucket: "pyxcel-d6df9.appspot.com",
-  messagingSenderId: "953396754317",
-  appId: "1:953396754317:web:321620a07c7577f5eb6fc4",
-  measurementId: "G-46CQF62KX4"
-};
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app)
+        import {
+          initializeApp,
+          onLog,
+        } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+        import {
+          getAuth,
+          signOut,
+          onAuthStateChanged,
+          createUserWithEmailAndPassword,
+          signInWithEmailAndPassword,
+        } from "https:www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+        //import { getDatabase} from "./connection-firebase";
+        import {
+          getDatabase,
+          ref,
+          get,
+          set,
+          child,
+          update,
+          remove,
+          onChildAdded,
+          onChildChanged,
+          onChildRemoved,
+        } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
+        import { incializar } from "../assets/js/scrip.js";
+        const firebaseConfig = {
+          apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
+          authDomain: "pyxcel-d6df9.firebaseapp.com",
+          databaseURL: "https://pyxcel-d6df9-default-rtdb.firebaseio.com",
+          projectId: "pyxcel-d6df9",
+          storageBucket: "pyxcel-d6df9.appspot.com",
+          messagingSenderId: "953396754317",
+          appId: "1:953396754317:web:321620a07c7577f5eb6fc4",
+          measurementId: "G-46CQF62KX4",
+        };
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    const dbref = ref(getDatabase());
-    get(child(dbref, "Usuarios/" + user.uid)).then((snapshot) => {
-      console.log(user);
-      if (snapshot.exists()) {
-        //const uid = user.email;
-        //console.log(uid)
-        
-        let text = document.getElementById("prueba");
-        text.innerHTML = snapshot.val().nombre+'<i class="fas fa-chevron-down"></i>';
-		inicializarEvaluaciones(snapshot.val(), user.uid);
-    incializar(snapshot.val().nivelActual);
-        //console.log(snapshot.val().nivelActual);
-        //console.log(snapshot.val().nombre);
-        //recuperarNivelesUsuario(snapshot.val().nivelActual);
-      } else {
-        console.log("No se encontro el elemento");
-      }
-    })
-      .catch((error) => {
-        console.log("unsucessfull, error" + error);
-      });
-  } else {
-    // User is signed out
-    console.log("me sali karen :D")
-    window.location.href = "/index.html";
-    // ...
-  }
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            const dbref = ref(getDatabase());
+            get(child(dbref, "Usuarios/" + user.uid))
+              .then((snapshot) => {
+                console.log(user);
+                if (snapshot.exists()) {
+                  //const uid = user.email;
+                  //console.log(uid)
 
-  const cont = document.getElementById("logout")
-
-  cont.addEventListener('click', (e) => {
-    signOut(auth);
-  })
-
-});
-		
-		function inicializarEvaluaciones(datosUsuario, userid){
-			let preguntaActual = 1;
-        	let preguntasAleatoriasNum = generarOrdenPreguntas();
-        function generarOrdenPreguntas(){
-          const results = [];
-          const limit = 10;
-          while (results.length < limit) {
-              const number = Math.floor(Math.random() * 20)+1;
-            if (!results.includes(number)) {
-                results.push(number);
-            }
+                  let text = document.getElementById("prueba");
+                  text.innerHTML =
+                    snapshot.val().nombre +
+                    '<i class="fas fa-chevron-down"></i>';
+                  inicializarEvaluaciones(snapshot.val(), user.uid);
+                  incializar(snapshot.val().nivelActual);
+                  //console.log(snapshot.val().nivelActual);
+                  //console.log(snapshot.val().nombre);
+                  //recuperarNivelesUsuario(snapshot.val().nivelActual);
+                } else {
+                  console.log("No se encontro el elemento");
+                }
+              })
+              .catch((error) => {
+                console.log("unsucessfull, error" + error);
+              });
+          } else {
+            // User is signed out
+            console.log("me sali karen :D");
+            window.location.href = "/index.html";
+            // ...
           }
-          console.log(results);
-          return results;
-        }
-        let notaActual = 0;
-        let pregunta = null;
-        const nivelActual = getParameterByName("id");
-        function getParameterByName(name) {
-          name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-          var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-          return results === null
-            ? ""
-            : decodeURIComponent(results[1].replace(/\+/g, " "));
-        }
-        /*import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
+
+          const cont = document.getElementById("logout");
+
+          cont.addEventListener("click", (e) => {
+            signOut(auth);
+          });
+        });
+
+        function inicializarEvaluaciones(datosUsuario, userid) {
+          let preguntaActual = 1;
+          let preguntasAleatoriasNum = generarOrdenPreguntas();
+          function generarOrdenPreguntas() {
+            const results = [];
+            const limit = 10;
+            while (results.length < limit) {
+              const number = Math.floor(Math.random() * 20) + 1;
+              if (!results.includes(number)) {
+                results.push(number);
+              }
+            }
+            console.log(results);
+            return results;
+          }
+          let notaActual = 0;
+          let pregunta = null;
+          const nivelActual = getParameterByName("id");
+          function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+              results = regex.exec(location.search);
+            return results === null
+              ? ""
+              : decodeURIComponent(results[1].replace(/\+/g, " "));
+          }
+          /*import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
         const firebaseConfig = {
           apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
           authDomain: "pyxcel-d6df9.firebaseapp.com",
@@ -464,11 +466,11 @@ onAuthStateChanged(auth, (user) => {
           onChildRemoved,
         } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
 		*/
-        const db = getDatabase();
-        const commentsRef = ref(db, "Evaluaciones/nivel" + nivelActual);
-        var contenido = "";
+          const db = getDatabase();
+          const commentsRef = ref(db, "Evaluaciones/nivel" + nivelActual);
+          var contenido = "";
 
-        /*var listaPreuntas = new Array();
+          /*var listaPreuntas = new Array();
 			onChildAdded(commentsRef, (data) => {
 				if (data.exists()) {
 					//objeto recuperado (se ejecuta n veces hasta que termine de leer todos los niveles)
@@ -481,206 +483,214 @@ onAuthStateChanged(auth, (user) => {
 
 			});*/
 
-        let op1pr = document.getElementById("o1pregunta");
-        let op2pr = document.getElementById("o2pregunta");
-        let op3pr = document.getElementById("o3pregunta");
-        let op4pr = document.getElementById("o4pregunta");
-        let tiPr = document.getElementById("TituloPregunta");
-        let nuPr = document.getElementById("numeroPregunta");
-		let tiNi = document.getElementById("tituloNivelLabel");
-		let btnCeRe = document.getElementById("botonCerrarReprobado");
+          let op1pr = document.getElementById("o1pregunta");
+          let op2pr = document.getElementById("o2pregunta");
+          let op3pr = document.getElementById("o3pregunta");
+          let op4pr = document.getElementById("o4pregunta");
+          let tiPr = document.getElementById("TituloPregunta");
+          let nuPr = document.getElementById("numeroPregunta");
+          let tiNi = document.getElementById("tituloNivelLabel");
+          let btnCeRe = document.getElementById("botonCerrarReprobado");
 
-		let botonSigLevel = document.getElementById("botonsiguientenivel");
-		botonSigLevel.addEventListener("click", function () {
-			window.location.href = "nivel.html";
-        });
-        op1pr.textContent = "opcion 1";
-        op2pr.textContent = "opcion 2";
-        op3pr.textContent = "opcion 3";
-        op4pr.textContent = "opcion 4";
-		recuperarTituloNivel();
-		btnCeRe.addEventListener('click',function(){ 
-			notaActual=0;
-			preguntaActual=1;
-      preguntasAleatoriasNum = generarOrdenPreguntas();
-			recuperarPreguntaSinTemporizador();
-		});
-		function recuperarTituloNivel() {
-          const dbRef = ref(getDatabase());
-          get(
-            child(
-              dbRef,
-              "Niveles/nivel" + nivelActual + "/titulo"
-            )
-          )
-            .then((snapshot) => {
-              if (snapshot.exists()) {
-                //console.log(snapshot.val());
-				
-                let titulo = snapshot.val();
-                tiNi.textContent=titulo;
-              } else {
-                console.log("No data available");
-              }
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        }
-
-        op1pr.addEventListener("click", function () {
-          //op1pr.setAttribute("class", "btn btn-danger");
-          //op1pr.disabled = true;
-          //op2pr.disabled = true;
-          //op3pr.disabled = true;
-          //op4pr.disabled = true;
-          verificarRespuestaPregunta(op1pr.textContent, "o1pregunta");
-          setTimeout(recuperarPregunta, 200);
-        });
-
-        op2pr.addEventListener("click", function () {
-          //op2pr.setAttribute("class", "btn btn-danger");
-          //op1pr.disabled = true;
-          //op2pr.disabled = true;
-          //op3pr.disabled = true;
-          //op4pr.disabled = true;
-          verificarRespuestaPregunta(op2pr.textContent, "o2pregunta");
-          setTimeout(recuperarPregunta, 200);
-        });
-        op3pr.addEventListener("click", function () {
-          //op3pr.setAttribute("class", "btn btn-success");
-          //op1pr.disabled = true;
-          //op2pr.disabled = true;
-          //op3pr.disabled = true;
-          //op4pr.disabled = true;
-          verificarRespuestaPregunta(op3pr.textContent, "o3pregunta");
-          setTimeout(recuperarPregunta, 200);
-        });
-        op4pr.addEventListener("click", function () {
-          //op4pr.setAttribute("class", "btn btn-danger");
-          //op1pr.disabled = true;
-          //op2pr.disabled = true;
-          //op3pr.disabled = true;
-          //op4pr.disabled = true;
-          verificarRespuestaPregunta(op4pr.textContent, "o4pregunta");
-          setTimeout(recuperarPregunta, 200);
-        });
-
-        function verificarRespuestaPregunta(respuestaActual, id_button) {
-          if(recuperarPregunta===null&&id_button===null){
-            mostrarNotaUsurioDialog();
+          let botonSigLevel = document.getElementById("botonsiguientenivel");
+          botonSigLevel.addEventListener("click", function () {
+            window.location.href = "nivel.html";
+          });
+          op1pr.textContent = "opcion 1";
+          op2pr.textContent = "opcion 2";
+          op3pr.textContent = "opcion 3";
+          op4pr.textContent = "opcion 4";
+          recuperarTituloNivel();
+          btnCeRe.addEventListener("click", function () {
+            notaActual = 0;
             preguntaActual = 1;
-          }else{
-            var elem = document.getElementById(id_button);
-          if (!(pregunta === null)) {
-            if (preguntaActual < 11) {
-              if (respuestaActual === pregunta.respuesta) {
-                notaActual = notaActual + 10;
+            preguntasAleatoriasNum = generarOrdenPreguntas();
+            recuperarPreguntaSinTemporizador();
+          });
+          function recuperarTituloNivel() {
+            const dbRef = ref(getDatabase());
+            get(child(dbRef, "Niveles/nivel" + nivelActual + "/titulo"))
+              .then((snapshot) => {
+                if (snapshot.exists()) {
+                  //console.log(snapshot.val());
 
-                elem.className = "btn btn-success";
-                console.log("Respuesta correcta, tu nora es: " + notaActual);
-                //$('#modal_evaluacion').modal('hide'); // abrir
-                //$('#modal_aprobado').modal('show'); // abrir
-                const music = new Audio('../assets/audio/respcorrecto.mp3');
-                music.play();/*
-                music.loop =true;
-                music.playbackRate = 2;
-                music.pause();*/
-              } else {
-                console.log("Respuesta errónea, tu nota es: " + notaActual);
-                elem.className = "btn btn-danger";
-                const music = new Audio('../assets/audio/respincorrecto.mp3');
-                music.play();
-              }
+                  let titulo = snapshot.val();
+                  tiNi.textContent = titulo;
+                } else {
+                  console.log("No data available");
+                }
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          }
+
+          op1pr.addEventListener("click", function () {
+            //op1pr.setAttribute("class", "btn btn-danger");
+            //op1pr.disabled = true;
+            //op2pr.disabled = true;
+            //op3pr.disabled = true;
+            //op4pr.disabled = true;
+            verificarRespuestaPregunta(op1pr.textContent, "o1pregunta");
+            setTimeout(recuperarPregunta, 200);
+          });
+
+          op2pr.addEventListener("click", function () {
+            //op2pr.setAttribute("class", "btn btn-danger");
+            //op1pr.disabled = true;
+            //op2pr.disabled = true;
+            //op3pr.disabled = true;
+            //op4pr.disabled = true;
+            verificarRespuestaPregunta(op2pr.textContent, "o2pregunta");
+            setTimeout(recuperarPregunta, 200);
+          });
+          op3pr.addEventListener("click", function () {
+            //op3pr.setAttribute("class", "btn btn-success");
+            //op1pr.disabled = true;
+            //op2pr.disabled = true;
+            //op3pr.disabled = true;
+            //op4pr.disabled = true;
+            verificarRespuestaPregunta(op3pr.textContent, "o3pregunta");
+            setTimeout(recuperarPregunta, 200);
+          });
+          op4pr.addEventListener("click", function () {
+            //op4pr.setAttribute("class", "btn btn-danger");
+            //op1pr.disabled = true;
+            //op2pr.disabled = true;
+            //op3pr.disabled = true;
+            //op4pr.disabled = true;
+            verificarRespuestaPregunta(op4pr.textContent, "o4pregunta");
+            setTimeout(recuperarPregunta, 200);
+          });
+
+          function verificarRespuestaPregunta(respuestaActual, id_button) {
+            if (recuperarPregunta === null && id_button === null) {
+              mostrarNotaUsurioDialog();
+              preguntaActual = 1;
             } else {
-              if (respuestaActual === pregunta.respuesta) {
-                notaActual = notaActual + 10;
+              var elem = document.getElementById(id_button);
+              if (!(pregunta === null)) {
+                if (preguntaActual < 11) {
+                  if (respuestaActual === pregunta.respuesta) {
+                    notaActual = notaActual + 10;
 
-                elem.className = "btn btn-success";
-                console.log("Respuesta correcta, tu nora es: " + notaActual);
-                //$('#modal_evaluacion').modal('hide'); // abrir
-                //$('#modal_aprobado').modal('show'); // abrir
-                const music = new Audio('../assets/audio/respcorrecto.mp3');
-                music.play();/*
+                    elem.className = "btn btn-success";
+                    console.log(
+                      "Respuesta correcta, tu nora es: " + notaActual
+                    );
+                    //$('#modal_evaluacion').modal('hide'); // abrir
+                    //$('#modal_aprobado').modal('show'); // abrir
+                    const music = new Audio("../assets/audio/respcorrecto.mp3");
+                    music.play(); /*
                 music.loop =true;
                 music.playbackRate = 2;
                 music.pause();*/
-              } else {
-                console.log("Respuesta errónea, tu nota es: " + notaActual);
-                elem.className = "btn btn-danger";
-                const music = new Audio('../assets/audio/respincorrecto.mp3');
-                music.play();
-              }
-              console.log(preguntaActual);
-              if (preguntaActual === 11) {
-                mostrarNotaUsurioDialog();
-                preguntaActual = 1;
-                //$('#myModalExito').modal('hide'); // cerrar
+                  } else {
+                    console.log("Respuesta errónea, tu nota es: " + notaActual);
+                    elem.className = "btn btn-danger";
+                    const music = new Audio(
+                      "../assets/audio/respincorrecto.mp3"
+                    );
+                    music.play();
+                  }
+                } else {
+                  if (respuestaActual === pregunta.respuesta) {
+                    notaActual = notaActual + 10;
+
+                    elem.className = "btn btn-success";
+                    console.log(
+                      "Respuesta correcta, tu nora es: " + notaActual
+                    );
+                    //$('#modal_evaluacion').modal('hide'); // abrir
+                    //$('#modal_aprobado').modal('show'); // abrir
+                    const music = new Audio("../assets/audio/respcorrecto.mp3");
+                    music.play(); /*
+                music.loop =true;
+                music.playbackRate = 2;
+                music.pause();*/
+                  } else {
+                    console.log("Respuesta errónea, tu nota es: " + notaActual);
+                    elem.className = "btn btn-danger";
+                    const music = new Audio(
+                      "../assets/audio/respincorrecto.mp3"
+                    );
+                    music.play();
+                  }
+                  console.log(preguntaActual);
+                  if (preguntaActual === 11) {
+                    mostrarNotaUsurioDialog();
+                    preguntaActual = 1;
+                    //$('#myModalExito').modal('hide'); // cerrar
+                  }
+                }
               }
             }
           }
+
+          function mostrarNotaUsurioDialog() {
+            if (notaActual >= 60) {
+              document.getElementById("close-modal").click();
+              //document.getElementById('nota_evaluacion1').innerHTML=notaActual & "/100";
+              $("#modal_aprobado").modal({
+                backdrop: "static",
+                keyboard: true,
+                show: true,
+              });
+              $("#modal_aprobado").modal("show"); // abrir
+              document.getElementById("nota_evaluacion1").innerHTML =
+                notaActual + "/100";
+              subirNotaBD(notaActual);
+              //data-book-id=""
+              //<input type="text" name="bookId" value=""/>
+            } else {
+              //subirNotaBD(notaActual);
+              document.getElementById("close-modal").click();
+
+              document.getElementById("nota_evaluacion2").innerHTML =
+                notaActual + "/100";
+              $("#modal_reprobado").modal({
+                backdrop: "static",
+                keyboard: true,
+                show: true,
+              });
+              $("#modal_reprobado").modal("show"); // abrir
+
+              document.getElementById("nota_evaluacion2").innerHTML =
+                notaActual + "/100";
+            }
           }
-        }
 
-        function mostrarNotaUsurioDialog(){
-          if (notaActual >= 60) {
-                  document.getElementById("close-modal").click();
-                  //document.getElementById('nota_evaluacion1').innerHTML=notaActual & "/100";
-				          $('#modal_aprobado').modal({
-                        backdrop: 'static',
-                        keyboard: true, 
-                        show: true
-                  }); 
-                  $("#modal_aprobado").modal("show"); // abrir
-                  document.getElementById("nota_evaluacion1").innerHTML =
-                    notaActual + "/100";
-					subirNotaBD(notaActual);
-                  //data-book-id=""
-                  //<input type="text" name="bookId" value=""/>
-				  	
-                } else {
-					//subirNotaBD(notaActual);
-                  document.getElementById("close-modal").click();
+          function quitar_animacion_botones() {
+            document.getElementById("o1pregunta").className =
+              "btn btn-outline-secondary";
+            document.getElementById("o2pregunta").className =
+              "btn btn-outline-secondary";
+            document.getElementById("o3pregunta").className =
+              "btn btn-outline-secondary";
+            document.getElementById("o4pregunta").className =
+              "btn btn-outline-secondary";
+          }
 
-                  document.getElementById("nota_evaluacion2").innerHTML =
-                    notaActual + "/100";
-					$('#modal_reprobado').modal({
-                        backdrop: 'static',
-                        keyboard: true, 
-                        show: true
-                });
-                  $("#modal_reprobado").modal("show"); // abrir
-				  
-                  document.getElementById("nota_evaluacion2").innerHTML =
-                    notaActual + "/100";
-                }
-        }
+          let botonRendirExamen = document.getElementById("rendirExamen");
+          botonRendirExamen.addEventListener("click", function () {
+            reiniciarTemporizador();
+            iniciarTemporizador();
+          });
 
-
-
-        function quitar_animacion_botones() {
-          document.getElementById("o1pregunta").className = "btn btn-outline-secondary";
-          document.getElementById("o2pregunta").className = "btn btn-outline-secondary";
-          document.getElementById("o3pregunta").className = "btn btn-outline-secondary";
-          document.getElementById("o4pregunta").className = "btn btn-outline-secondary";
-        }
-
-        let botonRendirExamen = document.getElementById("rendirExamen");
-        botonRendirExamen.addEventListener("click", function () {
-          reiniciarTemporizador();
-          iniciarTemporizador();
-        });
-
-		console.log("datouserexiste")
-		console.log(datosUsuario.notanivel1);
-		console.log(datosUsuario['notanivel'+nivelActual]);
-		if(datosUsuario['notanivel'+nivelActual]===undefined||datosUsuario['notanivel'+nivelActual]===null){
-			botonRendirExamen.disabled = false;
-		}else{
-			botonRendirExamen.textContent = "Nota: "+datosUsuario['notanivel'+nivelActual]+"/100";	
-			botonRendirExamen.disabled = true;
-		}
-        /*
+          console.log("datouserexiste");
+          console.log(datosUsuario.notanivel1);
+          console.log(datosUsuario["notanivel" + nivelActual]);
+          if (
+            datosUsuario["notanivel" + nivelActual] === undefined ||
+            datosUsuario["notanivel" + nivelActual] === null
+          ) {
+            botonRendirExamen.disabled = false;
+          } else {
+            botonRendirExamen.textContent =
+              "Nota: " + datosUsuario["notanivel" + nivelActual] + "/100";
+            botonRendirExamen.disabled = true;
+          }
+          /*
         let botonOmitir = document.getElementById("botonOmitirDialog");
         botonOmitir.addEventListener("click", function () {
           const dbRef = ref(getDatabase());
@@ -721,119 +731,123 @@ onAuthStateChanged(auth, (user) => {
           });
         });
         */
-        let botonCancelar = document.getElementById("botonCancelarPrueba");
-        botonCancelar.addEventListener("click", function () {
-          //pausarTemporizador();
-          Swal.fire({
-            title: "Realmente desea salir de la evaluacion?",
-            showCancelButton: true,
-            confirmButtonText: "si salir",
-            cancelButtonText: "cancelar",
-          }).then((result) => {
-            // Read more about isConfirmed, isDenied below 
+          let botonCancelar = document.getElementById("botonCancelarPrueba");
+          botonCancelar.addEventListener("click", function () {
+            //pausarTemporizador();
+            Swal.fire({
+              title: "Realmente desea salir de la evaluacion?",
+              showCancelButton: true,
+              confirmButtonText: "si salir",
+              cancelButtonText: "cancelar",
+            }).then((result) => {
+              // Read more about isConfirmed, isDenied below
 
-            if (result.isConfirmed) {
-              //cerramos la vista y volvemos a niveles
-              //no guardamos nada
-              //location.reload();
+              if (result.isConfirmed) {
+                //cerramos la vista y volvemos a niveles
+                //no guardamos nada
+                //location.reload();
 
-              //$("#modal_evaluacion.close").click()
-              //$('#modal_evaluacion').modal('hide'); // abrir
-              //$('#modal_evaluacion').removeClass('show');
-              //$("#modal_evaluacion .close").click();
-              //$('#modal_evaluacion').hide();
-              
-              
-						//$('#cerrar').click(); 
-						//$('.modal-backdrop').remove();
-						
-             
-						$('#modal_evaluacion').modal().hide();
-						$('body').removeClass('modal-open');
-						$('.modal-backdrop').remove()  ;
-						
-              document.getElementById("close-modal").click();
-              preguntaActual = 1;
-              preguntasAleatoriasNum = generarOrdenPreguntas();
-              recuperarPreguntaSinTemporizador();
-              notaActual = 0;
-             
-						//$('.modal').removeClass('shw');
-						//$('modal-backdrop').remove();
-						
-              //$('.modal-backdrop').removeClass('in');
-            } else {
-              iniciarTemporizador();
-            }
-          });
-        });
-      
-        recuperarPreguntaSinTemporizador();
-        function recuperarPregunta() {
-          quitar_animacion_botones();
-          const dbRef = ref(getDatabase());
-          get(
-            child(
-              dbRef,
-              "Evaluaciones/nivel" + nivelActual + "/p" + preguntasAleatoriasNum[preguntaActual-1]/*preguntaActual*/
-            )
-          )
-            .then((snapshot) => {
-              if (snapshot.exists()) {
-                //console.log(snapshot.val());
-				if(preguntaActual===11){
-					verificarRespuestaPregunta(null, null);
-				}else{
-                pregunta = snapshot.val();
-                nuPr.textContent = preguntaActual + "/10";
-                tiPr.textContent = pregunta.pregunta;
-                op1pr.textContent = pregunta.o1;
-                op2pr.textContent = pregunta.o2;
-                op3pr.textContent = pregunta.o3;
-                op4pr.textContent = pregunta.o4;
-                reiniciarTemporizador();
+                //$("#modal_evaluacion.close").click()
+                //$('#modal_evaluacion').modal('hide'); // abrir
+                //$('#modal_evaluacion').removeClass('show');
+                //$("#modal_evaluacion .close").click();
+                //$('#modal_evaluacion').hide();
+
+                //$('#cerrar').click();
+                //$('.modal-backdrop').remove();
+
+                $("#modal_evaluacion").modal().hide();
+                $("body").removeClass("modal-open");
+                $(".modal-backdrop").remove();
+
+                document.getElementById("close-modal").click();
+                preguntaActual = 1;
+                preguntasAleatoriasNum = generarOrdenPreguntas();
+                recuperarPreguntaSinTemporizador();
+                notaActual = 0;
+
+                //$('.modal').removeClass('shw');
+                //$('modal-backdrop').remove();
+
+                //$('.modal-backdrop').removeClass('in');
+              } else {
                 iniciarTemporizador();
-                preguntaActual = preguntaActual + 1;
-				}
-                //reiniciar e iniciar
-              } else {
-                console.log("No data available");
-                //preguntaActual = 15;
-                //verificarRespuestaPregunta();
               }
-            })
-            .catch((error) => {
-              console.error(error);
             });
-        }
-        function recuperarPreguntaSinTemporizador() {
-          const dbRef = ref(getDatabase());
-          get(
-            child(
-              dbRef,
-              "Evaluaciones/nivel" + nivelActual + "/p" + preguntasAleatoriasNum[preguntaActual-1] /*preguntaActual*/
-            )
-          )
-            .then((snapshot) => {
-              if (snapshot.exists()) {
-                pregunta = snapshot.val();
-                nuPr.textContent = preguntaActual + "/10";
-                tiPr.textContent = pregunta.pregunta;
-                op1pr.textContent = pregunta.o1;
-                op2pr.textContent = pregunta.o2;
-                op3pr.textContent = pregunta.o3;
-                op4pr.textContent = pregunta.o4;
-                preguntaActual = preguntaActual + 1;
-              } else {
-                console.log("No data available");
-              }
-            })
-            .catch((error) => {
-              console.error(error);
-            });
-        }
+          });
 
-        /*function siguientePregunta(){
+          recuperarPreguntaSinTemporizador();
+          function recuperarPregunta() {
+            quitar_animacion_botones();
+            const dbRef = ref(getDatabase());
+            get(
+              child(
+                dbRef,
+                "Evaluaciones/nivel" +
+                  nivelActual +
+                  "/p" +
+                  preguntasAleatoriasNum[preguntaActual - 1] /*preguntaActual*/
+              )
+            )
+              .then((snapshot) => {
+                if (snapshot.exists()) {
+                  //console.log(snapshot.val());
+                  if (preguntaActual === 11) {
+                    verificarRespuestaPregunta(null, null);
+                  } else {
+                    pregunta = snapshot.val();
+                    nuPr.textContent = preguntaActual + "/10";
+                    tiPr.textContent = pregunta.pregunta;
+                    op1pr.textContent = pregunta.o1;
+                    op2pr.textContent = pregunta.o2;
+                    op3pr.textContent = pregunta.o3;
+                    op4pr.textContent = pregunta.o4;
+                    reiniciarTemporizador();
+                    iniciarTemporizador();
+                    preguntaActual = preguntaActual + 1;
+                  }
+                  //reiniciar e iniciar
+                } else {
+                  console.log("No data available");
+                  //preguntaActual = 15;
+                  //verificarRespuestaPregunta();
+                }
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          }
+          function recuperarPreguntaSinTemporizador() {
+            const dbRef = ref(getDatabase());
+            get(
+              child(
+                dbRef,
+                "Evaluaciones/nivel" +
+                  nivelActual +
+                  "/p" +
+                  preguntasAleatoriasNum[preguntaActual - 1] /*preguntaActual*/
+              )
+            )
+              .then((snapshot) => {
+                if (snapshot.exists()) {
+                  pregunta = snapshot.val();
+                  nuPr.textContent = preguntaActual + "/10";
+                  tiPr.textContent = pregunta.pregunta;
+                  op1pr.textContent = pregunta.o1;
+                  op2pr.textContent = pregunta.o2;
+                  op3pr.textContent = pregunta.o3;
+                  op4pr.textContent = pregunta.o4;
+                  preguntaActual = preguntaActual + 1;
+                } else {
+                  console.log("No data available");
+                }
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+          }
+
+          /*function siguientePregunta(){
 				//let pregunta = listaPreuntas[preguntaActual];
 				//preguntaActual = preguntaActual+1;
 				//op1pr.textContent = pregunta.o1;
@@ -843,66 +857,70 @@ onAuthStateChanged(auth, (user) => {
 				console.log("hola");
 				//console.log(pregunta.o1);
 			}*/
-        var segundos = 60;
-        var textoCuenta = document.getElementById("temporizador");
-        var cronometro;
-        function iniciarTemporizador() {
-          clearInterval(cronometro);
-          cronometro = setInterval(function () {
-            segundos = segundos - 1;
-            textoCuenta.textContent = String(segundos);
-            if (segundos === 0) {
-              clearInterval(cronometro);
-              setTimeout(function () {
-                if(preguntaActual===11){
-                  mostrarNotaUsurioDialog();
-                }else{
-                  recuperarPregunta();  
-                }
-                console.log("Tiempo terminadojh"+preguntaActual);
-              }, 700);
+          var segundos = 60;
+          var textoCuenta = document.getElementById("temporizador");
+          var cronometro;
+          function iniciarTemporizador() {
+            clearInterval(cronometro);
+            cronometro = setInterval(function () {
+              segundos = segundos - 1;
+              textoCuenta.textContent = String(segundos);
+              if (segundos === 0) {
+                clearInterval(cronometro);
+                setTimeout(function () {
+                  if (preguntaActual === 11) {
+                    mostrarNotaUsurioDialog();
+                  } else {
+                    recuperarPregunta();
+                  }
+                  console.log("Tiempo terminadojh" + preguntaActual);
+                }, 700);
 
-
-              /*clearInterval(cronometro);
+                /*clearInterval(cronometro);
 					recuperarPregunta();*/
-            }
-          }, 1000);
-        }
-        /*
+              }
+            }, 1000);
+          }
+          /*
         function pausarTemporizador() {
           clearInterval(cronometro);
         }
         */
-        function reiniciarTemporizador() {
-          segundos = 60;
-          textoCuenta.textContent = String(segundos);
+          function reiniciarTemporizador() {
+            segundos = 60;
+            textoCuenta.textContent = String(segundos);
+          }
+
+          function subirNotaBD(nota) {
+            //console.log(datosUsuario);
+            console.log("Usuarios/" + userid + "/notanivel" + nivelActual);
+            console.log("Usuarios/" + userid + "/nivelActual");
+            set(
+              ref(
+                getDatabase(),
+                "Usuarios/" + userid + "/notanivel" + nivelActual
+              ),
+              nota
+            )
+              .then(() => {
+                //alert("Datos registrados correctamente");
+              })
+              .catch((error) => {
+                //alert("unsucessfull, error" + error);
+              });
+            let nivelNuevo = parseInt(nivelActual) + 1;
+            set(
+              ref(getDatabase(), "Usuarios/" + userid + "/nivelActual"),
+              nivelNuevo
+            )
+              .then(() => {
+                //alert("Datos registrados correctamente");
+              })
+              .catch((error) => {
+                //alert("unsucessfull, error" + error);
+              });
+          }
         }
-
-		function subirNotaBD(nota) {
-			//console.log(datosUsuario);
-			console.log("Usuarios/" + userid+"/notanivel"+nivelActual);
-			console.log("Usuarios/" + userid+"/nivelActual")
-            set(ref(getDatabase(), "Usuarios/" + userid+"/notanivel"+nivelActual), nota)
-                .then(() => {
-                    //alert("Datos registrados correctamente");
-                })
-                .catch((error) => {
-                    //alert("unsucessfull, error" + error);
-                });
-				let nivelNuevo = parseInt(nivelActual)+1;
-				set(ref(getDatabase(), "Usuarios/" + userid+"/nivelActual"), nivelNuevo)
-                .then(() => {
-                    //alert("Datos registrados correctamente");
-                })
-                .catch((error) => {
-                    //alert("unsucessfull, error" + error);
-                });
-        }
-
-		}
-
-		
-
       </script>
     </main>
 
