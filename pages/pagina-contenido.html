@@ -237,14 +237,19 @@
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog " role="document">
           <div class="modal-content">
-            <div class="flexContainer container5">
-              <div class="flexItem item2" id="numeroPregunta">item2</div>
-              <div class="flexItem item1" id="tituloNivelLabel">item1</div>
+            <div class="progress" style="height: 3px;">
+              <div id="bar" class="progress-bar bg-warning" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <div class="flexContainerpr container5pr">
-              <div class="flexItempr item2pr" id="temporizador">item2</div>
+            <div class="bg-success clearfix ">
+              
+              <div class="float-left p-1 text-white" ><h4 id="tituloNivelLabel"> titulo</h4></div>
+              
+              <div class="float-right p-1" ><h5 id="temporizador" class="bg-warning font-weight-bold text-dark border border-danger p-1 "></h5></div>
+              
+            </div>                  
+            <div class="flexContainerpr container5pr">              
               <div class="flexItempr item1pr" id="TituloPregunta">item1</div>
             </div>
             <div class="modal-body">
@@ -254,28 +259,28 @@
                   <a
                     id="o1pregunta"
                     type="button"
-                    class="btn btn-outline-secondary"
+                    class="btn btn-outline-light alert alert-success border border-dark"
                     style="white-space: normal; margin-bottom: 5px"
                     >Cargando...</a
                   >
                   <a
                     id="o2pregunta"
                     type="button"
-                    class="btn btn-outline-secondary"
+                    class="btn btn-outline-light alert alert-success border border-dark"
                     style="white-space: normal; margin-bottom: 5px"
                     >Cargando...</a
                   >
                   <a
                     id="o3pregunta"
                     type="button"
-                    class="btn btn-outline-secondary"
+                    class="btn btn-outline-light alert alert-success border border-dark"
                     style="white-space: normal; margin-bottom: 5px"
                     >Cargando...</a
                   >
                   <a
                     id="o4pregunta"
                     type="button"
-                    class="btn btn-outline-secondary"
+                    class="btn btn-outline-light alert alert-success border border-dark"
                     style="white-space: normal; margin-bottom: 1px"
                     >Cargando...</a
                   >
@@ -549,7 +554,7 @@
                   if (respuestaActual === pregunta.respuesta) {
                     notaActual = notaActual + 10;
 
-                    elem.className = "btn btn-success";
+                    elem.className = "btn btn-success alert alert-success border border-dark";
                     console.log(
                       "Respuesta correcta, tu nora es: " + notaActual
                     );
@@ -562,7 +567,7 @@
                 music.pause();*/
                   } else {
                     console.log("Respuesta errónea, tu nota es: " + notaActual);
-                    elem.className = "btn btn-danger";
+                    elem.className = "btn btn-danger alert alert-danger border border-dark";
                     const music = new Audio(
                       "../assets/audio/respincorrecto.mp3"
                     );
@@ -637,13 +642,13 @@
 
           function quitar_animacion_botones() {
             document.getElementById("o1pregunta").className =
-              "btn btn-outline-secondary";
+              "btn btn-outline-light alert alert-success border border-dark";
             document.getElementById("o2pregunta").className =
-              "btn btn-outline-secondary";
+              "btn btn-outline-light alert alert-success border border-dark";
             document.getElementById("o3pregunta").className =
-              "btn btn-outline-secondary";
+              "btn btn-outline-light alert alert-success border border-dark";
             document.getElementById("o4pregunta").className =
-              "btn btn-outline-secondary";
+              "btn btn-outline-light alert alert-success border border-dark";
           }
 
           let botonRendirExamen = document.getElementById("rendirExamen");
@@ -771,7 +776,10 @@
                     verificarRespuestaPregunta(null, null);
                   } else {
                     pregunta = snapshot.val();
-                    nuPr.textContent = preguntaActual + "/10";
+                    var progreso;
+                    progreso= ((preguntaActual-1)/10)*100;
+                    //nuPr.css('width', progreso + '%');
+                    $('#bar').css('width', progreso + '%');
                     tiPr.textContent = pregunta.pregunta;
                     op1pr.textContent = pregunta.o1;
                     op2pr.textContent = pregunta.o2;
@@ -806,7 +814,10 @@
               .then((snapshot) => {
                 if (snapshot.exists()) {
                   pregunta = snapshot.val();
-                  nuPr.textContent = preguntaActual + "/10";
+                  var progreso;
+                  progreso= ((preguntaActual-1)/10)*100;
+                  //nuPr.css('width', progreso + '%');
+                  $('#bar').css('width', progreso + '%');
                   tiPr.textContent = pregunta.pregunta;
                   op1pr.textContent = pregunta.o1;
                   op2pr.textContent = pregunta.o2;
