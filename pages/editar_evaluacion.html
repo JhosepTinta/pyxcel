@@ -215,7 +215,123 @@
 
 
 
+  <script type="module">
+    //agregamos eventos al aside lateral de preguntas
+    let preg = document.getElementById("titulo_pregunta");
+    let desc = document.getElementById("descripcion_pregunta");
+    let r1 = document.getElementById("R_opcion1");
+    let o1 = document.getElementById("T_opcion1");
 
+    let r2 = document.getElementById("R_opcion2");
+    let o2 = document.getElementById("T_opcion2");
+
+    let r3 = document.getElementById("R_opcion3");
+    let o3 = document.getElementById("T_opcion3");
+
+    let r4 = document.getElementById("R_opcion4");
+    let o4 = document.getElementById("T_opcion4");
+
+
+    let p1 = document.getElementById("pregunta1");
+    let p2 = document.getElementById("pregunta2");
+    let p3 = document.getElementById("pregunta3");
+    let p4 = document.getElementById("pregunta4");
+    let p5 = document.getElementById("pregunta5");
+    let p6 = document.getElementById("pregunta6");
+    let p7 = document.getElementById("pregunta7");
+    let p8 = document.getElementById("pregunta8");
+    let p9 = document.getElementById("pregunta9");
+    let p10 = document.getElementById("pregunta10");
+    let p11 = document.getElementById("pregunta11");
+    let p12 = document.getElementById("pregunta12");
+    let p13 = document.getElementById("pregunta13");
+    let p14 = document.getElementById("pregunta14");
+    let p15 = document.getElementById("pregunta15");
+    let p16 = document.getElementById("pregunta16");
+    let p17 = document.getElementById("pregunta17");
+    let p18 = document.getElementById("pregunta18");
+    let p19 = document.getElementById("pregunta19");
+    let p20 = document.getElementById("pregunta20");
+    p1.addEventListener("click", function () {
+      cargar_datos(p1.id)
+    });
+    p2.addEventListener("click", function () {
+      cargar_datos(p2.id)
+    });
+    p3.addEventListener("click", function () {
+      cargar_datos(p3.id)
+    });
+    p4.addEventListener("click", function () {
+      cargar_datos(p4.id)
+    });
+    p5.addEventListener("click", function () {
+      cargar_datos(p5.id)
+    });
+    p6.addEventListener("click", function () {
+      cargar_datos(p6.id)
+    });
+    p7.addEventListener("click", function () {
+      cargar_datos(p7.id)
+    });
+    p8.addEventListener("click", function () {
+      cargar_datos(p8.id)
+    });
+    p9.addEventListener("click", function () {
+      cargar_datos(p9.id)
+    });
+    p10.addEventListener("click", function () {
+      cargar_datos(p10.id)
+    });
+    p11.addEventListener("click", function () {
+      cargar_datos(p11.id)
+    });
+    p12.addEventListener("click", function () {
+      cargar_datos(p12.id)
+    });
+    p13.addEventListener("click", function () {
+      cargar_datos(p13.id)
+    });
+    p14.addEventListener("click", function () {
+      cargar_datos(p14.id)
+    });
+    p15.addEventListener("click", function () {
+      cargar_datos(p15.id)
+    });
+    p16.addEventListener("click", function () {
+      cargar_datos(p16.id)
+    });
+    p17.addEventListener("click", function () {
+      cargar_datos(p17.id)
+    });
+    p18.addEventListener("click", function () {
+      cargar_datos(p18.id)
+    });
+    p19.addEventListener("click", function () {
+      cargar_datos(p19.id)
+    });
+    p20.addEventListener("click", function () {
+      cargar_datos(p20.id)
+    });
+
+
+    function cargar_datos(id_pregunta) {
+      preg.textContent = id_pregunta;
+      //en esta funcion recuperamos los datos de la bd y los cargamos a los textos
+      /*
+      r1.checked = true;
+      r2.checked = false;
+      r3.checked = false;
+      r4.checked = false;
+      */
+      desc.textContent = "descripcion " + id_pregunta;
+
+      o1.value = "opcion1 " + id_pregunta;
+      o2.value = "opcion2 " + id_pregunta;
+      o3.value = "opcion3 " + id_pregunta;
+      o4.value = "opcion4 " + id_pregunta;
+
+    }
+  </script>
 
   <script src="../assets/js/libs/jquery.min.js" type="text/javascript"></script>
   <script type="module" src="../assets/js/recover-data.js"></script>
