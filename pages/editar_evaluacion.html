@@ -331,6 +331,60 @@
       o4.value = "opcion4 " + id_pregunta;
 
     }
+
+        //animacion para los radiobutton
+        r1.addEventListener("click", function () {
+      
+      r1.setAttribute("class", "form-check-input bg-success");
+      r2.setAttribute("class", "form-check-input bg-danger");
+      r3.setAttribute("class", "form-check-input bg-danger");
+      r4.setAttribute("class", "form-check-input bg-danger");
+
+      o1.setAttribute("class", "form-control border border-success");
+      o2.setAttribute("class", "form-control border border-danger");
+      o3.setAttribute("class", "form-control border border-danger");
+      o4.setAttribute("class", "form-control border border-danger");
+
+    });
+    r2.addEventListener("click", function () {
+      
+      r1.setAttribute("class", "form-check-input bg-danger");
+      r2.setAttribute("class", "form-check-input bg-success");
+      r3.setAttribute("class", "form-check-input bg-danger");
+      r4.setAttribute("class", "form-check-input bg-danger");
+
+      o1.setAttribute("class", "form-control border border-danger");
+      o2.setAttribute("class", "form-control border border-success");
+      o3.setAttribute("class", "form-control border border-danger");
+      o4.setAttribute("class", "form-control border border-danger");
+
+    });
+    r3.addEventListener("click", function () {
+      
+      r1.setAttribute("class", "form-check-input bg-danger");
+      r2.setAttribute("class", "form-check-input bg-danger");
+      r3.setAttribute("class", "form-check-input bg-success");
+      r4.setAttribute("class", "form-check-input bg-danger");
+
+      o1.setAttribute("class", "form-control border border-danger");
+      o2.setAttribute("class", "form-control border border-danger");
+      o3.setAttribute("class", "form-control border border-success");
+      o4.setAttribute("class", "form-control border border-danger");
+
+    });
+    r4.addEventListener("click", function () {
+      
+      r1.setAttribute("class", "form-check-input bg-danger");
+      r2.setAttribute("class", "form-check-input bg-danger");
+      r3.setAttribute("class", "form-check-input bg-danger");
+      r4.setAttribute("class", "form-check-input bg-success");
+
+      o1.setAttribute("class", "form-control border border-danger");
+      o2.setAttribute("class", "form-control border border-danger");
+      o3.setAttribute("class", "form-control border border-danger");
+      o4.setAttribute("class", "form-control border border-success");
+
+    });
   </script>
 
   <script src="../assets/js/libs/jquery.min.js" type="text/javascript"></script>
