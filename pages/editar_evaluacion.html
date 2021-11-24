@@ -119,7 +119,67 @@
         </div>
 
       </div>
-      
+      <div class="col-8 p-2">
+        <div class="col border border-success">
+          <div class="row text-center " style="background: rgb(101, 193, 114);color: white;">
+            <h4>Edita tus preguntas aqui</h4>
+          </div>
+          <div class="row">
+            <h5 id="titulo_pregunta" class="text-success " style="color: rgb(101, 193, 114);">Pregunta 1</h5>
+          </div>
+          <div class="row">
+            <!--aqui viene el toast-->
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <strong>la pregunta ya existe!</strong> la descripcion de la pregunta que intenta registar ya existe,
+              registre otra.
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          </div>
+          <div class="row m-1">
+            <div class="form-group ">
+              <textarea class="form-control" id="descripcion_pregunta" rows="3" placeholder="Descripcion de la pregunta"
+                required></textarea>
+            </div>
+            <div class="form-check">
+              <input type="radio" class="form-check-input bg-success" id="R_opcion1" name="Radio" value="option1">
+              <input type="text" class="form-control border border-success" id="T_opcion1" placeholder="Opcion 1"
+                required>
+            </div><br><br>
+            <div class="form-check">
+              <input type="radio" class="form-check-input bg-danger" id="R_opcion2" name="Radio" value="option2">
+              <input type="text" class="form-control border border-danger" id="T_opcion2" placeholder="Opcion 2"
+                required>
+            </div><br><br>
+            <div class="form-check">
+              <input type="radio" class="form-check-input bg-danger" id="R_opcion3" name="Radio" value="option3">
+              <input type="text" class="form-control border border-danger" id="T_opcion3" placeholder="Opcion 3"
+                required>
+            </div><br><br>
+            <div class="form-check">
+              <input type="radio" class="form-check-input bg-danger" id="R_opcion4" name="Radio" value="option4">
+              <input type="text" class="form-control border-danger" id="T_opcion4" placeholder="Opcion 4" required>
+            </div><br> <br>
+
+            <div class="row  text-center">
+              <div class="">
+                <button type="button" class="btn btn-secondary btn-circle btn-md" id="button_limpiar"
+                  data-toggle="modal" data-target="#modal_limpiar" data-whatever="@mdo" data-backdrop="static"
+                  data-keyboard="false"><i class="fas fa-broom"
+                    style="font-size:24px;color:rgb(255, 255, 255)"></i></i></button>
+                <button type="button" class="btn btn-success" id="button_guardar">Guardar cambios</button>
+
+              </div>
+
+
+
+            </div>
+
+
+          </div>
+        </div>
+      </div>
 
     </div>
   </main>
