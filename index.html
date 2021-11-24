@@ -13,8 +13,11 @@
   <!-- <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
 
+  <script src="https://kit.fontawesome.com/e1004dd04e.js" crossorigin="anonymous"></script>
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
@@ -25,12 +28,12 @@
   <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-  
-  <link href="../assets/css/styles.css" rel="stylesheet">
-  
 
- 
- 
+  <link href="../assets/css/styles.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 </head>
 
 <body>
@@ -52,15 +55,31 @@
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
 
-      <!-- <a href="courses.html" class="get-started-btn">Get Started</a> -->
+      <a style="display: none;" id="botonIniciarSesion" href="/pages/index-login.html" class="get-started-btn">
+        <b>Iniciar Sesión</b> 
+      </a>
+        
+      <div style="display: none;" id="contenedorBotonUser" class="desplegable">
+        <button class="desplebutton">
+          <a href="#l" id="prueba" class="get-started-btn">
+            cargando...
+            <i class="fas fa-chevron-down"></i>
+          </a> </button>
+        <!-- <i class="material-icons">expand_more </i>  -->
+        <div class="options">
+
+          <a href="#" id="logout">Cerrar Sesion</a>
+        </div>
+      </div>
 
     </div>
   </header><!-- End Header -->
   <section id="hero" class="d-flex justify-content-center align-items-center">
     <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
       <h1>No tiene nada de malo ser pequeño,<br>Puedes hacer grandes cosas con un equipo así.</h1>
-      <h2>Te enseñamos excel enfocados en pymes <br> para seguir haciendo crecer tu negocio <br>¿Listo para empezar?</h2>
-      <a href="pages/nivel.html" class="btn-get-started">Ver Curso</a>
+      <h2>Te enseñamos excel enfocados en pymes <br> para seguir haciendo crecer tu negocio <br>¿Listo para empezar?
+      </h2>
+      <a href="/pages/nivel.html" id="k" class="btn-get-started">Ver Curso</a>
     </div>
   </section><!-- End Hero -->
   <main id="main">
@@ -81,10 +100,12 @@
             <ul>
               <li><i class="bi bi-check-circle"></i> Te enseñaremos desde lo básico a lo más complicado.</li>
               <li><i class="bi bi-check-circle"></i> Serán clases prácticas como también didácticas.</li>
-              <li><i class="bi bi-check-circle"></i> Nos esforzaremos en que tu emprendimiento sea mejor organizado usando excel .</li>
+              <li><i class="bi bi-check-circle"></i> Nos esforzaremos en que tu emprendimiento sea mejor organizado
+                usando excel .</li>
             </ul>
             <p>
-              Todo este sistema de cursos está organizado por niveles para que puedas observar la dificultad de cada tema.
+              Todo este sistema de cursos está organizado por niveles para que puedas observar la dificultad de cada
+              tema.
             </p>
 
           </div>
@@ -104,7 +125,7 @@
             <h3>Pyxcel</h3>
             <p>
               SmartSoft<br><br>
-              <strong>Email:</strong> info@example.com<br>
+              <strong>Email:</strong> smartsoft@gmail.com<br>
             </p>
           </div>
 
@@ -113,20 +134,21 @@
             <ul>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Inicio</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#about">Nosotros</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="pages/nivel.html">Curso</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="pages/nivel.html" id="f">Curso</a></li>
 
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>.</h4>
-            
+
           </div>
 
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>Empieza el Curso</h4>
+            
             <p>Puedes empezar tu aventura desde aquí</p>
-           
+            <a href="/pages/nivel.html" id="g" class="btn-get-started">Empieza el curso</a>
           </div>
 
         </div>
@@ -136,12 +158,12 @@
     <div class="container d-md-flex py-4">
 
       <div class="me-md-auto text-center text-md-start">
-       
+
         <div class="credits">
           Designed by <strong><a href="#">SmartSoft</a></strong>
         </div>
       </div>
-    
+
     </div>
   </footer><!-- End Footer -->
 
@@ -156,7 +178,81 @@
   <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
 
   <!-- Template Main JS File -->
+  <!--
+  <script type="module" src="assets/js/inicio.js"></script>
+  -->
+  <script type="module">
+    //CODIGO DE RECUPERACION DEL USUARIO
+    import { initializeApp, onLog } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+    import { getAuth, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https:www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"
+    import { getDatabase, ref, get, set, child, update, remove, onChildAdded, onChildChanged, onChildRemoved } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
+    import{db}from "/assets/js/connection-firebase.js"
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
+      authDomain: "pyxcel-d6df9.firebaseapp.com",
+      databaseURL: "https://pyxcel-d6df9-default-rtdb.firebaseio.com",
+      projectId: "pyxcel-d6df9",
+      storageBucket: "pyxcel-d6df9.appspot.com",
+      messagingSenderId: "953396754317",
+      appId: "1:953396754317:web:321620a07c7577f5eb6fc4",
+      measurementId: "G-46CQF62KX4"
+    };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const btnVer = document.getElementById('z');
+    const btnVer2 = document.getElementById('k');
+    const btnVer3 = document.getElementById('f');
+    const btnVer4 = document.getElementById('g');
+    onAuthStateChanged(auth, (user) => {
+      let botonIniciarSesion = document.getElementById("botonIniciarSesion");
+      let botonUser = document.getElementById("contenedorBotonUser");
+      if (user) {
+        botonUser.style.display = 'block';
+        botonIniciarSesion.style.display = 'none';
+        const cont = document.getElementById("logout")
+        cont.addEventListener('click', (e) => {
+          signOut(auth);
+        });
+        const dbref = ref(db);
+        get(child(dbref, "Usuarios/" + user.uid)).then((snapshot) => {
+          console.log(user);
+          if (snapshot.exists()) {
+            let text = document.getElementById("prueba");
+            text.innerHTML = snapshot.val().nombre+'<i class="fas fa-chevron-down"></i>';
+          } else {
+            console.log("No se encontro el elemento");
+          }
+        })
+          .catch((error) => {
+            console.log("unsucessfull, error" + error);
+          });
+      } else {
+        botonUser.style.display = 'none';
+        botonIniciarSesion.style.display = 'block';
+        btnVer.addEventListener('click', (e) => {
+          window.alert('No iniciaste sesión aún, así que se le redireccionará a la página principal');
+          // signOut(auth);
+        });
+        btnVer2.addEventListener('click', (e) => {
+          window.alert('No iniciaste sesión aún, así que se le redireccionará a la página principal');
+          // signOut(auth);
+        });
+        btnVer3.addEventListener('click', (e) => {
+          window.alert('No iniciaste sesión aún, así que se le redireccionará a la página principal');
+          // signOut(auth);
+        });
+        btnVer4.addEventListener('click', (e) => {
+          window.alert('No iniciaste sesión aún, así que se le redireccionará a la página principal');
+          // signOut(auth);
+        });
+      }
+    });
+
+  </script>
   <script src="../assets/js/main.js"></script>
+
   <!-- <script>
     const container = document.querySelector('.navbar')
     const x = document.getElementById("x")
@@ -185,22 +281,22 @@
     })
   </script> -->
   <script>
-    
-    window.addEventListener('scroll', () =>{
+
+    window.addEventListener('scroll', () => {
       const scrolled = window.scrollY;
 
       console.log(scrolled);
-      if (scrolled < 500){
+      if (scrolled < 500) {
         y.classList.remove('active')
         x.classList.add('active')
-      } 
-      if (scrolled > 500){
+      }
+      if (scrolled > 500) {
         y.classList.add('active')
         x.classList.remove('active')
-      } 
-      
+      }
+
     })
-    
+
   </script>
 
 </body>

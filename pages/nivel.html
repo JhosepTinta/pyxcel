@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Listado de Niveles</title>
+  <title>Niveles</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -25,6 +25,11 @@
   
   <link href="../assets/css/style.css" rel="stylesheet">
 
+  <script src="https://kit.fontawesome.com/e1004dd04e.js" crossorigin="anonymous"></script>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet">
+
 </head>
 
 <body>
@@ -39,6 +44,8 @@
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
+      
+
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a  href="../index.html">Inicio</a></li>
@@ -46,10 +53,26 @@
           <li><a class="active" href="nivel.html">Ver Curso</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
+       
       </nav><!-- .navbar -->
-
-      <!-- <a href="courses.html" class="get-started-btn">Get Started</a> -->
-
+      <div class="desplegable">
+        <button class="desplebutton"> 
+          <a 
+          href="#l" id="prueba" class="get-started-btn">
+          cargando...
+          
+        </a> 
+      </button>
+      
+        <!-- <i class="material-icons">expand_more </i>  -->
+        <div class="options">
+          
+          <a href="#" id="logout" >Cerrar Sesion</a>
+        </div>
+      </div>
+      
+     
+      
     </div>
   </header><!-- End Header -->
 
@@ -58,8 +81,7 @@
     <div class="breadcrumbs">
       <div class="container">
         <h2>Niveles</h2>
-        <p>Para una mejor experiencia de aprendizaje se 
-          separo los niveles segun su dificultad
+        <p>Bienvenido al curso, para un mejor aprendizaje separamos los niveles según su dificultad
         </p>
       </div>
     </div><!-- End Breadcrumbs -->
@@ -94,6 +116,7 @@
     };
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
+    /*
     import { getDatabase, ref, get, set, child, update, remove, onChildAdded, onChildChanged, onChildRemoved } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
 	
     const db = getDatabase();        
@@ -126,9 +149,10 @@ var contenido="";
                 a.innerHTML=contenido;
                 
     });
-		
+		*/
 
 </script>
+
   <!-- Vendor JS Files -->
   <script src="../assets/vendor/aos/aos.js"></script>
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -138,7 +162,49 @@ var contenido="";
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
+  <!-- <script type="module" >
 
+import { initializeApp, onLog } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+import {getAuth,signOut,onAuthStateChanged,createUserWithEmailAndPassword , signInWithEmailAndPassword} from  "https:www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"
+        const firebaseConfig = {
+            apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
+           authDomain: "pyxcel-d6df9.firebaseapp.com",
+           databaseURL: "https://pyxcel-d6df9-default-rtdb.firebaseio.com",
+           projectId: "pyxcel-d6df9",
+          storageBucket: "pyxcel-d6df9.appspot.com",
+          messagingSenderId: "953396754317",
+           appId: "1:953396754317:web:321620a07c7577f5eb6fc4",
+          measurementId: "G-46CQF62KX4"
+        };
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app)
+
+    onAuthStateChanged(auth, (user) => {
+                if (user) {
+                  const uid = user.email;
+                  console.log(uid)
+                  console.log(user)
+                  let text = document.getElementById("prueba");
+                  text.innerHTML= uid;
+                } else {
+                  // User is signed out
+                  console.log("me sali karen :D")
+                  window.location.href = "/index.html";
+                  // ...
+                }
+              });
+
+      const cont = document.getElementById("logout")
+      
+      cont.addEventListener('click', (e) =>{
+        signOut(auth);
+      })
+
+              
+              
+  </script> -->
+  <script type="module" src="../assets/js/prueba.js"></script>
 </body>
 
 </html>

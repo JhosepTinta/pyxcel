@@ -1362,3 +1362,48 @@ section {
   color: #fff;
   text-decoration: none;
 }
+/* ----------------------------------------------------- */
+/* Introduciendo boton con nombre del usuario */
+/* ----------------------------------------------------- */
+.desplebutton {
+  
+  background-color: #ffffff;
+  color: white;
+  /* padding: 16px; */
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.desplegable {
+  position: relative;
+  display: inline-block;
+}
+
+.options {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.options a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.options a:hover {background-color: #f1f1f1}
+
+.desplegable:hover .options {
+  display: block;
+}
+
+/* .desplegable:hover .desplebutton {
+  background-color: #3e8e41;
+} */
+.desplebutton i {
+  padding-left: 10px;
+}
