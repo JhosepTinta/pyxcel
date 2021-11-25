@@ -1,0 +1,135 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    
+}
+.title-container{
+    width: 100%;
+    height: 70px;
+    margin-top: 50px;
+    background-color: #E5AA74;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.title-container label{
+    color: #FFEFEF;
+    font-size: 23px;
+    font-weight: 500;
+    
+}
+
+.title-container input{
+    width: 300px;
+    height: 25px;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.icon-save{
+    width: 29px;
+    height: 29px;
+    background-color: #7DA6E2;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.icon-save img{
+    width: 22px;
+    height: 22px;
+    margin: 4px;
+}
+
+.content-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 60px;
+}
+
+.content{
+    position: relative;
+    width: 450px;
+    height: 60px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #84CD87;
+    margin-bottom: 25px;
+    cursor: pointer;
+}
+
+.content p{
+    display: inline-block;
+    margin-left: 9rem;
+    margin-top: 1rem;
+    font-size: 23px;
+    font-weight: 500;
+    color: white;
+}
+
+.content .delete-content:hover{
+    background-color: #e2d6d6;
+}
+
+.content .delete-content{
+    position: absolute;
+    right: 0;
+    width: 32px;
+    padding: 13px 23px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #ebe6e6;
+    cursor: pointer;
+}
+
+.add-content{
+    width: 450px;
+    height: 60px;
+    background-color: #E5AA74;
+    border: 1px solid black;
+    text-align: center;
+    margin-top: 50px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-content img{
+    width: 50px;
+    margin-top: 5px;
+}
+
+.content-form-container{
+    position: relative;
+
+
+}
+
+.content-form-container .content-form{
+    display: flex;  
+    align-items: flex-end;
+    flex-direction: column;
+}
+
+.content-form label{
+    font-size: 22px;
+    margin-top: 20px;
+}
+
+.content-form input{
+    width: 400px;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.icon-form{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
