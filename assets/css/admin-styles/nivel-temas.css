@@ -1,0 +1,102 @@
+/*  */
+:root{
+    --color-verde:#5FCF80;
+}
+body {
+    font-family: "Open Sans", sans-serif;
+    color: #444444;
+    margin: 0;
+  }
+.header{
+    background-color: var(--color-verde);
+    margin: 0;
+    text-align: center;
+    
+   
+}
+.pieza{
+    
+    display: inline-block;
+    margin: 12px;
+}
+#nombretitulo{
+    background-color: #fff;
+    width: 400px;
+    border-radius: 5px;
+}
+#titulo{
+    color: white;
+}
+
+#lista-de-temas{
+    display: flex;
+    display: -ms-flex;
+	display: -webkit-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+   
+    
+}
+#lista-de-temas > div{
+  /* width: 50%; */
+  width: 350px;
+  margin: 55px;
+  
+  
+
+}
+/* Boton especial grande */
+.btn-especial{
+    width: 350px;
+    height: 190px;
+    border: 0;
+    background-color: var(--color-verde);
+}
+/* @media (max-width:700px){
+    #lista-de-temas{
+        flex-direction: column;
+    }
+} */
+
+
+
+/* Tarejta  */
+.div-tarjeta{
+    /* margin: 0px; */
+    /* width: 300px; */
+    
+}
+.tarjeta{
+    background-color:#fff;
+    /* border: 0px solid #000; */
+    border-radius: 5px;
+    box-shadow: 4px 4px 15px rgba(0,0,0,0.1);
+   
+}
+.numerotema{
+    background-color: var(--color-verde);
+    border: 1px solid #000;
+   text-align: center;
+   color: white;
+   font-size: 20px;
+
+}
+.titulotema{
+    
+    margin: 20px;
+    
+    
+}
+.botones{
+    text-align: center;
+   
+    padding: 10px;
+}
+.btn{
+    
+    border-radius: 5px;
+    width: 90px;
+    padding: 10px;
+    background-color: var(--color-verde);
+    border: 0;
+}
