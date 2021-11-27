@@ -11,13 +11,13 @@ body {
     background-color: var(--color-verde);
     margin: 0;
     text-align: center;
-    
+    padding: 10px;
    
 }
 .pieza{
     
     display: inline-block;
-    margin: 12px;
+    /* margin: 12px; */
 }
 #nombretitulo{
     background-color: #fff;
@@ -26,8 +26,22 @@ body {
 }
 #titulo{
     color: white;
+    padding-right: 10px;
 }
-
+.input-titulo{
+    border: 0;
+    padding-top: 15px;
+    padding-left: 10px;
+    width: 300px;
+    outline: none;
+}
+.btn-guardar{
+    border: 0;
+    padding:10px;
+    float: right;
+    
+}
+/* Lista  */
 #lista-de-temas{
     display: flex;
     display: -ms-flex;

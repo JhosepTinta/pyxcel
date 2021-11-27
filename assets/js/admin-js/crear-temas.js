@@ -16,8 +16,8 @@ class MostrarUI{
                        <div class="numerotema"><p>${tarjetatema.numerotema}</p></div>
                         <div class="titulotema"><p>${tarjetatema.titulotema}</p></div>
                        <div class="botones">
-                         <button class="btn">Editar </button>
-                         <button class="btn">Eliminar </button>
+                         <button class="btn" id="btn-editar">Editar </button>
+                         <button class="btn" id="btn-eliminar">Eliminar </button>
                         </div>
                     </div>
                 </div>
@@ -40,6 +40,10 @@ class MostrarUI{
      
     }
 }
+
+
+console.log("mira");
+// document.getElementById('nombretitulo').innerHTML=()
 // Evento que sucedera 
 document.getElementById('product-form').addEventListener('submit',function(e){
     
@@ -53,3 +57,16 @@ document.getElementById('product-form').addEventListener('submit',function(e){
     // contenedor.addUltimo()
     e.preventDefault();
 });
+// let botonEliminar = document.getElementById("btn-eliminar");
+// // console.log("presionaste eliminar");
+// botonEliminar.addEventListener("click",function(){
+    
+//     Swal.fire({
+//         title: "Realmente desea salir de la evaluacion?",
+//         showCancelButton: true,
+//         confirmButtonText: "si salir",
+//         cancelButtonText: "cancelar",
+//     })
+    
+
+// })
