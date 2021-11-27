@@ -114,3 +114,11 @@ body {
     background-color: var(--color-verde);
     border: 0;
 }
+/* ventana emergente */
+.ventana-emergente{
+  width: 80%;
+  font-size: 15px;
+  text-align: center;
+  height: 80%;   
+  
+}

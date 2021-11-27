@@ -43,6 +43,28 @@ class MostrarUI{
 
 
 console.log("mira");
+document.getElementById('boton-alerta-prueba').addEventListener('click',function(e){
+    Swal.fire({
+        title: "¿Estas seguro que deseas eliminar este tema?",
+        showCancelButton:true,
+        showConfirmButton: true,
+        confirmButtonColor:"#5FCF80" ,
+        cancelButtonColor:"#DD6B55",
+        confirmButtonText: "     Si    ",
+         cancelButtonText: "    No    ",
+        allowOutsideClick:false,
+        customClass: 'ventana-emergente'
+    }).then((result) => {
+        if(result.isConfirmed){
+            Swal.fire('Conformacion de eliminacion')
+        }else if(result.dismiss){
+            Swal.fire('cancelado')
+        }
+
+    }) 
+
+
+})
 // document.getElementById('nombretitulo').innerHTML=()
 // Evento que sucedera 
 document.getElementById('product-form').addEventListener('submit',function(e){
