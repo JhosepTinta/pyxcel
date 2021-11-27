@@ -21,7 +21,7 @@ body {
 }
 #nombretitulo{
     background-color: #fff;
-    width: 400px;
+    width-max: 700px;
     border-radius: 5px;
 }
 #titulo{
