@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Crear Temas</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <!-- <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"> -->
+
+  
+  <link href="/../../assets/css/admin-styles/nivel-temas.css" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/e1004dd04e.js" crossorigin="anonymous"></script>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet">
+
+</head>
+
+<body>
+  
+<div class="header">
+    <div class="pieza" id="titulo"><p>Titulo del Nivel</p></div>
+    <div class="pieza" id="nombretitulo"><input class="input-titulo" type="text" placeholder="Escriba el titulo del nuevo nivel">    
+        <button class="btn-guardar"> <img src="../../assets/img/icons/disco-guardar.png" alt="" width="24px"></button>
+    </div>
+
+  
+ 
+</div>
+<main>
+    <section>
+        
+        <form id="product-form" class="card-body">
+            <p>Ingresar tema</p>
+            <div class="form-group">
+                <input type="text" id="tema" placeholder="Numero de tema" class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Titulo Tema" class="form-control">
+            </div>
+            <input type="submit" value="Save" class="btn btn-primary btn-block">
+            
+        </form>
+         <button id="boton-alerta-prueba">Alerta-Eliminar-tema</button>
+    </section>
+
+    
+        
+            <!-- Lista de temas -->
+            <div id="lista-de-temas">
+               
+                <div class="div-tarjeta">
+                    <div class="tarjeta">
+                       
+                     <button class="btn-especial"> <img src="../../assets/img/icons/boton-agregar.png" alt="" width="100px"></button>
+                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+   
+</main>
+<script src="/assets/js/admin-js/crear-temas.js" type="module"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
