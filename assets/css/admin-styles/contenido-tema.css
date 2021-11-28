@@ -2,8 +2,14 @@ body{
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    
 }
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .title-container{
     width: 100%;
     height: 70px;
@@ -54,6 +60,12 @@ body{
     margin-top: 60px;
 }
 
+.content-element{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 .content{
     position: relative;
     width: 450px;
@@ -61,8 +73,8 @@ body{
     border: 1px solid black;
     border-radius: 5px;
     background-color: #84CD87;
-    margin-bottom: 25px;
     cursor: pointer;
+    margin-bottom: 20px;
 }
 
 .content p{
@@ -90,7 +102,7 @@ body{
 }
 
 .add-content{
-    width: 450px;
+    width: 400px;
     height: 60px;
     background-color: #E5AA74;
     border: 1px solid black;
@@ -107,8 +119,6 @@ body{
 
 .content-form-container{
     position: relative;
-
-
 }
 
 .content-form-container .content-form{
@@ -119,17 +129,31 @@ body{
 
 .content-form label{
     font-size: 22px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .content-form input{
     width: 400px;
     font-size: 20px;
-    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.content-form textarea{
+    width: 400px;
+    overflow: auto;
 }
 
 .icon-form{
     position: absolute;
-    bottom: 0;
-    right: 0;
+    bottom: 9px;
+    left: 540px;
+}
+
+.label-area{
+    position: relative;
+    bottom: 140px;
+}
+
+.invisible{
+    display: none;
 }
