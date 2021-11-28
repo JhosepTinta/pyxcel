@@ -337,76 +337,70 @@
       let p19 = document.getElementById("pregunta19");
       let p20 = document.getElementById("pregunta20");
       p1.addEventListener("click", function () {
-        cargar_datos(p1.id)
+        cargar_datos("p1")
       });
       p2.addEventListener("click", function () {
-        cargar_datos(p2.id)
+        cargar_datos("p2")
       });
       p3.addEventListener("click", function () {
-        cargar_datos(p3.id)
+        cargar_datos("p3")
       });
       p4.addEventListener("click", function () {
-        cargar_datos(p4.id)
+        cargar_datos("p4")
       });
       p5.addEventListener("click", function () {
-        cargar_datos(p5.id)
+        cargar_datos("p5")
       });
       p6.addEventListener("click", function () {
-        cargar_datos(p6.id)
+        cargar_datos("p6")
       });
       p7.addEventListener("click", function () {
-        cargar_datos(p7.id)
+        cargar_datos("p7")
       });
       p8.addEventListener("click", function () {
-        cargar_datos(p8.id)
+        cargar_datos("p8")
       });
       p9.addEventListener("click", function () {
-        cargar_datos(p9.id)
+        cargar_datos("p9")
       });
       p10.addEventListener("click", function () {
-        cargar_datos(p10.id)
+        cargar_datos("p10")
       });
       p11.addEventListener("click", function () {
-        cargar_datos(p11.id)
+        cargar_datos("p11")
       });
       p12.addEventListener("click", function () {
-        cargar_datos(p12.id)
+        cargar_datos("p12")
       });
       p13.addEventListener("click", function () {
-        cargar_datos(p13.id)
+        cargar_datos("p13")
       });
       p14.addEventListener("click", function () {
-        cargar_datos(p14.id)
+        cargar_datos("p14")
       });
       p15.addEventListener("click", function () {
-        cargar_datos(p15.id)
+        cargar_datos("p15")
       });
       p16.addEventListener("click", function () {
-        cargar_datos(p16.id)
+        cargar_datos("p16")
       });
       p17.addEventListener("click", function () {
-        cargar_datos(p17.id)
+        cargar_datos("p17")
       });
       p18.addEventListener("click", function () {
-        cargar_datos(p18.id)
+        cargar_datos("p18")
       });
       p19.addEventListener("click", function () {
-        cargar_datos(p19.id)
+        cargar_datos("p19")
       });
       p20.addEventListener("click", function () {
-        cargar_datos(p20.id)
+        cargar_datos("p20")
       });
 
 
+      /*
       function cargar_datos(id_pregunta) {
         preg.textContent = id_pregunta;
-        //en esta funcion recuperamos los datos de la bd y los cargamos a los textos
-        /*
-        r1.checked = true;
-        r2.checked = false;
-        r3.checked = false;
-        r4.checked = false;
-        */
         desc.textContent = "descripcion " + id_pregunta;
 
         o1.value = "opcion1 " + id_pregunta;
@@ -414,7 +408,7 @@
         o3.value = "opcion3 " + id_pregunta;
         o4.value = "opcion4 " + id_pregunta;
 
-      }
+      }*/
 
       //animacion para los radiobutton
       r1.addEventListener("click", function () {
@@ -470,30 +464,9 @@
 
       });
 
-      //Parte de la base de datos
-      function cargar_datos(id_pregunta) {
-        preg.textContent = id_pregunta;
-
-
-        //en esta funcion recuperamos los datos de la bd y los cargamos a los textos
-        /*
-        r1.checked = true;
-        r2.checked = false;
-        r3.checked = false;
-        r4.checked = false;
-        */
-        desc.textContent = "descripcion " + id_pregunta;
-
-        o1.value = "opcion1 " + id_pregunta;
-        o2.value = "opcion2 " + id_pregunta;
-        o3.value = "opcion3 " + id_pregunta;
-        o4.value = "opcion4 " + id_pregunta;
-
-      }
-
       //parte lógica del programa
       const nivelActual = getParameterByName("id");
-      if(nivelActual.length===0){
+      if (nivelActual.length === 0) {
         mostrarDialogoSalidaNivel("Id de nivel no válido");
       }
 
@@ -507,11 +480,48 @@
           : decodeURIComponent(results[1].replace(/\+/g, " "));
       }
 
-      function mostrarDialogoSalidaNivel(mensaje){
+      function mostrarDialogoSalidaNivel(mensaje) {
         window.alert(mensaje);
         window.location.href = "/pages/nivel.html";
       }
 
+      //Parte de la base de datos
+      cargar_datos("p1");
+      function cargar_datos(id_pregunta) {
+        get(
+          child(
+            ref(getDatabase()),
+            "Evaluaciones/nivel" +
+            nivelActual +"/"+id_pregunta /*preguntaActual*/
+          )
+        )
+          .then((snapshot) => {
+            if (snapshot.exists()) {
+              let pregunta = snapshot.val();
+              preg.textContent = id_pregunta;
+              //en esta funcion recuperamos los datos de la bd y los cargamos a los textos
+              /*
+              r1.checked = true;
+              r2.checked = false;
+              r3.checked = false;
+              r4.checked = false;
+              */
+              desc.textContent = pregunta.pregunta;
+              o1.value = pregunta.o1;
+              o2.value = pregunta.o2;
+              o3.value = pregunta.o3;
+              o4.value = pregunta.o4;
+            } else {
+              console.log("No data available");
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+
+
+
+      }
     }
 
   </script>
