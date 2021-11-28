@@ -24,6 +24,7 @@
 
   
   <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/styles-comentarios.css" rel="stylesheet">
 
   <script src="https://kit.fontawesome.com/e1004dd04e.js" crossorigin="anonymous"></script>
 
@@ -41,11 +42,6 @@
     <div class="container d-flex align-items-center">
 
       <h1 class="logo me-auto"><a href="../index.html">Pyxcel</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-      
-
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
           <li><a  href="../index.html">Inicio</a></li>
@@ -70,8 +66,6 @@
           <a href="#" id="logout" >Cerrar Sesion</a>
         </div>
       </div>
-      
-     
       
     </div>
   </header><!-- End Header -->
@@ -101,6 +95,150 @@
       </div>
     </section><!-- End Courses Section -->
 
+
+    <div class="main-comentarios oculto">
+      <H1>Califica este Curso</H1>
+      <div class="seccion-comentar">
+
+        <button class="boton-agregar-comentario">Escribir una opinion</button>
+        <div class="area-para-comentar "  >
+          <div class="estrellas-comentar1 ocultar">
+               <input id="radio5" type="radio" class="estrellas" value="5"><!--
+            --><label class="" for="radio5">★</label><!--
+            --><input id="radio4" type="radio" class="estrellas" value="4"><!--
+            --><label class="" for="radio4">★</label><!--
+            --><input id="radio3" type="radio" class="estrellas" value="3"><!--
+            --><label class="" for="radio3">★</label><!--
+            --><input id="radio2" type="radio" class="estrellas" value="2"><!--
+            --><label class="" for="radio2">★</label><!--
+            --><input id="radio1" type="radio" class="estrellas" value="1"><!--
+            --><label class="" for="radio1">★</label>
+
+          </div>
+           <textarea class="text-area-comentar ocultar" spellcheck="false" placeholder="Cuenta a los demás qué opinas de este curso. ¿Lo recomendarías? ¿Por qué?"> </textarea>
+           
+           <div class="botones-comentar ">
+             <div class="botones-enviar-cancelar ocultar">
+              <button class="boton boton-enviar" >Enviar</button>
+              <button class="boton boton-cancelar">Cancelar</button>
+             </div>
+             <div class="botones-editar-eliminar ocultar">
+              <button class="boton2 boton-editar">
+                <svg class="svg-boton-editar" widht="14" height="14" viewBox="0 0 384.17 384.54">
+                  <path class="imagen-boton-editar" d="M767.65,732.67c0-26.41-.07-52.07.15-77.73,0-1.92,1.79-4.16,3.31-5.68q93.42-93.64,187-187.15,20.86-20.87,41.72-41.73c1.17-1.16,2.39-2.27,3.16-3l79.83,79.87c-.69.73-1.88,2.07-3.14,3.33Q965.46,614.84,851.32,729.13a11.12,11.12,0,0,1-8.7,3.63c-23.17-.17-46.33-.09-69.5-.09Z" transform="translate(-767.64 -348.22)"/><path class="imagen-boton-editar" d="M1027,393.26c13.19-13.23,26.35-26.91,40.08-40,7.62-7.27,20.38-6.45,27.92,1q25.55,25.33,50.86,50.89a20.3,20.3,0,0,1,1.1,27.49c-4.61,5.45-9.86,10.35-14.9,15.44-8.42,8.5-16.9,16.95-25.09,25.16Z" transform="translate(-767.64 -348.22)"/>
+                </svg>
+              </button>
+              <button class="boton2 boton-eliminar">
+                <svg class="svg-boton-eliminar" widht="14" height="14" viewBox="0 0 257.69 329.5">
+                  <path class="imagen-boton-eliminar" d="M384.56,365.37c0-33.67.28-67.33-.18-101-.14-10.17,1.2-15.38,13.61-15.26,64.86.61,129.73.44,194.59.12,9.34,0,12.8,2.47,12.75,12.35-.37,69.16.07,138.32-.37,207.48-.15,22.1-16.49,37.52-39,37.67q-71.6.48-143.19,0c-22.09-.19-37.81-16.14-38.12-38.52C384.22,433.92,384.56,399.64,384.56,365.37Z" transform="translate(-366 -177.5)"/><polygon class="imagen-boton-editar" points="0 16.57 0 53.38 257.69 53.38 257.69 16.57 191.43 16.57 174.86 0 80.99 0 66.26 16.57 0 16.57"/> 
+                </svg>
+              </button>
+             </div>
+          
+        </div>
+        
+         </div>
+
+
+      </div>
+      <H1>Calificacion y Comentarios</H1>
+      <div class="seccion-puntuacion">
+
+      </div>
+
+      <div class="seccion-comentarios">
+
+        <div class="estadisticas"> 
+          <div class="estadistica-puntuacion">
+            <h1 class="texto-puntuacion">0.0</h1>
+            <div class="estrellas-estadistica">
+              <div class="estrella-estadistica e1"></div>
+              <div class="estrella-estadistica e2"></div>
+              <div class="estrella-estadistica e3"></div>
+              <div class="estrella-estadistica e4"></div>
+              <div class="estrella-estadistica e5"></div>
+                
+            </div>
+            <p class="texto-cantidad-califiaciones">0 Calificaciones</p>
+            
+          </div>
+          <div class="estadistica-barras">
+            <div class="barra">
+              <p class="info-barra">5</p>
+              <div class="formato-barra barra-5e">
+                <div class="progreso-barra progreso-barra-5e"></div>
+              </div>
+              <p class="porcentaje-barra">0%</p>
+            </div>
+            <div class="barra">
+              <p class="info-barra">4</p>
+              <div class="formato-barra barra-4e">
+                <div class="progreso-barra progreso-barra-4e"></div>
+              </div>
+              <p class="porcentaje-barra">0%</p>
+            </div>
+            <div class="barra">
+              <p class="info-barra">3</p>
+              <div class="formato-barra barra-3e">
+                <div class="progreso-barra progreso-barra-3e"></div>
+              </div>
+              <p class="porcentaje-barra">0%</p>
+            </div>
+            <div class="barra">
+              <p class="info-barra">2</p>
+              <div class="formato-barra barra-2e">
+                <div class="progreso-barra progreso-barra-2e"></div>
+              </div>
+              <p class="porcentaje-barra ">0%</p>
+            </div>
+            <div class="barra">
+              <p class="info-barra">1</p>
+              <div class="formato-barra barra-1e">
+                <div class="progreso-barra progreso-barra-1e"></div>
+              </div>
+              <p class="porcentaje-barra ">0%</p>
+            </div>
+           
+
+          </div>
+
+        </div>
+
+        <template class="comentario">
+          <h2 class="nombre-usuario-comentario coment"></h2>
+          <div class="estrellas-fechca-comentario coment">
+            <div class="estrellas-comentario">
+              <svg class="svg-estrella " widht="14" height="14" viewBox="0 0 430.96 409.87">
+                <polygon class="estrella rrrrr" points="215.48 0 282.07 134.92 430.96 156.56 323.22 261.57 348.65 409.87 215.48 339.85 82.31 409.87 107.74 261.57 0 156.56 148.89 134.92 215.48 0"/>
+              </svg>
+              <svg class="svg-estrella" widht="14" height="14" viewBox="0 0 430.96 409.87">
+                <polygon class="estrella" points="215.48 0 282.07 134.92 430.96 156.56 323.22 261.57 348.65 409.87 215.48 339.85 82.31 409.87 107.74 261.57 0 156.56 148.89 134.92 215.48 0"/>
+              </svg>
+              <svg class="svg-estrella" widht="14" height="14" viewBox="0 0 430.96 409.87">
+                <polygon class="estrella" points="215.48 0 282.07 134.92 430.96 156.56 323.22 261.57 348.65 409.87 215.48 339.85 82.31 409.87 107.74 261.57 0 156.56 148.89 134.92 215.48 0"/>
+              </svg>
+              <svg class="svg-estrella" widht="14" height="14" viewBox="0 0 430.96 409.87">
+                <polygon class="estrella" points="215.48 0 282.07 134.92 430.96 156.56 323.22 261.57 348.65 409.87 215.48 339.85 82.31 409.87 107.74 261.57 0 156.56 148.89 134.92 215.48 0"/>
+              </svg>
+              <svg class="svg-estrella" widht="14" height="14" viewBox="0 0 430.96 409.87">
+                <polygon class="estrella" points="215.48 0 282.07 134.92 430.96 156.56 323.22 261.57 348.65 409.87 215.48 339.85 82.31 409.87 107.74 261.57 0 156.56 148.89 134.92 215.48 0"/>
+              </svg>
+            </div>
+
+            <div class="fecha-comentario">
+              <p></p>
+            </div>
+          </div>
+          <p class="contenido-comentario coment"></p>
+        </template>
+
+      </div>
+      <button class="boton-cargar-mas-comentarios">Cargar mas comentarios</button>
+
+      
+
+    </div>
+
   </main><!-- End #main -->
 
   <script type="module">
@@ -116,95 +254,19 @@
     };
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-    /*
-    import { getDatabase, ref, get, set, child, update, remove, onChildAdded, onChildChanged, onChildRemoved } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
-	
-    const db = getDatabase();        
-    const commentsRef = ref(db, 'Niveles');
-var contenido="";
-    onChildAdded(commentsRef, (data) => {
-        
-        if (data.exists()) {
-                //objeto recuperado (se ejecuta n veces hasta que termine de leer todos los niveles)
-                const objeto = data.val();
-                console.log(objeto);
-                var img_text;
-                var btn_text;
-                if (objeto.activo){
-                  img_text="../assets/img/ulock.png";
-                  btn_text="btn btn-success";
-                }else{
-                  img_text="../assets/img/lock.png";
-                	btn_text="btn btn-success disabled ";
-                }
-                contenido+='<div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-4 mt-md-4"><div class="course-item" style="border-style: solid;border-width:3px;border-color:black"><div class="row" style="height:40%"><img src="'+objeto.imagen + '" class="img-fluid" alt="..." style="height:100%" ></div><div class="row course-content" style="height:60%"><div class="d-flex justify-content-between align-items-center mb-3" style="height:40%">';
-                contenido+='<h3>' + objeto.titulo + '</h3><div class="testimonial-wrap d-flex justify-content-between align-items-center"><div class="testimonial-item d-flex align-items-center"><img src="';	
-                contenido+= img_text + '"  alt="" style="height:64px;width:64px;"></div></div></div><p>' + objeto.descripcion + '</p><div class="text-center " style="height:20%">' + '<a href="pagina-contenido.html?id='+ objeto.nivel + '"" class="' + btn_text + '">Seleccionar curso</a>';
-                contenido+='</div></div></div></div>';
-
-            } else {
-                alert("No se encontro el elemento");
-            }
-		var a = document.getElementById("a");                
-                a.innerHTML=contenido;
-                
-    });
-		*/
+  
 
 </script>
-
-  <!-- Vendor JS Files -->
   <script src="../assets/vendor/aos/aos.js"></script>
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="../assets/vendor/php-email-form/validate.js"></script>
   <script src="../assets/vendor/purecounter/purecounter.js"></script>
   <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
 
-  <!-- Template Main JS File -->
+
   <script src="../assets/js/main.js"></script>
-  <!-- <script type="module" >
-
-import { initializeApp, onLog } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
-import {getAuth,signOut,onAuthStateChanged,createUserWithEmailAndPassword , signInWithEmailAndPassword} from  "https:www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"
-        const firebaseConfig = {
-            apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
-           authDomain: "pyxcel-d6df9.firebaseapp.com",
-           databaseURL: "https://pyxcel-d6df9-default-rtdb.firebaseio.com",
-           projectId: "pyxcel-d6df9",
-          storageBucket: "pyxcel-d6df9.appspot.com",
-          messagingSenderId: "953396754317",
-           appId: "1:953396754317:web:321620a07c7577f5eb6fc4",
-          measurementId: "G-46CQF62KX4"
-        };
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app)
-
-    onAuthStateChanged(auth, (user) => {
-                if (user) {
-                  const uid = user.email;
-                  console.log(uid)
-                  console.log(user)
-                  let text = document.getElementById("prueba");
-                  text.innerHTML= uid;
-                } else {
-                  // User is signed out
-                  console.log("me sali karen :D")
-                  window.location.href = "/index.html";
-                  // ...
-                }
-              });
-
-      const cont = document.getElementById("logout")
-      
-      cont.addEventListener('click', (e) =>{
-        signOut(auth);
-      })
-
-              
-              
-  </script> -->
   <script type="module" src="../assets/js/prueba.js"></script>
+  <script type="module" src="../assets/js/script-comentarios.js"></script>
 </body>
 
 </html>
