@@ -430,3 +430,27 @@ function recuperarNivelesUsuario(nivelActual) {
 
   });
 }
+
+function agregarComentario(comentarioUsr, calificacionUsr){
+  set(ref(db, "Comentarios/" + idUser.uid.value), {
+    calificacion: calificacionUsr,
+    comentario: comentarioUsr,
+    fecha: serverTimestamp(),
+    usuario: idUser.nombre.value
+  });
+  console.log("agregado");
+}
+
+function editarComentario(comentarioUsr, calificacionUsr){
+  const updates = {};
+  updates["Comentarios/" + idUser.uid.value + "/comentario"] = comentarioUsr;
+  updates["Comentarios/" + idUser.uid.value + "/calificacion"] = calificacionUsr;
+
+  update(ref(db), updates);
+  console.log("editado");
+}
+
+function borrarComentario(){
+  remove(ref(db, "Comentarios/" + idUser.uid.value));
+  console.log("eliminado");
+}
