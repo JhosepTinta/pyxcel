@@ -1,6 +1,6 @@
 import { initializeApp, onLog } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
 import { getAuth, signOut, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https:www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"
-import { getDatabase, ref, get, set, child, update, remove, onChildAdded, onChildChanged, onChildRemoved } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
+import { getDatabase, ref, get, set, child, update, remove, onChildAdded, onChildChanged, onChildRemoved ,serverTimestamp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
@@ -27,23 +27,23 @@ var botonesEditarEliminarComentar = document.querySelector(".botones-editar-elim
 var botonDarOpinion = document.querySelector(".boton-agregar-comentario");
 var comentariosCargados = 0;
 var arrayListComentarios = [];
-
-
+var nombreUsr = "";
+var editando = 0;
 
 async function inicializarSeccionComentarios(){
+  
   await obtenerComentariosFireBase();
-  cargarComentarios(1);
+  cargarComentarios(3);
+
   ponerFuncionesBotonesComentar();
   calcularEstadisticas();
   ponerFuncionalidadMarcarEstrellas();
+  cargarSeccionCalificaCurso();
 
   var aux = document.querySelector(".main-comentarios");
   aux.classList.remove("oculto");
-  
-
-
-
 }
+
 function calcularEstadisticas(){
   var texto = document.querySelector(".texto-cantidad-califiaciones");
   var suma = 0;
@@ -88,9 +88,19 @@ function calcularEstadisticas(){
      ponerPuntajeEstadistica(resultado.toFixed(1));
      texto.textContent = cantComent+" Califiaciones"
     }
+    if (cantComent== 0) {
+      resultado = 0;
+      ponerEstadisticasBarras(["0%" ,"0%","0%","0%","0%"]);
+      ponerPuntajeEstadistica(resultado);
+      texto.textContent = cantComent+" Califiaciones"
+     }
 }
 async function obtenerComentariosFireBase(){
   var  aux = await getDireccion("Comentarios");
+   while(arrayListComentarios.length > 0){
+     arrayListComentarios.pop();
+
+   }
   aux.forEach(element => {
       var user ={
           uderId : element.ref._path.pieces_[1],
@@ -104,7 +114,6 @@ async function obtenerComentariosFireBase(){
   arrayListComentarios.sort((a,b)=>{
       return b.fecha - a.fecha;
   });
-  console.log(arrayListComentarios);
 }
 
 function cargarComentarios(cantidad){
@@ -116,11 +125,17 @@ function cargarComentarios(cantidad){
         usuario: element.usuario,
         calificacion:element.calificacion,
         comentario: element.comentario,
-        fecha: f.getDay()+"/"+f.getMonth()+"/"+f.getFullYear() + "    "+f.getHours()+":"+f.getMinutes()+":"+f.getSeconds() 
+        fecha: f.getDate()+"/"+(f.getUTCMonth()+1)+"/"+f.getFullYear()  +"    "+ f.getHours()+":"+f.getMinutes()
+
       }
       cargarUnComentarioHTML(datos);
     }
     comentariosCargados= comentariosCargados + cantidad;
+    if(comentariosCargados < arrayListComentarios.length){
+       document.querySelector(".boton-cargar-mas-comentarios").classList.remove("ocultar")
+    }else{
+      document.querySelector(".boton-cargar-mas-comentarios").classList.add("ocultar")
+    }
 
 }
 
@@ -182,43 +197,28 @@ function ponerFuncionesBotonesComentar(){
   var btnCargarMasComentarios = document.querySelector(".boton-cargar-mas-comentarios");
 
   btnEditar.addEventListener('click',e=>{
-    respaldoComentario = cajaTextoComentar.value; 
-    respaldoPuntaje = calcularPuntajeActual();
-    //huacer espaldo de la fehca
+   editando = 1;
    estrellasComentar.classList.remove("bloquear");
-   cajaTextoComentar.classList.remove("bloquear");
+   cajaTextoComentar.readOnly = false;
    cajaTextoComentar.classList.remove("ocultar");
    botonesEnviarCancelarComentar.classList.remove("ocultar");
    botonesEditarEliminarComentar.classList.add("ocultar");
+   
   });
 
   btnCancelar.addEventListener('click',e=>{
-    cajaTextoComentar.value = respaldoComentario;
-    // restablse la fecha
-    desmarcarDesmarcarEstrellas(respaldoPuntaje);
-    estrellasComentar.classList.add("bloquear");
-    cajaTextoComentar.classList.add("bloquear");
-    botonesEnviarCancelarComentar.classList.add("ocultar");
-    botonesEditarEliminarComentar.classList.remove("ocultar");
-    if(respaldoComentario == "" && respaldoPuntaje == ""){
-    cajaTextoComentar.value = "";
-    desmarcarDesmarcarEstrellas(0);
-    estrellasComentar.classList.add("ocultar");
-    cajaTextoComentar.classList.add("ocultar");
-    botonesEnviarCancelarComentar.classList.add("ocultar");
-    botonesEditarEliminarComentar.classList.add("ocultar");
-    botonDarOpinion.classList.remove("ocultar")
-    }
+    editando=0;
+    cargarSeccionCalificaCurso();
    });
 
-  btnEliminar.addEventListener('click',e=>{
+  btnEliminar.addEventListener('click',async (e)=>{
+    editando =0 ;
     cajaTextoComentar.value = "";
     // restablse la fecha
     desmarcarDesmarcarEstrellas(0);
-    // metodo para borrar el comentario de la base de datos
-    respaldoComentario = "";
-    respaldoPuntaje ="";
-
+    borrarComentario();
+    await obtenerComentariosFireBase();
+    cargarComentarios(3);
     estrellasComentar.classList.add("ocultar");
     cajaTextoComentar.classList.add("ocultar");
     botonesEnviarCancelarComentar.classList.add("ocultar");
@@ -234,8 +234,16 @@ function ponerFuncionesBotonesComentar(){
       cajaTextoComentar.classList.add("ocultar");
       
     }
+
+    if (editando == 1) {
+      editarComentario(cajaTextoComentar.value.trim(), calcularPuntajeActual());
+    }else{
+      agregarComentario(cajaTextoComentar.value.trim(), calcularPuntajeActual());
+    }
+
+    
     estrellasComentar.classList.add("bloquear");
-    cajaTextoComentar.classList.add("bloquear");
+    cajaTextoComentar.readOnly = true;
     botonesEnviarCancelarComentar.classList.add("ocultar");
     botonesEditarEliminarComentar.classList.remove("ocultar");
     botonDarOpinion.classList.add("ocultar")
@@ -244,10 +252,11 @@ function ponerFuncionesBotonesComentar(){
   });
 
   btnAgregarComentario.addEventListener('click',e=>{
+    editando = 1;
     estrellasComentar.classList.remove("bloquear");
     estrellasComentar.classList.remove("ocultar");
     cajaTextoComentar.classList.remove("ocultar");
-    cajaTextoComentar.classList.remove("bloquear");
+    cajaTextoComentar.readOnly = false;
     botonesEnviarCancelarComentar.classList.remove("ocultar");
     botonesEditarEliminarComentar.classList.add("ocultar");
     botonDarOpinion.classList.add("ocultar")
@@ -256,7 +265,7 @@ function ponerFuncionesBotonesComentar(){
   });
 
   btnCargarMasComentarios.addEventListener("click",e=>{
-    cargarComentarios(1);
+    cargarComentarios(3);
     if (comentariosCargados >=  arrayListComentarios.length) {
       e.target.classList.add("ocultar");
       
@@ -274,20 +283,36 @@ function calcularPuntajeActual(){
   return res;
 }
 
-function cagarSeccionCalificaCurso(datos){
-  var aux = document.querySelector(".area-para-comentar");
-  var aux2 = document.querySelector(".boton-agregar-comentario");
-  if( datos != null){
-    aux.classList.remove("ocultar");
-    aux.querySelector(".estrellas-comentar1").classList.add("bloquear");
-    aux.querySelector(".text-area-comentar").classList.add("bloquear");
-    aux.querySelector(".botones-enviar-cancelar").classList.add("ocultar");
-    aux2.classList.add("ocultar");
-    desmarcarDesmarcarEstrellas(datos.calificacion);
-    aux.querySelector(".text-area-comentar").textContent=datos.comentario;
-  }else{ //significa que no hay comentarios de este usuario
-     aux.classList.add("ocultar");
-  }
+function cargarSeccionCalificaCurso(){
+  var encontrado = 0;
+   for (let index = 0; index < arrayListComentarios.length && encontrado == 0; index++) {
+     const element = arrayListComentarios[index];
+     if (element.uderId == idUser.uid) {
+     botonDarOpinion.classList.add("ocultar");
+     estrellasComentar.classList.add("bloquear");
+     estrellasComentar.classList.remove("ocultar");
+     botonesEditarEliminarComentar.classList.remove("ocultar");
+     botonesEnviarCancelarComentar.classList.add("ocultar");
+     cajaTextoComentar.readOnly = true ;
+     desmarcarDesmarcarEstrellas(element.calificacion);
+     cajaTextoComentar.value = element.comentario;
+     if (cajaTextoComentar.value.length > 0) {
+       cajaTextoComentar.classList.remove("ocultar");
+     }else{
+      cajaTextoComentar.classList.add("ocultar");
+     }
+     encontrado++;
+    }
+   }
+
+   if(encontrado == 0){
+    botonDarOpinion.classList.remove("ocultar");
+    estrellasComentar.classList.add("ocultar");;
+    botonesEditarEliminarComentar.classList.add("ocultar");
+    botonesEnviarCancelarComentar.classList.add("ocultar");
+    cajaTextoComentar.classList.add("ocultar")
+   }
+
 }
 
 function ponerFuncionalidadMarcarEstrellas(){
@@ -357,7 +382,7 @@ function ponerPuntajeEstadistica(puntaje){
   
 }
 
-function ponerClasePuntaje(elemento,clase){
+function ponerClasePuntaje(elemento,clase){ //agrahamso y quitamos elementos al class de un elemento html
   elemento.classList.remove("puntaje1");
   elemento.classList.remove("puntaje0");
   elemento.classList.remove("puntaje5");
@@ -366,18 +391,54 @@ function ponerClasePuntaje(elemento,clase){
   elemento.classList.add(clase);
 }
 
+async function agregarComentario(comentarioUsr, calificacionUsr){
+  await set(ref(getDatabase(), "Comentarios/" + idUser.uid), {
+    calificacion: calificacionUsr,
+    comentario: comentarioUsr,
+    fecha: serverTimestamp(),
+    usuario: nombreUsr.trim()
+  });
+  await obtenerComentariosFireBase();
+  eliminarHTMLComentarios();
+  cargarComentarios(3);
+  calcularEstadisticas();
+}
+
+async function borrarComentario(){
+ await remove(ref(getDatabase(), "Comentarios/" + idUser.uid));
+  await obtenerComentariosFireBase();
+  eliminarHTMLComentarios();
+  cargarComentarios(3);
+  calcularEstadisticas();
+}
+
+async function editarComentario(comentarioUsr, calificacionUsr){
+  console.log("eeeeeeeeeeeeeeee")
+  const updates = {};
+  updates["Comentarios/" + idUser.uid + "/comentario"] = comentarioUsr;
+  updates["Comentarios/" + idUser.uid + "/calificacion"] = calificacionUsr;
+  updates["Comentarios/" + idUser.uid + "/fecha"] = serverTimestamp();
+  updates["Comentarios/" + idUser.uid + "/usuario"] = nombreUsr.trim()
+   
+   await update(ref(getDatabase()), updates);
+   await obtenerComentariosFireBase();
+   eliminarHTMLComentarios();
+   cargarComentarios(3);
+   calcularEstadisticas();
+}
 
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const dbref = ref(getDatabase());
     get(child(dbref, "Usuarios/" + user.uid)).then((snapshot) => {
-      console.log(user);
+      //console.log(user);
       idUser=user; 
       if (snapshot.exists()) {
         let text = document.getElementById("prueba");
         text.innerHTML = snapshot.val().nombre+'<i class="fas fa-chevron-down"></i>';
         recuperarNivelesUsuario(snapshot.val().nivelActual);
+          nombreUsr= snapshot.val().nombre
         setTimeout( ()=>{
           inicializarSeccionComentarios();
         }, 1000)
@@ -429,28 +490,4 @@ function recuperarNivelesUsuario(nivelActual) {
     a.innerHTML = contenido;
 
   });
-}
-
-function agregarComentario(comentarioUsr, calificacionUsr){
-  set(ref(db, "Comentarios/" + idUser.uid.value), {
-    calificacion: calificacionUsr,
-    comentario: comentarioUsr,
-    fecha: serverTimestamp(),
-    usuario: idUser.nombre.value
-  });
-  console.log("agregado");
-}
-
-function editarComentario(comentarioUsr, calificacionUsr){
-  const updates = {};
-  updates["Comentarios/" + idUser.uid.value + "/comentario"] = comentarioUsr;
-  updates["Comentarios/" + idUser.uid.value + "/calificacion"] = calificacionUsr;
-
-  update(ref(db), updates);
-  console.log("editado");
-}
-
-function borrarComentario(){
-  remove(ref(db, "Comentarios/" + idUser.uid.value));
-  console.log("eliminado");
 }

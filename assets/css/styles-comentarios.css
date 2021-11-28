@@ -79,6 +79,7 @@ h1 {
 .contenido-comentario{
     font-size: 14px;
     text-align: justify;
+    margin-bottom: 25px;
    
 }
 
@@ -353,7 +354,6 @@ h1 {
     color: #68CF79;
     transition: 0.5s;
   }
-
   .boton-cargar-mas-comentarios{
       align-content: flex-start;
       font-weight: bold ;
