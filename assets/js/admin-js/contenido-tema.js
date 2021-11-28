@@ -1,4 +1,4 @@
-import { recuperarNivel } from "../recover-data.js";
+import { recuperarNivel,recuperarTemas } from "../recover-data.js";
 
 /*await recuperarNivel(1).then((nivel)=>{
 export {recuperarNivel}
@@ -10,6 +10,12 @@ await recuperarNivel(1).then((nivel)=>{
         console.log("No se encontro el elemento");
     }
 });*/
+/*console.log("holaaaaa")
+await recuperarTemas(1).then((datos)=>{
+    if(datos.exists()){
+        console.log(datos.val());
+    }
+})*/
 var activatedForm = false;
 var numContent = 2;
 colocarEventos();

@@ -1,7 +1,7 @@
 import {db,ref,get,child,onChildAdded} from "../js/connection-firebase.js";
 import {PonerContenido,agregarIntroduccionContenido,ponerTitulo,ponerTituloNivel} from "../js/scrip.js";
 export {comprobarNivel,recuperarDatos,recuperarIntroduccion,contarTemas,recuperarTituloNivel}
-export {recuperarNivel}
+export {recuperarNivel,recuperarTemas}
 
 
 function getDireccion(direccion){
@@ -94,5 +94,10 @@ function recuperarTituloNivel(ruta,numeroNivel){
 function recuperarNivel(nroNivel){
     const dbref = ref(db)
     return get(child(dbref,'Niveles/nivel'+nroNivel))
+}
+
+function recuperarTemas(nroNivel){
+    const dbref = ref(db)
+    return get(child(dbref,'Temas/nivel'+nroNivel))
 }
 
