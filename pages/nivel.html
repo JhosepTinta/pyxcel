@@ -115,14 +115,15 @@
             --><label class="" for="radio1">★</label>
 
           </div>
-           <textarea class="text-area-comentar ocultar" spellcheck="false" placeholder="Cuenta a los demás qué opinas de este curso. ¿Lo recomendarías? ¿Por qué?"> </textarea>
-           
+           <textarea class="text-area-comentar ocultar" spellcheck="false" maxlength="500" placeholder="Cuenta a los demás qué opinas de este curso. ¿Lo recomendarías? ¿Por qué?"> </textarea>
+          
            <div class="botones-comentar ">
              <div class="botones-enviar-cancelar ocultar">
-              <button class="boton boton-enviar" >Enviar</button>
+              <button class="boton boton-enviar inabilitado"  >Enviar</button>
               <button class="boton boton-cancelar">Cancelar</button>
              </div>
              <div class="botones-editar-eliminar ocultar">
+            
               <button class="boton2 boton-editar">
                 <svg class="svg-boton-editar" widht="14" height="14" viewBox="0 0 384.17 384.54">
                   <path class="imagen-boton-editar" d="M767.65,732.67c0-26.41-.07-52.07.15-77.73,0-1.92,1.79-4.16,3.31-5.68q93.42-93.64,187-187.15,20.86-20.87,41.72-41.73c1.17-1.16,2.39-2.27,3.16-3l79.83,79.87c-.69.73-1.88,2.07-3.14,3.33Q965.46,614.84,851.32,729.13a11.12,11.12,0,0,1-8.7,3.63c-23.17-.17-46.33-.09-69.5-.09Z" transform="translate(-767.64 -348.22)"/><path class="imagen-boton-editar" d="M1027,393.26c13.19-13.23,26.35-26.91,40.08-40,7.62-7.27,20.38-6.45,27.92,1q25.55,25.33,50.86,50.89a20.3,20.3,0,0,1,1.1,27.49c-4.61,5.45-9.86,10.35-14.9,15.44-8.42,8.5-16.9,16.95-25.09,25.16Z" transform="translate(-767.64 -348.22)"/>
@@ -136,7 +137,7 @@
              </div>
           
         </div>
-        
+        <p class="contador-letras ocultar">0/500</p>
          </div>
 
 
@@ -223,6 +224,9 @@
               <svg class="svg-estrella" widht="14" height="14" viewBox="0 0 430.96 409.87">
                 <polygon class="estrella" points="215.48 0 282.07 134.92 430.96 156.56 323.22 261.57 348.65 409.87 215.48 339.85 82.31 409.87 107.74 261.57 0 156.56 148.89 134.92 215.48 0"/>
               </svg>
+              <div class="foto-perfil">
+                <p></p>
+              </div>
             </div>
 
             <div class="fecha-comentario">

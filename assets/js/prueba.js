@@ -16,15 +16,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-var respaldoPuntaje = "";
-var respaldoComentario = "";
-var respaldoFecha = "";
 var idUser = null;
 var estrellasComentar = document.querySelector(".estrellas-comentar1");
 var cajaTextoComentar =document.querySelector(".text-area-comentar");
 var botonesEnviarCancelarComentar =document.querySelector(".botones-enviar-cancelar");
 var botonesEditarEliminarComentar = document.querySelector(".botones-editar-eliminar");
 var botonDarOpinion = document.querySelector(".boton-agregar-comentario");
+var contadorLetras = document.querySelector(".contador-letras");
 var comentariosCargados = 0;
 var arrayListComentarios = [];
 var nombreUsr = "";
@@ -183,6 +181,10 @@ function  cargarUnComentarioHTML(datos){ // los datos debe tner el nombre del us
        
      }
 
+     //Poniedo letra a la foto de perfil
+     templateComentario.querySelector(".foto-perfil p").textContent = datos.usuario.charAt(0);
+
+
   fragment.appendChild (templateComentario.cloneNode(true)); 
   seccionComentarios.appendChild(fragment);
 
@@ -203,12 +205,20 @@ function ponerFuncionesBotonesComentar(){
    cajaTextoComentar.classList.remove("ocultar");
    botonesEnviarCancelarComentar.classList.remove("ocultar");
    botonesEditarEliminarComentar.classList.add("ocultar");
+   contadorLetras.textContent = cajaTextoComentar.value.length +"/500";
+    contadorLetras.classList.remove("ocultar")
+    document.querySelector(".boton-enviar").classList.remove("inabilitado");
    
   });
 
   btnCancelar.addEventListener('click',e=>{
+    cajaTextoComentar.value = "";
+    desmarcarDesmarcarEstrellas(0);
     editando=0;
     cargarSeccionCalificaCurso();
+    contadorLetras.textContent = cajaTextoComentar.value.length +"/500";
+    contadorLetras.classList.add("ocultar")
+
    });
 
   btnEliminar.addEventListener('click',async (e)=>{
@@ -224,6 +234,8 @@ function ponerFuncionesBotonesComentar(){
     botonesEnviarCancelarComentar.classList.add("ocultar");
     botonesEditarEliminarComentar.classList.add("ocultar");
     botonDarOpinion.classList.remove("ocultar")
+    contadorLetras.textContent = cajaTextoComentar.value.length +"/500";
+    contadorLetras.classList.add("ocultar");
   });
 
   btnEnviar.addEventListener('click',e=>{
@@ -241,14 +253,13 @@ function ponerFuncionesBotonesComentar(){
       agregarComentario(cajaTextoComentar.value.trim(), calcularPuntajeActual());
     }
 
-    
     estrellasComentar.classList.add("bloquear");
     cajaTextoComentar.readOnly = true;
     botonesEnviarCancelarComentar.classList.add("ocultar");
     botonesEditarEliminarComentar.classList.remove("ocultar");
-    botonDarOpinion.classList.add("ocultar")
-    // metood para guardar el comentario en la base dedatos
-    //volver a cargar los cometnarios
+    botonDarOpinion.classList.add("ocultar");
+    contadorLetras.textContent = cajaTextoComentar.value.length +"/500";
+    contadorLetras.classList.add("ocultar");
   });
 
   btnAgregarComentario.addEventListener('click',e=>{
@@ -260,6 +271,9 @@ function ponerFuncionesBotonesComentar(){
     botonesEnviarCancelarComentar.classList.remove("ocultar");
     botonesEditarEliminarComentar.classList.add("ocultar");
     botonDarOpinion.classList.add("ocultar")
+    contadorLetras.textContent = cajaTextoComentar.value.length +"/500";
+    contadorLetras.classList.remove("ocultar")
+    document.querySelector(".boton-enviar").classList.add("inabilitado");
     // metood para guardar el comentario en la base dedatos
     //volver a cargar los cometnarios
   });
@@ -269,6 +283,14 @@ function ponerFuncionesBotonesComentar(){
     if (comentariosCargados >=  arrayListComentarios.length) {
       e.target.classList.add("ocultar");
       
+    }
+  });
+  cajaTextoComentar.addEventListener("keyup",e=>{
+    contadorLetras.textContent = cajaTextoComentar.value.length +"/500";
+  });
+  estrellasComentar.addEventListener("click",()=>{
+    if (calcularPuntajeActual()>=1) {
+      document.querySelector(".boton-enviar").classList.remove("inabilitado");
     }
   });
 
@@ -310,7 +332,8 @@ function cargarSeccionCalificaCurso(){
     estrellasComentar.classList.add("ocultar");;
     botonesEditarEliminarComentar.classList.add("ocultar");
     botonesEnviarCancelarComentar.classList.add("ocultar");
-    cajaTextoComentar.classList.add("ocultar")
+    cajaTextoComentar.classList.add("ocultar");
+    
    }
 
 }
@@ -413,7 +436,6 @@ async function borrarComentario(){
 }
 
 async function editarComentario(comentarioUsr, calificacionUsr){
-  console.log("eeeeeeeeeeeeeeee")
   const updates = {};
   updates["Comentarios/" + idUser.uid + "/comentario"] = comentarioUsr;
   updates["Comentarios/" + idUser.uid + "/calificacion"] = calificacionUsr;
@@ -454,7 +476,10 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+
 const cont = document.getElementById("logout")
+
+
 
 cont.addEventListener('click', (e) => {
   window.location.href = "/index.html";
