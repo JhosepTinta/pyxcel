@@ -98,7 +98,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-          <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Si</button>
+          <button id="confirmarLimpiarCampos" type="button" class="btn btn-dark" data-dismiss="modal">Si</button>
         </div>
       </div>
     </div>
@@ -328,6 +328,15 @@
         actualizarPreguntaActualBD();
       });
 
+      let botonLimpiarCampos = document.getElementById("confirmarLimpiarCampos");
+      botonLimpiarCampos.addEventListener("click", function () {
+        desc.value = "";
+        o1.value = "";
+        o2.value = "";
+        o3.value = "";
+        o4.value = "";
+      });
+
       let p1 = document.getElementById("pregunta1");
       let p2 = document.getElementById("pregunta2");
       let p3 = document.getElementById("pregunta3");
@@ -508,7 +517,7 @@
           setTimeout(function () {
             $("#alertaError").hide();
           }, 3000);
-          
+
         } else {
           let mensaje = document.getElementById("alertaExitoMensaje");
           mensaje.textContent = mensajeUser;
@@ -520,18 +529,40 @@
         }
       }
 
-      function obtenerRespuestaCorrecta(){
+      function obtenerRespuestaCorrecta() {
         let res = o1.value;
-        if(r1.checked){
+        if (r1.checked) {
           res = o1.value;
-        }else if(r2.checked){
+        } else if (r2.checked) {
           res = o2.value;
-        }else if(r3.checked){
+        } else if (r3.checked) {
           res = o3.value;
-        }else if(r4.checked){
+        } else if (r4.checked) {
           res = o4.value;
         }
         return res;
+      }
+
+      function cumpleRangoPregunta(){
+        let contenido = desc.value;
+        return contenido.length>=10 && contenido.length<=500;
+      }
+
+      function cumpleRangoOpciones(){
+        let contenido1 =  o1.value.length>=3 && o1.value.length<=300;
+        let contenido2 =  o2.value.length>=3 && o2.value.length<=300;
+        let contenido3 =  o3.value.length>=3 && o3.value.length<=300;
+        let contenido4 =  o4.value.length>=3 && o4.value.length<=300;
+        return contenido1&&contenido2&&contenido3&&contenido4;
+      }
+
+      function repetidasOpciones(){
+        let arrayOp = new Array();
+        arrayOp.push(o1.value);
+        arrayOp.push(o2.value);
+        arrayOp.push(o3.value);
+        arrayOp.push(o4.value);
+        return new Set(arrayOp).size!==arrayOp.length
       }
 
       //Parte de la base de datos
@@ -549,7 +580,7 @@
             if (snapshot.exists()) {
               pregunta = snapshot.val();
               preg.textContent = id_pregunta;
-              desc.textContent = pregunta.pregunta;
+              desc.value = pregunta.pregunta;
               o1.value = pregunta.o1;
               o2.value = pregunta.o2;
               o3.value = pregunta.o3;
@@ -573,32 +604,43 @@
       }
 
       function actualizarPreguntaActualBD() {
+        if (cumpleRangoPregunta()) {
+          if (cumpleRangoOpciones()) {
+            if (!repetidasOpciones()) {
+              pregunta.pregunta = desc.value;
+              pregunta.o1 = o1.value;
+              pregunta.o2 = o2.value;
+              pregunta.o3 = o3.value;
+              pregunta.o4 = o4.value;
+              pregunta.respuesta = obtenerRespuestaCorrecta();
 
-        pregunta.pregunta = desc.value;
-        pregunta.o1 = o1.value;
-        pregunta.o2 = o2.value;
-        pregunta.o3 = o3.value;
-        pregunta.o4 = o4.value;
-        pregunta.respuesta = obtenerRespuestaCorrecta();
-        
 
-        if (pregunta) {
-          update(
-          child(
-            ref(getDatabase()),
-            "Evaluaciones/nivel" +
-            nivelActual + "/" + idPreguntaActual
-          
-            ), pregunta
-        )
-              .then(() => {
-                mostrarAlertaUser(false, "Se guardaron los cambios correctamente");
-              })
-              .catch((error) => {
-                mostrarAlertaUser(true, "Ocurrió un error al guardar los cambios, vuelva a intentarlo más tarde");
-              });
-        } else {
-          mostrarAlertaUser(true, "No se recuperaron los datos");
+              if (pregunta) {
+                update(
+                  child(
+                    ref(getDatabase()),
+                    "Evaluaciones/nivel" +
+                    nivelActual + "/" + idPreguntaActual
+
+                  ), pregunta
+                )
+                  .then(() => {
+                    mostrarAlertaUser(false, "Datos registrados correctamente");
+                  })
+                  .catch((error) => {
+                    mostrarAlertaUser(true, "No se pudo registrar los datos, inténtelo de nuevo más tarde");
+                  });
+              } else {
+                mostrarAlertaUser(true, "No se recuperaron los datos");
+              }
+            }else{
+              mostrarAlertaUser(true, "No deben existir opciones repetidas.");
+            }
+          }else{
+            mostrarAlertaUser(true, "Las opciones deben contener entre 3 y 300 caracteres.");
+          }
+        }else{
+          mostrarAlertaUser(true, "Las pregunta debe contener entre 10 y 500 caracteres.");
         }
       }
     }
