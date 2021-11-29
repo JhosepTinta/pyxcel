@@ -191,25 +191,30 @@
             <div class="form-group ">
               <textarea class="form-control" id="descripcion_pregunta" rows="3" placeholder="Descripcion de la pregunta"
                 required></textarea>
+                <p id="contadorPregunta">0/0</p>
             </div>
             <div class="form-check">
               <input type="radio" class="form-check-input bg-success" id="R_opcion1" name="Radio" value="option1">
               <input type="text" class="form-control border border-success" id="T_opcion1" placeholder="Opcion 1"
                 required>
+                <p id="contadorO1">0/0</p>
             </div><br><br>
             <div class="form-check">
               <input type="radio" class="form-check-input bg-danger" id="R_opcion2" name="Radio" value="option2">
               <input type="text" class="form-control border border-danger" id="T_opcion2" placeholder="Opcion 2"
                 required>
+                <p id="contadorO2">0/0</p>
             </div><br><br>
             <div class="form-check">
               <input type="radio" class="form-check-input bg-danger" id="R_opcion3" name="Radio" value="option3">
               <input type="text" class="form-control border border-danger" id="T_opcion3" placeholder="Opcion 3"
                 required>
+                <p id="contadorO3">0/0</p>
             </div><br><br>
             <div class="form-check">
               <input type="radio" class="form-check-input bg-danger" id="R_opcion4" name="Radio" value="option4">
               <input type="text" class="form-control border-danger" id="T_opcion4" placeholder="Opcion 4" required>
+              <p id="contadorO4">0/0</p>
             </div><br> <br>
 
             <div class="row  text-center">
@@ -308,20 +313,40 @@
 
     function inicializarComponentes() {
       //agregamos eventos al aside lateral de preguntas
-
+      let contadorPregunta = document.getElementById("contadorPregunta");
       let preg = document.getElementById("titulo_pregunta");
       let desc = document.getElementById("descripcion_pregunta");
+      desc.addEventListener("keyup",function(){
+        contadorPregunta.textContent = desc.value.length +"/500";
+      });
+
       let r1 = document.getElementById("R_opcion1");
       let o1 = document.getElementById("T_opcion1");
+      let contadorO1 = document.getElementById("contadorO1");
+      o1.addEventListener("keyup",function(){
+        contadorO1.textContent = o1.value.length +"/300";
+      });
 
       let r2 = document.getElementById("R_opcion2");
       let o2 = document.getElementById("T_opcion2");
+      let contadorO2 = document.getElementById("contadorO2");
+      o2.addEventListener("keyup",function(){
+        contadorO2.textContent = o2.value.length +"/300";
+      });
 
       let r3 = document.getElementById("R_opcion3");
       let o3 = document.getElementById("T_opcion3");
+      let contadorO3 = document.getElementById("contadorO3");
+      o3.addEventListener("keyup",function(){
+        contadorO3.textContent = o3.value.length +"/300";
+      });
 
       let r4 = document.getElementById("R_opcion4");
       let o4 = document.getElementById("T_opcion4");
+      let contadorO4 = document.getElementById("contadorO4");
+      o4.addEventListener("keyup",function(){
+        contadorO4.textContent = o4.value.length +"/300";
+      });
 
       let botonGuardarCambios = document.getElementById("button_guardar");
       botonGuardarCambios.addEventListener("click", function () {
@@ -594,6 +619,13 @@
               } else if (pregunta.o4 === pregunta.respuesta) {
                 r4.click();
               }
+
+              //contadorPregunta.keyup()
+              contadorPregunta.textContent = desc.value.length+"/500";
+              contadorO1.textContent = o1.value.length +"/300";
+              contadorO2.textContent = o2.value.length +"/300";
+              contadorO3.textContent = o3.value.length +"/300";
+              contadorO4.textContent = o4.value.length +"/300";
             } else {
               console.log("No data available");
             }
