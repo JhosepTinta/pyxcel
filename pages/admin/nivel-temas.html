@@ -35,18 +35,23 @@
 <body>
   
 <div class="header">
-    <div class="pieza" id="titulo"><p>Titulo del Nivel</p></div>
-    <div class="pieza" id="nombretitulo"><input class="input-titulo" type="text" placeholder="Escriba el titulo del nuevo nivel">    
-        <button class="btn-guardar"> <img src="../../assets/img/icons/disco-guardar.png" alt="" width="24px"></button>
+    <div id="primera-parte">
+        <div class="pieza" id="titulo"><p>Titulo del Nivel</p></div>
+        <div class="pieza" id="nombretitulo"><input class="input-titulo" type="text" placeholder="Escriba el titulo del nuevo nivel">    
+            <button class="btn-guardar"> <img src="../../assets/img/icons/disco-guardar.png" alt="" width="24px"></button>
+        </div>
     </div>
-
-  
- 
+    <div id="segunda-parte">
+        <form action="">
+            <input type="text" class="adicionales-datos" placeholder="Ingrese una descripcion del nivel"><br>
+            <input type="text" class="adicionales-datos" placeholder="Ingrese una imagen descriptiva">
+        </form>
+    </div>
 </div>
 <main>
     <section>
         
-        <form id="product-form" class="card-body">
+        <!-- <form id="product-form" class="card-body">
             <p>Ingresar tema</p>
             <div class="form-group">
                 <input type="text" id="tema" placeholder="Numero de tema" class="form-control">
@@ -56,7 +61,7 @@
             </div>
             <input type="submit" value="Save" class="btn btn-primary btn-block">
             
-        </form>
+        </form> -->
          <button id="boton-alerta-prueba">Alerta-Eliminar-tema</button>
     </section>
 
@@ -64,15 +69,7 @@
         
             <!-- Lista de temas -->
             <div id="lista-de-temas">
-               
-                <div class="div-tarjeta">
-                    <div class="tarjeta">
-                       
-                     <button class="btn-especial"> <img src="../../assets/img/icons/boton-agregar.png" alt="" width="100px"></button>
-                       
-                        </div>
-                    </div>
-                </div>
+          
             </div>
         
    
