@@ -1,6 +1,31 @@
-import { recuperarTemas, recuperarContenido, recuperarNivel } from '../recover-data.js';
-
+import { getDatabase, set } from '../connection-firebase.js';
+import { recuperarTemas, recuperarContenido} from '../recover-data.js';
+// import {db,ref,get,child,onChildAdded,getDatabase} from "../js/connection-firebase.js";
 recuperarContenido(1,2);
+// Ingresar datos de nuevo nivel a la base de datos
+ const db = getDatabase();
+ function insertarDatos(){
+     set(ref(db, "Niveles/"),{
+         activo:true,
+         descripcion:"prueba",
+         id:"nivel10",
+         imagen:"imagenprueba",
+         nivel:10,
+         titulo:"titulo prueba"
+     })
+     .then(()=> {
+         alert("datos registrados");
+     })
+     .catch((error)=>{
+        alert("error"+error);
+     })
+ }
+//  document.getElementById("boton-alerta-prueba").addEventListener('click',function(e){
+//        insertarDatos();
+    
+    
+//     })
+// -----------------------------------------------------
 class TarjetaTema{
     constructor(numerotema,titulotema){
         this.numerotema=numerotema;
@@ -68,7 +93,7 @@ function addTema(tarjetatema){
 }
 var contador = 1;
 var numeroTema = 1;
-await recuperarTemas(numeroTema).then((datos)=>{
+await recuperarTemas(1).then((datos)=>{
     if(datos.exists()){
         console.log(datos.val());
         const objeto = datos.val();
@@ -147,28 +172,28 @@ function handleFileSelect(evt) {
 
   document.getElementById('files').addEventListener('change', handleFileSelect, false);
 
-//   ---------------------------------------------------
+//   ------ALERTA---------------------------------------------
 
-document.getElementById('boton-alerta-prueba').addEventListener('click',function(e){
-    Swal.fire({
-        title: "¿Estas seguro que deseas eliminar este tema?",
-        showCancelButton:true,
-        showConfirmButton: true,
-        confirmButtonColor:"#5FCF80" ,
-        cancelButtonColor:"#DD6B55",
-        confirmButtonText: "     Si    ",
-         cancelButtonText: "    No    ",
-        allowOutsideClick:false,
-        customClass: 'ventana-emergente'
-    }).then((result) => {
-        if(result.isConfirmed){
-            Swal.fire('Conformacion de eliminacion')
-        }else if(result.dismiss){
-            Swal.fire('cancelado')
-        }
+// document.getElementById('boton-alerta-prueba').addEventListener('click',function(e){
+//     Swal.fire({
+//         title: "¿Estas seguro que deseas eliminar este tema?",
+//         showCancelButton:true,
+//         showConfirmButton: true,
+//         confirmButtonColor:"#5FCF80" ,
+//         cancelButtonColor:"#DD6B55",
+//         confirmButtonText: "     Si    ",
+//          cancelButtonText: "    No    ",
+//         allowOutsideClick:false,
+//         customClass: 'ventana-emergente'
+//     }).then((result) => {
+//         if(result.isConfirmed){
+//             Swal.fire('Conformacion de eliminacion')
+//         }else if(result.dismiss){
+//             Swal.fire('cancelado')
+//         }
 
-    }) 
+//     }) 
 
 
-})
+// })
 
