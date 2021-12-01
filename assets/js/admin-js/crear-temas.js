@@ -1,4 +1,5 @@
-import { recuperarTemas, recuperarContenido } from '../recover-data.js';
+import { recuperarTemas, recuperarContenido, recuperarNivel } from '../recover-data.js';
+
 recuperarContenido(1,2);
 class TarjetaTema{
     constructor(numerotema,titulotema){
@@ -66,7 +67,8 @@ function addTema(tarjetatema){
     listatemas.appendChild(element);
 }
 var contador = 1;
-await recuperarTemas(1).then((datos)=>{
+var numeroTema = 1;
+await recuperarTemas(numeroTema).then((datos)=>{
     if(datos.exists()){
         console.log(datos.val());
         const objeto = datos.val();
@@ -80,20 +82,11 @@ await recuperarTemas(1).then((datos)=>{
             contador++;
         }
        addUltimo();
-        // console.log(datos.val().tema1.datos.titulo);
-        
-        // const contenedor = new MostrarUI();
-            // const obj = snapshot.val().Contenidos; 
-            // for(const elemento in obj){
-            //     console.log(obj);
-            //     PonerContenido(obj[elemento].titulo,obj[elemento].descripcion,obj[elemento].imagen);
-            // }
-        
-       
-    // contenedor.addUltimo()
-    // e.preventDefault();
+      
     }
 })
+// ------------------------------------------------------
+
 // -------------------------------------------------------
 
 var enFoco= false;
@@ -113,22 +106,7 @@ document.getElementById("nombre-nivel").addEventListener("blur",function(){
     // x.style.display = "none";
     
 });
-// document.getElementById("descripcion").addEventListener("focus", function(){
-//     esDescrip=true;
-//     console.log("d" +esDescrip);
-// })
-// document.getElementById("descripcion").addEventListener("blur", function(){
-//     esDescrip=false;
-//     console.log("d"+esDescrip);
-// })
-// document.getElementById("files").addEventListener("focus",function(){
-//     esfile=true;
-//     console.log("f"+esfile);
-// })
-// document.getElementById("files").addEventListener("blur",function(){
-//     esfile=false;
-//     console.log("f"+esfile);
-// })
+
 function inciarFoco(){
         enFoco=false;
         console.log(enFoco);
@@ -193,30 +171,4 @@ document.getElementById('boton-alerta-prueba').addEventListener('click',function
 
 
 })
-// document.getElementById('nombretitulo').innerHTML=()
-// Evento que sucedera 
-// document.getElementById('product-form').addEventListener('submit',function(e){
-    
-//     const titulo = document.getElementById('tema').value;
-//     const numerotema= document.getElementById('name').value;
-//     const tarjetatema= new TarjetaTema(titulo,numerotema);
 
-//     const contenedor = new MostrarUI();
-
-//     contenedor.addTema(tarjetatema);
-//     // contenedor.addUltimo()
-//     e.preventDefault();
-// });
-// let botonEliminar = document.getElementById("btn-eliminar");
-// // console.log("presionaste eliminar");
-// botonEliminar.addEventListener("click",function(){
-    
-//     Swal.fire({
-//         title: "Realmente desea salir de la evaluacion?",
-//         showCancelButton: true,
-//         confirmButtonText: "si salir",
-//         cancelButtonText: "cancelar",
-//     })
-    
-
-// })
