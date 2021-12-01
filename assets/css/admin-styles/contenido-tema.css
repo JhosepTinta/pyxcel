@@ -37,16 +37,32 @@ main{
     margin-right: 20px;
 }
 
-.icon-save{
+/*.icon-save{
     width: 29px;
     height: 29px;
     background-color: #7DA6E2;
     border: 1px solid black;
     border-radius: 5px;
     cursor: pointer;
-}
+}*/
 
 .icon-save img{
+    background-color: #7DA6E2;
+    padding: 7px 7px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 22px;
+    height: 22px;
+    margin: 4px;
+}
+
+.img-save-content{
+    background-color: #7DA6E2;
+    padding: 7px 7px;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
     width: 22px;
     height: 22px;
     margin: 4px;
@@ -60,7 +76,7 @@ main{
     margin-top: 60px;
 }
 
-.content-element{
+/*.content-element{
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -99,7 +115,7 @@ main{
     border-radius: 5px;
     background-color: #ebe6e6;
     cursor: pointer;
-}
+}*/
 
 .add-content{
     width: 400px;
@@ -108,6 +124,7 @@ main{
     border: 1px solid black;
     text-align: center;
     margin-top: 50px;
+    margin-bottom: 50px;
     border-radius: 5px;
     cursor: pointer;
 }
@@ -152,6 +169,39 @@ main{
 .label-area{
     position: relative;
     bottom: 140px;
+}
+
+.content-element-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.content-element{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 20px;
+}
+
+.content{
+    background-color: #84CD87;
+    padding: 15px 125px;
+    border: 1px solid black;
+    border-right: 0px;
+    border-radius: 7px 0px 0px 7px;
+    font-size: 23px;
+    font-weight: 500;
+    color: white;
+    text-decoration: none;
+}
+
+.content-element img{
+    width: 40px;
+    padding: 9px 20px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 0px 7px 7px 0px;
 }
 
 .invisible{

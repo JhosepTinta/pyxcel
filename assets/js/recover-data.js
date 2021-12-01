@@ -1,8 +1,10 @@
-import {db,ref,get,child,onChildAdded,getDatabase} from "../js/connection-firebase.js";
+import {db,ref,get,child,onChildAdded,getDatabase,update} from "../js/connection-firebase.js";
 import {PonerContenido,agregarIntroduccionContenido,ponerTitulo,ponerTituloNivel} from "../js/scrip.js";
 export {comprobarNivel,recuperarDatos,recuperarIntroduccion,contarTemas,recuperarTituloNivel}
-export {recuperarNivel,recuperarTemas, recuperarContenido}
-
+export {recuperarNivel,recuperarTemas,recuperarContenido,recuperarContenidoEspecifico,recuperarDatosTema}
+export {eliminarContenidoEspecifico}
+export {insertarContenidoEspecifico}
+export {actualizarContenidoEspecifico}
 
 function getDireccion(direccion){
     var dbref = ref(db);
@@ -100,19 +102,35 @@ function recuperarTemas(nroNivel){
     const dbref = ref(db)
     return get(child(dbref,'Temas/nivel'+nroNivel))
 }
-function recuperarContenido(nivelActual, temaActual) {
-    const db = getDatabase();
-    const commentsRef = ref(db, `Temas/nivel${nivelActual}/tema${temaActual}/Contenidos`);
-    onChildAdded(commentsRef, (data) => {
-      if (data.exists()) {
-        const objeto = data.val();
-        console.log(objeto); 
-      } else {
-        alert("No se encontro el elemento");
-      }
-    });
-  
-  }
+
+function recuperarDatosTema(nroNivel,nroTema){
+    const dbref = ref(db)
+    return get(child(dbref,`Temas/nivel${nroNivel}/tema${nroTema}/datos`))
+}
+
+function recuperarContenido(nroNivel,nroTema){
+    const dbref = ref(db)
+    return get(child(dbref,`Temas/nivel${nroNivel}/tema${nroTema}/Contenidos`))
+}
+
+function eliminarContenidoEspecifico(nroNivel,nroTema,nroContenido){
+    return remove(ref(db,`Temas/nivel${nroNivel}/tema${nroTema}/Contenidos/Cont-${nroContenido}`))      
+}
+
+function insertarContenidoEspecifico(nroNivel,nroTema,nroContenido,Contenido) {
+    return set(ref(db,`Temas/nivel${nroNivel}/tema${nroTema}/Contenidos/Cont-${nroContenido}`), Contenido)
+}
+
+function actualizarContenidoEspecifico(nroNivel,nroTema,nroContenido,Contenido){
+    return update(ref(db, `Temas/nivel${nroNivel}/tema${nroTema}/Contenidos/Cont-${nroContenido}`), Contenido)        
+}
+
+function recuperarContenidoEspecifico(nroNivel,nroTema,nroContenido){
+    const dbref = ref(db)
+    return get(child(dbref,`Temas/nivel${nroNivel}/tema${nroTema}/Contenidos/Cont-${nroContenido}`))
+}
+
+
 
 
 
