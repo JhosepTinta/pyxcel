@@ -7,50 +7,45 @@ body {
     color: #444444;
     margin: 0;
   }
-.header{
-    background-color: var(--color-verde);
-    margin: 0;
-    text-align: center;
-    padding: 10px;
-   
-}
-.pieza{
-    
-    display: inline-block;
-    /* margin: 12px; */
-}
-#nombretitulo{
+.formulario-nivel{
+    display: flex;
+    flex-direction: column;
     background-color: #fff;
-    max-width: 700px;
-    border-radius: 5px;
+    justify-content: center;
+    text-align: center;
 }
-#titulo{
-    color: white;
-    padding-right: 10px;
-}
-.input-titulo{
+input{
+    width: 35%;
     border: 0;
-    padding-top: 15px;
-    padding-left: 10px;
-    width: 300px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
     outline: none;
+    
+}
+.desplegable-q{
+    width: 90%;
+    border: 1px solid;
+}
+.nombre-nivel{
+    background-color: var(--color-verde);
+    width: 100%;
+    padding: 18px;
+}
+.desplegable{
+    background-color: #fff;
+    width: 40%;
+    margin: 0 30%;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+
 }
 .btn-guardar{
     border: 0;
-    padding:10px;
-    float: right;
-    
-}
-.adicionales-datos{
-    padding: 10px;
-    outline:none;
-    border: 0;
-    margin: 5px;
-    max-width: 700px;
-    width: 300px;
-    margin-left: 90px;
+    background-color: #fff;
     border-radius: 5px;
 }
+
 /* Lista  */
 #lista-de-temas{
     display: flex;
@@ -66,7 +61,7 @@ body {
   width: 350px;
   margin: 55px;
   
-  
+  border: 1px solid ;
 
 }
 /* Boton especial grande */
@@ -99,7 +94,8 @@ body {
 }
 .numerotema{
     background-color: var(--color-verde);
-    border: 1px solid #000;
+    border-top: 1px solid #000;
+    border-bottom : 1px solid ;
    text-align: center;
    color: white;
    font-size: 20px;
@@ -108,7 +104,8 @@ body {
 .titulotema{
     
     margin: 20px;
-    
+    font-size: 20px;
+    text-align: center;
     
 }
 .botones{
@@ -124,9 +121,12 @@ body {
     background-color: var(--color-verde);
     border: 0;
 }
+#btn-eliminar{
+   background-color: #ffff;
+}
 /* ventana emergente */
 .ventana-emergente{
-  width: 80%;
+  width: 50%;
   font-size: 15px;
   text-align: center;
   height: 80%;   

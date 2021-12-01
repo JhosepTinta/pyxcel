@@ -33,20 +33,46 @@
 </head>
 
 <body>
-  
-<div class="header">
-    <div id="primera-parte">
-        <div class="pieza" id="titulo"><p>Titulo del Nivel</p></div>
-        <div class="pieza" id="nombretitulo"><input class="input-titulo" type="text" placeholder="Escriba el titulo del nuevo nivel">    
-            <button class="btn-guardar"> <img src="../../assets/img/icons/disco-guardar.png" alt="" width="24px"></button>
-        </div>
-    </div>
-    <div id="segunda-parte">
-        <form action="">
-            <input type="text" class="adicionales-datos" placeholder="Ingrese una descripcion del nivel"><br>
-            <input type="text" class="adicionales-datos" placeholder="Ingrese una imagen descriptiva">
-        </form>
-    </div>
+<div class="formulario-nivel" > 
+    <form action="" id="formulario-n">
+        <div class="nombre-nivel"><input 
+        type="text" 
+        placeholder="Nombre del nivel"
+        required 
+       id="nombre-nivel"
+        ><button
+        class="btn-guardar"> <img src="../../assets/img/icons/disco-guardar.png" alt="" width="25px"></button></div>
+        <div class="desplegable" id="desplegar">
+        <input 
+        type="text" 
+        name="descripcion" 
+        id="descripcion"
+        placeholder="Descripcion del nivel"
+        class="desplegable-q"
+        required
+        >
+        <!-- <input type="text"
+        placeholder="Imagen del nivel"
+        class="desplegable-q"
+        > -->
+        <!-- <input 
+        name="uploadedfile" 
+        type="file" 
+        class="desplegable-q"
+        placeholder="Imagen del nivel"
+        /> -->
+        <input 
+        type="file" 
+        id="files" 
+        class="desplegable-q"
+        accept="image/*,png"
+        required
+         />
+        <output id="list"></output>
+       </div>
+        
+
+    </form>
 </div>
 <main>
     <section>
