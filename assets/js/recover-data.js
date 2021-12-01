@@ -4,7 +4,7 @@ export {comprobarNivel,recuperarDatos,recuperarIntroduccion,contarTemas,recupera
 export {recuperarNivel,recuperarTemas,recuperarContenido,recuperarContenidoEspecifico,recuperarDatosTema}
 export {eliminarContenidoEspecifico}
 export {insertarContenidoEspecifico}
-export {actualizarContenidoEspecifico}
+export {actualizarContenidoEspecifico,actualizarDatosTema}
 
 function getDireccion(direccion){
     var dbref = ref(db);
@@ -123,6 +123,10 @@ function insertarContenidoEspecifico(nroNivel,nroTema,nroContenido,Contenido) {
 
 function actualizarContenidoEspecifico(nroNivel,nroTema,nroContenido,Contenido){
     return update(ref(db, `Temas/nivel${nroNivel}/tema${nroTema}/Contenidos/Cont-${nroContenido}`), Contenido)        
+}
+
+function actualizarDatosTema(nroNivel,nroTema,Datos){
+    return update(ref(db, `Temas/nivel${nroNivel}/tema${nroTema}/datos`), Datos)        
 }
 
 function recuperarContenidoEspecifico(nroNivel,nroTema,nroContenido){
