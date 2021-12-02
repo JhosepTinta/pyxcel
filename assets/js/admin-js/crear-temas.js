@@ -3,6 +3,7 @@ import { recuperarTemas, recuperarContenido, recuperarNivel} from '../recover-da
 //Variables importantes
 // numero = numero del nivel que mostrar la interfaz
 const numero=0;
+
 // Ingresar datos de nuevo nivel a la base de datos
  const db = getDatabase();
 // -----------------------------------------------------
@@ -17,7 +18,7 @@ function addUltimo(){
     const listatemas = document.getElementById("lista-de-temas");
     const element = document.createElement("div");
     element.innerHTML = `  <button class="btn-especial"> 
-    <img src="../../assets/img/icons/boton-agregar.png" alt="" width="100px"></button>`
+    <img src="../../assets/img/icons/boton-agregar.png" alt="" width="20%"></button>`
           
     listatemas.appendChild(element);
  
@@ -63,17 +64,21 @@ await recuperarTemas(numero).then((datos)=>{
       
       
     }
-    addUltimo();
+   addUltimo();    
 })
 // ------------------------------------------------------c
 
 await recuperarNivel(numero).then((datos) =>{
     if(datos.exists()){
-        console.log("Entro a nivel")
-        console.log(datos.val());
-        console.log(datos.val().titulo);
+        // console.log("Entro a nivel")
+        // console.log(datos.val());
+        // console.log(datos.val().titulo);
         document.getElementById("nombre-nivel").value= datos.val().titulo;
         document.getElementById("descripcion").value= datos.val().descripcion;
+        document.getElementById("numeroNivel").id=datos.val().nivel;
+        // console.log("numnivel"+datos.val().nivel);
+        // var imprimir= document.getElementById(datos.val().nivel).id;
+        // console.log(imprimir);
         // document.getElementById("files").value= datos.val().imagen;
         
     }else{

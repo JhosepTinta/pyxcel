@@ -34,11 +34,16 @@
 
 <body>
 <div class="formulario-nivel"  id="formulario-nivel"> 
-  <form action="" id="formulario-n">
+  <form action="" name="myform" id="formulario-n">
+    <label
+    id="numeroNivel"
+    class="numNivelActual"
+    ></label>
     <div class="nombre-nivel"><input 
     type="text" 
     placeholder="Titulo del nivel"
     value=""
+    maxlength="60"
     required 
    id="nombre-nivel"
     ><button
@@ -48,10 +53,11 @@
     <div class="desplegable" id="desplegar">
     <input 
     type="text" 
-    name="descripcion" 
+    name="descrip" 
     id="descripcion"
     placeholder="Descripcion del nivel"
     value=""
+    maxlength="100"
     class="desplegable-q"
     required
     >

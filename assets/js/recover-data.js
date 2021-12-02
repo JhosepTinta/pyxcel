@@ -4,13 +4,9 @@ export {comprobarNivel,recuperarDatos,recuperarIntroduccion,contarTemas,recupera
 export {recuperarNivel,recuperarTemas,recuperarContenido,recuperarContenidoEspecifico,recuperarDatosTema}
 export {eliminarContenidoEspecifico}
 export {insertarContenidoEspecifico}
-<<<<<<< HEAD
 export {actualizarContenidoEspecifico}
+// export {actualizarContenidoEspecifico,actualizarDatosTema}
 export {contarNiveles}
-=======
-export {actualizarContenidoEspecifico,actualizarDatosTema}
->>>>>>> 7ee171de808d60f1fb56d3ada87026ee9cd91623
-
 function getDireccion(direccion){
     var dbref = ref(db);
     let exito = 0;

@@ -133,3 +133,18 @@ input{
   height: 80%;   
   
 }
+@media only screen and (max-width: 600px){
+    .tarjeta{
+        width: 100%;
+    }
+    .btn-especial{
+        width: 100%;
+    }
+    input{
+        width: 80%;
+    }
+    .desplegable{
+        width: 80%;
+        margin: auto;
+    }
+}
