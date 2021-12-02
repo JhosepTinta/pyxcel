@@ -77,11 +77,11 @@ function calcularEstadisticas(){
    });
    if (cantComent > 0) {
      resultado = suma / cantComent;
-     cante1 = ((cante1*100)/cantComent).toFixed();
-     cante2 = ((cante2*100)/cantComent).toFixed();
-     cante3 = ((cante3*100)/cantComent).toFixed();
-     cante4 = ((cante4*100)/cantComent).toFixed();
-     cante5 = ((cante5*100)/cantComent).toFixed(); 
+     cante1 = ((cante1*100)/cantComent).toFixed(1);
+     cante2 = ((cante2*100)/cantComent).toFixed(1);
+     cante3 = ((cante3*100)/cantComent).toFixed(1);
+     cante4 = ((cante4*100)/cantComent).toFixed(1);
+     cante5 = ((cante5*100)/cantComent).toFixed(1); 
      ponerEstadisticasBarras([cante5+"%" ,cante4+"%",cante3+"%",cante2+"%",cante1+"%"]);
      ponerPuntajeEstadistica(resultado.toFixed(1));
      texto.textContent = cantComent+" Califiaciones"
@@ -95,9 +95,9 @@ function calcularEstadisticas(){
 }
 async function obtenerComentariosFireBase(){
   var  aux = await getDireccion("Comentarios");
+  var encon = 0 ;
    while(arrayListComentarios.length > 0){
      arrayListComentarios.pop();
-
    }
   aux.forEach(element => {
       var user ={
@@ -108,6 +108,16 @@ async function obtenerComentariosFireBase(){
           usuario: element.val().usuario
       }
       arrayListComentarios.push(user);
+
+      if (user.uderId == idUser.uid && encon == 0) {
+        var f = new Date(user.fecha)
+        document.querySelector(".texto-fecha").textContent =  f.getDate()+"/"+(f.getUTCMonth()+1)+"/"+f.getFullYear()  +"    "+ f.getHours()+":"+f.getMinutes();
+        encon ++;
+      }else{
+        if (encon == 0) {
+          document.querySelector(".texto-fecha").textContent ="";
+        }
+      }
   });
   arrayListComentarios.sort((a,b)=>{
       return b.fecha - a.fecha;
@@ -119,14 +129,18 @@ function cargarComentarios(cantidad){
     for (let index = comentariosCargados ; index < arrayListComentarios.length && index < (comentariosCargados + cantidad); index++) {
       var element = arrayListComentarios[index];
       var f = new Date(element.fecha);
-      var datos = {
-        usuario: element.usuario,
-        calificacion:element.calificacion,
-        comentario: element.comentario,
-        fecha: f.getDate()+"/"+(f.getUTCMonth()+1)+"/"+f.getFullYear()  +"    "+ f.getHours()+":"+f.getMinutes()
-
+      if (element.comentario.length > 0 ) {
+        var datos = {
+          usuario: element.usuario,
+          calificacion:element.calificacion,
+          comentario: element.comentario,
+          fecha: f.getDate()+"/"+(f.getUTCMonth()+1)+"/"+f.getFullYear()  +"    "+ f.getHours()+":"+f.getMinutes()
+  
+        }
+        cargarUnComentarioHTML(datos);
+      }else{
+        cantidad++;
       }
-      cargarUnComentarioHTML(datos);
     }
     comentariosCargados= comentariosCargados + cantidad;
     if(comentariosCargados < arrayListComentarios.length){
@@ -200,6 +214,7 @@ function ponerFuncionesBotonesComentar(){
 
   btnEditar.addEventListener('click',e=>{
    editando = 1;
+   document.querySelector(".texto-fecha").textContent = "";
    estrellasComentar.classList.remove("bloquear");
    cajaTextoComentar.readOnly = false;
    cajaTextoComentar.classList.remove("ocultar");
@@ -318,6 +333,9 @@ function cargarSeccionCalificaCurso(){
      cajaTextoComentar.readOnly = true ;
      desmarcarDesmarcarEstrellas(element.calificacion);
      cajaTextoComentar.value = element.comentario;
+     var f = new Date(element.fecha)
+     document.querySelector(".texto-fecha").textContent =  f.getDate()+"/"+(f.getUTCMonth()+1)+"/"+f.getFullYear()  +"    "+ f.getHours()+":"+f.getMinutes();
+     
      if (cajaTextoComentar.value.length > 0) {
        cajaTextoComentar.classList.remove("ocultar");
      }else{
