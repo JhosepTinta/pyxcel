@@ -2,7 +2,7 @@ import { getDatabase, set } from '../connection-firebase.js';
 import { recuperarTemas, recuperarContenido, recuperarNivel} from '../recover-data.js';
 //Variables importantes
 // numero = numero del nivel que mostrar la interfaz
-const numero=0;
+const numero=5;
 
 // Ingresar datos de nuevo nivel a la base de datos
  const db = getDatabase();
@@ -75,6 +75,7 @@ await recuperarNivel(numero).then((datos) =>{
         // console.log(datos.val().titulo);
         document.getElementById("nombre-nivel").value= datos.val().titulo;
         document.getElementById("descripcion").value= datos.val().descripcion;
+        document.getElementById("urlimagen").value= datos.val().imagen;
         document.getElementById("numeroNivel").id=datos.val().nivel;
         // console.log("numnivel"+datos.val().nivel);
         // var imprimir= document.getElementById(datos.val().nivel).id;
@@ -133,20 +134,20 @@ inciarFoco();
          }
 
 // --------------------------------------------------------
-function handleFileSelect(evt) {
-    var files = evt.target.files; // FileList object
+// function handleFileSelect(evt) {
+//     var files = evt.target.files; // FileList object
 
-    // files is a FileList of File objects. List some properties.
-    var output = [];
-    for (var i = 0, f; f = files[i]; i++) {
-      output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
-                  f.size, ' bytes, last modified: ',
-                  f.lastModifiedDate.toLocaleDateString(), '</li>');
-    }
-    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
-  }
+//     // files is a FileList of File objects. List some properties.
+//     var output = [];
+//     for (var i = 0, f; f = files[i]; i++) {
+//       output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+//                   f.size, ' bytes, last modified: ',
+//                   f.lastModifiedDate.toLocaleDateString(), '</li>');
+//     }
+//     document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+//   }
 
-  document.getElementById('files').addEventListener('change', handleFileSelect, false);
+//   document.getElementById('files').addEventListener('change', handleFileSelect, false);
 
 //   ------ALERTA---------------------------------------------
 
