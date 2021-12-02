@@ -91,8 +91,9 @@ elemento.addEventListener('click',(e)=>{
 function validarUrl(titulo, descrip, url){
   var res = false;
   var urlg=/^(ftp|http|https):\/\/[^ "]+$/.test(url);
-  var tit=/^\s*[a-zA-Z\s]{5,60}\s*$/.test(titulo);
-  var des=/^\s*[a-zA-Z\s]{20,100}\s*$/.test(descrip);
+  var tit=/^\s*[a-zA-Z\s\é\á\í\ó\ú\ñ\Ñ\¿\¡p]{5,60}\s*$/.test(titulo);
+  var des=/^\s*[a-zA-Z\s\é\á\í\ó\ú\ñ\Ñ\¿\¡]{5,100}\s*$/.test(descrip);
+  console.log(urlg+"  "+ tit+" " +des);
   if((urlg && tit && des) === true){
       res = true;
   }
