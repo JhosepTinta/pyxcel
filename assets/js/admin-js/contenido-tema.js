@@ -2,6 +2,7 @@ import {
     recuperarContenido,
     actualizarContenidoEspecifico,
     recuperarDatosTema,
+    actualizarDatosTema
   } from "../recover-data.js";
   
   /*await recuperarNivel(1).then((nivel)=>{
@@ -75,6 +76,22 @@ import {
     document.querySelectorAll(".img-save-content").forEach((element) => {
       addEventComponentSave(element)
     });
+    addEventTitleSave(document.querySelector(".icon-save img"));
+  }
+
+  function addEventTitleSave(element){
+      element.addEventListener("click",()=>{
+        let titleElement = document.querySelector(".title-container input");
+        let title = titleElement.value;
+        actualizarDatosTema(numNivel,nunTema,{
+            titulo: title
+        }).then(() => {
+            alert("Contenido registrado correctamente");
+        })
+        .catch((error) => {
+            alert("unsucessfull, error" + error);
+        });
+      });
   }
   
   function addEventComponentSave(component){
@@ -191,11 +208,11 @@ import {
               <textarea name="" id="" cols="52" rows="10">${description}</textarea>
               </div>
                  <label for="">Imagen
-                 <input type="text" value="${img}">
+                 <input id="input-img" type="text" value="${img}">
                  </label>
               </div>
               <div class="icon-save icon-form">
-              <img class="img-save-content" src="../../assets/img/icons/disco-guardar.png" alt="">
+              <img id="img-save-content" class="img-save-content" src="../../assets/img/icons/disco-guardar.png" alt="">
               </div>
           </div>
       `;
@@ -228,11 +245,11 @@ import {
                       <textarea name="" id="" cols="52" rows="10"></textarea>
                   </div>
                   <label for="">Imagen
-                      <input type="text">
+                      <input id="input-img" type="text">
                   </label>
               </div>
               <div class="icon-save icon-form">
-                  <img class="img-save-content" src="../../assets/img/icons/disco-guardar.png" alt="">
+                  <img id="img-save-content" class="img-save-content" src="../../assets/img/icons/disco-guardar.png" alt="">
               </div>
           </div>
       `;
