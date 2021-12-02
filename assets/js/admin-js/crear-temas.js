@@ -1,30 +1,10 @@
 import { getDatabase, set } from '../connection-firebase.js';
-import { recuperarTemas, recuperarContenido} from '../recover-data.js';
-// import {db,ref,get,child,onChildAdded,getDatabase} from "../js/connection-firebase.js";
-recuperarContenido(1,2);
+import { recuperarTemas, recuperarContenido, recuperarNivel} from '../recover-data.js';
+//Variables importantes
+// numero = numero del nivel que mostrar la interfaz
+const numero=0;
 // Ingresar datos de nuevo nivel a la base de datos
  const db = getDatabase();
- function insertarDatos(){
-     set(ref(db, "Niveles/"),{
-         activo:true,
-         descripcion:"prueba",
-         id:"nivel10",
-         imagen:"imagenprueba",
-         nivel:10,
-         titulo:"titulo prueba"
-     })
-     .then(()=> {
-         alert("datos registrados");
-     })
-     .catch((error)=>{
-        alert("error"+error);
-     })
- }
-//  document.getElementById("boton-alerta-prueba").addEventListener('click',function(e){
-//        insertarDatos();
-    
-    
-//     })
 // -----------------------------------------------------
 class TarjetaTema{
     constructor(numerotema,titulotema){
@@ -32,36 +12,7 @@ class TarjetaTema{
         this.titulotema=titulotema;
     }
 }
-class MostrarUI{
-    addTema(tarjetatema){
-        const listatemas = document.getElementById("lista-de-temas");
-        const element = document.createElement("div");
-        element.innerHTML = `
-                <div class="div-tarjeta">
-                    <div class="tarjeta">
-                     
-                       <div class="numerotema"><p>${tarjetatema.numerotema}</p></div>
-                        <div class="titulotema"><p>${tarjetatema.titulotema}</p></div>
-                       <div class="botones">
-                         <button class="btn" id="btn-editar">Editar </button>
-                         <button class="btn" id="btn-eliminar">Eliminar </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-        listatemas.appendChild(element);
-    }
 
-    addUltimo(){
-        const listatemas = document.getElementById("lista-de-temas");
-        const element = document.createElement("div");
-        element.innerHTML = `  <button class="btn-especial"> 
-        <img src="../../assets/img/icons/boton-agregar.png" alt="" width="100px"></button>`
-              
-        listatemas.appendChild(element);
-     
-    }
-}
 function addUltimo(){
     const listatemas = document.getElementById("lista-de-temas");
     const element = document.createElement("div");
@@ -71,7 +22,6 @@ function addUltimo(){
     listatemas.appendChild(element);
  
 }
-
 
 function addTema(tarjetatema){
     const listatemas = document.getElementById("lista-de-temas");
@@ -90,10 +40,14 @@ function addTema(tarjetatema){
             </div>
         `;
     listatemas.appendChild(element);
+    
 }
+
+// variable contien el numero de temas
 var contador = 1;
-var numeroTema = 1;
-await recuperarTemas(1).then((datos)=>{
+
+
+await recuperarTemas(numero).then((datos)=>{
     if(datos.exists()){
         console.log(datos.val());
         const objeto = datos.val();
@@ -106,11 +60,28 @@ await recuperarTemas(1).then((datos)=>{
             console.log(contador);
             contador++;
         }
-       addUltimo();
+      
       
     }
+    addUltimo();
 })
-// ------------------------------------------------------
+// ------------------------------------------------------c
+
+await recuperarNivel(numero).then((datos) =>{
+    if(datos.exists()){
+        console.log("Entro a nivel")
+        console.log(datos.val());
+        console.log(datos.val().titulo);
+        document.getElementById("nombre-nivel").value= datos.val().titulo;
+        document.getElementById("descripcion").value= datos.val().descripcion;
+        // document.getElementById("files").value= datos.val().imagen;
+        
+    }else{
+        
+        // addContentToNivel(elementovacio);
+    }
+})
+
 
 // -------------------------------------------------------
 

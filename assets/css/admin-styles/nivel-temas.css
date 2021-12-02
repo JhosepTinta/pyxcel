@@ -13,6 +13,7 @@ body {
     background-color: #fff;
     justify-content: center;
     text-align: center;
+    
 }
 input{
     width: 35%;
@@ -21,7 +22,7 @@ input{
     margin: 10px;
     border-radius: 5px;
     outline: none;
-    
+    font-size: 16px;
 }
 .desplegable-q{
     width: 90%;

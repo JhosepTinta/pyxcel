@@ -5,6 +5,7 @@ export {recuperarNivel,recuperarTemas,recuperarContenido,recuperarContenidoEspec
 export {eliminarContenidoEspecifico}
 export {insertarContenidoEspecifico}
 export {actualizarContenidoEspecifico}
+export {contarNiveles}
 
 function getDireccion(direccion){
     var dbref = ref(db);
@@ -77,7 +78,19 @@ async function contarTemas(nivelActual){
         });
     return   res
 }
+async function contarNiveles(){
+    let n = 1;
 
+    var  data = await getDireccion("Niveles");
+    console.log('------------------')
+    console.log(data.val())
+    let res = [];
+    data.forEach(element => {
+        n++;
+         res.push(element.val())
+    });
+return  n;
+}
 function recuperarTituloNivel(ruta,numeroNivel){
     const dbref = ref(db);
     get(child(dbref,ruta+numeroNivel)).then((snapshot)=>{
