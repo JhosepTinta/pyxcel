@@ -2,6 +2,7 @@ import { getDatabase, set ,remove, ref} from '../connection-firebase.js';
 import { recuperarTemas, recuperarContenido, recuperarNivel} from '../recover-data.js';
 //Variables importantes
 // numero = numero del nivel que mostrar la interfaz
+
 const numero=getParameterByName("id");
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -9,6 +10,7 @@ function getParameterByName(name) {
     results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
+
 // variable contien el numero de temas
 var contador = 1;
 // Ingresar datos de nuevo nivel a la base de datos
