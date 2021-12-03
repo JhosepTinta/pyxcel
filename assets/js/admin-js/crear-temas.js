@@ -2,7 +2,7 @@ import { getDatabase, set ,remove, ref} from '../connection-firebase.js';
 import { recuperarTemas, recuperarContenido, recuperarNivel} from '../recover-data.js';
 //Variables importantes
 // numero = numero del nivel que mostrar la interfaz
-const numero=3;
+const numero=0;
 
 // Ingresar datos de nuevo nivel a la base de datos
  const db = getDatabase();

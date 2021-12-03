@@ -108,6 +108,22 @@ function recuperarNivelesUsuario(nivelActual) {
   console.log(e.target);
   
 })*/
+function borrarNiveles(nivelN){
+  const db = getDatabase();
+  remove(ref(db,"Niveles/nivel"+nivelN))
+  .then(() => {
+    alert("data removed bien")
+  })
+  .catch((error) => {
+    alert("error")
+  })
+}
+function getParameterByName(name,location) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+  results = regex.exec(location);
+  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
 
 function botonCancelar(){
   console.log("mañanitas");
@@ -116,6 +132,7 @@ document.querySelectorAll(".borrarN").forEach(element => {
   element.addEventListener("click",(e)=>{
     let hijo=e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
     let padre=e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+    let borrar=e.target.parentNode.parentNode.parentNode.parentNode.parentNode;
     //padre.removeChild(hijo);
     console.log("hola");
     Swal.fire({
@@ -126,6 +143,10 @@ document.querySelectorAll(".borrarN").forEach(element => {
       confirmButtonText: "Si"
     }).then((result) => {
       if (result.isConfirmed) {
+        console.log(borrar.lastElementChild.lastElementChild.getAttribute("href"));
+        let x = getParameterByName("id",borrar.lastElementChild.lastElementChild.getAttribute("href"))
+        console.log(x);
+        borrarNiveles(x);
         padre.removeChild(hijo);
       }
     });
