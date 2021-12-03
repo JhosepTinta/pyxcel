@@ -33,45 +33,61 @@
 </head>
 
 <body>
-<div class="formulario-nivel" > 
-    <form action="" id="formulario-n">
-        <div class="nombre-nivel"><input 
-        type="text" 
-        placeholder="Nombre del nivel"
-        required 
-       id="nombre-nivel"
-        ><button
-        type="submit"
-        id="boton-enviar"
-        class="btn-guardar"> <img src="../../assets/img/icons/disco-guardar.png" alt="" width="25px"></button></div>
-        <div class="desplegable" id="desplegar">
-        <input 
-        type="text" 
-        name="descripcion" 
-        id="descripcion"
-        placeholder="Descripcion del nivel"
-        class="desplegable-q"
-        required
-        >
-      
-        <input 
-        type="file" 
-        id="files" 
-        class="desplegable-q"
-        accept="image/*,png"
-        required
-         />
-        <output id="list"></output>
-       </div>
-        
+<div class="formulario-nivel"  id="formulario-nivel"> 
+  <form action="" name="myform" id="formulario-n">
+    <label
+    id="numeroNivel"
+    class="numNivelActual"
+    ></label>
+    <div class="nombre-nivel"><input 
+    type="text" 
+    placeholder="Titulo del nivel"
+    value=""
+    maxlength="60"
+    spellcheck="false"
+    required 
+   id="nombre-nivel"
+    >
+    <button
+    type="submit"
+    id="boton-enviar"
+    class="btn-guardar"> <img src="../../assets/img/icons/disco-guardar.png" alt="" width="25px"></button></div>
+    <div class="desplegable" id="desplegar">
+    <input 
+    type="text" 
+    name="descrip" 
+    id="descripcion"
+    placeholder="Descripcion del nivel"
+    value=""
+    maxlength="100"
+    class="desplegable-q"
+    spellcheck="false"
+    required
+    >
+    <input 
+    type="url" 
+    name="urldato" 
+    id="urlimagen"
+    placeholder="URL de una imagen representativa "
+    value=""
+    class="desplegable-q"
+    required
+    >
+    <!-- <input 
+    type="file" 
+    id="files" 
+    class="desplegable-q"
+    accept="image/*,png"
+    required
+     />
+    <output id="list"></output> -->
+   </div>
+    
 
-    </form>
+</form>
 </div>
 <main>
-    <section>
-         <button id="boton-alerta-prueba">Alerta-Eliminar-tema</button>
-    </section>
-
+    
     
         
             <!-- Lista de temas -->
