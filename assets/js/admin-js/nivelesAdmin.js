@@ -112,7 +112,13 @@ function borrarNiveles(nivelN){
   const db = getDatabase();
   remove(ref(db,"Niveles/nivel"+nivelN))
   .then(() => {
-    alert("data removed bien")
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Se borro con exito',
+      showConfirmButton: false,
+      timer: 1500
+    })
   })
   .catch((error) => {
     alert("error")
