@@ -3,7 +3,8 @@ import { recuperarTemas, recuperarContenido, recuperarNivel} from '../recover-da
 //Variables importantes
 // numero = numero del nivel que mostrar la interfaz
 const numero=3;
-
+// variable contien el numero de temas
+var contador = 1;
 // Ingresar datos de nuevo nivel a la base de datos
  const db = getDatabase();
 // -----------------------------------------------------
@@ -16,8 +17,11 @@ class TarjetaTema{
 
 function addUltimo(){
     const listatemas = document.getElementById("lista-de-temas");
-    const element = document.createElement("div");
-    element.innerHTML = `  <button class="btn-especial"> 
+    const element = document.createElement("form");
+    let cadena = contador+"a"+numero;
+    element.setAttribute("action","./contenido-tema.html");
+    element.setAttribute("method","GET")
+    element.innerHTML = `  <button name="temaNuevo" value="${cadena}" class="btn-especial"> 
     <img src="../../assets/img/icons/boton-agregar.png" alt="" width="20%"></button>`
           
     listatemas.appendChild(element);
@@ -49,8 +53,7 @@ function addTema(tarjetatema){
     
 }
 
-// variable contien el numero de temas
-var contador = 1;
+
 
 await recuperarTemas(numero).then((datos)=>{
     if(datos.exists()){
@@ -73,7 +76,7 @@ await recuperarTemas(numero).then((datos)=>{
         addEliminarBotones(component);
     })
        
-   addUltimo();    
+   addUltimo();  
 })
 function addEliminarBotones(element){
     element.addEventListener('click', (e)=>{
