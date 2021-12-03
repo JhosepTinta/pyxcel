@@ -3,8 +3,8 @@ import { recuperarTemas, recuperarContenido, recuperarNivel} from '../recover-da
 //Variables importantes
 // numero = numero del nivel que mostrar la interfaz
 
-// const numero=getParameterByName("id");
-const numero=2;
+ const numero=getParameterByName("id");
+// 
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
