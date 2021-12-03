@@ -4,6 +4,14 @@ import {
     recuperarDatosTema,
     actualizarDatosTema
   } from "../recover-data.js";
+
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
   
   /*await recuperarNivel(1).then((nivel)=>{
   export {recuperarNivel}
@@ -25,8 +33,8 @@ import {
   var newContent = false;
   var numContent = 0;
   var previousElement = "";
-  var numNivel = 1;
-  var nunTema = 1;
+  var numNivel = getParameterByName('nivel');
+  var nunTema = getParameterByName('tema');;
   
   //ejecucion de funciones iniciales
   await recuperarDatosTema(numNivel, nunTema).then((tema)=>{
@@ -86,7 +94,10 @@ import {
         actualizarDatosTema(numNivel,nunTema,{
             titulo: title
         }).then(() => {
-            alert("Contenido registrado correctamente");
+            //alert("Contenido registrado correctamente");
+            Swal.fire(
+                'Guardado con exito!'
+            )
         })
         .catch((error) => {
             alert("unsucessfull, error" + error);
@@ -108,7 +119,10 @@ import {
               titulo: title.value,
               imagen: img.value,
           }).then(() => {
-              alert("Contenido registrado correctamente");
+              //alert("Contenido registrado correctamente");
+              Swal.fire(
+                'Guardado con exito!'
+              )
           })
           .catch((error) => {
               alert("unsucessfull, error" + error);
@@ -137,6 +151,46 @@ import {
           let idForm = e.target.parentNode.parentNode.lastElementChild.getAttribute("id");
           let numForm = idForm[idForm.length-1]
           console.log(numForm)
+          /*Swal.fire({
+            title: '¿Esta seguro de elimnar este contenido?',
+            text: "Los cambios seran permanentes",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, eliminar!',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+              )
+            }
+          })*/
+          /*Swal.fire({
+            title: "¿Estas seguro que deseas eliminar este contenido?",
+            showCancelButton:true,
+            showConfirmButton: true,
+            confirmButtonColor:"#5FCF80" ,
+            cancelButtonColor:"#DD6B55",
+            confirmButtonText: "     Si    ",
+             cancelButtonText: "    No    ",
+            allowOutsideClick:false,
+            customClass: 'ventana-emergente'
+        }).then((result) => {
+            if(result.isConfirmed){
+                Swal.fire('Confirmar')
+            }else if(result.dismiss){
+                Swal.fire('Cancelar')
+            }
+      
+        })*/
+        console.log(numContent);
+        deleteComponent(e.target)
+        correctComponentId(numForm);
+        console.log(numContent);
       })
   }
   
@@ -191,6 +245,7 @@ import {
     const contenedor = document.createElement("div");
     contenedor.setAttribute("class", "content-element-container");
     contenedor.setAttribute("state", "desactivado");
+    contenedor.setAttribute("save", "true");
     numContent++;
     const nuevoContenido = `
           <div id="content-${numberContent}" class="content-element">
@@ -234,7 +289,7 @@ import {
               <a href="#content-${numberContent}" class="content">Contenido ${numberContent}</a>
               <img src="../../assets/img/icons/eliminar.png" alt=""> 
           </div>
-          <div id="form-${numContent}" class="content-form-container">
+          <div id="form-${numberContent}" class="content-form-container">
               <div class="content-form">
                   <label for="">Titulo
                   <input type="text">
@@ -257,5 +312,49 @@ import {
     contenedorTotal.appendChild(contenedor);
     activatedForm = true;
     previousElement = `Contenido ${numberContent}`;
+  }
+
+  function correctComponentId(idDeleted){
+    let formId = 0;
+    let contentId = 0;
+    let cont = 1;
+    let lastId = 0;
+    
+    document.querySelectorAll(".content-element-container").forEach((element)=>{
+      
+      //formId = element.firstElementChild.getAttribute("id");
+      contentId = element.lastElementChild.getAttribute("id");
+      //formId = parseInt(formId[formId.length -1]);
+      contentId = parseInt(contentId[contentId.length -1]);
+      console.log("el numero de cont es: "+numContent)
+      if(contentId >= idDeleted){
+
+        if((contentId-1) == 1){
+          cont = 1;
+          setContentAndId(element,cont);
+          lastId = contentId;
+        }else if(contentId === 1){
+          lastId = contentId;
+          cont = 1;
+          setContentAndId(element,cont);
+        }else if(lastId === (contentId-1)){
+          setContentAndId(element,cont);
+        }else{
+          setContentAndId(element,cont);
+        }
+      }else{
+        console.log("se ignoro",cont);
+      }
+        cont ++;
+        //numContent--;
+    console.log(element.firstElementChild.firstElementChild.textContent)
+  })
+    numContent = cont;
+  }
+
+  function setContentAndId(component, newId){
+    component.lastElementChild.setAttribute("id",`form-${newId}`)
+    component.firstElementChild.setAttribute("id",`content-${newId}`)
+    component.firstElementChild.firstElementChild.textContent = `Contenido ${newId}`;
   }
   
