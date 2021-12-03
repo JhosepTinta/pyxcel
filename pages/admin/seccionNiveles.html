@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Listado de Niveles</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  
+  <link href="/assets/css/style.css" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/e1004dd04e.js" crossorigin="anonymous"></script>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet">
+
+</head>
+
+<body>
+  
+ 
+  <!-- ======= Header ======= -->
+  
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="/index.html">Pyxcel</a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a  href="/index.html">Inicio</a></li>
+          <li><a href="/index.html#about">Nosotros</a></li>
+          <li><a class="active" href="nivel.html">Ver Curso</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+       
+      </nav><!-- .navbar -->
+      <div class="desplegable">
+        <button class="desplebutton"> 
+          <a 
+          href="#l" id="prueba" class="get-started-btn">
+          cargando...
+          <i class="fas fa-chevron-down"></i>
+        </a> </button>
+        <!-- <i class="material-icons">expand_more </i>  -->
+        <div class="options">
+          
+          <a href="#" id="logout" >Cerrar Sesion</a>
+        </div>
+      </div>
+      
+     
+      
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main" data-aos="fade-in">
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+      <div class="container">
+        <h2>Niveles</h2>
+        <p>Para una mejor experiencia de aprendizaje se 
+          separo los niveles segun su dificultad
+        </p>
+      </div>
+    </div><!-- End Breadcrumbs -->
+
+    <!-- ======= Courses Section ======= -->
+    <section id="courses" class="courses">
+      <div  class="container" data-aos="fade-up">
+
+        <div id="a" class="row" data-aos="zoom-in" data-aos-delay="1000">
+
+           <!-- End Course Item-->
+
+          
+
+        </div>
+
+      </div>
+    </section><!-- End Courses Section -->
+
+  </main><!-- End #main -->
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
+    const firebaseConfig = {
+        apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
+        authDomain: "pyxcel-d6df9.firebaseapp.com",
+        projectId: "pyxcel-d6df9",
+        storageBucket: "pyxcel-d6df9.appspot.com",
+        messagingSenderId: "953396754317",
+        appId: "1:953396754317:web:321620a07c7577f5eb6fc4",
+        measurementId: "G-46CQF62KX4"
+    };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    /*
+    import { getDatabase, ref, get, set, child, update, remove, onChildAdded, onChildChanged, onChildRemoved } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
+	
+    const db = getDatabase();        
+    const commentsRef = ref(db, 'Niveles');
+var contenido="";
+    onChildAdded(commentsRef, (data) => {
+        
+        if (data.exists()) {
+                //objeto recuperado (se ejecuta n veces hasta que termine de leer todos los niveles)
+                const objeto = data.val();
+                console.log(objeto);
+                var img_text;
+                var btn_text;
+                if (objeto.activo){
+                  img_text="../assets/img/ulock.png";
+                  btn_text="btn btn-success";
+                }else{
+                  img_text="../assets/img/lock.png";
+                	btn_text="btn btn-success disabled ";
+                }
+                contenido+='<div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-4 mt-md-4"><div class="course-item" style="border-style: solid;border-width:3px;border-color:black"><div class="row" style="height:40%"><img src="'+objeto.imagen + '" class="img-fluid" alt="..." style="height:100%" ></div><div class="row course-content" style="height:60%"><div class="d-flex justify-content-between align-items-center mb-3" style="height:40%">';
+                contenido+='<h3>' + objeto.titulo + '</h3><div class="testimonial-wrap d-flex justify-content-between align-items-center"><div class="testimonial-item d-flex align-items-center"><img src="';	
+                contenido+= img_text + '"  alt="" style="height:64px;width:64px;"></div></div></div><p>' + objeto.descripcion + '</p><div class="text-center " style="height:20%">' + '<a href="pagina-contenido.html?id='+ objeto.nivel + '"" class="' + btn_text + '">Seleccionar curso</a>';
+                contenido+='</div></div></div></div>';
+
+            } else {
+                alert("No se encontro el elemento");
+            }
+		var a = document.getElementById("a");                
+                a.innerHTML=contenido;
+                
+    });
+		*/
+
+</script>
+
+  <!-- Vendor JS Files -->
+  <script src="/assets/vendor/aos/aos.js"></script>
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
+  <script src="/assets/vendor/purecounter/purecounter.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Template Main JS File -->
+  <script src="/assets/js/main.js"></script>
+  <!-- <script type="module" >
+
+import { initializeApp, onLog } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+import {getAuth,signOut,onAuthStateChanged,createUserWithEmailAndPassword , signInWithEmailAndPassword} from  "https:www.gstatic.com/firebasejs/9.4.0/firebase-auth.js"
+        const firebaseConfig = {
+            apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
+           authDomain: "pyxcel-d6df9.firebaseapp.com",
+           databaseURL: "https://pyxcel-d6df9-default-rtdb.firebaseio.com",
+           projectId: "pyxcel-d6df9",
+          storageBucket: "pyxcel-d6df9.appspot.com",
+          messagingSenderId: "953396754317",
+           appId: "1:953396754317:web:321620a07c7577f5eb6fc4",
+          measurementId: "G-46CQF62KX4"
+        };
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app)
+
+    onAuthStateChanged(auth, (user) => {
+                if (user) {
+                  const uid = user.email;
+                  console.log(uid)
+                  console.log(user)
+                  let text = document.getElementById("prueba");
+                  text.innerHTML= uid;
+                } else {
+                  // User is signed out
+                  console.log("me sali karen :D")
+                  window.location.href = "/index.html";
+                  // ...
+                }
+              });
+
+      const cont = document.getElementById("logout")
+      
+      cont.addEventListener('click', (e) =>{
+        signOut(auth);
+      })
+
+              
+              
+  </script> -->
+  <script type="module" src="/assets/js/admin-js/nivelesAdmin.js"></script>
+</body>
+
+</html>
