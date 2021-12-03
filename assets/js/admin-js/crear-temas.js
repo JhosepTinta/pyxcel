@@ -2,7 +2,7 @@ import { getDatabase, set } from '../connection-firebase.js';
 import { recuperarTemas, recuperarContenido, recuperarNivel} from '../recover-data.js';
 //Variables importantes
 // numero = numero del nivel que mostrar la interfaz
-const numero=5;
+const numero=1;
 
 // Ingresar datos de nuevo nivel a la base de datos
  const db = getDatabase();
@@ -30,23 +30,24 @@ function addTema(tarjetatema){
     element.innerHTML = `
             <div class="div-tarjeta">
                 <div class="tarjeta">
-                 
+                  <form name="tema" value="${tarjetatema.numerotema}" method="GET">
                    <div class="numerotema"><p>${tarjetatema.numerotema}</p></div>
                     <div class="titulotema"><p>${tarjetatema.titulotema}</p></div>
                    <div class="botones">
                      <button class="btn" id="btn-editar">Editar</button>
-                     <button class="btn" id="btn-eliminar"><img class="delete-content" src="../../assets/img/icons/eliminar.png" width="20px"alt=""> </button>
+                     <div class="btn" id="btn-eliminar"><img class="delete-content" src="../../assets/img/icons/eliminar.png" width="20px"alt=""> </div>
                     </div>
+                  </form>
                 </div>
             </div>
         `;
     listatemas.appendChild(element);
     
+    
 }
 
 // variable contien el numero de temas
 var contador = 1;
-
 
 await recuperarTemas(numero).then((datos)=>{
     if(datos.exists()){
@@ -64,8 +65,20 @@ await recuperarTemas(numero).then((datos)=>{
       
       
     }
+    
+    document.querySelectorAll("#btn-eliminar").forEach(component=>{
+        addEliminarBotones(component);
+    })
+       
    addUltimo();    
 })
+function addEliminarBotones(element){
+    element.addEventListener('click', (e)=>{
+        console.log("holass......");
+        lanzarAlertaBorrar();
+        // e.preventDefault();
+    })
+}
 // ------------------------------------------------------c
 
 await recuperarNivel(numero).then((datos) =>{
@@ -151,26 +164,25 @@ inciarFoco();
 
 //   ------ALERTA---------------------------------------------
 
-// document.getElementById('boton-alerta-prueba').addEventListener('click',function(e){
-//     Swal.fire({
-//         title: "¿Estas seguro que deseas eliminar este tema?",
-//         showCancelButton:true,
-//         showConfirmButton: true,
-//         confirmButtonColor:"#5FCF80" ,
-//         cancelButtonColor:"#DD6B55",
-//         confirmButtonText: "     Si    ",
-//          cancelButtonText: "    No    ",
-//         allowOutsideClick:false,
-//         customClass: 'ventana-emergente'
-//     }).then((result) => {
-//         if(result.isConfirmed){
-//             Swal.fire('Conformacion de eliminacion')
-//         }else if(result.dismiss){
-//             Swal.fire('cancelado')
-//         }
 
-//     }) 
+function lanzarAlertaBorrar(){
+    Swal.fire({
+        title: "¿Estas seguro que deseas eliminar este tema?",
+        showCancelButton:true,
+        showConfirmButton: true,
+        confirmButtonColor:"#5FCF80" ,
+        cancelButtonColor:"#DD6B55",
+        confirmButtonText: "     Si    ",
+         cancelButtonText: "    No    ",
+        allowOutsideClick:false,
+        customClass: 'ventana-emergente'
+    }).then((result) => {
+        if(result.isConfirmed){
+            Swal.fire('Conformacion de eliminacion')
+        }else if(result.dismiss){
+            Swal.fire('cancelado')
+        }
 
-
-// })
+    }) 
+}
 

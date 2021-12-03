@@ -105,7 +105,7 @@ function mostrarAlertaGuardado(text){
         customClass:'contenido-alerta-crear-nivel',
         timer: 4000,
         padding: '1rem',
-        backdrop:true,
+        // backdrop:true,
         toast:true,
         icon:'success',
         width:'300px',
