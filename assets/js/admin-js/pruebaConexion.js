@@ -1,12 +1,19 @@
 
 import {app,db,ref,set,get,child,onChildAdded} from "../../js/connection-firebase.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https:www.gstatic.com/firebasejs/9.1.2/firebase-auth.js";
-import { contarNiveles} from '../recover-data.js';
+import { contarNiveles,addNivelInTheme} from '../recover-data.js';
 
 export{ insertarDatos}
 const auth = getAuth(app);
   
 const numNiveles = await contarNiveles();
+
+pruebaToogle();
+
+function pruebaToogle(){
+    console.log("si entroo")
+    addNivelInTheme(6);
+}
 
 
 console.log("qui esto"+numNiveles);

@@ -34,7 +34,7 @@ function getParameterByName(name) {
   })*/
 var activatedForm = false;
 var newContent = false;
-var numContent = 0;
+var numContent = 1;
 var previousElement = "";
 var valId = getParameterByName("tema");
 var valNew = getParameterByName("temaNuevo");

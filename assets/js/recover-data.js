@@ -7,6 +7,7 @@ export {insertarContenidoEspecifico}
 // export {actualizarContenidoEspecifico}
 export {actualizarContenidoEspecifico,actualizarDatosTema}
 export {contarNiveles}
+export {addNivelInTheme}
 function getDireccion(direccion){
     var dbref = ref(db);
     let exito = 0;
@@ -140,6 +141,17 @@ function actualizarContenidoEspecifico(nroNivel,nroTema,nroContenido,Contenido){
 
 function actualizarDatosTema(nroNivel,nroTema,Datos){
     return update(ref(db, `Temas/nivel${nroNivel}/tema${nroTema}/datos`), Datos)        
+}
+
+function addNivelInTheme(nroNivel){
+    return update(ref(db, `Temas/nivel${nroNivel}/tema2`), {
+        titulo: "sddsd",
+        imagen: "dsfsd"
+    }).then(()=>{
+        alert("fabricio apesta")
+    }).catch((error)=>{
+        alert("fabricio no apesta")
+    })  
 }
 
 function recuperarContenidoEspecifico(nroNivel,nroTema,nroContenido){
