@@ -2,7 +2,7 @@ import { getDatabase, set ,remove, ref} from '../connection-firebase.js';
 import { recuperarTemas, recuperarContenido, recuperarNivel} from '../recover-data.js';
 //Variables importantes
 // numero = numero del nivel que mostrar la interfaz
-const numero=2;
+const numero=3;
 
 // Ingresar datos de nuevo nivel a la base de datos
  const db = getDatabase();
@@ -33,7 +33,7 @@ function addTema(tarjetatema){
     element.innerHTML = `
             <div class="div-tarjeta" >
                 <div class="tarjeta">
-                  <form name="tema" action="./contenido-tema.htm" value="${tarjetatema.numerotema}" method="GET" >
+                  <form name="tema" action="./contenido-tema.html" value="${tarjetatema.numerotema}" method="GET" >
                      <div name="nivel" value="${cadena}" class="numerotema"><p>Tema:${tarjetatema.numerotema}</p></div>
                      <div class="titulotema"><p>${tarjetatema.titulotema}</p></div>
                      <div class="botones">

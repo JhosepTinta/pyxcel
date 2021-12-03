@@ -2,7 +2,8 @@ import {
     recuperarContenido,
     actualizarContenidoEspecifico,
     recuperarDatosTema,
-    actualizarDatosTema
+    actualizarDatosTema,
+    recuperarDatos
   } from "../recover-data.js";
 
   function getParameterByName(name) {
@@ -33,9 +34,39 @@ import {
   var newContent = false;
   var numContent = 0;
   var previousElement = "";
-  var numNivel = getParameterByName('nivel');
-  var nunTema = getParameterByName('tema');;
-  
+  var valId = getParameterByName('tema');
+  var numNivel = parseInt(getTema(valId));
+  var nunTema = parseInt(getNivel(valId));
+  console.log(numNivel,nunTema);
+  function getNivel(id){
+    let res = '';
+    let i = 0;
+    let encontro = false;
+    while(i<id.length && !encontro){
+      if(id[i]!=='a'){
+        res += id[i];
+      }else{
+        encontro = true;
+      }
+      i++;
+    }
+    return res;
+  }
+
+  function getTema(id){
+    let res = '';
+    let i = id.length-1;
+    let encontro = false;
+    while(i>0 && !encontro){
+      if(id[i]!=='a'){
+        res += id[i];
+      }else{
+        encontro = true;
+      }
+      i--;
+    }
+    return res;
+  }
   //ejecucion de funciones iniciales
   await recuperarDatosTema(numNivel, nunTema).then((tema)=>{
       if(tema.exists()){
@@ -190,8 +221,13 @@ import {
         console.log(numContent);
         deleteComponent(e.target)
         correctComponentId(numForm);
+        recuperarDatos();
         console.log(numContent);
       })
+  }
+  
+  function recuperarDatos(){
+    console.log(document.querySelectorAll(".content-form"))
   }
   
   function addEventComponent(component) {
