@@ -147,11 +147,12 @@ function addNivelInTheme(nroNivel){
     return update(ref(db, `Temas/nivel${nroNivel}/tema2`), {
         titulo: "sddsd",
         imagen: "dsfsd"
-    }).then(()=>{
-        alert("fabricio apesta")
-    }).catch((error)=>{
-        alert("fabricio no apesta")
-    })  
+    });
+    // }).then(()=>{
+    //     alert("fabricio apesta")
+    // }).catch((error)=>{
+    //     alert("fabricio no apesta")
+    // })  
 }
 
 function recuperarContenidoEspecifico(nroNivel,nroTema,nroContenido){

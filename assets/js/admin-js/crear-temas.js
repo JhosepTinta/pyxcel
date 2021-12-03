@@ -3,7 +3,8 @@ import { recuperarTemas, recuperarContenido, recuperarNivel} from '../recover-da
 //Variables importantes
 // numero = numero del nivel que mostrar la interfaz
 
-const numero=getParameterByName("id");
+// const numero=getParameterByName("id");
+const numero=2;
 function getParameterByName(name) {
     name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -25,14 +26,18 @@ class TarjetaTema{
 
 function addUltimo(){
     const listatemas = document.getElementById("lista-de-temas");
+  
+    const elementodiv= document.createElement("div");
+    
     const element = document.createElement("form");
+    elementodiv.setAttribute("class","btn-especial");
     let cadena = contador+"a"+numero;
     element.setAttribute("action","./contenido-tema.html");
     element.setAttribute("method","GET")
     element.innerHTML = `  <button name="temaNuevo" value="${cadena}" class="btn-especial"> 
     <img src="../../assets/img/icons/boton-agregar.png" alt="" width="20%"></button>`
-          
-    listatemas.appendChild(element);
+     elementodiv.appendChild(element);     
+    listatemas.appendChild(elementodiv);
  
 }
 
@@ -46,11 +51,12 @@ function addTema(tarjetatema){
             <div class="div-tarjeta" >
                 <div class="tarjeta">
                   <form name="tema" action="./contenido-tema.html" value="${tarjetatema.numerotema}" method="GET" >
-                     <div name="nivel" value="${cadena}" class="numerotema"><p>Tema:${tarjetatema.numerotema}</p></div>
+                     <div name="nivel" value="${cadena}" class="numerotema"><p>Tema</p></div>
                      <div class="titulotema"><p>${tarjetatema.titulotema}</p></div>
                      <div class="botones">
+                     <div class="btn" id="btn-eliminar"><img class="delete-content" src="../../assets/img/icons/eliminar.png" width="25px" alt=""> </div>
                      <button name="tema" value="${cadena}" class="btn" id="btn-editar">Editar</button>
-                     <div class="btn" id="btn-eliminar"><img class="delete-content" src="../../assets/img/icons/eliminar.png" width="20px"alt=""> </div>
+                     
                     </div>
                   </form>
                 </div>
@@ -90,7 +96,11 @@ function addEliminarBotones(element){
     element.addEventListener('click', (e)=>{
         console.log("holass......");
         console.log(element.parentNode.parentNode.getAttribute("value"));
-        lanzarAlertaBorrar(element.parentNode.parentNode.getAttribute("value"));
+        let hijo = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+        let padre = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+        console.log(hijo);
+        console.log(padre)
+        lanzarAlertaBorrar(element.parentNode.parentNode.getAttribute("value"), padre,hijo);
         // e.preventDefault();
     })
 }
@@ -182,6 +192,7 @@ function borrarTemmas(nivelN,temaN){
     remove(ref(db,"Temas/nivel"+ nivelN+"/"+temaN))
     .then(() => {
     //   alert("data removed bien")
+     
     })
     .catch((error) => {
       alert("error")
@@ -194,7 +205,7 @@ function borrarTemmas(nivelN,temaN){
     })
   }
 
-function lanzarAlertaBorrar(temaN){
+function lanzarAlertaBorrar(temaN, pad,hij){
     Swal.fire({
         title: "¿Estas seguro que deseas eliminar este tema?",
         showCancelButton:true,
@@ -207,12 +218,14 @@ function lanzarAlertaBorrar(temaN){
         customClass: 'ventana-emergente'
     }).then((result) => {
         if(result.isConfirmed){
-            Swal.fire('Conformacion de eliminacion')
-            borrarTemmas(numero,temaN)
+            Swal.fire('Conformacion de eliminacion');
+            pad.removeChild(hij);
+            borrarTemmas(numero,temaN);
         }else if(result.dismiss){
-            Swal.fire('cancelado')
+            Swal.fire('cancelado');
         }
 
     }) 
 }
+
 

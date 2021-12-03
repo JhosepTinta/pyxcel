@@ -8,21 +8,21 @@ const auth = getAuth(app);
   
 const numNiveles = await contarNiveles();
 
-pruebaToogle();
+// pruebaToogle();
 
-function pruebaToogle(){
-    console.log("si entroo")
-    addNivelInTheme(6);
-}
+// function pruebaToogle(){
+// console.log("si entroo")
+// addNivelInTheme(6);
+// }
 
 
-console.log("qui esto"+numNiveles);
+// console.log("qui esto"+numNiveles);
 function insertarDatos(usuario, id) {
     
     set(ref(db, "Niveles/" + id), usuario)
         .then(() => {
             // alert("Datos registrados correctamente");
-            mostrarAlertaGuardado("El nivel se ha creado correctamente");
+            mostrarAlertaGuardado("El nivel se ha creado correctamente", 'success');
         })
         .catch((error) => {
             alert("unsucessfull, error" + error);
@@ -66,7 +66,7 @@ elemento.addEventListener('click',(e)=>{
         }else{
         
             console.log("entre donde es nivel ");
-            mostrarAlertaGuardado("Se quiere editar este Nivel");
+            mostrarAlertaGuardado("Se ha editado este nivel", 'question');
             var numconvertido= Number(numeroNivel);
             var nivel={
                 activo:false,
@@ -82,7 +82,7 @@ elemento.addEventListener('click',(e)=>{
     }else{
         if(!datosvalidos){
             // Alerta de que los datos no son validos 
-            mostrarAlertaGuardado("Los datos ingresados son invalidos, vuelva a intertar!");
+            mostrarAlertaGuardado("Los datos ingresados son invalidos, vuelva a intertar!",'error');
         }
 
     }
@@ -106,7 +106,7 @@ function validarUrl(titulo, descrip, url){
   }
   return res;
 }
-function mostrarAlertaGuardado(text){
+function mostrarAlertaGuardado(text, iconn){
     Swal.fire({
         html: text ,
         customClass:'contenido-alerta-crear-nivel',
@@ -114,7 +114,7 @@ function mostrarAlertaGuardado(text){
         padding: '1rem',
         // backdrop:true,
         toast:true,
-        icon:'success',
+        icon: iconn,
         width:'300px',
         grow: false,
         position: 'bottom-end',
