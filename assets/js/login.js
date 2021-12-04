@@ -12,7 +12,8 @@ import {getAuth,onAuthStateChanged,createUserWithEmailAndPassword , signInWithEm
         };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app)
+const auth = getAuth(app);
+const email = "a";
 
 
 
@@ -32,19 +33,27 @@ const form = document.getElementById('form')
               // Signed in
               onAuthStateChanged(auth, (user) => {
                 if (user) {
+                  
                   const uid = user.uid;
-                  console.log(uid)
-                  console.log(user)
+                  // console.log(uid)
+                  // console.log(user)
                 } else {
                   // User is signed out
                   // ...
                 }
               });
-              // console.log(userCredential.user.email)
-            
+              console.log(userCredential.user.email)
+              // console.log(correo)
+              // console.log(correo.indexOf("gmail"))
+              if (userCredential.user.email.indexOf("pyxcel") != -1) {
+                  console.log("si esta")
+                  window.location.href = "/pages/admin/nivel-temas.html"
+              } else {
+                console.log("no esta")
+                // Hay que cambiar la direccion y dara :v
+                window.location.href = "/pages/nivel.html"
+              }
               
-              
-              window.location.href = "/pages/nivel.html"
               // ...
             })
             .catch((error) => {

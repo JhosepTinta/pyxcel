@@ -140,8 +140,9 @@ function actualizarContenidoEspecifico(nroNivel,nroTema,nroContenido,Contenido){
 }
 
 function actualizarDatosTema(nroNivel,nroTema,Datos){
-    return update(ref(db, `Temas/${nroNivel}/${nroTema}/datos`), Datos)        
+    return update(ref(db, `Temas/${nroNivel}/${nroTema}/datos`), Datos)               
 }
+
 
 function recuperarContenidoEspecifico(nroNivel,nroTema,nroContenido){
     const dbref = ref(db)

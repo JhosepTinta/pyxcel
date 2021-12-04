@@ -91,7 +91,7 @@ function recuperarNivelesUsuario(nivelActual) {
     }/*
     contenido += '<div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-4 mt-md-4"><div class="course-item" style="border-style: solid;border-width:3px;border-color:black"><div class="row" style="height:40%"></div></div>';*/
     if(cont==numNiv){
-        contenido += '<div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-4 mt-md-4"><div class="course-item" style="border-style: solid;border-width:3px;border-color:black"><div class="row" style="height:40%"></p><a href="nivel-temas.html?id="0"  class="agregar" type="button" style="background-color: white; width: 100px; height: 50px; margin: auto;"><img src="/assets/img/ultimo.png" height="40" width="100%"></a></div></div></div><a href="nivel-temas.html?id=' + 0 + '"" class="' + 0 + '">Editar</a>';
+        contenido += '<div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-4 mt-md-4"><div class="course-item" style="border-style: solid;border-width:3px;border-color:black"><div class="row" style="height:40%"></p><a href="nivel-temas.html?id="0"  class="agregar" type="button" style="background-color: white; width: 100px; height: 50px; margin: auto;"><img src="/assets/img/ultimo.png" height="40" width="100%"></a></div></div></div><a href="nivel-temas.html?id="0" class="">Editar</a>';
     }
     var a = document.getElementById("a");
     a.innerHTML = contenido;

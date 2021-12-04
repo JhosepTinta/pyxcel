@@ -125,8 +125,25 @@ input{
     background-color: var(--color-verde);
     border: 0;
 }
-#btn-eliminar{
+/* #btn-eliminar,#btn-editar{
    background-color: #ffff;
+   padding: 10px;
+   margin: 10px;
+   float: right;
+  
+} */
+#btn-eliminar{
+   padding: 10px;
+   margin: 10px;
+   width: 25%;
+   float: right;
+   background-color: #fff;
+}
+#btn-editar{
+    background-color: #e5aa74;
+    width: 55%;
+    margin: 10px;
+    float: left;
 }
 /* ventana emergente */
 .ventana-emergente{
