@@ -47,7 +47,7 @@ const form = document.getElementById('form')
               // console.log(correo.indexOf("gmail"))
               if (userCredential.user.email.indexOf("pyxcel") != -1) {
                   console.log("si esta")
-                  window.location.href = "/pages/admin/nivel-temas.html"
+                  window.location.href = "/pages/seccionNiveles.html"
               } else {
                 console.log("no esta")
                 // Hay que cambiar la direccion y dara :v

@@ -1,5 +1,5 @@
 import { getDatabase, set ,remove, ref} from '../connection-firebase.js';
-import { recuperarTemas, recuperarContenido, recuperarNivel} from '../recover-data.js';
+import { recuperarTemas, recuperarContenido, recuperarNivel,crearId} from '../recover-data.js';
 //Variables importantes
 // numero = numero del nivel que mostrar la interfaz
 

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Crear Temas</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <!-- <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"> -->
+
+
+    <link href="/../../assets/css/admin-styles/nivel-temas.css" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/e1004dd04e.js" crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="formulario-nivel" id="formulario-nivel">
+        <form action="" name="myform" id="formulario-n">
+            <label id="numeroNivel" class="numNivelActual"></label>
+            <div class="nombre-nivel"><input type="text" placeholder="Titulo del nivel" value="" maxlength="60"
+                    spellcheck="false" required id="nombre-nivel">
+                <button type="submit" id="boton-enviar" class="btn-guardar"> <img
+                        src="../../assets/img/icons/disco-guardar.png" alt="" width="25px"></button>
+            </div>
+            <div class="desplegable" id="desplegar">
+                <input type="text" name="descrip" id="descripcion" placeholder="Descripcion del nivel" value=""
+                    maxlength="100" class="desplegable-q" spellcheck="false" required>
+                <input type="url" name="urldato" id="urlimagen" placeholder="URL de una imagen representativa " value=""
+                    class="desplegable-q" required>
+                <!-- <input 
+          type="file" 
+          id="files" 
+          class="desplegable-q"
+          accept="image/*,png"
+          required
+           />
+          <output id="list"></output> -->
+            </div>
+
+
+        </form>
+    </div>
+    <main>
+
+
+
+        <!-- Lista de temas -->
+        <div id="lista-de-temas">
+
+        </div>
+
+
+    </main>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
+            authDomain: "pyxcel-d6df9.firebaseapp.com",
+            projectId: "pyxcel-d6df9",
+            storageBucket: "pyxcel-d6df9.appspot.com",
+            messagingSenderId: "953396754317",
+            appId: "1:953396754317:web:321620a07c7577f5eb6fc4",
+            measurementId: "G-46CQF62KX4"
+        };
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        import { getDatabase,push, ref, get, set, child, update, remove, onChildAdded, onChildChanged, onChildRemoved } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
+
+        const db = getDatabase();
+        // let idnivel = "nivel3";
+        const idnivel=getParameterByName("id");
+// 
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+    results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+
+        const commentsRef = ref(db, 'Temas/' + idnivel);
+        // Metodos de pintar en pantalla=-----------------
+        class TarjetaTema {
+            constructor(numerotema, titulotema) {
+                this.numerotema = numerotema;
+                this.titulotema = titulotema;
+            }
+        }
+        function addUltimo() {
+            const listatemas = document.getElementById("lista-de-temas");
+
+            const elementodiv = document.createElement("div");
+            let key =  push(child(ref(getDatabase()), 'NivelCont')).key;
+            const element = document.createElement("form");
+            elementodiv.setAttribute("class", "btn-especial");
+            let cadena = key+"."+idnivel;
+            element.setAttribute("action", "./admin/contenido-tema.html");
+            element.setAttribute("method", "GET")
+            element.innerHTML = `  <button name="temaNuevo" value="${cadena}" class="btn-especial"> 
+            <img src="../../assets/img/icons/boton-agregar.png" alt="" width="20%"></button>`
+            elementodiv.appendChild(element);
+            listatemas.appendChild(elementodiv);
+
+        }
+        function addTema(tarjetatema) {
+            const listatemas = document.getElementById("lista-de-temas");
+            const element = document.createElement("div");
+            element.setAttribute("id", tarjetatema.numerotema);
+            // let cadena = tarjetatema.numerotema[tarjetatema.numerotema.length-1]+"a"+numero;
+            let cadena = tarjetatema.numerotema+"."+idnivel;
+            console.log(cadena);
+            console.log("holaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            element.innerHTML = `
+                        <div class="div-tarjeta" >
+                            <div class="tarjeta">
+                            <form name="tema" action="./admin/contenido-tema.html" value="${tarjetatema.numerotema}" method="GET" >
+                                <div name="nivel" value="${cadena}" class="numerotema"><p>Tema</p></div>
+                                <div class="titulotema"><p>${tarjetatema.titulotema}</p></div>
+                                <div class="botones">
+                                <div class="btn" id="btn-eliminar"><img class="delete-content" src="../../assets/img/icons/eliminar.png" width="25px" alt=""> </div>
+                                <button name="tema" value="${cadena}" class="btn" id="btn-editar">Editar</button>
+                                
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                    `;
+            listatemas.appendChild(element);
+
+
+        }
+
+
+        // -------------------------------------
+        //  Recuperando nivel 
+
+        // let idnivel = "nivel3";
+        // const commentsRef = ref(db, 'Temas/' + idnivel);
+        let contador = 0;
+        onChildAdded(ref(db, 'Niveles/' + idnivel), (data) => {
+
+            if (data.exists()) {
+                contador++;
+                //data son pura nodos
+                console.log(data.key);
+                console.log(data.val());
+                if (contador === 1) {
+                    document.getElementById("descripcion").value = data.val();
+
+                } else {
+                    if (contador === 2) {
+                        document.getElementById("numeroNivel").id = data.val();
+                    } else {
+                        if (contador === 3) {
+                            document.getElementById("urlimagen").value = data.val();
+                        } else {
+                            if (contador === 4) {
+                                document.getElementById("nombre-nivel").value = data.val();
+                            }
+                        }
+
+                    }
+                }
+
+
+
+                console.log(contador);
+
+            } else {
+                alert("No se encontro el elemento");
+            }
+
+        });
+
+        onChildAdded(commentsRef, (data) => {
+
+            if (data.exists()) {
+                //data son pura nodos
+                console.log(data.key);
+                console.log(data.val().datos.titulo);
+                console.log("holaaa");
+
+                //              add tarjetas de temas con sus titulos-----
+                const tarjetatema = new TarjetaTema(data.key, data.val().datos.titulo);
+                addTema(tarjetatema);
+
+                //lectura dinamica de sus hijos
+                // data.child("Contenido").forEach((childSnapshot) => {
+                //     const childKey = childSnapshot.key;
+                //     const childData = childSnapshot.val();
+
+                //     console.log(childSnapshot.key);
+                //     console.log(childData);
+                //     // ...
+                // });
+            } else {
+                alert("No se encontro el elemento");
+            }
+            document.querySelectorAll("#btn-eliminar").forEach(component => {
+            addEliminarBotones(component);
+        })
+
+        });
+        
+        addUltimo();
+        // Funciones para add funcion de eliminar de interfaz
+        function addEliminarBotones(element) {
+            element.addEventListener('click', (e) => {
+                console.log("holass......");
+                console.log(element.parentNode.parentNode.getAttribute("value"));
+                let hijo = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+                let padre = e.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
+                console.log(hijo);
+                console.log(padre)
+                lanzarAlertaBorrar(element.parentNode.parentNode.getAttribute("value"), padre, hijo);
+                // e.preventDefault();
+            })
+        }
+        function lanzarAlertaBorrar(temaN, pad, hij) {
+            Swal.fire({
+                title: "¿Estas seguro que deseas eliminar este tema?",
+                showCancelButton: true,
+                showConfirmButton: true,
+                confirmButtonColor: "#5FCF80",
+                cancelButtonColor: "#DD6B55",
+                confirmButtonText: "     Si    ",
+                cancelButtonText: "    No    ",
+                allowOutsideClick: false,
+                customClass: 'ventana-emergente'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('Conformacion de eliminacion');
+                    pad.removeChild(hij);
+                    borrarTemmas(idnivel,temaN);
+
+                } else if (result.dismiss) {
+                    Swal.fire('cancelado');
+                }
+
+            })
+        }
+        // funcion eliminar de Fabricioooooooooooooooooooo
+        function borrarTemmas(nivelN, temaN) {
+            remove(ref(db, "Temas/" + nivelN + "/" + temaN))
+                .then(() => {
+                    //   alert("data removed bien")
+
+                })
+                .catch((error) => {
+                    alert("error")
+                    //   Swal.fire({
+                    //     icon: 'error',
+                    //     title: 'Oops...',
+                    //     text: 'El tema no se ha eliminado correctamente!',
+
+                    //   })
+                })
+        }
+        const elemento = document.getElementById("boton-enviar");
+        elemento.addEventListener('click', (e) => {
+            console.log("entro a guardar");
+            e.preventDefault();
+            var llaveNivel = document.querySelector(".numNivelActual").id;
+
+            var nombre = document.getElementById("nombre-nivel").value;
+            var descripcion = document.getElementById("descripcion").value;
+            var imag = document.getElementById("urlimagen").value;
+            var datosvalidos = validarUrl(nombre, descripcion, imag);
+            console.log("la url es......" + datosvalidos);
+
+
+            if (datosvalidos) {
+                //   ingresar los datos a la base de datos
+                console.log("llaveNivel" + llaveNivel);
+                if (llaveNivel !== "numeroNivel") {
+                    console.log("entre a donde es un nuevo nivel");
+                    subir(llaveNivel, nombre, descripcion, imag);
+                    console.log("Se envian los datos");
+                } else {
+
+                    // console.log("entre donde es nivel ");
+                    // mostrarAlertaGuardado("Se ha editado este nivel", 'question');
+                    // var numconvertido = Number(numeroNivel);
+                }
+            } else {
+                if (!datosvalidos) {
+                    // Alerta de que los datos no son validos 
+                    mostrarAlertaGuardado("Los datos ingresados son invalidos, vuelva a intertar!", 'error');
+                }
+
+            }
+
+        })
+        function validarUrl(titulo, descrip, url) {
+            var res = false;
+            var urlg = /^(ftp|http|https):\/\/[^ "]+$/.test(url);
+            var tit = /^\s*[a-zA-Z\s\é\á\í\ó\ú\ñ\Ñ\¿\¡p]{5,60}\s*$/.test(titulo);
+            var des = /^\s*[a-zA-Z\s\é\á\í\ó\ú\ñ\Ñ\¿\¡]{5,100}\s*$/.test(descrip);
+            console.log(urlg + "  " + tit + " " + des);
+            if ((urlg && tit && des) === true) {
+                res = true;
+            }
+            return res;
+        }
+        function mostrarAlertaGuardado(text, iconn) {
+            Swal.fire({
+                html: text,
+                customClass: 'contenido-alerta-crear-nivel',
+                timer: 4000,
+                padding: '1rem',
+                // backdrop:true,
+                toast: true,
+                icon: iconn,
+                width: '300px',
+                grow: false,
+                position: 'bottom-end',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                stopKeydownPropagation: false,
+                showConfirmButton: false,
+                showCancelButton: false,
+                showCloseButton: false,
+
+
+            })
+
+        }
+
+        async function subir(llave, tituloNivel, descrip, url) {
+            // const newPostKey = await push(child(ref(getDatabase()), "NivelCont"))
+            //   .key;
+
+            set(child(ref(getDatabase()), "Niveles/" + llave), {
+                id: llave,
+                descripcion: descrip,
+                imagen: url,
+                titulo: tituloNivel,
+            })
+                .then(() => {
+                    console.log("se creo correctamente")
+
+                })
+                .catch((error) => {
+                    alert("unsucessfull, error" + error);
+                });
+        }
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+</html>

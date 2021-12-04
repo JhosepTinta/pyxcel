@@ -16,29 +16,29 @@
 
     <!-- Vendor CSS Files -->
     <link
-      href="../../assets/vendor/animate.css/animate.min.css"
+      href="../assets/vendor/animate.css/animate.min.css"
       rel="stylesheet"
     />
-    <link href="../../assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="../assets/vendor/aos/aos.css" rel="stylesheet" />
     <link
-      href="../../assets/vendor/bootstrap/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      href="../assets/vendor/bootstrap/css/bootstrap.min.css"
       rel="stylesheet"
     />
     <link
-      href="../../assets/vendor/boxicons/css/boxicons.min.css"
+      href="../assets/vendor/bootstrap-icons/bootstrap-icons.css"
       rel="stylesheet"
     />
-    <link href="../../assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
     <link
-      href="../../assets/vendor/swiper/swiper-bundle.min.css"
+      href="../assets/vendor/boxicons/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link
+      href="../assets/vendor/swiper/swiper-bundle.min.css"
       rel="stylesheet"
     />
 
-    <link href="../../assets/css/style.css" rel="stylesheet" />
+    <link href="../assets/css/style.css" rel="stylesheet" />
 
     <script
       src="https://kit.fontawesome.com/e1004dd04e.js"
@@ -122,7 +122,7 @@
       };
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
-      import {contarNiveles} from "../../assets/js/recover-data.js"
+      import {contarNiveles} from "../assets/js/recover-data.js"
       import {
         getDatabase,
         ref,
@@ -167,7 +167,7 @@
             '<button id="' +
             objeto.id +
             '" class="borrarN">Eliminar</button>' +
-            '<a href="pagina-contenido.html?id=' +
+            '<a href="nivel-temas.html?id=' +
             objeto.id +
             '"" class="' +
             btn_text +
@@ -343,15 +343,15 @@
     </script>
 
     <!-- Vendor JS Files -->
-    <!-- <script src="../assets/vendor/aos/aos.js"></script>
+    <script src="../assets/vendor/aos/aos.js"></script>
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/vendor/php-email-form/validate.js"></script>
-    <script src="../assets/vendor/purecounter/purecounter.js"></script>-->
-    <script src="../../assets/vendor/swiper/swiper-bundle.min.js"></script> 
+    <script src="../assets/vendor/purecounter/purecounter.js"></script>
+    <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Template Main JS File -->
-    <script src="../../assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
     <!-- <script type="module" >
 
 import { initializeApp, onLog } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";

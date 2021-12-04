@@ -61,15 +61,15 @@ var numContent = 1;
 var previousElement = "";
 var valId = getParameterByName("tema");
 var valNew = getParameterByName("temaNuevo");
-var numNivel = "abscd";
-var nunTema = "erwerwe";
-/*if (valNew === "") {
-  numNivel = parseInt(getTema(valId));
-  nunTema = parseInt(getNivel(valId));
+var numNivel = "";
+var nunTema = "";
+if (valNew === "") {
+  numNivel = invertirCadena(getTema(valId));
+  nunTema = getNivel(valId);
 } else {
-  numNivel = parseInt(getTema(valNew));
-  nunTema = parseInt(getNivel(valNew));
-}*/
+  numNivel = invertirCadena(getTema(valNew));
+  nunTema = getNivel(valNew);
+}
 
 let arrayCotent = [];
 console.log(numNivel, nunTema);
@@ -78,7 +78,7 @@ function getNivel(id) {
   let i = 0;
   let encontro = false;
   while (i < id.length && !encontro) {
-    if (id[i] !== "a") {
+    if (id[i] !== ".") {
       res += id[i];
     } else {
       encontro = true;
@@ -93,7 +93,7 @@ function getTema(id) {
   let i = id.length - 1;
   let encontro = false;
   while (i > 0 && !encontro) {
-    if (id[i] !== "a") {
+    if (id[i] !== ".") {
       res += id[i];
     } else {
       encontro = true;
