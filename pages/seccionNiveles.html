@@ -122,7 +122,7 @@
       };
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
-      import {contarNiveles} from "../assets/js/recover-data.js"
+      
       import {
         getDatabase,
         ref,
@@ -139,9 +139,183 @@
 
       const db = getDatabase();
       const commentsRef = ref(db, "Niveles");
-      var numNiv=await contarNiveles()-1;
+      recuperarVistaNiveles();
+    async function recuperarVistaNiveles() {
       var contenido = "";
-      var cont=1;
+      get(child(ref(db), "Niveles/")).then((snapshot) => {
+        if (snapshot.exists()) {
+          snapshot.forEach((data) => {
+            console.log(data.key);
+            //objeto recuperado (se ejecuta n veces hasta que termine de leer todos los niveles)
+
+            const objeto = data.val();
+            console.log(objeto);
+            var img_text;
+            var btn_text;
+
+            contenido +=
+            '<div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-4 mt-md-4"><div class="course-item" style="border-style: solid;border-width:3px;border-color:black"><div class="row" style="height:40%"><img src="' +
+            objeto.imagen +
+            '" class="img-fluid" alt="..." style="height:100%" ></div><div class="row course-content" style="height:60%"><div class="d-flex justify-content-between align-items-center mb-3" style="height:40%">';
+          contenido +=
+            "<h3>" +
+            objeto.titulo +
+            '</h3><div class="testimonial-wrap d-flex justify-content-between align-items-center"><div class="testimonial-item d-flex align-items-center"><img src="';
+          contenido +=
+            img_text +
+            '"  alt="" style="height:64px;width:64px;"></div></div></div><p>' +
+            "fdasfdas" +
+            '</p><div class="text-center " style="height:20%">' +
+            '<button class="botonEliminar" id ="'+objeto.id+'">eliminar</button>' +
+            '<a href="nivel-temas.html?id=' +
+            objeto.id +
+            '"" class="' +
+            btn_text +
+            '">Seleccionar curso</a>';
+          contenido += "</div></div></div></div>";
+
+              /*
+
+            //contenido += '<div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-4 mt-md-4"><div class="course-item" style="border-style: solid;border-width:3px;border-color:black"><div class="row" style="height:40%"><img src="' + objeto.imagen + '" class="img-fluid" alt="..." style="height:100%" ></div><div class="row course-content" style="height:60%"><div class="d-flex justify-content-between align-items-center mb-3" style="height:40%">';
+            //contenido += '<h3>' + objeto.titulo + '</h3><div class="testimonial-wrap d-flex justify-content-between align-items-center"><div class="testimonial-item d-flex align-items-center"><img src="';
+            //contenido += img_text + '"  alt="" style="height:64px;width:64px;"></div></div></div><p>' + "fdasfdas" + '</p><div class="text-center " style="height:20%">' + 
+            contenido += '<button class="botonEliminar" id ="'+objeto.id+'">eliminar</button>' +
+              '<a href="pagina-contenido.html?id=' + objeto.id + '"" class="' + btn_text + '">Seleccionar curso</a>';
+            contenido += '</div></div></div></div>';
+              */
+
+            var a = document.getElementById("a");
+            a.innerHTML = contenido;
+            // ...
+          });
+
+          let variable = document.querySelectorAll(".botonEliminar");
+          console.log("fdsa" + variable);
+          variable.forEach(function (boton) {
+            boton.addEventListener("click", function(){
+              console.log(boton.id);
+              Swal.fire({
+              title: "Estas seguro que quieres eliminar este nivel",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Si",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                /*console.log(
+                  borrar.lastElementChild.lastElementChild.getAttribute("href")
+                );
+                let x = getParameterByName(
+                  "id",
+                  borrar.lastElementChild.lastElementChild.getAttribute("href")
+                );
+                console.log(x);*/
+                const db = getDatabase();
+                remove(ref(db, "Niveles/" + boton.id))
+                  .then(() => {
+                    Swal.fire({
+                      position: "top-end",
+                      icon: "success",
+                      title: "Se borro con exito",
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                  })
+                  .catch((error) => {
+                    alert("error");
+                  });
+
+                  remove(ref(db, "Temas/" + boton.id))
+                  .then(() => {
+                    Swal.fire({
+                      position: "top-end",
+                      icon: "success",
+                      title: "Se borro con exito",
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                  })
+                  .catch((error) => {
+                    alert("error");
+                  });
+
+                  remove(ref(db, "Evaluaciones/" + boton.id))
+                  .then(() => {
+                    Swal.fire({
+                      position: "top-end",
+                      icon: "success",
+                      title: "Se borro con exito",
+                      showConfirmButton: false,
+                      timer: 1500,
+                    });
+                  })
+                  .catch((error) => {
+                    alert("error");
+                  });
+
+              }
+            });
+            });
+          });
+
+
+        } else {
+          alert("No se encontro el elemento");
+        }
+      })
+        .catch((error) => {
+          alert("unsucessfull, error" + error);
+        });
+
+        /*onChildAdded(commentsRef, (data)=>{
+          recuperar();
+        });*/
+        onChildChanged(commentsRef, (data)=>{
+          recuperarVistaNiveles();
+        });
+        onChildRemoved(commentsRef, (data)=>{
+          recuperarVistaNiveles();
+        });
+
+      /*
+      await onChildAdded(commentsRef, (data) => {
+        if (data.exists()) {
+          console.log(data.key);
+          //objeto recuperado (se ejecuta n veces hasta que termine de leer todos los niveles)
+
+
+          const objeto = data.val();
+          console.log(objeto);
+          var img_text;
+          var btn_text;
+          //contenido += '<div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-4 mt-md-4"><div class="course-item" style="border-style: solid;border-width:3px;border-color:black"><div class="row" style="height:40%"><img src="' + objeto.imagen + '" class="img-fluid" alt="..." style="height:100%" ></div><div class="row course-content" style="height:60%"><div class="d-flex justify-content-between align-items-center mb-3" style="height:40%">';
+          //contenido += '<h3>' + objeto.titulo + '</h3><div class="testimonial-wrap d-flex justify-content-between align-items-center"><div class="testimonial-item d-flex align-items-center"><img src="';
+          //contenido += img_text + '"  alt="" style="height:64px;width:64px;"></div></div></div><p>' + "fdasfdas" + '</p><div class="text-center " style="height:20%">' + 
+          contenido += '<button class="botonEliminar"  id =' + objeto.id + ' ">' + objeto.id + '</button>' +
+            '<a href="pagina-contenido.html?id=' + objeto.id + '"" class="' + btn_text + '">Seleccionar curso</a>';
+          contenido += '</div></div></div></div>';
+
+        } else {
+          alert("No se encontro el elemento");
+        }
+        var a = document.getElementById("a");
+        a.innerHTML = contenido;
+
+        let button = document.getElementById("holff");
+        console.log(button);
+        //console.log(button);
+        button.addEventListener("click", function(){
+          console.log("fdsafdasfsa");
+        });
+
+      });*/
+    }
+      
+      /*
+      var numNiv=await contarNiveles()-1;
+     
+      var contenido = "";
+
       onChildAdded(commentsRef, (data) => {
         if (data.exists()) {
           console.log(data.key);
@@ -182,8 +356,8 @@
           console.log(document.querySelectorAll(".borrarN"));
           botonCancelar();
         }
-        cont++;
-      });
+
+      });*/
       /*onChildAdded(commentsRef, (data) => {
         if (data.exists()) {
           
@@ -196,31 +370,56 @@
       ////nuevos cambios
       var crearNuevoNiv = document.getElementById("crearNuevoNivel");
       crearNuevoNiv.addEventListener("click", function () {
-        subir("nivelDePrueba");
+        subir();
       });
-      async function subir(tituloNivel) {
+
+
+      async function subir() {
         const newPostKey = await push(child(ref(getDatabase()), "Niveles")).key;
         console.log(newPostKey);
         set(child(ref(getDatabase()), "Niveles/" + newPostKey), {
           id: newPostKey,
-          descripcion: "dfasdf",
+          descripcion: "aquí va la descripción",
           imagen:
             "https://i1.wp.com/hipertextual.com/wp-content/uploads/2017/08/accountant-microsoft-excel-counting.png?fit=1280%2C977&ssl=1",
-          titulo: tituloNivel,
+          titulo: "Nivel Nuevo",
         })
           .then(() => {
+            recuperarVistaNiveles();
             crearTema(newPostKey);
+            crearEvaluaciones(newPostKey);
           })
           .catch((error) => {
             alert("unsucessfull, error" + error);
           });
       }
+
+      async function crearEvaluaciones(idNivel){
+        const newPostKey = await push(
+          child(ref(getDatabase()), "Evaluaciones/" + idNivel)
+        ).key;
+        console.log(newPostKey);
+        set(
+          child(
+            ref(getDatabase()),
+            "Evaluaciones/" + idNivel + "/" + newPostKey
+          ),
+          {
+            pregunta: "descripción pregunta",
+            o1: "opcion1",
+            o2: "opcion2",
+            o3: "opcion3",
+            o4: "opcion4",
+            respuesta: "opcion1"
+          }
+        );
+      }
+
       async function crearTema(idNivel) {
         const newPostKey = await push(
           child(ref(getDatabase()), "Temas/" + idNivel)
         ).key;
         let datos = "datos";
-        let tema = "tema7";
         console.log(newPostKey);
         set(
           child(
@@ -286,6 +485,8 @@
           }
         });
       }
+
+      /*
       function botonCancelar() {
         console.log("mañanitas");
         console.log(document.querySelectorAll(".borrarN"));
@@ -311,14 +512,7 @@
               confirmButtonText: "Si",
             }).then((result) => {
               if (result.isConfirmed) {
-                /*console.log(
-                  borrar.lastElementChild.lastElementChild.getAttribute("href")
-                );
-                let x = getParameterByName(
-                  "id",
-                  borrar.lastElementChild.lastElementChild.getAttribute("href")
-                );
-                console.log(x);*/
+
                 const db = getDatabase();
                 remove(ref(db, "Niveles/" + borrar.getAttribute("id")))
                   .then(() => {
@@ -339,7 +533,7 @@
           });
           //console.log(element);
         });
-      }
+      }*/
     </script>
 
     <!-- Vendor JS Files -->
