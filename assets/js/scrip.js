@@ -14,7 +14,6 @@ var nombreTemas =  [] ;
 var temaActual = 1;
 let cantTemas = 0;
 
-
 async function incializar(){
 
         nombreTemas = await getNombresTemasNivel(codNivel);
