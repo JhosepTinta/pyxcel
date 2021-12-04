@@ -82,7 +82,7 @@ function recuperarNivelesUsuario(nivelActual) {
 
       contenido += '<div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-4 mt-md-4"><div class="course-item" style="border-style: solid;border-width:3px;border-color:black"><div class="row" style="height:40%"><img src="' + objeto.imagen + '" class="img-fluid" alt="..." style="height:100%" ></div><div class="row course-content" style="height:60%"><div class="d-flex justify-content-between align-items-center mb-3" style="height:40%">';
       contenido += '<h3>' + objeto.titulo + '</h3><div class="testimonial-wrap d-flex justify-content-between align-items-center"><div class="testimonial-item d-flex align-items-center"><button type="button" class="borrarN"><img src="';
-      contenido += img_text + '" class="borrar" alt="" style="height:32px;width:32px;"></button></div></div></div><p>' + objeto.descripcion + '</p><div class="text-center " style="height:20%">' + '<a href="nivel-temas.html?id=' + objeto.nivel + '"" class="' + btn_text + '">Editar</a>';
+      contenido += img_text + '" class="borrar" alt="" style="height:32px;width:32px;"></button></div></div></div><p>' + objeto.descripcion + '</p><div class="text-center " style="height:20%">' + '<a href="nivel-temas.html?id="' + objeto.id + '" class="' + btn_text + '">Editar</a>'+'<a href="administrar_evaluacion.html?id="' + objeto.id + '" class="' + btn_text + '">Editar</a>';
       contenido += '</div></div></div></div>';
 
     } else {
