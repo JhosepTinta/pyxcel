@@ -43,6 +43,9 @@ async function getContenidoTema(codNivel,codTema){
            contador++;
     });
 
+    if(contenidos==null){
+        return "";
+    }
 
     contenidos.forEach(element => {
         listaContendios.push(element.val());
