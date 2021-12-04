@@ -1,11 +1,19 @@
 import {
   recuperarContenido,
-  actualizarContenidoEspecifico,
-  eliminarContenidoEspecifico,
   recuperarDatosTema,
   actualizarDatosTema,
+  actualizarContenidoEspecifico,
+  eliminarContenidoEspecifico,
   recuperarDatos,
+  crearId
 } from "../recover-data.js";
+
+/*import{
+  commentsRef,
+  db,
+  getDatabase
+}
+from "../connection-firebase.js";*/
 
 function getParameterByName(name) {
   name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -15,6 +23,21 @@ function getParameterByName(name) {
     ? ""
     : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
+
+/*function proof() {
+  const db = getDatabase();        
+    const commentsRef = ref(db, 'Temas');
+  onChildAdded(commentsRef, (data) => {
+    if (data.exists()) {
+      console.log(data.key);
+    
+    } else {
+      alert("No se encontro el elemento");
+    }
+    var a = document.getElementById("a");
+    a.innerHTML = contenido;
+  });
+}*/
 
 /*await recuperarNivel(1).then((nivel)=>{
   export {recuperarNivel}
@@ -38,15 +61,15 @@ var numContent = 1;
 var previousElement = "";
 var valId = getParameterByName("tema");
 var valNew = getParameterByName("temaNuevo");
-var numNivel = 0;
-var nunTema = 0;
-if(valNew === ''){
+var numNivel = "abscd";
+var nunTema = "erwerwe";
+/*if (valNew === "") {
   numNivel = parseInt(getTema(valId));
   nunTema = parseInt(getNivel(valId));
-}else {
+} else {
   numNivel = parseInt(getTema(valNew));
   nunTema = parseInt(getNivel(valNew));
-}
+}*/
 
 let arrayCotent = [];
 console.log(numNivel, nunTema);
@@ -80,7 +103,6 @@ function getTema(id) {
   return res;
 }
 
-
 //ejecucion de funciones iniciales
 await recuperarDatosTema(numNivel, nunTema).then((tema) => {
   if (tema.exists()) {
@@ -101,6 +123,7 @@ await recuperarContenido(numNivel, nunTema).then((contenidos) => {
       //console.log(object[key]);
       innerComponent(
         cont,
+        key,
         object[key].titulo,
         object[key].descripcion,
         object[key].imagen
@@ -113,15 +136,18 @@ assignEvents();
 //funciones de interaccion
 document.querySelector(".add-content").addEventListener("click", () => {
   allActivateInvisible();
-  innerComponentAndForm(numContent);
-  addEventComponent(document.getElementById(`content-${numContent}`));
+  const newId = crearId("abscd","erwerwe");
+  innerComponentAndForm(numContent,newId);
+  addEventComponent(document.getElementById(`content-${newId}`).firstElementChild);
+  console.log(document.getElementById(`content-${newId}`).firstElementChild)
   addEventComponentDelete(
-    document.getElementById(`content-${numContent}`).lastElementChild
+    document.getElementById(`content-${newId}`).lastElementChild
   );
+    console.log(document.getElementById(`content-${newId}`).lastElementChild)
   addEventComponentSave(
-    document.getElementById(`content-${numContent}`).parentNode.lastElementChild
-      .lastElementChild.lastElementChild
+    document.getElementById(`content-${newId}`).parentNode.lastElementChild.lastElementChild.lastElementChild
   );
+
   numContent++;
   newContent = true;
 });
@@ -161,7 +187,8 @@ function addEventComponentSave(component) {
     let targetContainerForm = e.target.parentNode.parentNode;
     let idContentForm = targetContainerForm.getAttribute("id");
     let form = document.querySelector(`#${idContentForm} .content-form`);
-    let numForm = idContentForm[idContentForm.length - 1];
+    //let numForm = idContentForm[idContentForm.length - 1];
+    let numForm = isolateId(idContentForm);
     let title = form.childNodes[1].lastElementChild;
     let description = form.childNodes[3].lastElementChild;
     let img = form.childNodes[5].lastElementChild;
@@ -198,10 +225,11 @@ function addEventComponentDelete(component) {
               console.log("se elimina un componente antiguo")
           }*/
     console.log("esta elminando ");
-    let idForm =
-      e.target.parentNode.parentNode.lastElementChild.getAttribute("id");
-    let numForm = idForm[idForm.length - 1];
-    console.log(numForm);
+    let idForm = e.target.parentNode.parentNode.lastElementChild.getAttribute("id");
+    let numFormID = isolateId(idForm);
+    let numFormCad = e.target.parentNode.parentNode.firstElementChild.getAttribute("position");
+    let numForm = parseInt(numFormCad);
+    //console.log(e.target.parentNode.parentNode.firstElementChild.getAttribute("position"))
     /*Swal.fire({
             title: '¿Esta seguro de elimnar este contenido?',
             text: "Los cambios seran permanentes",
@@ -234,9 +262,10 @@ function addEventComponentDelete(component) {
       if (result.isConfirmed) {
         deleteComponent(e.target);
         correctComponentId(numForm);
-        recoverDataInArray();
-        updateContentInBD();
-        eliminarContenidoEspecifico(numNivel, nunTema, numContent);
+        /*recoverDataInArray();
+        updateContentInBD();*/
+        eliminarContenidoEspecifico(numNivel, nunTema, numFormID);
+
         Swal.fire("Confirmar");
       } else if (result.dismiss) {
         Swal.fire("Cancelar");
@@ -320,7 +349,7 @@ function allActivateInvisible() {
 }
 
 //funciones necesarias para pintar
-function innerComponent(numberContent, title, description, img) {
+function innerComponent(numberContent,key, title, description, img) {
   const contenedorTotal = document.querySelector(".content-container");
   const contenedor = document.createElement("div");
   contenedor.setAttribute("class", "content-element-container");
@@ -328,11 +357,11 @@ function innerComponent(numberContent, title, description, img) {
   contenedor.setAttribute("save", "true");
   numContent++;
   const nuevoContenido = `
-          <div id="content-${numberContent}" class="content-element">
-              <a href="#content-${numberContent}" class="content">Contenido ${numberContent}</a>
+          <div id="content-${key}" position="${numberContent}" class="content-element">
+              <a href="#content-${key}" class="content">Contenido ${numberContent}</a>
               <img src="../../assets/img/icons/eliminar.png" alt=""> 
           </div>
-          <div id="form-${numberContent}" class="content-form-container invisible">
+          <div id="form-${key}" class="content-form-container invisible">
               <div class="content-form">
               <label for="">Titulo
                   <input type="text" value="${title}">
@@ -361,17 +390,17 @@ function deleteComponent(component) {
   );
 }
 
-function innerComponentAndForm(numberContent) {
+function innerComponentAndForm(numberContent,id) {
   const contenedorTotal = document.querySelector(".content-container");
   const contenedor = document.createElement("div");
   contenedor.setAttribute("class", "content-element-container");
   contenedor.setAttribute("state", "activado");
   const nuevoContenido = `
-          <div id="content-${numberContent}" class="content-element">
-              <a href="#content-${numberContent}" class="content">Contenido ${numberContent}</a>
+          <div id="content-${id}" position="${numberContent}" class="content-element">
+              <a href="#content-${id}" class="content">Contenido ${numberContent}</a>
               <img src="../../assets/img/icons/eliminar.png" alt=""> 
           </div>
-          <div id="form-${numberContent}" class="content-form-container">
+          <div id="form-${id}" class="content-form-container">
               <div class="content-form">
                   <label for="">Titulo
                   <input type="text">
@@ -404,14 +433,16 @@ function correctComponentId(idDeleted) {
 
   document.querySelectorAll(".content-element-container").forEach((element) => {
     //formId = element.firstElementChild.getAttribute("id");
-    contentId = element.lastElementChild.getAttribute("id");
+    contentId = element.firstElementChild.getAttribute("position");
     //formId = parseInt(formId[formId.length -1]);
-    contentId = parseInt(contentId[contentId.length - 1]);
+    contentId = parseInt(contentId);
+    console.log(contentId+"  "+idDeleted)
     console.log("el numero de cont es: " + numContent);
     if (contentId >= idDeleted) {
       if (contentId - 1 == 1) {
         cont = 1;
         setContentAndId(element, cont);
+        //console.log("entttrrrrttttttuooooo")
         lastId = contentId;
       } else if (contentId === 1) {
         lastId = contentId;
@@ -433,7 +464,33 @@ function correctComponentId(idDeleted) {
 }
 
 function setContentAndId(component, newId) {
-  component.lastElementChild.setAttribute("id", `form-${newId}`);
-  component.firstElementChild.setAttribute("id", `content-${newId}`);
+  //component.lastElementChild.setAttribute("id", `form-${newId}`);
+  component.firstElementChild.setAttribute("position", `${newId}`);
   component.firstElementChild.firstElementChild.textContent = `Contenido ${newId}`;
 }
+
+function isolateId(cad){
+  let contadorID = cad.length-1;
+  let resID = "";
+  let encontroMarca = false;
+  while (contadorID>0) {
+    if(cad[contadorID]!=='-' && !encontroMarca){
+      resID += cad[contadorID];
+    }else{
+      encontroMarca=true;
+    }
+    contadorID --;
+  }
+  return invertirCadena(resID);
+}
+
+function invertirCadena(cad){
+  let resCad = "";
+  for (let i = cad.length-1; i >= 0 ; i--) {
+    resCad += cad[i];
+  }
+  return resCad;
+}
+
+//console.log(isolateId("sdfsdfsd-adddddb"))
+

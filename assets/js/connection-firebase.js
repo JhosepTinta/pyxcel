@@ -11,8 +11,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-import { getDatabase, ref, get, set, child,onChildAdded, update, remove } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
+import { getDatabase, ref, get, set, child,onChildAdded, update, remove,push } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
         
 const db = getDatabase();
-export {db,getDatabase,ref,get,set,child,onChildAdded,update,remove,app};
+export {db,getDatabase,ref,get,set,child,onChildAdded,update,remove,app,push};
 

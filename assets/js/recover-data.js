@@ -1,4 +1,4 @@
-import {db,ref,get,child,onChildAdded,getDatabase,update,remove} from "../js/connection-firebase.js";
+import {db,ref,get,child,onChildAdded,getDatabase,update,remove,push} from "../js/connection-firebase.js";
 import {PonerContenido,agregarIntroduccionContenido,ponerTitulo,ponerTituloNivel} from "../js/scrip.js";
 export {comprobarNivel,recuperarDatos,recuperarIntroduccion,contarTemas,recuperarTituloNivel}
 export {recuperarNivel,recuperarTemas,recuperarContenido,recuperarContenidoEspecifico,recuperarDatosTema}
@@ -6,8 +6,8 @@ export {eliminarContenidoEspecifico}
 export {insertarContenidoEspecifico}
 // export {actualizarContenidoEspecifico}
 export {actualizarContenidoEspecifico,actualizarDatosTema}
-export {contarNiveles}
-export {addNivelInTheme}
+export {contarNiveles,crearId}
+//export {addNivelInTheme}
 function getDireccion(direccion){
     var dbref = ref(db);
     let exito = 0;
@@ -119,16 +119,16 @@ function recuperarTemas(nroNivel){
 
 function recuperarDatosTema(nroNivel,nroTema){
     const dbref = ref(db)
-    return get(child(dbref,`Temas/nivel${nroNivel}/tema${nroTema}/datos`))
+    return get(child(dbref,`Temas/${nroNivel}/${nroTema}/datos`))
 }
 
 function recuperarContenido(nroNivel,nroTema){
     const dbref = ref(db)
-    return get(child(dbref,`Temas/nivel${nroNivel}/tema${nroTema}/Contenidos`))
+    return get(child(dbref,`Temas/${nroNivel}/${nroTema}/Contenidos`))
 }
 
 function eliminarContenidoEspecifico(nroNivel,nroTema,nroContenido){
-    return remove(ref(db,`Temas/nivel${nroNivel}/tema${nroTema}/Contenidos/Cont-${nroContenido}`))      
+    return remove(ref(db,`Temas/${nroNivel}/${nroTema}/Contenidos/${nroContenido}`))      
 }
 
 function insertarContenidoEspecifico(nroNivel,nroTema,nroContenido,Contenido) {
@@ -136,28 +136,22 @@ function insertarContenidoEspecifico(nroNivel,nroTema,nroContenido,Contenido) {
 }
 
 function actualizarContenidoEspecifico(nroNivel,nroTema,nroContenido,Contenido){
-    return update(ref(db, `Temas/nivel${nroNivel}/tema${nroTema}/Contenidos/Cont-${nroContenido}`), Contenido)        
+    return update(ref(db, `Temas/${nroNivel}/${nroTema}/Contenidos/${nroContenido}`), Contenido)        
 }
 
 function actualizarDatosTema(nroNivel,nroTema,Datos){
-    return update(ref(db, `Temas/nivel${nroNivel}/tema${nroTema}/datos`), Datos)        
-}
-
-function addNivelInTheme(nroNivel){
-    return update(ref(db, `Temas/nivel${nroNivel}/tema2`), {
-        titulo: "sddsd",
-        imagen: "dsfsd"
-    }).then(()=>{
-        alert("fabricio apesta")
-    }).catch((error)=>{
-        alert("fabricio no apesta")
-    })  
+    return update(ref(db, `Temas/${nroNivel}/${nroTema}/datos`), Datos)        
 }
 
 function recuperarContenidoEspecifico(nroNivel,nroTema,nroContenido){
     const dbref = ref(db)
     return get(child(dbref,`Temas/nivel${nroNivel}/tema${nroTema}/Contenidos/Cont-${nroContenido}`))
 }
+
+function crearId(nroNivel,nroTema){
+    return push(child(ref(getDatabase()), `Temas/${nroNivel}/${nroTema}/Contenidos/`)).key;
+}
+
 
 
 
