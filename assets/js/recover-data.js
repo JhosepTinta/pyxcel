@@ -1,13 +1,5 @@
-import {db,ref,get,child,onChildAdded,getDatabase,update,remove,push} from "../js/connection-firebase.js";
-import {PonerContenido,agregarIntroduccionContenido,ponerTitulo,ponerTituloNivel} from "../js/scrip.js";
-export {comprobarNivel,recuperarDatos,recuperarIntroduccion,contarTemas,recuperarTituloNivel}
-export {recuperarNivel,recuperarTemas,recuperarContenido,recuperarContenidoEspecifico,recuperarDatosTema}
-export {eliminarContenidoEspecifico}
-export {insertarContenidoEspecifico}
-// export {actualizarContenidoEspecifico}
-export {actualizarContenidoEspecifico,actualizarDatosTema}
-export {contarNiveles,crearId}
-//export {addNivelInTheme}
+import{db,getDatabase,ref,get,set,child,onChildAdded,update,remove} from "../js/connection-firebase.js";
+
 function getDireccion(direccion){
     var dbref = ref(db);
     let exito = 0;
@@ -22,139 +14,46 @@ function getDireccion(direccion){
     return res;
 }
 
-
-async function comprobarNivel(codNivel){
-    var  aux = await getDireccion("Niveles/nivel"+codNivel);
-    return aux;
+async function getTituloNivel(codNivel){
+    var  res = await getDireccion("Niveles/"+codNivel);
+    return   (res.val()).titulo
 }
 
-function recuperarDatos(ruta,elemento,numeroTema){
-    const dbref = ref(db);
-    get(child(dbref,ruta+"/"+elemento+numeroTema)).then((snapshot)=>{
-        console.log(ruta+"/"+elemento+numeroTema);
-        if(snapshot.exists()){
-            const obj = snapshot.val().Contenidos; 
-            for(const elemento in obj){
-                console.log(obj);
-                PonerContenido(obj[elemento].titulo,obj[elemento].descripcion,obj[elemento].imagen);
-            }
-        }else{
-            console.log("No se encontro el elemento");
-        }
-    })
-    .catch((error) => {
-            console.log("unsucessfull, error" + error);
-        });
-}
-
-function recuperarIntroduccion(ruta,numeroTema){
-    const dbref = ref(db);
-    get(child(dbref,ruta+numeroTema)).then((snapshot)=>{
-        if(snapshot.exists()){
-            console.log(snapshot.val().datos);
-            const introducion = snapshot.val().datos;
-            agregarIntroduccionContenido(introducion.titulo);
-        }else{
-            console.log("No se encontro el elemento");
-        }
-    })
-    .catch((error) => {
-            console.log("unsucessfull, error" + error);
+async function getNombresTemasNivel(codNivel){
+    var  aux = await getDireccion("Temas/"+codNivel);
+    let res = [];
+    aux.forEach(element => {
+        res.push(element)
+      
     });
-}
-
-
-async function contarTemas(nivelActual){
-        let n = 1;
-
-        var  data = await getDireccion("Temas/nivel"+nivelActual);
-        console.log('------------------')
-        console.log(data.val())
-        let res = [];
-        data.forEach(element => {
-
-            ponerTitulo(element.val().datos.titulo,n);
-            n++;
-            res.push(element.val().datos.titulo)
-        });
     return   res
 }
-async function contarNiveles(){
-    let n = 1;
 
-    var  data = await getDireccion("Niveles");
-    console.log('------------------')
-    console.log(data.val())
-    let res = [];
-    data.forEach(element => {
-        n++;
-         res.push(element.val())
+async function getContenidoTema(codNivel,codTema){
+    var  listaTemas = await getDireccion("Temas/"+codNivel+"/"+codTema);
+    var contenidos = null;
+    var listaContendios = [] ;
+    var contador = 1;
+    var res = '';
+    listaTemas.forEach(element => {
+       if(contador == 1){
+          
+          contenidos = element;
+       }
+           contador++;
     });
-return  n;
-}
-function recuperarTituloNivel(ruta,numeroNivel){
-    const dbref = ref(db);
-    get(child(dbref,ruta+numeroNivel)).then((snapshot)=>{
-        if(snapshot.exists()){
-            let titulo = snapshot.val().titulo;
-            ponerTituloNivel(`Nivel ${numeroNivel}: ${titulo}`);
-        }else{
-            console.log("No se encontro el elemento");
-        }
-    })
-    .catch((error) => {
-            console.log("unsucessfull, error" + error);
+
+
+    contenidos.forEach(element => {
+        listaContendios.push(element.val());
     });
-}
+     
+    listaContendios.forEach(element => {
+       res = res + "<h2>"+element.titulo+"</h2><p>"+element.descripcion+"</p><img src="+element.imagen+"><img>";
+    });
 
-function recuperarNivel(nroNivel){
-    const dbref = ref(db)
-    return get(child(dbref,'Niveles/nivel'+nroNivel))
-}
-
-function recuperarTemas(nroNivel){
-    const dbref = ref(db)
-    return get(child(dbref,'Temas/nivel'+nroNivel))
-}
-
-function recuperarDatosTema(nroNivel,nroTema){
-    const dbref = ref(db)
-    return get(child(dbref,`Temas/${nroNivel}/${nroTema}/datos`))
-}
-
-function recuperarContenido(nroNivel,nroTema){
-    const dbref = ref(db)
-    return get(child(dbref,`Temas/${nroNivel}/${nroTema}/Contenidos`))
-}
-
-function eliminarContenidoEspecifico(nroNivel,nroTema,nroContenido){
-    return remove(ref(db,`Temas/${nroNivel}/${nroTema}/Contenidos/${nroContenido}`))      
-}
-
-function insertarContenidoEspecifico(nroNivel,nroTema,nroContenido,Contenido) {
-    return set(ref(db,`Temas/nivel${nroNivel}/tema${nroTema}/Contenidos/Cont-${nroContenido}`), Contenido)
-}
-
-function actualizarContenidoEspecifico(nroNivel,nroTema,nroContenido,Contenido){
-    return update(ref(db, `Temas/${nroNivel}/${nroTema}/Contenidos/${nroContenido}`), Contenido)        
-}
-
-function actualizarDatosTema(nroNivel,nroTema,Datos){
-    return update(ref(db, `Temas/${nroNivel}/${nroTema}/datos`), Datos)               
+    return res;
 }
 
 
-function recuperarContenidoEspecifico(nroNivel,nroTema,nroContenido){
-    const dbref = ref(db)
-    return get(child(dbref,`Temas/nivel${nroNivel}/tema${nroTema}/Contenidos/Cont-${nroContenido}`))
-}
-
-function crearId(nroNivel,nroTema){
-    return push(child(ref(getDatabase()), `Temas/${nroNivel}/${nroTema}/Contenidos/`)).key;
-}
-
-
-
-
-
-
+export{getTituloNivel,getNombresTemasNivel,getContenidoTema}

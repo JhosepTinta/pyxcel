@@ -1,5 +1,5 @@
-import {comprobarNivel,recuperarDatos,contarTemas,recuperarIntroduccion,recuperarTituloNivel} from "../js/recover-data.js";
-export {PonerContenido,agregarIntroduccionContenido,ponerTitulo,ponerTituloNivel}
+/* estilos para pagina-contenido.html*/
+import{getTituloNivel,getNombresTemasNivel,getContenidoTema} from "../js/recover-data.js";
 export{incializar}
 
 function getParameterByName(name) {
@@ -8,39 +8,28 @@ function getParameterByName(name) {
     results = regex.exec(location.search);
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
-
-const nivelActual = getParameterByName('id');
-
-let temaActual = 1;
+var codNivel = getParameterByName('id');
+var codigosTemas = [];
+var nombreTemas =  [] ;
+var temaActual = 1;
 let cantTemas = 0;
-//incializar();
 
-async function  incializar(actualNivelUser){
-    var  aux = await comprobarNivel(nivelActual);
-    console.log('comprobar nivle--------------------------------------');
-    console.log(typeof aux.val().activo);
-    if(/*aux.val().activo*/nivelActual<=actualNivelUser){
-        var a = await contarTemas(nivelActual);
-        recuperarTituloNivel("Niveles/nivel",nivelActual);
+
+async function incializar(){
+
+        nombreTemas = await getNombresTemasNivel(codNivel);
+         //   console.log(element.ref._path.pieces_[2])
+        cantTemas =  nombreTemas.length;
+        var tituloNivel= await getTituloNivel(codNivel);
+        ponerTituloNivel(tituloNivel);
+        ponerTitulosTemas(nombreTemas);
         pintarTituloTema(temaActual);
         ponerFuncionesBotones();
         cotrolarVisibilidadBotones();
-    }else{
-        console.log('poniendo nivle bloqueado')
-        agregarIntroduccionContenido('NIVEL_BLOQUEADO!!!');
-        var ba = document.querySelector('.boton-anterior');
-        ba.classList.add('oculto');
-        var bs = document.querySelector('.boton-siguiente');
-        bs.classList.add('oculto');
-
-        let botonRendirExamen = document.getElementById("rendirExamen");
-        botonRendirExamen.disabled = true;
-    }
 }
 
-
-function pintarTituloTema(numeroTema){  /*cada que se haga click sobre un boton (anterior,siguiente) o sobre el muno lateral,este metodo se ejecutara*/
-    var botonesTemas  =  document.querySelectorAll('.tema-del-nivel');
+async function pintarTituloTema(numeroTema){  /*cada que se haga click sobre un boton (anterior,siguiente) o sobre el muno lateral,este metodo se ejecutara*/
+    var botonesTemas  = document.querySelectorAll('.tema-del-nivel');
     botonesTemas.forEach(b =>{
         if(numeroTema == b.value){
             b.classList.add('tema-seleccionado');
@@ -49,67 +38,52 @@ function pintarTituloTema(numeroTema){  /*cada que se haga click sobre un boton 
         }
     });
     cotrolarVisibilidadBotones();
-    /*PONER AQUI EL METODO PARA CAMBIAR EL CONTENDIO DEL TEMA*/
-    let aux = "Contenidos/Cont-1";
-    limpiarContenido();
-    recuperarIntroduccion(`Temas/nivel${nivelActual}/tema`,temaActual);
-    recuperarDatos("Temas",`nivel${nivelActual}/tema`,numeroTema);
+
+    var contTema = await getContenidoTema(codNivel, codigosTemas[numeroTema-1]);
+    
+
+
+    PonerContenido(nombreTemas[numeroTema-1],contTema); /*En esta esta parte deberian ir info sacada de la base de datos*/
 
 }
 
-function limpiarContenido(){
-    var elemento = document.querySelector(".informacion-contenido");
-    const contenedor = document.createElement("div");
-    contenedor.setAttribute("class","informacion-contenido");
-    contenedor.setAttribute("id","a");
-    console.log(contenedor);
-    elemento.replaceWith(contenedor);
-}
-function agregarIntroduccionContenido(tituloTema){
-    const titulo = document.querySelector(".titulo-del-contenido h1");
-    titulo.textContent = tituloTema;
+function PonerContenido(tituloTema , contenidoTema){ 
+    var contenidoTituloTema = document.querySelector('.titulo-del-contenido');
+    var contenidoDelTema = document.querySelector('.informacion-contenido');
+    contenidoTituloTema.querySelector('h1').textContent = tituloTema.val().datos.titulo;
+    contenidoDelTema.innerHTML=contenidoTema;
 }
 
-function PonerContenido(tituloTema , contenidoTema,imagen){ 
+async function ponerTitulosTemas(ArrayDeTemas){ /* lista de  nombres de temas  ordenados {tema1,tema2,tema3.....*/
+     var ArraySoloTitulosTema = [] ;
+     while(codigosTemas.length > 0){
+        codigosTemas.pop();
+    }
+     ArrayDeTemas.forEach(element => {
+         ArraySoloTitulosTema.push(element.val())
+         codigosTemas.push(element.ref._path.pieces_[2]);
+     });
 
-    const contenedorTotal = document.getElementById("a");
-    const contenedor = document.createElement("div");
-    contenedor.setAttribute("id", "contenedor");
-    //contenedor.setAttribute("class","informacion-contendio")
-    const nuevoContenido = `
-            <h2>${tituloTema}</h2>
-            <p>${contenidoTema}</p>
-            <img src="${imagen}" width="450px" style="margin-left:100px"><img>
-    `;
-    //document.body.innerHTML = nuevoContenido;
-    contenedor.innerHTML = nuevoContenido;
-    contenedorTotal.appendChild(contenedor);
-}
-
-function ponerTitulo(item,aux){ /* lista de  nombres de temas  ordenados {tema1,tema2,tema3.....*/
     var listaTemas = document.querySelector('.lista-temas');
     var templateTituloTema = document.querySelector('.template-tema-nivel').content;
     var fragmentTemas = document.createDocumentFragment();
-        templateTituloTema.querySelector('.tema-del-nivel').textContent = item;
+    let aux=1;
+
+    ArraySoloTitulosTema.forEach(item =>{
+        templateTituloTema.querySelector('.tema-del-nivel').textContent = item.datos.titulo;
         templateTituloTema.querySelector('.tema-del-nivel').value = aux++;
         fragmentTemas.appendChild (templateTituloTema.cloneNode(true)); 
+    });
 
     listaTemas.appendChild(fragmentTemas);
 
     const botonesTemas = document.querySelectorAll('.tema-del-nivel');
     botonesTemas.forEach(boton =>{
         boton.addEventListener('click',(e) =>{
-            if(!(e.target.value == temaActual)){
-
-                temaActual=e.target.value;
-                pintarTituloTema(e.target.value);
-                $('.titulo-del-contenido').animate({scrollTop:0}, 'slow');
-
-            }
-        
+            temaActual=e.target.value;
+            pintarTituloTema(e.target.value);
         });
     });
-    cantTemas++;
 }
 
 function ponerTituloNivel(tituloNivel){
@@ -133,7 +107,6 @@ function ponerFuncionesBotones(){ /*se agregara un eventlistener a los botones a
             temaActual--;
             pintarTituloTema(temaActual);
         }
-        $('.titulo-del-contenido').animate({scrollTop:0}, 'slow');
         cotrolarVisibilidadBotones();
     });
 
@@ -144,7 +117,6 @@ function ponerFuncionesBotones(){ /*se agregara un eventlistener a los botones a
             temaActual++;
             pintarTituloTema(temaActual);
         }
-        $('.titulo-del-contenido').animate({scrollTop:0}, 'slow');
         cotrolarVisibilidadBotones();
     });
 }
@@ -163,6 +135,3 @@ function cotrolarVisibilidadBotones(){
         botonSiguiente.classList.remove('oculto');
     }
 }
-
-
-
