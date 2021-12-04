@@ -477,7 +477,7 @@ onAuthStateChanged(auth, (user) => {
       if (snapshot.exists()) {
         let text = document.getElementById("prueba");
         text.innerHTML = snapshot.val().nombre+'<i class="fas fa-chevron-down"></i>';
-        recuperarNivelesUsuario(snapshot.val().nivelActual);
+        recuperarNivelesUsuario(snapshot.val());
           nombreUsr= snapshot.val().nombre
         setTimeout( ()=>{
           inicializarSeccionComentarios();
@@ -504,23 +504,32 @@ cont.addEventListener('click', (e) => {
   signOut(auth);
 })
 
-function recuperarNivelesUsuario(nivelActual) {
+function recuperarNivelesUsuario(datosUsuario) {
   const db = getDatabase();
   const commentsRef = ref(db, 'Niveles');
   var contenido = "";
+  let habilitadoNivel = true;
   onChildAdded(commentsRef, (data) => {
     if (data.exists()) {
       //objeto recuperado (se ejecuta n veces hasta que termine de leer todos los niveles)
       const objeto = data.val();
       var img_text;
       var btn_text;
-      if (/*objeto.nivel<=nivelActual*/true) {
+      if (habilitadoNivel) {
         img_text = "../assets/img/ulock.png";
         btn_text = "btn btn-success";
       } else {
         img_text = "../assets/img/lock.png";
         btn_text = "btn btn-success disabled ";
       }
+
+      console.log(datosUsuario["notanivel" + objeto.id])
+      if(datosUsuario["notanivel" + objeto.id] === undefined ||datosUsuario["notanivel" + objeto.id] === null){
+        habilitadoNivel = false;
+      }else{
+        habilitadoNivel = true;
+      }
+
       contenido += '<div class="col-lg-3 col-md-6 d-flex align-items-stretch mt-4 mt-lg-4 mt-md-4"><div class="course-item" style="border-style: solid;border-width:3px;border-color:black"><div class="row" style="height:40%"><img src="' + objeto.imagen + '" class="img-fluid" alt="..." style="height:100%" ></div><div class="row course-content" style="height:60%"><div class="d-flex justify-content-between align-items-center mb-3" style="height:40%">';
       contenido += '<h3>' + objeto.titulo + '</h3><div class="testimonial-wrap d-flex justify-content-between align-items-center"><div class="testimonial-item d-flex align-items-center"><img src="';
       contenido += img_text + '"  alt="" style="height:64px;width:64px;"></div></div></div><p>' + objeto.descripcion + '</p><div class="text-center " style="height:20%">' + '<a href="pagina-contenido.html?id=' + objeto.id + '"" class="' + btn_text + '">Seleccionar curso</a>';

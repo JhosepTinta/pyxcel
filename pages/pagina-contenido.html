@@ -200,19 +200,20 @@
             <div class="container-fluid">
 
               <div class="row p-1" style="display: flex; align-items: center; margin-top: -20px;">
-                <a id="o1pregunta" type="button" class="btn btn-outline-light alert alert-success border border-dark"
-                  style="white-space: normal; margin-bottom: 5px">Cargando...</a>
-                <a id="o2pregunta" type="button" class="btn btn-outline-light alert alert-success border border-dark"
-                  style="white-space: normal; margin-bottom: 5px">Cargando...</a>
-                <a id="o3pregunta" type="button" class="btn btn-outline-light alert alert-success border border-dark"
-                  style="white-space: normal; margin-bottom: 5px">Cargando...</a>
-                <a id="o4pregunta" type="button" class="btn btn-outline-light alert alert-success border border-dark"
-                  style="white-space: normal; margin-bottom: 1px">Cargando...</a>
+                <label id="o1pregunta" type="button" class="btn btn-dark"
+                  style="white-space: normal; margin-bottom: 5px">Cargando...</label>
+                <label id="o2pregunta" type="button" class="btn btn-dark"
+                  style="white-space: normal; margin-bottom: 5px">Cargando...</label>
+                <label id="o3pregunta" type="button" class="btn btn-dark"
+                  style="white-space: normal; margin-bottom: 5px">Cargando...</label>
+                <label id="o4pregunta" type="button" class="btn btn-dark"
+                  style="white-space: normal; margin-bottom: 1px">Cargando...</label>
               </div>
 
             </div>
           </div>
           <div class="modal-footer">
+            
             <button type="button" id="botonCancelarPrueba" class="btn btn-danger">
               cancelar prueba
             </button>
@@ -225,6 +226,7 @@
               </button>-->
             <button type="button" id="close-modal" data-dismiss="modal" style="display: none"></button>
           </div>
+          <p id="contadorPreguntas" style="margin-left: 20px; color: rgb(0, 145, 55);"></p>
           <div class="progress" style="height: 5px;">
             <div id="bar" class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="100"
               aria-valuemin="0" aria-valuemax="100"></div>
@@ -324,13 +326,16 @@
             : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
 
-        get(child(ref(getDatabase()), "Evaluaciones/" + nivelActual)).then((snapshot) => {
+        if(nivelActual.length>0){
+          get(child(ref(getDatabase()), "Evaluaciones/" + nivelActual)).then((snapshot) => {
           if (snapshot.exists()) {
             snapshot.forEach((childSnapshot) => {
               const childData = childSnapshot.val();
               listaPreguntas.push(childData);
             });
-            inicializarFuncionamiento(datosUsuario, userid, listaPreguntas, nivelActual);
+            if(listaPreguntas.length>0){
+              inicializarFuncionamiento(datosUsuario, userid, listaPreguntas, nivelActual);
+            }
           } else {
             alert("No se encontro el elemento");
           }
@@ -338,6 +343,9 @@
           .catch((error) => {
             alert("unsucessfull, error" + error);
           });
+        }else{
+          alert("Nivel inexistente");
+        }
       }
 
       function inicializarFuncionamiento(datosUsuario, userid, listaPreguntas, idNivelActual) {
@@ -359,6 +367,26 @@
         let tiNi = document.getElementById("tituloNivelLabel");
         let btnCeRe = document.getElementById("botonCerrarReprobado");
         let botonSigLevel = document.getElementById("botonsiguientenivel");
+
+        let contadorPreguntas = document.getElementById("contadorPreguntas");
+
+        var cronometro;
+        var segundos;
+        function iniciarTemporizador() {
+          segundos = 60;
+          textoCuenta.textContent = String(segundos);
+          clearInterval(cronometro);
+          cronometro = setInterval(function () {
+            segundos = segundos - 1;
+            textoCuenta.textContent = String(segundos);
+            if (segundos === 0) {
+              clearInterval(cronometro);
+              indicePregunta = indicePregunta + 1;
+              siguientePregunta();
+            }
+          }, 1000);
+        }
+
         btnCeRe.addEventListener("click", function () {
           notaActual = 0;
           indicePregunta = 0;
@@ -369,30 +397,49 @@
 
         op1pr.addEventListener("click", function () {
           verificarRespuestaPregunta(op1pr.textContent, "o1pregunta");
-          setTimeout(siguientePregunta, 200);
         });
 
         op2pr.addEventListener("click", function () {
           verificarRespuestaPregunta(op2pr.textContent, "o2pregunta");
-          setTimeout(siguientePregunta, 200);
         });
         op3pr.addEventListener("click", function () {
           verificarRespuestaPregunta(op3pr.textContent, "o3pregunta");
-          setTimeout(siguientePregunta, 200);
         });
         op4pr.addEventListener("click", function () {
           verificarRespuestaPregunta(op4pr.textContent, "o4pregunta");
-          setTimeout(siguientePregunta, 200);
         });
 
         let botonRendirExamen = document.getElementById("rendirExamen");
         botonRendirExamen.addEventListener("click", function () {
-          iniciarTemporizador();
           siguientePregunta();
         });
 
+        let botonCancelar = document.getElementById("botonCancelarPrueba");
+          botonCancelar.addEventListener("click", function () {
+            Swal.fire({
+              title: "Realmente desea salir de la evaluacion?",
+              showCancelButton: true,
+              confirmButtonText: "si salir",
+              cancelButtonText: "cancelar",
+            }).then((result) => {
+              if (result.isConfirmed) {
+                $("#modal_evaluacion").modal().hide();
+                $("body").removeClass("modal-open");
+                $(".modal-backdrop").remove();
+                document.getElementById("close-modal").click();
+                notaActual = 0;
+                indicePregunta = 0;
+              } else {
+                iniciarTemporizador();
+              }
+            });
+          });
+
         recuperarTituloNivel();
         verificarNotaUsuario();
+
+        
+
         //metodos
         function verificarNotaUsuario(){
           if (datosUsuario["notanivel" + idNivelActual] === undefined ||datosUsuario["notanivel" + idNivelActual] === null) {
@@ -401,25 +448,28 @@
             botonRendirExamen.textContent = "Nota: " + datosUsuario["notanivel" + idNivelActual] + "/100";
             botonRendirExamen.disabled = true;
           }
+
         }
         function verificarRespuestaPregunta(respuestaActual, id_button) {
           let elem = document.getElementById(id_button);
           let preguntaActual = listaPreguntas[indicePregunta];
           if (preguntaActual.respuesta === respuestaActual) {
             notaActual = notaActual + (100 / listaPreguntas.length);
-            elem.className = "btn btn-success alert alert-success border border-dark";
+            elem.className = "btn btn-sucess";
             console.log("Respuesta correcta, tu nora es: " + notaActual);
           } else {
             console.log("Respuesta errónea, tu nota es: " + notaActual);
-            elem.className = "btn btn-danger alert alert-danger border border-dark";
+            elem.className = "btn btn-danger";
           }
           indicePregunta = indicePregunta + 1;
-          siguientePregunta();
+          setTimeout(siguientePregunta, 200);
         }
 
         function siguientePregunta() {
           quitar_animacion_botones();
           if (indicePregunta < listaPreguntas.length) {
+            contadorPreguntas.textContent = (indicePregunta+1)+"/"+listaPreguntas.length;
+            iniciarTemporizador();
             let pregunta = listaPreguntas[indicePregunta];
             let progreso = 100 / listaPreguntas.length;
             $('#bar').css('width', progreso + '%');
@@ -434,34 +484,21 @@
         }
         function quitar_animacion_botones() {
           document.getElementById("o1pregunta").className =
-            "btn btn-outline-light alert alert-success border border-dark";
+            "btn btn-dark";
           document.getElementById("o2pregunta").className =
-            "btn btn-outline-light alert alert-success border border-dark";
+            "btn btn-dark";
           document.getElementById("o3pregunta").className =
-            "btn btn-outline-light alert alert-success border border-dark";
+            "btn btn-dark";
           document.getElementById("o4pregunta").className =
-            "btn btn-outline-light alert alert-success border border-dark";
+            "btn btn-dark";
         }
 
 
 
-        var cronometro;
-        var segundos;
-        function iniciarTemporizador() {
-          segundos = 60;
-          clearInterval(cronometro);
-          cronometro = setInterval(function () {
-            segundos = segundos - 1;
-            textoCuenta.textContent = String(segundos);
-            if (segundos === 0) {
-              clearInterval(cronometro);
-              indicePregunta = indicePregunta + 1;
-              siguientePregunta();
-            }
-          }, 1000);
-        }
+        
 
         function mostrarNotaUsurioDialog() {
+          clearInterval(cronometro);
           if (notaActual >= 50.5) {
             subirNotaBD(notaActual);
             document.getElementById("close-modal").click();
