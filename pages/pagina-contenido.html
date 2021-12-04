@@ -400,6 +400,44 @@
         });
 
         function inicializarEvaluaciones(datosUsuario, userid) {
+
+          let listaPreguntas = new Array();
+
+          const nivelActual = getParameterByName("id");
+          console.log("mi id de la evaluacion es:"+nivelActual);
+                function getParameterByName(name) {
+                  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                    results = regex.exec(location.search);
+                  return results === null
+                    ? ""
+                    : decodeURIComponent(results[1].replace(/\+/g, " "));
+                }
+          get(child(ref(getDatabase()), "Evaluaciones/"+nivelActual)).then((snapshot) => {
+            if (snapshot.exists()) {
+                  snapshot.forEach((childSnapshot) => {
+                  const childKey = childSnapshot.key;
+                  const childData = childSnapshot.val();
+                  console.log(childData);
+                  listaPreguntas.push(childData);
+                  console.log("lista actualizada");
+                  console.log(listaPreguntas);
+                  // ...
+                });
+
+               /*  console.log(snapshot);
+                snapshot.forEach((data) => {
+                console.log(data.key);
+                console.log(data);});*/
+            } else {
+                alert("No se encontro el elemento");
+              }
+            })
+              .catch((error) => {
+                alert("unsucessfull, error" + error);
+              });
+
+
           let preguntaActual = 1;
           let preguntasAleatoriasNum = generarOrdenPreguntas();
           function generarOrdenPreguntas() {
@@ -416,16 +454,7 @@
           }
           let notaActual = 0;
           let pregunta = null;
-          const nivelActual = getParameterByName("id");
-          console.log("mi id de la evaluacion es:"+nivelActual);
-          function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-              results = regex.exec(location.search);
-            return results === null
-              ? ""
-              : decodeURIComponent(results[1].replace(/\+/g, " "));
-          }
+          
           /*import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
         const firebaseConfig = {
           apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
@@ -452,7 +481,7 @@
         } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
 		*/
           const db = getDatabase();
-          const commentsRef = ref(db, "Evaluaciones/nivel" + nivelActual);
+          const commentsRef = ref(db, "Evaluaciones/" + nivelActual);
           var contenido = "";
 
           /*var listaPreuntas = new Array();
@@ -467,6 +496,8 @@
 				}
 
 			});*/
+
+      var textoCuenta = document.getElementById("temporizador");
 
           let op1pr = document.getElementById("o1pregunta");
           let op2pr = document.getElementById("o2pregunta");
@@ -494,7 +525,7 @@
           });
           function recuperarTituloNivel() {
             const dbRef = ref(getDatabase());
-            get(child(dbRef, "Niveles/nivel" + nivelActual + "/titulo"))
+            get(child(dbRef, "Niveles/" + nivelActual + "/titulo"))
               .then((snapshot) => {
                 if (snapshot.exists()) {
                   //console.log(snapshot.val());
@@ -549,6 +580,7 @@
           });
 
           function verificarRespuestaPregunta(respuestaActual, id_button) {
+            console.log("verificando..."+preguntaActual)
             if (recuperarPregunta === null && id_button === null) {
               mostrarNotaUsurioDialog();
               preguntaActual = 1;
@@ -557,7 +589,7 @@
               if (!(pregunta === null)) {
                 if (preguntaActual < 11) {
                   if (respuestaActual === pregunta.respuesta) {
-                    notaActual = notaActual + 10;
+                    notaActual = notaActual + (100/listaPreguntas.length);
 
                     elem.className = "btn btn-success alert alert-success border border-dark";
                     console.log(
@@ -580,7 +612,7 @@
                   }
                 } else {
                   if (respuestaActual === pregunta.respuesta) {
-                    notaActual = notaActual + 10;
+                    notaActual = notaActual + (100/listaPreguntas.length);
 
                     elem.className = "btn btn-success";
                     console.log(
@@ -602,7 +634,7 @@
                     music.play();
                   }
                   console.log(preguntaActual);
-                  if (preguntaActual === 11) {
+                  if (preguntaActual === listaPreguntas.length+1) {
                     mostrarNotaUsurioDialog();
                     preguntaActual = 1;
                     //$('#myModalExito').modal('hide'); // cerrar
@@ -765,14 +797,33 @@
           recuperarPreguntaSinTemporizador();
           function recuperarPregunta() {
             quitar_animacion_botones();
-            const dbRef = ref(getDatabase());
+            //console.log(snapshot.val());
+            if (preguntaActual === listaPreguntas.length+1) {
+                    verificarRespuestaPregunta(null, null);
+                  } else {
+                    pregunta = listaPreguntas[preguntaActual-1];
+                    var progreso;
+                    progreso= 100/listaPreguntas.length;
+                    //nuPr.css('width', progreso + '%');
+                    $('#bar').css('width', progreso + '%');
+                    tiPr.textContent = pregunta.pregunta;
+                    op1pr.textContent = pregunta.o1;
+                    op2pr.textContent = pregunta.o2;
+                    op3pr.textContent = pregunta.o3;
+                    op4pr.textContent = pregunta.o4;
+                    reiniciarTemporizador();
+                    iniciarTemporizador();
+                    preguntaActual = preguntaActual + 1;
+                  }
+
+            /* const dbRef = ref(getDatabase());
             get(
               child(
                 dbRef,
                 "Evaluaciones/nivel" +
                   nivelActual +
                   "/p" +
-                  preguntasAleatoriasNum[preguntaActual - 1] /*preguntaActual*/
+                  preguntasAleatoriasNum[preguntaActual - 1]
               )
             )
               .then((snapshot) => {
@@ -783,7 +834,7 @@
                   } else {
                     pregunta = snapshot.val();
                     var progreso;
-                    progreso= ((preguntaActual-1)/10)*100;
+                    progreso= ((preguntaActual-1)/(100/listaPreguntas.length))*100;
                     //nuPr.css('width', progreso + '%');
                     $('#bar').css('width', progreso + '%');
                     tiPr.textContent = pregunta.pregunta;
@@ -804,9 +855,23 @@
               })
               .catch((error) => {
                 console.error(error);
-              });
+              }); */
           }
           function recuperarPreguntaSinTemporizador() {
+
+            pregunta = listaPreguntas[preguntaActual-1];
+                  var progreso;
+                  progreso= 100/listaPreguntas.length;
+                  //nuPr.css('width', progreso + '%');
+                  $('#bar').css('width', progreso + '%');
+                  tiPr.textContent = pregunta.pregunta;
+                  op1pr.textContent = pregunta.o1;
+                  op2pr.textContent = pregunta.o2;
+                  op3pr.textContent = pregunta.o3;
+                  op4pr.textContent = pregunta.o4;
+                  preguntaActual = preguntaActual + 1;
+            
+            /*
             const dbRef = ref(getDatabase());
             get(
               child(
@@ -814,7 +879,7 @@
                 "Evaluaciones/nivel" +
                   nivelActual +
                   "/p" +
-                  preguntasAleatoriasNum[preguntaActual - 1] /*preguntaActual*/
+                  preguntasAleatoriasNum[preguntaActual - 1] 
               )
             )
               .then((snapshot) => {
@@ -836,7 +901,7 @@
               })
               .catch((error) => {
                 console.error(error);
-              });
+              });*/
           }
 
           /*function siguientePregunta(){
@@ -850,7 +915,7 @@
 				//console.log(pregunta.o1);
 			}*/
           var segundos = 60;
-          var textoCuenta = document.getElementById("temporizador");
+          
           var cronometro;
           function iniciarTemporizador() {
             clearInterval(cronometro);
@@ -860,7 +925,7 @@
               if (segundos === 0) {
                 clearInterval(cronometro);
                 setTimeout(function () {
-                  if (preguntaActual === 11) {
+                  if (preguntaActual === listaPreguntas.length+1) {
                     mostrarNotaUsurioDialog();
                   } else {
                     recuperarPregunta();
