@@ -73,8 +73,6 @@
   <br><br><br>
 
   <!--modal pregunta-->
-  
-  
   <div class="modal fade" id="modal_limpiar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -93,7 +91,7 @@
             </div>
             <div class="col-8">
               <div class="row">
-                <h5 class="text-secondary">¿Esta seguro que desea eliminar el contenido de esta pregunta</h5>
+                <h5 class="text-secondary">¿Esta seguro que desea eliminar esta pregunta</h5>
               </div>
             </div>
           </div>
@@ -114,58 +112,21 @@
           <h5 class="text-left text-success">listado de preguntas</h5>
         </div>
         <div class="list-group overflow-auto" style="height:70vh;" id="myListBotones" role="tablist">
-          <button class="list-group-item list-group-item-action list-group-item-success active" data-toggle="list"
-            role="tab" id="pregunta1">Pregunta 1</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta2">Pregunta 2</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta3">Pregunta 3</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta4">Pregunta 4</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta5">Pregunta 5</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta6">Pregunta 6</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta7">Pregunta 7</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta8">Pregunta 8</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta9">Pregunta 9</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta10">Pregunta 10</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta11">Pregunta 11</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta12">Pregunta 12</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta13">Pregunta 13</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta14">Pregunta 14</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta15">Pregunta 15</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta16">Pregunta 16</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta17">Pregunta 17</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta18">Pregunta 18</button>
-          <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
-            id="pregunta19">Pregunta 19</button>
+          <!--
           <button class="list-group-item list-group-item-action list-group-item-success" data-toggle="list" role="tab"
             id="pregunta20">Pregunta 20</button>
-
+        -->
         </div>
 
+        <button style="margin-top: 20px;" type="button" class="btn btn-warning" id="crearNuevaPregunta">Crear Nuevo</button>
+
       </div>
-      <div class="col-8 p-2">
+      <div class="col-8 p-2" style="visibility: hidden;" id="contenedorEdicionPreguntas">
         <div class="col border border-success">
           <div class="row text-center " style="background: rgb(101, 193, 114);color: white;">
             <h4>Edita tus preguntas aqui</h4>
           </div>
-          <div class="row">
-            <h5 id="titulo_pregunta" class="text-success " style="color: rgb(101, 193, 114);">Pregunta 1</h5>
-          </div>
+          
           <div class="row">
             <!--aqui viene el toast-->
             <div style="display:none;" id="alertaError" class="alert alert-danger alert-dismissible fade show"
@@ -193,25 +154,25 @@
             <div class="form-group ">
               <textarea class="form-control" id="descripcion_pregunta" rows="3" placeholder="Descripcion de la pregunta"
                 required></textarea>
-                <p id="contadorPregunta">0/0</p>
+              <p id="contadorPregunta">0/0</p>
             </div>
             <div class="form-check">
               <input type="radio" class="form-check-input bg-success" id="R_opcion1" name="Radio" value="option1">
               <input type="text" class="form-control border border-success" id="T_opcion1" placeholder="Opcion 1"
                 required>
-                <p id="contadorO1">0/0</p>
+              <p id="contadorO1">0/0</p>
             </div><br><br>
             <div class="form-check">
               <input type="radio" class="form-check-input bg-danger" id="R_opcion2" name="Radio" value="option2">
               <input type="text" class="form-control border border-danger" id="T_opcion2" placeholder="Opcion 2"
                 required>
-                <p id="contadorO2">0/0</p>
+              <p id="contadorO2">0/0</p>
             </div><br><br>
             <div class="form-check">
               <input type="radio" class="form-check-input bg-danger" id="R_opcion3" name="Radio" value="option3">
               <input type="text" class="form-control border border-danger" id="T_opcion3" placeholder="Opcion 3"
                 required>
-                <p id="contadorO3">0/0</p>
+              <p id="contadorO3">0/0</p>
             </div><br><br>
             <div class="form-check">
               <input type="radio" class="form-check-input bg-danger" id="R_opcion4" name="Radio" value="option4">
@@ -234,9 +195,6 @@
       </div>
 
     </div>
-
-  
-
   </main>
 
 
@@ -244,7 +202,31 @@
   <script src="../assets/js/libs/jquery.min.js" type="text/javascript"></script>
   <script type="module">
 
-    let midivBotones = document.getElementById("myListBotones");
+
+    /* let contenedorEdicionPreguntas = document.getElementById("contenedorEdicionPreguntas");
+    let preguntaSeleccionadaId = null;
+
+    let preguntaA = 20;
+    let crearNuevaPregunta = document.getElementById("crearNuevaPregunta");
+    crearNuevaPregunta.addEventListener("click", function () {
+      preguntaA = preguntaA + 1;
+      let myListBotones = document.getElementById("myListBotones");
+      let botonPreguntaNueva = document.createElement("button");
+      botonPreguntaNueva.setAttribute("class", "list-group-item list-group-item-action list-group-item-success");
+      botonPreguntaNueva.setAttribute("data-toggle", "list");
+      botonPreguntaNueva.setAttribute("role", "tab");
+      botonPreguntaNueva.setAttribute("id", "pregunta" + preguntaA)
+      botonPreguntaNueva.textContent = "pregunta" + preguntaA;
+      botonPreguntaNueva.addEventListener("click", function () {
+        contenedorEdicionPreguntas.style.visibility = 'visible';
+        preguntaSeleccionadaId = botonPreguntaNueva.id;
+      });
+
+      myListBotones.appendChild(botonPreguntaNueva);
+
+
+
+    }); */
 
     //inicializando los datos de autenticación
     import {
@@ -265,6 +247,7 @@
       get,
       set,
       child,
+      push,
       update,
       remove,
       onChildAdded,
@@ -320,40 +303,151 @@
     });
 
     function inicializarComponentes() {
+
+      let contenedorEdicionPreguntas = document.getElementById("contenedorEdicionPreguntas");
+      let preguntaSeleccionadaId = null;
+      let crearNuevaPregunta = document.getElementById("crearNuevaPregunta");
+
+      //creando botones preguntas
+      //parte lógica del programa
+      let pregunta = null;
+      let idPreguntaActual = null;
+
+      const nivelActual = getParameterByName("id");
+      if (nivelActual.length === 0) {
+        mostrarDialogoSalidaNivel("Id de nivel no válido");
+      }
+
+      const commentsRef = ref(getDatabase(), "Evaluaciones/" + nivelActual);
+
+      //funciones lógicas
+      function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+        return results === null
+          ? ""
+          : decodeURIComponent(results[1].replace(/\+/g, " "));
+      }
+
+      verificarExistenciaNivel();
+      function verificarExistenciaNivel() {
+        get(child(ref(getDatabase()), "Niveles/")).then((snapshot) => {
+          if (snapshot.exists()) {
+            inicializarEventosPreguntas();
+          } else {
+            mostrarDialogoSalidaNivel("El nivel no existe");
+          }
+        })
+          .catch((error) => {
+            mostrarDialogoSalidaNivel("error");
+          });
+      }
+
+      function inicializarEventosPreguntas() {
+        onChildAdded(commentsRef, (data) => {
+          if (data.exists()) {
+            let pregunta = data.val();
+            let myListBotones = document.getElementById("myListBotones");
+            let botonPreguntaNueva = document.createElement("button");
+            botonPreguntaNueva.setAttribute("class", "list-group-item list-group-item-action list-group-item-success");
+            botonPreguntaNueva.setAttribute("data-toggle", "list");
+            botonPreguntaNueva.setAttribute("role", "tab");
+            botonPreguntaNueva.setAttribute("id", pregunta.id);
+            botonPreguntaNueva.textContent = pregunta.pregunta;
+            botonPreguntaNueva.addEventListener("click", function () {
+              contenedorEdicionPreguntas.style.visibility = 'visible';
+              preguntaSeleccionadaId = botonPreguntaNueva.id;
+              cargar_datos(preguntaSeleccionadaId);
+            });
+
+            myListBotones.appendChild(botonPreguntaNueva);
+          }
+        });
+        onChildRemoved(commentsRef, (data) => {
+          if (data.exists()) {
+            let botonActual = document.getElementById(data.val().id);
+            if (!botonActual) {
+              alert("El elemento selecionado no existe");
+            } else {
+              let padre = botonActual.parentNode;
+              padre.removeChild(botonActual);
+              preguntaSeleccionadaId = null;
+              contenedorEdicionPreguntas.style.visibility = 'hidden';
+            }
+          }
+        });
+
+
+
+        onChildChanged(commentsRef, (data) => {
+          if (data.exists()) {
+            let botonActual = document.getElementById(data.val().id);
+            botonActual.textContent = data.val().pregunta;
+          }
+        });
+      }
+
+
+
+
+
+      crearNuevaPregunta.addEventListener("click", function () {
+        const newPostKey = push(
+          child(ref(getDatabase()), "Evaluaciones/" + nivelActual)
+        ).key;
+        console.log(newPostKey);
+        set(
+          child(
+            ref(getDatabase()),
+            "Evaluaciones/" + nivelActual + "/" + newPostKey
+          ),
+          {
+            id: newPostKey,
+            pregunta: "Nueva pregunta",
+            o1: "opcion1",
+            o2: "opcion2",
+            o3: "opcion3",
+            o4: "opcion4",
+            respuesta: "opcion1"
+          }
+        );
+      });
+
       //agregamos eventos al aside lateral de preguntas
       let contadorPregunta = document.getElementById("contadorPregunta");
-      let preg = document.getElementById("titulo_pregunta");
+      //let preg = document.getElementById("titulo_pregunta");
       let desc = document.getElementById("descripcion_pregunta");
-      desc.addEventListener("keyup",function(){
-        contadorPregunta.textContent = desc.value.length +"/500";
+      desc.addEventListener("keyup", function () {
+        contadorPregunta.textContent = desc.value.length + "/500";
       });
 
       let r1 = document.getElementById("R_opcion1");
       let o1 = document.getElementById("T_opcion1");
       let contadorO1 = document.getElementById("contadorO1");
-      o1.addEventListener("keyup",function(){
-        contadorO1.textContent = o1.value.length +"/300";
+      o1.addEventListener("keyup", function () {
+        contadorO1.textContent = o1.value.length + "/300";
       });
 
       let r2 = document.getElementById("R_opcion2");
       let o2 = document.getElementById("T_opcion2");
       let contadorO2 = document.getElementById("contadorO2");
-      o2.addEventListener("keyup",function(){
-        contadorO2.textContent = o2.value.length +"/300";
+      o2.addEventListener("keyup", function () {
+        contadorO2.textContent = o2.value.length + "/300";
       });
 
       let r3 = document.getElementById("R_opcion3");
       let o3 = document.getElementById("T_opcion3");
       let contadorO3 = document.getElementById("contadorO3");
-      o3.addEventListener("keyup",function(){
-        contadorO3.textContent = o3.value.length +"/300";
+      o3.addEventListener("keyup", function () {
+        contadorO3.textContent = o3.value.length + "/300";
       });
 
       let r4 = document.getElementById("R_opcion4");
       let o4 = document.getElementById("T_opcion4");
       let contadorO4 = document.getElementById("contadorO4");
-      o4.addEventListener("keyup",function(){
-        contadorO4.textContent = o4.value.length +"/300";
+      o4.addEventListener("keyup", function () {
+        contadorO4.textContent = o4.value.length + "/300";
       });
 
       let botonGuardarCambios = document.getElementById("button_guardar");
@@ -363,93 +457,35 @@
 
       let botonLimpiarCampos = document.getElementById("confirmarLimpiarCampos");
       botonLimpiarCampos.addEventListener("click", function () {
-        desc.value = "";
-        o1.value = "";
-        o2.value = "";
-        o3.value = "";
-        o4.value = "";
+        console.log("eliminar pregunta");
+        //desc.value = "";
+        //o1.value = "";
+        //o2.value = "";
+        //o3.value = "";
+        //o4.value = "";
+        /* let imagen = document.getElementById(preguntaSeleccionadaId);
+        if (!imagen) {
+          alert("El elemento selecionado no existe");
+        } else {
+          let padre = imagen.parentNode;
+          padre.removeChild(imagen);
+          preguntaSeleccionadaId = null;
+          contenedorEdicionPreguntas.style.visibility = 'hidden';
+        } */
+        console.log('Evaluaciones/'+nivelActual + preguntaSeleccionadaId);
+
+        remove(ref(getDatabase(), 'Evaluaciones/'+nivelActual +"/"+ preguntaSeleccionadaId))
+          .then(() => {
+            // Data saved successfully!
+          })
+          .catch((error) => {
+            // The write failed...
+            console.log(error);
+          });
+
       });
 
-      let p1 = document.getElementById("pregunta1");
-      let p2 = document.getElementById("pregunta2");
-      let p3 = document.getElementById("pregunta3");
-      let p4 = document.getElementById("pregunta4");
-      let p5 = document.getElementById("pregunta5");
-      let p6 = document.getElementById("pregunta6");
-      let p7 = document.getElementById("pregunta7");
-      let p8 = document.getElementById("pregunta8");
-      let p9 = document.getElementById("pregunta9");
-      let p10 = document.getElementById("pregunta10");
-      let p11 = document.getElementById("pregunta11");
-      let p12 = document.getElementById("pregunta12");
-      let p13 = document.getElementById("pregunta13");
-      let p14 = document.getElementById("pregunta14");
-      let p15 = document.getElementById("pregunta15");
-      let p16 = document.getElementById("pregunta16");
-      let p17 = document.getElementById("pregunta17");
-      let p18 = document.getElementById("pregunta18");
-      let p19 = document.getElementById("pregunta19");
-      let p20 = document.getElementById("pregunta20");
-      p1.addEventListener("click", function () {
-        cargar_datos("p1")
-      });
-      p2.addEventListener("click", function () {
-        cargar_datos("p2")
-      });
-      p3.addEventListener("click", function () {
-        cargar_datos("p3")
-      });
-      p4.addEventListener("click", function () {
-        cargar_datos("p4")
-      });
-      p5.addEventListener("click", function () {
-        cargar_datos("p5")
-      });
-      p6.addEventListener("click", function () {
-        cargar_datos("p6")
-      });
-      p7.addEventListener("click", function () {
-        cargar_datos("p7")
-      });
-      p8.addEventListener("click", function () {
-        cargar_datos("p8")
-      });
-      p9.addEventListener("click", function () {
-        cargar_datos("p9")
-      });
-      p10.addEventListener("click", function () {
-        cargar_datos("p10")
-      });
-      p11.addEventListener("click", function () {
-        cargar_datos("p11")
-      });
-      p12.addEventListener("click", function () {
-        cargar_datos("p12")
-      });
-      p13.addEventListener("click", function () {
-        cargar_datos("p13")
-      });
-      p14.addEventListener("click", function () {
-        cargar_datos("p14")
-      });
-      p15.addEventListener("click", function () {
-        cargar_datos("p15")
-      });
-      p16.addEventListener("click", function () {
-        cargar_datos("p16")
-      });
-      p17.addEventListener("click", function () {
-        cargar_datos("p17")
-      });
-      p18.addEventListener("click", function () {
-        cargar_datos("p18")
-      });
-      p19.addEventListener("click", function () {
-        cargar_datos("p19")
-      });
-      p20.addEventListener("click", function () {
-        cargar_datos("p20")
-      });
+
 
 
       /*
@@ -518,27 +554,11 @@
 
       });
 
-      //parte lógica del programa
-      let pregunta = null;
-      let idPreguntaActual = null;
 
-      const nivelActual = getParameterByName("id");
-      if (nivelActual.length === 0) {
-        mostrarDialogoSalidaNivel("Id de nivel no válido");
-      }
-      //funciones lógicas
-      function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-          results = regex.exec(location.search);
-        return results === null
-          ? ""
-          : decodeURIComponent(results[1].replace(/\+/g, " "));
-      }
 
       function mostrarDialogoSalidaNivel(mensaje) {
-        //window.alert(mensaje);
-        //window.location.href = "/pages/nivel.html";
+        window.alert(mensaje);
+        window.location.href = "/pages/nivel.html";
       }
 
       function mostrarAlertaUser(error, mensajeUser) {
@@ -576,43 +596,43 @@
         return res;
       }
 
-      function cumpleRangoPregunta(){
+      function cumpleRangoPregunta() {
         let contenido = desc.value;
-        return contenido.length>=10 && contenido.length<=500;
+        return contenido.length >= 10 && contenido.length <= 500;
       }
 
-      function cumpleRangoOpciones(){
-        let contenido1 =  o1.value.length>=3 && o1.value.length<=300;
-        let contenido2 =  o2.value.length>=3 && o2.value.length<=300;
-        let contenido3 =  o3.value.length>=3 && o3.value.length<=300;
-        let contenido4 =  o4.value.length>=3 && o4.value.length<=300;
-        return contenido1&&contenido2&&contenido3&&contenido4;
+      function cumpleRangoOpciones() {
+        let contenido1 = o1.value.length >= 3 && o1.value.length <= 300;
+        let contenido2 = o2.value.length >= 3 && o2.value.length <= 300;
+        let contenido3 = o3.value.length >= 3 && o3.value.length <= 300;
+        let contenido4 = o4.value.length >= 3 && o4.value.length <= 300;
+        return contenido1 && contenido2 && contenido3 && contenido4;
       }
 
-      function repetidasOpciones(){
+      function repetidasOpciones() {
         let arrayOp = new Array();
         arrayOp.push(o1.value);
         arrayOp.push(o2.value);
         arrayOp.push(o3.value);
         arrayOp.push(o4.value);
-        return new Set(arrayOp).size!==arrayOp.length
+        return new Set(arrayOp).size !== arrayOp.length
       }
 
       //Parte de la base de datos
-      cargar_datos("p1");
+      //cargar_datos("p1");
       function cargar_datos(id_pregunta) {
         idPreguntaActual = id_pregunta;
         get(
           child(
             ref(getDatabase()),
-            "Evaluaciones/nivel" +
+            "Evaluaciones/" +
             nivelActual + "/" + id_pregunta
           )
         )
           .then((snapshot) => {
             if (snapshot.exists()) {
               pregunta = snapshot.val();
-              preg.textContent = id_pregunta;
+              //preg.textContent = id_pregunta;
               desc.value = pregunta.pregunta;
               o1.value = pregunta.o1;
               o2.value = pregunta.o2;
@@ -627,13 +647,12 @@
               } else if (pregunta.o4 === pregunta.respuesta) {
                 r4.click();
               }
-
               //contadorPregunta.keyup()
-              contadorPregunta.textContent = desc.value.length+"/500";
-              contadorO1.textContent = o1.value.length +"/300";
-              contadorO2.textContent = o2.value.length +"/300";
-              contadorO3.textContent = o3.value.length +"/300";
-              contadorO4.textContent = o4.value.length +"/300";
+              contadorPregunta.textContent = desc.value.length + "/500";
+              contadorO1.textContent = o1.value.length + "/300";
+              contadorO2.textContent = o2.value.length + "/300";
+              contadorO3.textContent = o3.value.length + "/300";
+              contadorO4.textContent = o4.value.length + "/300";
             } else {
               console.log("No data available");
             }
@@ -659,7 +678,7 @@
                 update(
                   child(
                     ref(getDatabase()),
-                    "Evaluaciones/nivel" +
+                    "Evaluaciones/" +
                     nivelActual + "/" + idPreguntaActual
 
                   ), pregunta
@@ -673,13 +692,13 @@
               } else {
                 mostrarAlertaUser(true, "No se recuperaron los datos");
               }
-            }else{
+            } else {
               mostrarAlertaUser(true, "No deben existir opciones repetidas.");
             }
-          }else{
+          } else {
             mostrarAlertaUser(true, "Las opciones deben contener entre 3 y 300 caracteres.");
           }
-        }else{
+        } else {
           mostrarAlertaUser(true, "Las pregunta debe contener entre 10 y 500 caracteres.");
         }
       }
