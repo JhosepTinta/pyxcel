@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="contenido">
+
+    </div>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
+            authDomain: "pyxcel-d6df9.firebaseapp.com",
+            projectId: "pyxcel-d6df9",
+            storageBucket: "pyxcel-d6df9.appspot.com",
+            messagingSenderId: "953396754317",
+            appId: "1:953396754317:web:321620a07c7577f5eb6fc4",
+            measurementId: "G-46CQF62KX4"
+        };
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        import { getDatabase, ref, get, set, child, update, remove, onChildAdded, onChildChanged, onChildRemoved } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
+
+        const db = getDatabase();
+        let idnivel = "nivel3";
+        const commentsRef = ref(db, 'Temas/'+idnivel);
+
+        onChildAdded(commentsRef, (data) => {
+
+            if (data.exists()) {
+                //data son pura nodos
+                console.log(data.key);
+                console.log(data);
+                
+                //lectura dinamica de sus hijos
+                data.child("Contenidos").forEach((childSnapshot) => {
+                    const childKey = childSnapshot.key;
+                    const childData = childSnapshot.val();
+           
+                    console.log(childSnapshot.key);
+                    console.log(childData);
+                    // ...
+                });
+            } else {
+                alert("No se encontro el elemento");
+            }
+
+        });
+
+    </script>
+</body>
+
+</html>
