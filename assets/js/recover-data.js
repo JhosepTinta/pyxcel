@@ -16,47 +16,42 @@ function getDireccion(direccion){
 
 async function getTituloNivel(codNivel){
     var  res = await getDireccion("Niveles/"+codNivel);
-    return   (res.val()).titulo
+    if (res.exists()) {
+        return (res.val()).titulo
+    } else {
+       return "";
+    }
 }
 
 async function getNombresTemasNivel(codNivel){
     var  aux = await getDireccion("Temas/"+codNivel);
     let res = [];
-    aux.forEach(element => {
-        res.push(element)
-      
-    });
-    return   res
+    if (aux.exists()) {
+        aux.forEach(element => {
+            res.push(element)
+        });
+        return res;
+    } else {
+       return res;
+    }
 }
 
 async function getContenidoTema(codNivel,codTema){
-    var  listaTemas = await getDireccion("Temas/"+codNivel+"/"+codTema);
-    var contenidos = null;
-    var listaContendios = [] ;
-    var contador = 1;
-    var res = '';
-    listaTemas.forEach(element => {
-       if(contador == 1){
-          
-          contenidos = element;
-       }
-           contador++;
-    });
-
-    if(contenidos==null){
-        return "";
+    var  listaTemas = await getDireccion("Temas/"+codNivel+"/"+codTema + "/Contenidos");
+    var listaContendios = [];
+    var res = "";
+    if (listaTemas.exists()) {
+        listaTemas.forEach(element => {
+            listaContendios.push(element.val());
+        });
+        listaContendios.forEach(element => {
+        res = res + "<h2>"+element.titulo+"</h2><p>"+element.descripcion+"</p><img src="+element.imagen+"><img>";
+        });
+        return res;
+        
+    }else{
+        return res;
     }
-
-    contenidos.forEach(element => {
-        listaContendios.push(element.val());
-    });
-     
-    listaContendios.forEach(element => {
-       res = res + "<h2>"+element.titulo+"</h2><p>"+element.descripcion+"</p><img src="+element.imagen+"><img>";
-    });
-
-    return res;
 }
-
 
 export{getTituloNivel,getNombresTemasNivel,getContenidoTema}

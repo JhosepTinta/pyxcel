@@ -14,10 +14,12 @@ var nombreTemas =  [] ;
 var temaActual = 1;
 let cantTemas = 0;
 
-async function incializar(){
 
+async function incializar(){
         nombreTemas = await getNombresTemasNivel(codNivel);
-         //   console.log(element.ref._path.pieces_[2])
+        if(nombreTemas.length == 0){;
+           return 
+        }
         cantTemas =  nombreTemas.length;
         var tituloNivel= await getTituloNivel(codNivel);
         ponerTituloNivel(tituloNivel);
@@ -29,6 +31,7 @@ async function incializar(){
 
 async function pintarTituloTema(numeroTema){  /*cada que se haga click sobre un boton (anterior,siguiente) o sobre el muno lateral,este metodo se ejecutara*/
     var botonesTemas  = document.querySelectorAll('.tema-del-nivel');
+   
     botonesTemas.forEach(b =>{
         if(numeroTema == b.value){
             b.classList.add('tema-seleccionado');
@@ -39,11 +42,7 @@ async function pintarTituloTema(numeroTema){  /*cada que se haga click sobre un 
     cotrolarVisibilidadBotones();
 
     var contTema = await getContenidoTema(codNivel, codigosTemas[numeroTema-1]);
-    
-
-
     PonerContenido(nombreTemas[numeroTema-1],contTema); /*En esta esta parte deberian ir info sacada de la base de datos*/
-
 }
 
 function PonerContenido(tituloTema , contenidoTema){ 
