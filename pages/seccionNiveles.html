@@ -220,7 +220,7 @@
                   '"><img src="' +
                   img_text +
                   '"></img></button> </div></div></div><p>' +
-                  "fdasfdas" +
+                  objeto.descripcion +
                   '</p><div class="text-center " style="height:20%"><a href="nivel-temas.html?id=' +
                   objeto.id +
                   '"" class="' +
@@ -330,7 +330,7 @@
         console.log(newPostKey);
         set(child(ref(getDatabase()), "Niveles/" + newPostKey), {
           id: newPostKey,
-          descripcion: "aquí va la descripción",
+          descripcion: "Escribe una descripcion",
           imagen:
             "https://i1.wp.com/hipertextual.com/wp-content/uploads/2017/08/accountant-microsoft-excel-counting.png?fit=1280%2C977&ssl=1",
           titulo: "Nivel Nuevo",
