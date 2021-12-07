@@ -34,6 +34,7 @@
 </head>
 
 <body>
+
     <div class="formulario-nivel" id="formulario-nivel">
         <form action="" name="myform" id="formulario-n">
             <label id="numeroNivel" class="numNivelActual"></label>
@@ -165,17 +166,34 @@ function getParameterByName(name) {
                 console.log(data.key);
                 console.log(data.val());
                 if (contador === 1) {
-                    document.getElementById("descripcion").value = data.val();
+                    
+                    if(data.val() === "Escribe una descripcion"){
+                        document.getElementById("descripcion").value = '';
+                    }else{
+                        document.getElementById("descripcion").value = data.val();
+                    }
+                   
 
                 } else {
                     if (contador === 2) {
                         document.getElementById("numeroNivel").id = data.val();
                     } else {
                         if (contador === 3) {
-                            document.getElementById("urlimagen").value = data.val();
+                           
+                                 if(data.val() === "https://i1.wp.com/hipertextual.com/wp-content/uploads/2017/08/accountant-microsoft-excel-counting.png?fit=1280%2C977&ssl=1"){
+                                     document.getElementById("urlimagen").value = '';
+                                }else{
+                                    document.getElementById("urlimagen").value = data.val();
+                                 }
+                                
                         } else {
                             if (contador === 4) {
-                                document.getElementById("nombre-nivel").value = data.val();
+                                if(data.val() === "Nivel Nuevo"){
+                                    document.getElementById("nombre-nivel").value = '';
+                                }else{
+                                    document.getElementById("nombre-nivel").value = data.val();
+                                 }
+                                
                             }
                         }
 
