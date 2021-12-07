@@ -48,7 +48,12 @@ async function pintarTituloTema(numeroTema){  /*cada que se haga click sobre un 
 function PonerContenido(tituloTema , contenidoTema){ 
     var contenidoTituloTema = document.querySelector('.titulo-del-contenido');
     var contenidoDelTema = document.querySelector('.informacion-contenido');
-    contenidoTituloTema.querySelector('h1').textContent = tituloTema.val().datos.titulo;
+    try {
+        contenidoTituloTema.querySelector('h1').textContent = tituloTema.val().datos.titulo;
+    } catch (error) {
+        contenidoTituloTema.querySelector('h1').textContent = "Sin Titulo";
+    }
+    
     contenidoDelTema.innerHTML=contenidoTema;
 }
 
@@ -66,9 +71,14 @@ async function ponerTitulosTemas(ArrayDeTemas){ /* lista de  nombres de temas  o
     var templateTituloTema = document.querySelector('.template-tema-nivel').content;
     var fragmentTemas = document.createDocumentFragment();
     let aux=1;
-
+    console.log(ArraySoloTitulosTema)
     ArraySoloTitulosTema.forEach(item =>{
-        templateTituloTema.querySelector('.tema-del-nivel').textContent = item.datos.titulo;
+        try {
+            templateTituloTema.querySelector('.tema-del-nivel').textContent = item.datos.titulo;
+        } catch (error) {
+            templateTituloTema.querySelector('.tema-del-nivel').textContent = "sin titulo";
+        }
+     
         templateTituloTema.querySelector('.tema-del-nivel').value = aux++;
         fragmentTemas.appendChild (templateTituloTema.cloneNode(true)); 
     });
