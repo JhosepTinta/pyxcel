@@ -221,8 +221,8 @@ function getParameterByName(name) {
         })
 
         });
-        
-        addUltimo();
+       
+       
         // Funciones para add funcion de eliminar de interfaz
         function addEliminarBotones(element) {
             element.addEventListener('click', (e) => {
@@ -358,12 +358,14 @@ function getParameterByName(name) {
             })
                 .then(() => {
                     console.log("se creo correctamente")
+                    mostrarAlertaGuardado("Se ha guardado o modificado correctamente",'success');
 
                 })
                 .catch((error) => {
                     alert("unsucessfull, error" + error);
                 });
         }
+        addUltimo();
     </script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

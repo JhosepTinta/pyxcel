@@ -215,17 +215,17 @@
                 contenido +=
                   "<h3>" +
                   objeto.titulo +
-                  '</h3><div class="testimonial-wrap d-flex justify-content-between align-items-center"><div class="testimonial-item d-flex align-items-center"> <button class="botonEliminar" id ="' +
+                  '</h3><div class="testimonial-wrap d-flex justify-content-between align-items-center"><div class="testimonial-item d-flex align-items-center"> <button  class="botonEliminar" id ="' +
                   objeto.id +
-                  '"><img src="' +
+                  '" style="border:0px;"><img src="' +
                   img_text +
-                  '"></img></button> </div></div></div><p>' +
-                  "fdasfdas" +
+                  '" ></img></button> </div></div></div><p>' +
+                  objeto.descripcion +
                   '</p><div class="text-center " style="height:20%"><a href="nivel-temas.html?id=' +
                   objeto.id +
                   '"" class="' +
                   btn_text +
-                  '">Editar</a>' +
+                  '" style="border:0;background-color:#68CF79; color:#fff;">Editar</a>' +
                   '<a href="administrar_evaluacion.html?id=' +
                   objeto.id +
                   '"" class="' +
@@ -330,7 +330,7 @@
         console.log(newPostKey);
         set(child(ref(getDatabase()), "Niveles/" + newPostKey), {
           id: newPostKey,
-          descripcion: "aquí va la descripción",
+          descripcion: "Escribe una descripcion",
           imagen:
             "https://i1.wp.com/hipertextual.com/wp-content/uploads/2017/08/accountant-microsoft-excel-counting.png?fit=1280%2C977&ssl=1",
           titulo: "Nivel Nuevo",

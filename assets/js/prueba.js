@@ -142,9 +142,22 @@ function cargarComentarios(cantidad){
         cantidad++;
       }
     }
-    comentariosCargados= comentariosCargados + cantidad;
+
+     comentariosCargados= comentariosCargados + cantidad ;
+
     if(comentariosCargados < arrayListComentarios.length){
-       document.querySelector(".boton-cargar-mas-comentarios").classList.remove("ocultar")
+      var haymas = 0
+       for (let index = comentariosCargados; index < arrayListComentarios.length && haymas == 0; index++) {
+         if ( arrayListComentarios[index].comentario.length > 0){
+            haymas = 1;
+         }
+       }
+       if (haymas == 1) {
+        document.querySelector(".boton-cargar-mas-comentarios").classList.remove("ocultar")
+       }else{
+        document.querySelector(".boton-cargar-mas-comentarios").classList.add("ocultar")
+       }
+       
     }else{
       document.querySelector(".boton-cargar-mas-comentarios").classList.add("ocultar")
     }
@@ -228,6 +241,7 @@ function ponerFuncionesBotonesComentar(){
 
   btnCancelar.addEventListener('click',e=>{
     cajaTextoComentar.value = "";
+    document.querySelector(".texto-fecha").textContent = "";
     desmarcarDesmarcarEstrellas(0);
     editando=0;
     cargarSeccionCalificaCurso();
@@ -289,6 +303,7 @@ function ponerFuncionesBotonesComentar(){
     contadorLetras.textContent = cajaTextoComentar.value.length +"/500";
     contadorLetras.classList.remove("ocultar")
     document.querySelector(".boton-enviar").classList.add("inabilitado");
+    document.querySelector(".texto-fecha").textContent = "Valoracion obligatoria";
     // metood para guardar el comentario en la base dedatos
     //volver a cargar los cometnarios
   });
@@ -360,6 +375,7 @@ function ponerFuncionalidadMarcarEstrellas(){
     var estrellas = document.querySelectorAll(".estrellas");
     estrellas.forEach(element => {
       element.addEventListener('click',e=>{
+        document.querySelector(".texto-fecha").textContent = "";
         desmarcarDesmarcarEstrellas(e.target.value)
       });
     });
@@ -507,7 +523,7 @@ cont.addEventListener('click', (e) => {
 function recuperarNivelesUsuario(datosUsuario) {
   const db = getDatabase();
   const commentsRef = ref(db, 'Niveles');
-  var contenido = "";
+  var contenido = ""; 
   let habilitadoNivel = true;
   onChildAdded(commentsRef, (data) => {
     if (data.exists()) {

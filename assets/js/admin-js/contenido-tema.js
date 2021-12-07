@@ -4,7 +4,6 @@ import {
   actualizarDatosTema,
   actualizarContenidoEspecifico,
   eliminarContenidoEspecifico,
-  recuperarDatos,
   crearId
 } from "../recover-data.js";
 
