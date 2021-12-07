@@ -84,7 +84,7 @@
         <div class="modal-body">
           <div class="row">
             <div class="col-4">
-              <img src="../assets/img/help.png" alt="" width="100px" />
+              <!-- <img src="../assets/img/help.png" alt="" width="100px" /> -->
             </div>
             <div class="col-8">
               <div class="row">
@@ -104,9 +104,9 @@
 
   <main>
     <div class="row p-2">
-      <div class="col-4 ">
+      <div class="col-3 ">
         <div class="row">
-          <h5 class="col-12 text-left text-success">listado de pregunta
+          <h5 class="col-12 text-left text-secondary">Listado de preguntas
             <span class="badge btn btn-outline-warning text-dark" id="crearNuevaPregunta">Agregar</span>
           </h5>          
         </div>
@@ -121,12 +121,12 @@
 
       </div>
       <div class="col-8 " style="visibility: hidden;" id="contenedorEdicionPreguntas">
-        <div class="row border border-success">
-          <div class="text-center" style="background: rgb(101, 193, 114);color: white;">
-            <h4>Edita tus preguntas aqui</h4>
+        <div class="row card" style="border: 1px solid #055160;">
+          <div class="text-center" style="background: #055160;color: white;">
+            <h4 style="margin: 0px; padding: 10px;">Edita tus preguntas aquí</h4>
           </div>
 
-          <div class="row">
+          <div class="row" style="margin: 0px; position: absolute;">
             <!--aqui viene el toast-->
             <div style="display:none;" id="alertaError" class="alert alert-danger alert-dismissible fade show"
               role="alert">
@@ -134,9 +134,7 @@
               <div id="alertaErrorMensaje">
                 descripcion error
               </div>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              
             </div>
             <div style="display:none;" id="alertaExito" class="alert alert-success alert-dismissible fade show"
               role="alert">
@@ -144,13 +142,12 @@
               <div id="alertaExitoMensaje">
                 descripcion éxito
               </div>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              
             </div>
           </div>
-          <div class="row m-1 bg-light">
+          <div class="row" style="margin: 0px;">
             <div class="form-group ">
+              <label for="descripcion_pregunta:" class="form-label" style="color: rgb(156, 156, 156); margin-bottom: 0px;">Pregunta</label>
               <textarea class="form-control" id="descripcion_pregunta" rows="1" placeholder="Descripcion de la pregunta"
                 required></textarea>              
                 <span class="badge bg-secondary" id="contadorPregunta">New</span>
@@ -162,7 +159,7 @@
                 style="width: 10px;height: 25px;">
               <div class="col form-floating mb-3">
                 <input type="email" class="form-control" id="T_opcion1" placeholder="option">
-                <label for="T_opcion1"> opcion 1 </label>
+                <label style="margin-left: 10px;" for="T_opcion1"> opcion 1 </label>
                 <span class="badge bg-secondary" id="contadorO1">New</span>
               </div>
             </div>
@@ -171,7 +168,7 @@
                 style="width: 10px;height: 25px;">
               <div class="col form-floating mb-3">
                 <input type="email" class="form-control" id="T_opcion2" placeholder="option">
-                <label for="T_opcion3"> opcion 2 </label>
+                <label style="margin-left: 10px;" for="T_opcion3"> opcion 2 </label>
                 <span class="badge bg-secondary" id="contadorO2">New</span>
               </div>
             </div>
@@ -180,7 +177,7 @@
                 style="width: 10px;height: 25px;">
               <div class="col form-floating mb-3">
                 <input type="email" class="form-control" id="T_opcion3" placeholder="option">
-                <label for="T_opcion3"> opcion 3 </label>
+                <label style="margin-left: 10px;" for="T_opcion3"> opcion 3 </label>
                 <span class="badge bg-secondary" id="contadorO3">New</span>
               </div>
             </div>
@@ -189,7 +186,7 @@
                 style="width: 10px;height: 25px;">
               <div class="col form-floating mb-3">
                 <input type="email" class="form-control" id="T_opcion4" placeholder="option">
-                <label for="T_opcion4"> opcion 4 </label>
+                <label style="margin-left: 10px;" for="T_opcion4"> opcion 4 </label>
                 <span class="badge bg-secondary" id="contadorO4">New</span>
               </div>
             </div>
