@@ -124,7 +124,7 @@ function actualizarContenidoEspecifico(nroNivel,nroTema,nroContenido,Contenido){
     return update(ref(db, `Temas/${nroNivel}/${nroTema}/Contenidos/${nroContenido}`), Contenido)        
 }
 
-function actualizarDatosTema(nroNivel,nroTema,Datos){git 
+function actualizarDatosTema(nroNivel,nroTema,Datos){ 
     return update(ref(db, `Temas/${nroNivel}/${nroTema}/datos`), Datos)               
 }
 
