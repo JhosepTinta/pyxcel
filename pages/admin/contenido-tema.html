@@ -4,22 +4,77 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../assets/css/admin-styles/contenido-tema.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    <title>Document</title>
+
+ 
+  
+
+    <script src="https://kit.fontawesome.com/e1004dd04e.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet" />
+  
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  
+    <!-- Vendor CSS Files -->
+    <link href="../../assets/vendor/animate.css/animate.min.css" rel="stylesheet" />
+  <link href="../../assets/vendor/aos/aos.css" rel="stylesheet" />
+  <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="../../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+  <link href="../../assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+  <link href="../../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <link href="../../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../assets/css/style.css" rel="stylesheet" />
+
+
+    <link href="../../assets/css/style_evaluacion_admin.css" rel="stylesheet" />
+
+    <link href="../../assets/css/styles.css" rel="stylesheet" />
+    <link href="../../assets/css/style.css" rel="stylesheet" />
+    <link href="../../assets/css/styles-contenido.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="../../assets/css/admin-styles/contenido-tema.css">
+    <title>Pyxcel</title>
 </head>
 <body>
     <header>
+        <div class="container d-flex align-items-center">
+            <h1 class="logo me-auto"><a href="../../index.html">Pyxcel</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      
+            <nav id="navbar" class="navbar order-last order-lg-0">
+              <ul>
+                <li><a href="../seccionNiveles.html">Niveles</a></li>
+                <li><a id="irContenido" href="#">Temas</a></li>
+                <li><a id="irEvaluaciones" class="active" href="#">Evaluaciones</a></li>
+              </ul>
+              <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+            <!-- .navbar -->
+            <div class="desplegable">
+              <button class="desplebutton">
+                <a href="#l" id="prueba" class="get-started-btn">
+                  cargando...
+                  <i class="fas fa-chevron-down"></i>
+                </a>
+              </button>
+              <!-- <i class="material-icons">expand_more </i>  -->
+              <div class="options">
+                <a href="#" id="logout">Cerrar Sesion</a>
+              </div>
+            </div>
+          </div>
         <div class="title-container">
             <label for="title-input"> Titulo </label>
-            <input class="title-input" type="text">
+            <input class="title-input" type="text" required>
             <div class="icon-save">
-                <img src="../../assets/img/icons/disco-guardar.png" alt="">
+                <img id="icon-save" src="../../assets/img/icons/disco-guardar.png" alt="">
             </div>
         </div>
     </header>
     <main>
-        
+        <p class="description">Lista de contenidos para este tema:</p>
         <div class="content-container">
  
         </div>
@@ -30,5 +85,79 @@
     </main>
     <script src="../../assets/js/admin-js/contenido-tema.js" type="module"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../assets/js/main.js"></script>
+    <script src="../../assets/js/libs/jquery.min.js" type="text/javascript"></script>
+    <script type="module">
+    import {
+      initializeApp,
+      onLog,
+    } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+    import {
+      getAuth,
+      signOut,
+      onAuthStateChanged,
+      createUserWithEmailAndPassword,
+      signInWithEmailAndPassword,
+    } from "https:www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+    //import { getDatabase} from "./connection-firebase";
+    import {
+      getDatabase,
+      ref,
+      get,
+      set,
+      child,
+      push,
+      update,
+      remove,
+      onChildAdded,
+      onChildChanged,
+      onChildRemoved,
+    } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
+      authDomain: "pyxcel-d6df9.firebaseapp.com",
+      databaseURL: "https://pyxcel-d6df9-default-rtdb.firebaseio.com",
+      projectId: "pyxcel-d6df9",
+      storageBucket: "pyxcel-d6df9.appspot.com",
+      messagingSenderId: "953396754317",
+      appId: "1:953396754317:web:321620a07c7577f5eb6fc4",
+      measurementId: "G-46CQF62KX4",
+    };
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+        onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const dbref = ref(getDatabase());
+        get(child(dbref, "Usuarios/" + user.uid))
+          .then((snapshot) => {
+            console.log(user);
+            if (snapshot.exists()) {
+              let text = document.getElementById("prueba");
+              text.innerHTML =
+                snapshot.val().nombre +
+                '<i class="fas fa-chevron-down"></i>';
+              inicializarComponentes();
+            } else {
+              console.log("No se encontro el elemento");
+            }
+          })
+          .catch((error) => {
+            console.log("unsucessfull, error" + error);
+          });
+      } else {
+        // User is signed out
+        //console.log("me sali karen :D");
+        window.alert("No iniciaste sesión, así que se te redireccionará a la página principal");
+        window.location.href = "/index.html";
+        // ...
+      }
+
+      const cont = document.getElementById("logout");
+
+      cont.addEventListener("click", (e) => {
+        signOut(auth);
+      });
+    });
+    </script>
 </body>
 </html>

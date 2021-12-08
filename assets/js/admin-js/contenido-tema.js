@@ -168,16 +168,21 @@ function addEventTitleSave(element) {
   element.addEventListener("click", () => {
     let titleElement = document.querySelector(".title-container input");
     let title = titleElement.value;
-    actualizarDatosTema(numNivel, nunTema, {
-      titulo: title,
-    })
-      .then(() => {
-        //alert("Contenido registrado correctamente");
-        Swal.fire("Guardado con exito!");
+    if(title.length>0){
+      actualizarDatosTema(numNivel, nunTema, {
+        titulo: title,
       })
-      .catch((error) => {
-        alert("unsucessfull, error" + error);
-      });
+        .then(() => {
+          //alert("Contenido registrado correctamente");
+          Swal.fire("Guardado con exito!");
+        })
+        .catch((error) => {
+          alert("unsucessfull, error" + error);
+        });
+    } else{
+      Swal.fire("El titulo es obligatorio");
+    }
+    
   });
 }
 
@@ -191,18 +196,23 @@ function addEventComponentSave(component) {
     let title = form.childNodes[1].lastElementChild;
     let description = form.childNodes[3].lastElementChild;
     let img = form.childNodes[5].lastElementChild;
-    actualizarContenidoEspecifico(numNivel, nunTema, numForm, {
-      descripcion: description.value,
-      titulo: title.value,
-      imagen: img.value,
-    })
-      .then(() => {
-        //alert("Contenido registrado correctamente");
-        Swal.fire("Guardado con exito!");
+    if(title.value.length>0 && description.value.length>0){
+      actualizarContenidoEspecifico(numNivel, nunTema, numForm, {
+        descripcion: description.value,
+        titulo: title.value,
+        imagen: img.value,
       })
-      .catch((error) => {
-        alert("unsucessfull, error" + error);
-      }); /**/
+        .then(() => {
+          //alert("Contenido registrado correctamente");
+          Swal.fire("Guardado con exito!");
+        })
+        .catch((error) => {
+          alert("unsucessfull, error" + error);
+        }); /**/
+    }else{
+      Swal.fire("El titulo y descripción del contenido son obligatorios");
+    }
+    
   });
 }
 
@@ -358,7 +368,7 @@ function innerComponent(numberContent,key, title, description, img) {
   const nuevoContenido = `
           <div id="content-${key}" position="${numberContent}" class="content-element">
               <a href="#content-${key}" class="content">Contenido ${numberContent}</a>
-              <img src="../../assets/img/icons/eliminar.png" alt=""> 
+              <img id="content-img" src="../../assets/img/icons/eliminar.png" alt=""> 
           </div>
           <div id="form-${key}" class="content-form-container invisible">
               <div class="content-form">
@@ -397,7 +407,7 @@ function innerComponentAndForm(numberContent,id) {
   const nuevoContenido = `
           <div id="content-${id}" position="${numberContent}" class="content-element">
               <a href="#content-${id}" class="content">Contenido ${numberContent}</a>
-              <img src="../../assets/img/icons/eliminar.png" alt=""> 
+              <img id="content-img" src="../../assets/img/icons/eliminar.png" alt=""> 
           </div>
           <div id="form-${id}" class="content-form-container">
               <div class="content-form">
@@ -492,4 +502,8 @@ function invertirCadena(cad){
 }
 
 //console.log(isolateId("sdfsdfsd-adddddb"))
+let irContenido = document.getElementById("irContenido")
+irContenido.setAttribute("href",`../../pages/nivel-temas.html?id=${numNivel}`)
 
+let evaluaciones = document.getElementById("irEvaluaciones");
+evaluaciones.setAttribute("href",`../../pages/administrar_evaluacion.html?id=${numNivel}`)
