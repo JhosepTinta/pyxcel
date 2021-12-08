@@ -224,6 +224,22 @@ main {
   position: absolute;
 }
 
+#title-logo{
+  font-size: 30px;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+}
+
+#container-header{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
 /*Responsive*/
 
 @media screen and (max-height: 650px) and (max-width: 400px) {
