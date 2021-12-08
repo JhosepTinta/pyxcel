@@ -25,15 +25,70 @@
     <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet"> -->
 
 
-    <link href="/../../assets/css/admin-styles/nivel-temas.css" rel="stylesheet">
+    <link href="../assets/css/admin-styles/nivel-temas.css" rel="stylesheet">
 
     <script src="https://kit.fontawesome.com/e1004dd04e.js" crossorigin="anonymous"></script>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <script src="https://kit.fontawesome.com/e1004dd04e.js" crossorigin="anonymous"></script>
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet" />
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+    <!-- Vendor CSS Files -->
+    <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet" />
+    <link href="../assets/vendor/aos/aos.css" rel="stylesheet" />
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+    <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+    <link href="../assets/css/style_evaluacion_admin.css" rel="stylesheet" />
+
+    <link href="../assets/css/styles.css" rel="stylesheet" />
+    <link href="../assets/css/style.css" rel="stylesheet" />
+    <link href="../assets/css/styles-contenido.css" rel="stylesheet" />
 </head>
 
 <body>
+
+    <header id="header" class="fixed-top">
+        <div class="container d-flex align-items-center">
+            <h1 class="logo me-auto"><a href="../index.html">Pyxcel</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+            <nav id="navbar" class="navbar order-last order-lg-0">
+                <ul>
+                    <li><a href="seccionNiveles.html">Niveles</a></li>
+                    <li><a id="irContenido" href="#">Temas</a></li>
+                    <li><a class="active" id="linkevaluaciones" href="#">Evaluaciones</a></li>
+                </ul>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+            </nav>
+            <!-- .navbar -->
+            <div class="desplegable">
+                <button class="desplebutton">
+                    <a href="#l" id="prueba" class="get-started-btn">
+                        cargando...
+                        <i class="fas fa-chevron-down"></i>
+                    </a>
+                </button>
+                <!-- <i class="material-icons">expand_more </i>  -->
+                <div class="options">
+                    <a href="#" id="logout">Cerrar Sesion</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- End Header -->
 
     <div class="formulario-nivel" id="formulario-nivel">
         <form action="" name="myform" id="formulario-n">
@@ -61,17 +116,27 @@
 
         </form>
     </div>
-    <main>
+    <div class="recomendaciones">
+        <h3 class="recomen">Recomendaciones</h3>
+
+        <ol>
+            <li>Introduce un titulo, descripcion y una imagen formato URL a tu nuevo nivel</li>
+            <li>Guarda los cambios pulsando en el boton de guardar</li>
+            <li>Y crea los temas que desees para tu nivel</li>
+        </ol>
+    </div>
 
 
 
-        <!-- Lista de temas -->
-        <div id="lista-de-temas">
+    <h3 class="titulolista">Lista de Temas</h3>
+    <!-- Lista de temas -->
+    <div id="lista-de-temas">
+    
 
-        </div>
+    </div>
 
 
-    </main>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
         const firebaseConfig = {
@@ -86,18 +151,23 @@
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
 
-        import { getDatabase,push, ref, get, set, child, update, remove, onChildAdded, onChildChanged, onChildRemoved } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
 
+        import { getDatabase, push, ref, get, set, child, update, remove, onChildAdded, onChildChanged, onChildRemoved } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
+        
         const db = getDatabase();
+       
+
+
         // let idnivel = "nivel3";
-        const idnivel=getParameterByName("id");
-// 
-function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-  }
+        const idnivel = getParameterByName("id");
+        document.getElementById("linkevaluaciones").href = "administrar_evaluacion.html?id=" + idnivel;
+        // 
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
 
         const commentsRef = ref(db, 'Temas/' + idnivel);
         // Metodos de pintar en pantalla=-----------------
@@ -111,10 +181,10 @@ function getParameterByName(name) {
             const listatemas = document.getElementById("lista-de-temas");
             console.log("hola")
             const elementodiv = document.createElement("div");
-            let key =  push(child(ref(getDatabase()), 'NivelCont')).key;
+            let key = push(child(ref(getDatabase()), 'NivelCont')).key;
             const element = document.createElement("form");
             elementodiv.setAttribute("class", "btn-especial");
-            let cadena = key+"."+idnivel;
+            let cadena = key + "." + idnivel;
             element.setAttribute("action", "./admin/contenido-tema.html");
             element.setAttribute("method", "GET")
             element.innerHTML = `  <button name="temaNuevo" value="${cadena}" class="btn-especial"> 
@@ -123,19 +193,19 @@ function getParameterByName(name) {
             listatemas.appendChild(elementodiv);
 
         }
+        let contadorTemas = 1;
         function addTema(tarjetatema) {
             const listatemas = document.getElementById("lista-de-temas");
             const element = document.createElement("div");
             element.setAttribute("id", tarjetatema.numerotema);
             // let cadena = tarjetatema.numerotema[tarjetatema.numerotema.length-1]+"a"+numero;
-            let cadena = tarjetatema.numerotema+"."+idnivel;
-            console.log(cadena);
-            console.log("holaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            let cadena = tarjetatema.numerotema + "." + idnivel;
+
             element.innerHTML = `
                         <div class="div-tarjeta" >
                             <div class="tarjeta">
                             <form name="tema" action="./admin/contenido-tema.html" value="${tarjetatema.numerotema}" method="GET" >
-                                <div name="nivel" value="${cadena}" class="numerotema"><p>Tema</p></div>
+                                <div name="nivel" value="${cadena}" class="numerotema"><p>Tema: ${contadorTemas}</p></div>
                                 <div class="titulotema"><p>${tarjetatema.titulotema}</p></div>
                                 <div class="botones">
                                 <div class="btn" id="btn-eliminar"><img class="delete-content" src="../../assets/img/icons/eliminar.png" width="25px" alt=""> </div>
@@ -147,6 +217,7 @@ function getParameterByName(name) {
                         </div>
                     `;
             listatemas.appendChild(element);
+            contadorTemas++;
 
 
         }
@@ -166,34 +237,34 @@ function getParameterByName(name) {
                 console.log(data.key);
                 console.log(data.val());
                 if (contador === 1) {
-                    
-                    if(data.val() === "Escribe una descripcion"){
+
+                    if (data.val() === "Escribe una descripcion") {
                         document.getElementById("descripcion").value = '';
-                    }else{
+                    } else {
                         document.getElementById("descripcion").value = data.val();
                     }
-                   
+
 
                 } else {
                     if (contador === 2) {
                         document.getElementById("numeroNivel").id = data.val();
                     } else {
                         if (contador === 3) {
-                           
-                                 if(data.val() === "https://i1.wp.com/hipertextual.com/wp-content/uploads/2017/08/accountant-microsoft-excel-counting.png?fit=1280%2C977&ssl=1"){
-                                     document.getElementById("urlimagen").value = '';
-                                }else{
-                                    document.getElementById("urlimagen").value = data.val();
-                                 }
-                                
+
+                            if (data.val() === "https://i1.wp.com/hipertextual.com/wp-content/uploads/2017/08/accountant-microsoft-excel-counting.png?fit=1280%2C977&ssl=1") {
+                                document.getElementById("urlimagen").value = '';
+                            } else {
+                                document.getElementById("urlimagen").value = data.val();
+                            }
+
                         } else {
                             if (contador === 4) {
-                                if(data.val() === "Nivel Nuevo"){
+                                if (data.val() === "Nivel Nuevo") {
                                     document.getElementById("nombre-nivel").value = '';
-                                }else{
+                                } else {
                                     document.getElementById("nombre-nivel").value = data.val();
-                                 }
-                                
+                                }
+
                             }
                         }
 
@@ -202,7 +273,7 @@ function getParameterByName(name) {
 
 
 
-                console.log(contador);
+
 
             } else {
                 alert("No se encontro el elemento");
@@ -221,26 +292,18 @@ function getParameterByName(name) {
                 //              add tarjetas de temas con sus titulos-----
                 const tarjetatema = new TarjetaTema(data.key, data.val().datos.titulo);
                 addTema(tarjetatema);
-
-                //lectura dinamica de sus hijos
-                // data.child("Contenido").forEach((childSnapshot) => {
-                //     const childKey = childSnapshot.key;
-                //     const childData = childSnapshot.val();
-
-                //     console.log(childSnapshot.key);
-                //     console.log(childData);
-                //     // ...
-                // });
+                console.log("Este es el titulo del tema");
+                console.log(data.val().datos.titulo);
             } else {
                 alert("No se encontro el elemento");
             }
             document.querySelectorAll("#btn-eliminar").forEach(component => {
-            addEliminarBotones(component);
-        })
+                addEliminarBotones(component);
+            })
 
         });
-       
-       
+
+
         // Funciones para add funcion de eliminar de interfaz
         function addEliminarBotones(element) {
             element.addEventListener('click', (e) => {
@@ -269,7 +332,7 @@ function getParameterByName(name) {
                 if (result.isConfirmed) {
                     Swal.fire('Conformacion de eliminacion');
                     pad.removeChild(hij);
-                    borrarTemmas(idnivel,temaN);
+                    borrarTemmas(idnivel, temaN);
 
                 } else if (result.dismiss) {
                     Swal.fire('cancelado');
@@ -376,7 +439,7 @@ function getParameterByName(name) {
             })
                 .then(() => {
                     console.log("se creo correctamente")
-                    mostrarAlertaGuardado("Se ha guardado o modificado correctamente",'success');
+                    mostrarAlertaGuardado("Se ha guardado o modificado correctamente", 'success');
 
                 })
                 .catch((error) => {
@@ -385,7 +448,80 @@ function getParameterByName(name) {
         }
         addUltimo();
     </script>
+    <script type="module">
+        import {
+          initializeApp,
+          onLog,
+        } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
+        import {
+          getAuth,
+          signOut,
+          onAuthStateChanged,
+          createUserWithEmailAndPassword,
+          signInWithEmailAndPassword,
+        } from "https:www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
+        //import { getDatabase} from "./connection-firebase";
+        import {
+          getDatabase,
+          ref,
+          get,
+          set,
+          child,
+          push,
+          update,
+          remove,
+          onChildAdded,
+          onChildChanged,
+          onChildRemoved,
+        } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
+        const firebaseConfig = {
+          apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
+          authDomain: "pyxcel-d6df9.firebaseapp.com",
+          databaseURL: "https://pyxcel-d6df9-default-rtdb.firebaseio.com",
+          projectId: "pyxcel-d6df9",
+          storageBucket: "pyxcel-d6df9.appspot.com",
+          messagingSenderId: "953396754317",
+          appId: "1:953396754317:web:321620a07c7577f5eb6fc4",
+          measurementId: "G-46CQF62KX4",
+        };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+            onAuthStateChanged(auth, (user) => {
+          if (user) {
+            const dbref = ref(getDatabase());
+            get(child(dbref, "Usuarios/" + user.uid))
+              .then((snapshot) => {
+                console.log(user);
+                if (snapshot.exists()) {
+                  let text = document.getElementById("prueba");
+                  text.innerHTML =
+                    snapshot.val().nombre +
+                    '<i class="fas fa-chevron-down"></i>';
+                  inicializarComponentes();
+                } else {
+                  console.log("No se encontro el elemento");
+                }
+              })
+              .catch((error) => {
+                console.log("unsucessfull, error" + error);
+              });
+          } else {
+            // User is signed out
+            //console.log("me sali karen :D");
+            window.alert("No iniciaste sesión, así que se te redireccionará a la página principal");
+            window.location.href = "/index.html";
+            // ...
+          }
+    
+          const cont = document.getElementById("logout");
+    
+          cont.addEventListener("click", (e) => {
+            signOut(auth);
+          });
+        });
+        </script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../assets/js/main.js"></script>
 
 </body>
 
