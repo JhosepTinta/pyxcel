@@ -275,9 +275,9 @@ function addEventComponentDelete(component) {
         updateContentInBD();*/
         eliminarContenidoEspecifico(numNivel, nunTema, numFormID);
 
-        Swal.fire("Confirmar");
+        //Swal.fire("Confirmar");
       } else if (result.dismiss) {
-        Swal.fire("Cancelar");
+        //Swal.fire("Cancelar");
       }
     });
   });
@@ -372,7 +372,7 @@ function innerComponent(numberContent,key, title, description, img) {
           </div>
           <div id="form-${key}" class="content-form-container invisible">
               <div class="content-form">
-              <label for="">Titulo
+              <label for="">Título
                   <input type="text" value="${title}">
               </label>
               <div>
@@ -411,7 +411,7 @@ function innerComponentAndForm(numberContent,id) {
           </div>
           <div id="form-${id}" class="content-form-container">
               <div class="content-form">
-                  <label for="">Titulo
+                  <label for="">Título
                   <input type="text">
                   </label>
                   <div>
