@@ -31,7 +31,7 @@ var editando = 0;
 async function inicializarSeccionComentarios(){
   
   await obtenerComentariosFireBase();
-  cargarComentarios(3);
+  cargarComentarios(5);
 
   ponerFuncionesBotonesComentar();
   calcularEstadisticas();
@@ -84,13 +84,13 @@ function calcularEstadisticas(){
      cante5 = ((cante5*100)/cantComent).toFixed(1); 
      ponerEstadisticasBarras([cante5+"%" ,cante4+"%",cante3+"%",cante2+"%",cante1+"%"]);
      ponerPuntajeEstadistica(resultado.toFixed(1));
-     texto.textContent = cantComent+" Califiaciones"
+     texto.textContent = cantComent+" Calificaciones"
     }
     if (cantComent== 0) {
       resultado = 0;
       ponerEstadisticasBarras(["0%" ,"0%","0%","0%","0%"]);
       ponerPuntajeEstadistica(resultado);
-      texto.textContent = cantComent+" Califiaciones"
+      texto.textContent = cantComent+" Calificaciones"
      }
 }
 async function obtenerComentariosFireBase(){
@@ -257,7 +257,7 @@ function ponerFuncionesBotonesComentar(){
     desmarcarDesmarcarEstrellas(0);
     borrarComentario();
     await obtenerComentariosFireBase();
-    cargarComentarios(3);
+    cargarComentarios(5);
     estrellasComentar.classList.add("ocultar");
     cajaTextoComentar.classList.add("ocultar");
     botonesEnviarCancelarComentar.classList.add("ocultar");
@@ -309,7 +309,7 @@ function ponerFuncionesBotonesComentar(){
   });
 
   btnCargarMasComentarios.addEventListener("click",e=>{
-    cargarComentarios(3);
+    cargarComentarios(5);
     if (comentariosCargados >=  arrayListComentarios.length) {
       e.target.classList.add("ocultar");
       
@@ -457,7 +457,7 @@ async function agregarComentario(comentarioUsr, calificacionUsr){
   });
   await obtenerComentariosFireBase();
   eliminarHTMLComentarios();
-  cargarComentarios(3);
+  cargarComentarios(5);
   calcularEstadisticas();
 }
 
@@ -465,7 +465,7 @@ async function borrarComentario(){
  await remove(ref(getDatabase(), "Comentarios/" + idUser.uid));
   await obtenerComentariosFireBase();
   eliminarHTMLComentarios();
-  cargarComentarios(3);
+  cargarComentarios(5);
   calcularEstadisticas();
 }
 
@@ -479,7 +479,7 @@ async function editarComentario(comentarioUsr, calificacionUsr){
    await update(ref(getDatabase()), updates);
    await obtenerComentariosFireBase();
    eliminarHTMLComentarios();
-   cargarComentarios(3);
+   cargarComentarios(5);
    calcularEstadisticas();
 }
 

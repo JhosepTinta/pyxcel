@@ -6,6 +6,7 @@ body {
     font-family: "Open Sans", sans-serif;
     color: #444444;
     margin: 0;
+    
   }
 .formulario-nivel{
     display: flex;
@@ -13,13 +14,14 @@ body {
     background-color: #fff;
     justify-content: center;
     text-align: center;
+    margin: 60px 0px;
     
 }
 input{
     width: 35%;
     border: 0;
     padding: 10px;
-    margin: 10px;
+    margin: 20px;
     border-radius: 5px;
     outline: none;
     font-size: 16px;
@@ -27,6 +29,9 @@ input{
 .desplegable-q{
     width: 90%;
     border: 1px solid;
+    padding: 10px;
+    margin: 10px;
+   
 }
 .nombre-nivel{
     background-color: var(--color-verde);
@@ -39,7 +44,8 @@ input{
     margin: 0 30%;
     justify-content: center;
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
-
+    
+    padding: 10px;
 }
 .btn-guardar{
    
@@ -93,16 +99,17 @@ input{
     background-color:#fff;
     /* border: 0px solid #000; */
     border-radius: 5px;
-    box-shadow: 4px 4px 15px rgba(0,0,0,0.1);
+    /* box-shadow: 4px 4px 15px rgba(0,0,0,0.1); */
    
 }
 .numerotema{
     background-color: var(--color-verde);
-    border-top: 1px solid #000;
+    /* border-top: 1px solid #000; */
     border-bottom : 1px solid ;
    text-align: center;
    color: white;
    font-size: 20px;
+   padding: 10px;
 
 }
 .titulotema{
@@ -110,6 +117,7 @@ input{
     margin: 20px;
     font-size: 20px;
     text-align: center;
+   
     
 }
 .botones{
@@ -158,6 +166,28 @@ input{
     padding: 0 20px;
     border: 1px solid #5FCF80;
 }
+.recomendaciones{
+    background-color: #e5aa74;
+    width: 20%;
+    border-radius: 7px;
+    padding: 10px;
+    color: #fff;
+    float: left;
+    font-size: 16px;
+    margin: 10px;
+}
+.titulolista{
+    float: center;
+    text-align: center;
+    color: #5FCF80;
+    padding: 15px;
+  
+    /* border: 1px solid #5FCF80; */
+
+}
+.recomen{
+    font-size:19px
+}
 @media only screen and (max-width: 600px){
     .tarjeta{
         width: 100%;
@@ -172,4 +202,24 @@ input{
         width: 80%;
         margin: auto;
     }
+    .recomendaciones{
+        width: 100%;
+      
+    }
 }
+@media only screen and (max-width: 1000px){
+    .recomendaciones{
+        font-size: 14px;
+    }
+    .recomen{
+        font-size: 14px;
+    }
+    input{
+        width: 80%;
+    }
+    .desplegable{
+        width: 80%;
+        margin: auto;
+    }
+}
+/* Recomendaciones */

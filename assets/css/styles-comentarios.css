@@ -311,6 +311,9 @@ h1 {
      transition: width 1s;
 
 }
+.porcentaje-barra {
+    min-width: 55px;
+}
 
 
 .estrella-primera-mitad{
