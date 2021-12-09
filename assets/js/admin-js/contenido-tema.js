@@ -196,6 +196,12 @@ function addEventComponentSave(component) {
     let title = form.childNodes[1].lastElementChild;
     let description = form.childNodes[3].lastElementChild;
     let img = form.childNodes[5].lastElementChild;
+    
+    let titleElementHead = document.querySelector(".title-container input");
+    let titlehead = titleElementHead.value;
+    if(titlehead.length>0){
+
+    
     if(title.value.length>0 && description.value.length>0){
       actualizarContenidoEspecifico(numNivel, nunTema, numForm, {
         descripcion: description.value,
@@ -212,7 +218,9 @@ function addEventComponentSave(component) {
     }else{
       Swal.fire("El titulo y descripción del contenido son obligatorios");
     }
-    
+    }else{
+      Swal.fire("El titulo del tema es obligatorio");
+    }
   });
 }
 
