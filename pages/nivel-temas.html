@@ -131,7 +131,7 @@
     <h3 class="titulolista">Lista de Temas</h3>
     <!-- Lista de temas -->
     <div id="lista-de-temas">
-    
+
 
     </div>
 
@@ -153,15 +153,29 @@
 
 
         import { getDatabase, push, ref, get, set, child, update, remove, onChildAdded, onChildChanged, onChildRemoved } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
-        
+
         const db = getDatabase();
-       
+
 
 
         // let idnivel = "nivel3";
         const idnivel = getParameterByName("id");
         document.getElementById("linkevaluaciones").href = "administrar_evaluacion.html?id=" + idnivel;
         // 
+
+        const buttonmas = document.querySelector('#botonsiguiente');
+        function validarAdd() {
+            let descripcion = document.getElementById("descripcion");
+            let url = document.getElementById("urlimagen");
+            let titulo = document.getElementById("nombre-nivel");
+            if (descripcion === "" && url === "" && titulo === "") {
+                buttonmas.disabled = false;
+            } else {
+                buttonmas.disabled = true;
+            }
+
+            console.log("entro ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
+        }
         function getParameterByName(name) {
             name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
             var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -185,12 +199,16 @@
             const element = document.createElement("form");
             elementodiv.setAttribute("class", "btn-especial");
             let cadena = key + "." + idnivel;
+
             element.setAttribute("action", "./admin/contenido-tema.html");
             element.setAttribute("method", "GET")
-            element.innerHTML = `  <button name="temaNuevo" value="${cadena}" class="btn-especial"> 
+            element.innerHTML = `  <button name="temaNuevo" value="${cadena}" class="btn-especial" id="mas"> 
             <img src="../../assets/img/icons/boton-agregar.png" alt="" width="20%"></button>`
             elementodiv.appendChild(element);
             listatemas.appendChild(elementodiv);
+
+            
+
 
         }
         let contadorTemas = 1;
@@ -278,8 +296,20 @@
             } else {
                 alert("No se encontro el elemento");
             }
+            let descripcion = document.getElementById("descripcion").value;
+            let url = document.getElementById("urlimagen").value;
+            let titulo = document.getElementById("nombre-nivel").value;
+            if (descripcion === '' && url === '' && titulo === '') {
+                document.getElementById('mas').disabled = true;
+                console.log("aquii" + descripcion + "     " + titulo + "termina");
+                mostrarAlertaGuardado("Debe llenar los datos del nuevo nivel para poder crear nuevos temas", 'info');
+            } else {
+                document.getElementById('mas').disabled = false;
+                console.log("aquiiiiiiiiiiiiiiiiiiiiiiiii" + descripcion + "     " + titulo);
+            }
 
         });
+
 
         onChildAdded(commentsRef, (data) => {
 
@@ -330,7 +360,7 @@
                 customClass: 'ventana-emergente'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire('Conformacion de eliminacion');
+                    Swal.fire('Confirmacion de eliminacion');
                     pad.removeChild(hij);
                     borrarTemmas(idnivel, temaN);
 
@@ -377,6 +407,17 @@
                     console.log("entre a donde es un nuevo nivel");
                     subir(llaveNivel, nombre, descripcion, imag);
                     console.log("Se envian los datos");
+                    let descripcion2 = document.getElementById("descripcion").value;
+                    let url = document.getElementById("urlimagen").value;
+                    let titulo = document.getElementById("nombre-nivel").value;
+                    if (descripcion === '' && url === '' && titulo === '') {
+                        document.getElementById('mas').disabled = true;
+                        console.log("aquii" + descripcion2 + "     " + titulo + "termina");
+                        mostrarAlertaGuardado("Debe llenar los datos del nuevo nivel para poder crear nuevos temas", 'info');
+                    } else {
+                        document.getElementById('mas').disabled = false;
+                        console.log("aquiiiiiiiiiiiiiiiiiiiiiiiii" + descripcion + "     " + titulo);
+                    }
                 } else {
 
                     // console.log("entre donde es nivel ");
@@ -394,7 +435,8 @@
         })
         function validarUrl(titulo, descrip, url) {
             var res = false;
-            var urlg = /^(ftp|http|https):\/\/[^ "]+$/.test(url);
+            var urlg = /^(ftp|http|https|png|jpg):\/\/[^ "]+$/.test(url);
+
             var tit = /^\s*[a-zA-Z\s\é\á\í\ó\ú\ñ\Ñ\¿\¡p]{5,60}\s*$/.test(titulo);
             var des = /^\s*[a-zA-Z\s\é\á\í\ó\ú\ñ\Ñ\¿\¡]{5,100}\s*$/.test(descrip);
             console.log(urlg + "  " + tit + " " + des);
@@ -450,76 +492,76 @@
     </script>
     <script type="module">
         import {
-          initializeApp,
-          onLog,
+            initializeApp,
+            onLog,
         } from "https://www.gstatic.com/firebasejs/9.4.0/firebase-app.js";
         import {
-          getAuth,
-          signOut,
-          onAuthStateChanged,
-          createUserWithEmailAndPassword,
-          signInWithEmailAndPassword,
+            getAuth,
+            signOut,
+            onAuthStateChanged,
+            createUserWithEmailAndPassword,
+            signInWithEmailAndPassword,
         } from "https:www.gstatic.com/firebasejs/9.4.0/firebase-auth.js";
         //import { getDatabase} from "./connection-firebase";
         import {
-          getDatabase,
-          ref,
-          get,
-          set,
-          child,
-          push,
-          update,
-          remove,
-          onChildAdded,
-          onChildChanged,
-          onChildRemoved,
+            getDatabase,
+            ref,
+            get,
+            set,
+            child,
+            push,
+            update,
+            remove,
+            onChildAdded,
+            onChildChanged,
+            onChildRemoved,
         } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
         const firebaseConfig = {
-          apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
-          authDomain: "pyxcel-d6df9.firebaseapp.com",
-          databaseURL: "https://pyxcel-d6df9-default-rtdb.firebaseio.com",
-          projectId: "pyxcel-d6df9",
-          storageBucket: "pyxcel-d6df9.appspot.com",
-          messagingSenderId: "953396754317",
-          appId: "1:953396754317:web:321620a07c7577f5eb6fc4",
-          measurementId: "G-46CQF62KX4",
+            apiKey: "AIzaSyAd6JDsbBWEBv_UFCpgNi9zKEjqgiGytTE",
+            authDomain: "pyxcel-d6df9.firebaseapp.com",
+            databaseURL: "https://pyxcel-d6df9-default-rtdb.firebaseio.com",
+            projectId: "pyxcel-d6df9",
+            storageBucket: "pyxcel-d6df9.appspot.com",
+            messagingSenderId: "953396754317",
+            appId: "1:953396754317:web:321620a07c7577f5eb6fc4",
+            measurementId: "G-46CQF62KX4",
         };
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
-            onAuthStateChanged(auth, (user) => {
-          if (user) {
-            const dbref = ref(getDatabase());
-            get(child(dbref, "Usuarios/" + user.uid))
-              .then((snapshot) => {
-                console.log(user);
-                if (snapshot.exists()) {
-                  let text = document.getElementById("prueba");
-                  text.innerHTML =
-                    snapshot.val().nombre +
-                    '<i class="fas fa-chevron-down"></i>';
-                  inicializarComponentes();
-                } else {
-                  console.log("No se encontro el elemento");
-                }
-              })
-              .catch((error) => {
-                console.log("unsucessfull, error" + error);
-              });
-          } else {
-            // User is signed out
-            //console.log("me sali karen :D");
-            window.alert("No iniciaste sesión, así que se te redireccionará a la página principal");
-            window.location.href = "/index.html";
-            // ...
-          }
-    
-          const cont = document.getElementById("logout");
-    
-          cont.addEventListener("click", (e) => {
-            signOut(auth);
-          });
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const dbref = ref(getDatabase());
+                get(child(dbref, "Usuarios/" + user.uid))
+                    .then((snapshot) => {
+                        console.log(user);
+                        if (snapshot.exists()) {
+                            let text = document.getElementById("prueba");
+                            text.innerHTML =
+                                snapshot.val().nombre +
+                                '<i class="fas fa-chevron-down"></i>';
+                            inicializarComponentes();
+                        } else {
+                            console.log("No se encontro el elemento");
+                        }
+                    })
+                    .catch((error) => {
+                        console.log("unsucessfull, error" + error);
+                    });
+            } else {
+                // User is signed out
+                //console.log("me sali karen :D");
+                window.alert("No iniciaste sesión, así que se te redireccionará a la página principal");
+                window.location.href = "/index.html";
+                // ...
+            }
+
+            const cont = document.getElementById("logout");
+
+            cont.addEventListener("click", (e) => {
+                signOut(auth);
+            });
         });
-        </script>
+    </script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../assets/js/main.js"></script>
 
