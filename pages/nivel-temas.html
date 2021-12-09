@@ -123,7 +123,9 @@
             <li>Introduce un titulo, descripcion y una imagen formato URL a tu nuevo nivel</li>
             <li>Guarda los cambios pulsando en el boton de guardar</li>
             <li>Y crea los temas que desees para tu nivel</li>
+           
         </ol>
+        <p style="color:red">No olvides llenar los campos de nivel antes de crear un tema</p>
     </div>
 
 
@@ -160,22 +162,12 @@
 
         // let idnivel = "nivel3";
         const idnivel = getParameterByName("id");
+        
+        // mostrarAlertaGuardado("Debe llenar los datos del nuevo nivel para poder crear nuevos temas", 'info');
+
         document.getElementById("linkevaluaciones").href = "administrar_evaluacion.html?id=" + idnivel;
         // 
 
-        const buttonmas = document.querySelector('#botonsiguiente');
-        function validarAdd() {
-            let descripcion = document.getElementById("descripcion");
-            let url = document.getElementById("urlimagen");
-            let titulo = document.getElementById("nombre-nivel");
-            if (descripcion === "" && url === "" && titulo === "") {
-                buttonmas.disabled = false;
-            } else {
-                buttonmas.disabled = true;
-            }
-
-            console.log("entro ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo");
-        }
         function getParameterByName(name) {
             name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
             var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -239,7 +231,6 @@
 
 
         }
-
 
         // -------------------------------------
         //  Recuperando nivel 
@@ -310,7 +301,20 @@
 
         });
 
-
+        function preguntarMas(){
+            let descripcion = document.getElementById("descripcion").value;
+            let url = document.getElementById("urlimagen").value;
+            let titulo = document.getElementById("nombre-nivel").value;
+            if (descripcion === '' && url === '' && titulo === '') {
+                document.getElementById('mas').disabled = true;
+                console.log("aquii" + descripcion + "     " + titulo + "termina");
+                mostrarAlertaGuardado("Debe llenar los datos del nuevo nivel para poder crear nuevos temas", 'info');
+            } else {
+                document.getElementById('mas').disabled = false;
+                console.log("aquiiiiiiiiiiiiiiiiiiiiiiiii" + descripcion + "     " + titulo);
+            }
+        }
+        
         onChildAdded(commentsRef, (data) => {
 
             if (data.exists()) {
@@ -333,6 +337,7 @@
 
         });
 
+        
 
         // Funciones para add funcion de eliminar de interfaz
         function addEliminarBotones(element) {
@@ -403,7 +408,7 @@
             if (datosvalidos) {
                 //   ingresar los datos a la base de datos
                 console.log("llaveNivel" + llaveNivel);
-                if (llaveNivel !== "numeroNivel") {
+              
                     console.log("entre a donde es un nuevo nivel");
                     subir(llaveNivel, nombre, descripcion, imag);
                     console.log("Se envian los datos");
@@ -418,12 +423,7 @@
                         document.getElementById('mas').disabled = false;
                         console.log("aquiiiiiiiiiiiiiiiiiiiiiiiii" + descripcion + "     " + titulo);
                     }
-                } else {
-
-                    // console.log("entre donde es nivel ");
-                    // mostrarAlertaGuardado("Se ha editado este nivel", 'question');
-                    // var numconvertido = Number(numeroNivel);
-                }
+                
             } else {
                 if (!datosvalidos) {
                     // Alerta de que los datos no son validos 
