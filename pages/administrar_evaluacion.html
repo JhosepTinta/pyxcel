@@ -147,7 +147,8 @@
               <div id="alertaErrorMensaje">
                 descripcion error
               </div>
-              
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
             </div>
             <div style="display:none;" id="alertaExito" class="alert alert-success alert-dismissible fade show"
               role="alert">
@@ -156,7 +157,8 @@
               <div id="alertaExitoMensaje">
                 descripcion éxito
               </div>
-              
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+
             </div>
           </div>
           <div class="row" style="margin: 0px;">
@@ -598,7 +600,7 @@
           $("#alertaError").show();
           setTimeout(function () {
             $("#alertaError").hide();
-          }, 7000);
+          }, 3000);
 
         } else {
           let mensaje = document.getElementById("alertaExitoMensaje");
@@ -607,7 +609,7 @@
           $("#alertaExito").show();
           setTimeout(function () {
             $("#alertaExito").hide();
-          }, 7000);
+          }, 3000);
         }
       }
 
