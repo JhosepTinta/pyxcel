@@ -325,6 +325,7 @@
       }
       async function subir() {
         const newPostKey = await push(child(ref(getDatabase()), "Niveles")).key;
+        window.location.href = "./nivel-temas.html?id="+newPostKey;/*
         console.log(newPostKey);
         set(child(ref(getDatabase()), "Niveles/" + newPostKey), {
           id: newPostKey,
@@ -337,10 +338,11 @@
             recuperarVistaNiveles();
             crearTema(newPostKey);
             crearEvaluaciones(newPostKey);
+            window.location.href = "./nivel-temas.html?id="+newPostKey;
           })
           .catch((error) => {
             alert("unsucessfull, error" + error);
-          });
+          });*/
       }
 
       async function crearEvaluaciones(idNivel) {
