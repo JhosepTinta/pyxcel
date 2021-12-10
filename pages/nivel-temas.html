@@ -68,8 +68,8 @@
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     <li><a href="seccionNiveles.html">Niveles</a></li>
-                    <li><a id="irContenido" href="#">Temas</a></li>
-                    <li><a class="active" id="linkevaluaciones" href="#">Evaluaciones</a></li>
+                    <li><a class="active" id="irContenido" href="#">Temas</a></li>
+                    <li><a  id="linkevaluaciones" href="#">Evaluaciones</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav>
@@ -88,19 +88,20 @@
             </div>
         </div>
     </header>
+    
     <!-- End Header -->
 
     <div class="formulario-nivel" id="formulario-nivel">
         <form action="" name="myform" id="formulario-n">
             <label id="numeroNivel" class="numNivelActual"></label>
-            <div class="nombre-nivel"><input type="text" placeholder="Titulo del nivel" value="" maxlength="60"
+            <div class="nombre-nivel"><input type="text" placeholder="Titulo del nivel" value="" maxlength="40"
                     spellcheck="false" required id="nombre-nivel">
                 <button type="submit" id="boton-enviar" class="btn-guardar"> <img
                         src="../../assets/img/icons/disco-guardar.png" alt="" width="25px"></button>
             </div>
-            <div class="desplegable" id="desplegar">
+            <div class="desplegablem" id="desplegar">
                 <input type="text" name="descrip" id="descripcion" placeholder="Descripcion del nivel" value=""
-                    maxlength="100" class="desplegable-q" spellcheck="false" required>
+                    maxlength="45" class="desplegable-q" spellcheck="false" required>
                 <input type="url" name="urldato" id="urlimagen" placeholder="URL de una imagen representativa " value=""
                     class="desplegable-q" required>
                 <!-- <input 
@@ -120,12 +121,12 @@
         <h3 class="recomen">Recomendaciones</h3>
 
         <ol>
-            <li>Introduce un titulo, descripcion y una imagen formato URL a tu nuevo nivel</li>
-            <li>Guarda los cambios pulsando en el boton de guardar</li>
-            <li>Y crea los temas que desees para tu nivel</li>
+            <li>Introduce un título, descripción y una imagen formato URL a tu nuevo nivel</li>
+            <li>Guarda los cambios pulsando en el boton  <img src="../assets/img/icons/disco-guardar.png" alt="Guardar" height="17px" style="background-color: #fff;"></li>
+            <li>Crea los temas que desees para tu nivel</li>
            
         </ol>
-        <p style="color:red">No olvides llenar los campos de nivel antes de crear un tema</p>
+        <p style="color:#000">No olvides llenar los campos de nivel antes de crear un tema</p>
     </div>
 
 
@@ -435,10 +436,10 @@
         })
         function validarUrl(titulo, descrip, url) {
             var res = false;
-            var urlg = /^(ftp|http|https|png|jpg):\/\/[^ "]+$/.test(url);
+            var urlg = /^(ftp|http|https|png|jpg|gif):\/\/[^ "]+$/.test(url);
 
             var tit = /^\s*[a-zA-Z\s\é\á\í\ó\ú\ñ\Ñ\¿\¡p]{5,60}\s*$/.test(titulo);
-            var des = /^\s*[a-zA-Z\s\é\á\í\ó\ú\ñ\Ñ\¿\¡]{5,100}\s*$/.test(descrip);
+            var des = /^\s*[a-zA-Z\s\é\á\í\ó\ú\ñ\Ñ\¿\¡\.]{5,100}\s*$/.test(descrip);
             console.log(urlg + "  " + tit + " " + des);
             if ((urlg && tit && des) === true) {
                 res = true;
