@@ -47,6 +47,9 @@
 }
 .lista-temas li {
    margin-bottom: 15px;
+   max-width: 100%;
+   text-overflow: ellipsis;
+   overflow: hidden;
 }
 .lista-temas li:hover {
     color: #68CF79;
@@ -94,6 +97,9 @@
     min-height: 50px;
 }
 .titulo-del-contenido h1{
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
     margin: 10px auto;
     color: white;
     font-size: 30px;
@@ -104,8 +110,12 @@
 .informacion-contenido {
     padding: 10px 30px 30px 30px;
     min-height: 400px;
+    max-width: 100%;
 }
 .informacion-contenido p{
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 17px;
 }
 .informacion-contenido h2{
@@ -113,6 +123,9 @@
     margin: 0 20px 15px 0;
     border-bottom: 2px solid #3EC153;
     line-height: 1.7em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
 }
 .informacion-contenido img { 
     display:block ;
@@ -311,4 +324,6 @@
     }
 
 }
+
+
 
