@@ -134,21 +134,30 @@ assignEvents();
 
 //funciones de interaccion
 document.querySelector(".add-content").addEventListener("click", () => {
-  allActivateInvisible();
-  const newId = crearId("abscd","erwerwe");
-  innerComponentAndForm(numContent,newId);
-  addEventComponent(document.getElementById(`content-${newId}`).firstElementChild);
-  console.log(document.getElementById(`content-${newId}`).firstElementChild)
-  addEventComponentDelete(
-    document.getElementById(`content-${newId}`).lastElementChild
-  );
-    console.log(document.getElementById(`content-${newId}`).lastElementChild)
-  addEventComponentSave(
-    document.getElementById(`content-${newId}`).parentNode.lastElementChild.lastElementChild.lastElementChild
-  );
+  let titleElementHead = document.querySelector(".title-container input");
+  let titlehead = titleElementHead.value.replace(/ /g, "");
 
-  numContent++;
-  newContent = true;
+  if(titlehead.length>0){
+
+    allActivateInvisible();
+    const newId = crearId("abscd","erwerwe");
+    innerComponentAndForm(numContent,newId);
+    addEventComponent(document.getElementById(`content-${newId}`).firstElementChild);
+    console.log(document.getElementById(`content-${newId}`).firstElementChild)
+    addEventComponentDelete(
+      document.getElementById(`content-${newId}`).lastElementChild
+      );
+      console.log(document.getElementById(`content-${newId}`).lastElementChild)
+      addEventComponentSave(
+        document.getElementById(`content-${newId}`).parentNode.lastElementChild.lastElementChild.lastElementChild
+        );
+        
+        numContent++;
+        newContent = true;
+        
+      }else{
+        Swal.fire("Por favor, primero coloca un título para el tema");
+      }
 });
 
 function assignEvents() {
@@ -167,20 +176,25 @@ function assignEvents() {
 function addEventTitleSave(element) {
   element.addEventListener("click", () => {
     let titleElement = document.querySelector(".title-container input");
-    let title = titleElement.value;
-    if(title.length>0){
-      actualizarDatosTema(numNivel, nunTema, {
-        titulo: title,
+    let title = titleElement.value.replace(/ /g, "");
+    if(title.length>0 ){
+      if(title.length<=60 && title.length>=4){
+
+        actualizarDatosTema(numNivel, nunTema, {
+          titulo: title,
       })
-        .then(() => {
-          //alert("Contenido registrado correctamente");
-          Swal.fire("Guardado con exito!");
-        })
-        .catch((error) => {
-          alert("unsucessfull, error" + error);
-        });
+      .then(() => {
+        //alert("Contenido registrado correctamente");
+        Swal.fire("Guardado con exito!");
+      })
+      .catch((error) => {
+        alert("unsucessfull, error" + error);
+      });
+    }else{
+      Swal.fire("El título debe estar entre 5 a 60 caracteres, sin contar espacios");
+    }
     } else{
-      Swal.fire("El titulo es obligatorio");
+      Swal.fire("El título es obligatorio");
     }
     
   });
@@ -198,28 +212,37 @@ function addEventComponentSave(component) {
     let img = form.childNodes[5].lastElementChild;
     
     let titleElementHead = document.querySelector(".title-container input");
-    let titlehead = titleElementHead.value;
+    let titlehead = titleElementHead.value.replace(/ /g, "");
     if(titlehead.length>0){
 
     
-    if(title.value.length>0 && description.value.length>0){
-      actualizarContenidoEspecifico(numNivel, nunTema, numForm, {
-        descripcion: description.value,
-        titulo: title.value,
-        imagen: img.value,
-      })
-        .then(() => {
-          //alert("Contenido registrado correctamente");
-          Swal.fire("Guardado con exito!");
-        })
-        .catch((error) => {
-          alert("unsucessfull, error" + error);
-        }); /**/
+    if(title.value.replace(/ /g, "").length>0 && description.value.replace(/ /g, "").length>0&& img.value.replace(/ /g, "").length>0){
+      if(title.value.replace(/ /g, "").length>=5&&title.value.replace(/ /g, "").length<=60){
+        if(img.value[img.value.length-4]=="."){
+
+          actualizarContenidoEspecifico(numNivel, nunTema, numForm, {
+            descripcion: description.value,
+            titulo: title.value,
+            imagen: img.value,
+          })
+          .then(() => {
+            //alert("Contenido registrado correctamente");
+            Swal.fire("Guardado con exito!");
+          })
+          .catch((error) => {
+            alert("unsucessfull, error" + error);
+          }); /**/
+        }else{
+          Swal.fire("El enlace para la imagen, no corresponde al de una imagen");
+        }
+      }else{
+        Swal.fire("El título debe estar entre 5 a 60 caracteres, sin contar espacios");
+      }
     }else{
-      Swal.fire("El titulo y descripción del contenido son obligatorios");
+      Swal.fire("Los campos de título, descripción y imagen del contenido son obligatorios");
     }
     }else{
-      Swal.fire("El titulo del tema es obligatorio");
+      Swal.fire("El título del tema es obligatorio");
     }
   });
 }
