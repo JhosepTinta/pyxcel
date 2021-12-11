@@ -393,6 +393,8 @@
             });
 
             myListBotones.appendChild(botonPreguntaNueva);
+            botonPreguntaNueva.click();
+            myListBotones.scrollTop = myListBotones.scrollHeight;
           }
         });
         onChildRemoved(commentsRef, (data) => {
@@ -593,6 +595,9 @@
       }
 
       function mostrarAlertaUser(error, mensajeUser) {
+
+        window.scroll(0,0);
+
         if (error) {
           let mensaje = document.getElementById("alertaErrorMensaje");
           mensaje.textContent = mensajeUser;
