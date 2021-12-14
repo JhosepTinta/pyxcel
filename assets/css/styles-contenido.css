@@ -113,7 +113,8 @@
     max-width: 100%;
 }
 .informacion-contenido p{
-    max-width: 100%;
+    width: 100%;
+    max-width: 1100px;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: 17px;
